@@ -1,0 +1,13 @@
+c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\bin\Debug\LukMachine.exe.config
+c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\bin\Debug\LukMachine.exe
+c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\bin\Debug\LukMachine.pdb
+c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\bin\Debug\AGaugeApp.exe
+c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\bin\Debug\AGaugeApp.pdb
+c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.csprojResolveAssemblyReference.cache
+c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.main.resources
+c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.Manual.resources
+c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.Properties.Resources.resources
+c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.csproj.GenerateResource.Cache
+c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.exe
+c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.pdb
+C:\Users\AndyW\OneDrive\Documents\Visual Studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.settings.resources
