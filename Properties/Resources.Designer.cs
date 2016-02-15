@@ -63,6 +63,26 @@ namespace LukMachine.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _023_Tip_128x128_72 {
+            get {
+                object obj = ResourceManager.GetObject("_023_Tip_128x128_72", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _023_Tip_48x48_72 {
+            get {
+                object obj = ResourceManager.GetObject("_023_Tip_48x48_72", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _109_AllAnnotations_Default_32x32_72 {
             get {
                 object obj = ResourceManager.GetObject("109_AllAnnotations_Default_32x32_72", resourceCulture);
@@ -76,6 +96,26 @@ namespace LukMachine.Properties {
         internal static System.Drawing.Bitmap _109_AllAnnotations_Error_32x32_72 {
             get {
                 object obj = ResourceManager.GetObject("109_AllAnnotations_Error_32x32_72", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _112_Minus_Orange_24x24_72 {
+            get {
+                object obj = ResourceManager.GetObject("_112_Minus_Orange_24x24_72", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _112_Plus_Green_24x24_72 {
+            get {
+                object obj = ResourceManager.GetObject("_112_Plus_Green_24x24_72", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +143,79 @@ namespace LukMachine.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1385_Disable_24x24_72 {
+            get {
+                object obj = ResourceManager.GetObject("_1385_Disable_24x24_72", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1427928241_Play {
+            get {
+                object obj = ResourceManager.GetObject("_1427928241_Play", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1427928255_Pause {
+            get {
+                object obj = ResourceManager.GetObject("_1427928255_Pause", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1438802662_Config {
+            get {
+                object obj = ResourceManager.GetObject("_1438802662_Config", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1446234604_application_vnd_ms_excel {
+            get {
+                object obj = ResourceManager.GetObject("_1446234604_application_vnd_ms_excel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _327_Options_32x32_72 {
             get {
                 object obj = ResourceManager.GetObject("327_Options_32x32_72", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap base_cog_32 {
+            get {
+                object obj = ResourceManager.GetObject("base_cog_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bombani {
+            get {
+                object obj = ResourceManager.GetObject("bombani", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -126,6 +236,16 @@ namespace LukMachine.Properties {
         internal static System.Drawing.Bitmap open1 {
             get {
                 object obj = ResourceManager.GetObject("open1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap OpenSelectedItemHS {
+            get {
+                object obj = ResourceManager.GetObject("OpenSelectedItemHS", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

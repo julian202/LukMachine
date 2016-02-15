@@ -26,9 +26,9 @@ namespace LukMachine.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public double p1Max {
+        public int p1Max {
             get {
-                return ((double)(this["p1Max"]));
+                return ((int)(this["p1Max"]));
             }
             set {
                 this["p1Max"] = value;
@@ -180,6 +180,270 @@ namespace LukMachine.Properties {
             }
             set {
                 this["fluids"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("PSI")]
+        public string defaultPressureUnit {
+            get {
+                return ((string)(this["defaultPressureUnit"]));
+            }
+            set {
+                this["defaultPressureUnit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool mustRunReport {
+            get {
+                return ((bool)(this["mustRunReport"]));
+            }
+            set {
+                this["mustRunReport"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TestSampleID {
+            get {
+                return ((string)(this["TestSampleID"]));
+            }
+            set {
+                this["TestSampleID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TestLotNumber {
+            get {
+                return ((string)(this["TestLotNumber"]));
+            }
+            set {
+                this["TestLotNumber"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int TestMaximumPressure {
+            get {
+                return ((int)(this["TestMaximumPressure"]));
+            }
+            set {
+                this["TestMaximumPressure"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("900")]
+        public int maxPressure {
+            get {
+                return ((int)(this["maxPressure"]));
+            }
+            set {
+                this["maxPressure"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double TestRate {
+            get {
+                return ((double)(this["TestRate"]));
+            }
+            set {
+                this["TestRate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int TestDetection {
+            get {
+                return ((int)(this["TestDetection"]));
+            }
+            set {
+                this["TestDetection"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TestData {
+            get {
+                return ((string)(this["TestData"]));
+            }
+            set {
+                this["TestData"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool autoReport {
+            get {
+                return ((bool)(this["autoReport"]));
+            }
+            set {
+                this["autoReport"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool paper {
+            get {
+                return ((bool)(this["paper"]));
+            }
+            set {
+                this["paper"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int paperSheets {
+            get {
+                return ((int)(this["paperSheets"]));
+            }
+            set {
+                this["paperSheets"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double grammage {
+            get {
+                return ((double)(this["grammage"]));
+            }
+            set {
+                this["grammage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoDataFile {
+            get {
+                return ((bool)(this["AutoDataFile"]));
+            }
+            set {
+                this["AutoDataFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSampleID {
+            get {
+                return ((bool)(this["AutoSampleID"]));
+            }
+            set {
+                this["AutoSampleID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool promptSafety {
+            get {
+                return ((bool)(this["promptSafety"]));
+            }
+            set {
+                this["promptSafety"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double defaultPressureConversion {
+            get {
+                return ((double)(this["defaultPressureConversion"]));
+            }
+            set {
+                this["defaultPressureConversion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SubtractExpansion {
+            get {
+                return ((bool)(this["SubtractExpansion"]));
+            }
+            set {
+                this["SubtractExpansion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double ExpansionPressure {
+            get {
+                return ((double)(this["ExpansionPressure"]));
+            }
+            set {
+                this["ExpansionPressure"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public double MaxPumpVolume {
+            get {
+                return ((double)(this["MaxPumpVolume"]));
+            }
+            set {
+                this["MaxPumpVolume"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int ExportOption {
+            get {
+                return ((int)(this["ExportOption"]));
+            }
+            set {
+                this["ExportOption"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ExportPath {
+            get {
+                return ((string)(this["ExportPath"]));
+            }
+            set {
+                this["ExportPath"] = value;
             }
         }
     }

@@ -11,3 +11,21 @@ c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMach
 c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.exe
 c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.pdb
 C:\Users\AndyW\OneDrive\Documents\Visual Studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.settings.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\LukMachine.exe.config
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.exe
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.pdb
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\LukMachine.exe
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\LukMachine.pdb
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\AGaugeApp.pdb
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.csprojResolveAssemblyReference.cache
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.main.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Manual.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Properties.Resources.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.settings.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.csproj.GenerateResource.Cache
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.AutoScrn.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Setup.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\EPPlus.xml
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.BurstDialog2.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.export.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Report.resources

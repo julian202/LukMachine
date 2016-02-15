@@ -36,8 +36,13 @@
     <Reference Include="AGaugeApp">
       <HintPath>..\..\..\..\..\..\Desktop\Source\Programming Laptop\SOURCE\AGaugeApp\bin\Debug\AGaugeApp.exe</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=4.0.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,7 +54,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoScrn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoScrn.designer.cs">
+      <DependentUpon>AutoScrn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BurstDialog2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BurstDialog2.designer.cs">
+      <DependentUpon>BurstDialog2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BurstTest.cs" />
     <Compile Include="COMMS.cs" />
+    <Compile Include="export.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="export.designer.cs">
+      <DependentUpon>export.cs</DependentUpon>
+    </Compile>
     <Compile Include="main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,12 +88,33 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report.designer.cs">
+      <DependentUpon>Report.cs</DependentUpon>
+    </Compile>
     <Compile Include="settings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="settings.Designer.cs">
       <DependentUpon>settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Setup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup.Designer.cs">
+      <DependentUpon>Setup.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AutoScrn.resx">
+      <DependentUpon>AutoScrn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BurstDialog2.resx">
+      <DependentUpon>BurstDialog2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="export.resx">
+      <DependentUpon>export.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="main.resx">
       <DependentUpon>main.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,8 +131,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Report.resx">
+      <DependentUpon>Report.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="settings.resx">
       <DependentUpon>settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup.resx">
+      <DependentUpon>Setup.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -137,6 +188,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\PMI LOGO NEW 2010 outerglow copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1427928255_Pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1427928241_Play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\base_cog_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombani.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1446234604_application-vnd.ms-excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OpenSelectedItemHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\112_Minus_Orange_24x24_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1385_Disable_24x24_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\112_Plus_Green_24x24_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1438802662_Config.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\023_Tip_128x128_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\023_Tip_48x48_72.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
