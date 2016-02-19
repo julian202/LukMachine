@@ -64,9 +64,9 @@ namespace LukMachine
                 }
                 StreamReader SR = new StreamReader(s);
                 string RL = SR.ReadLine();
-                if(RL != "Burst Pressure Analysis")
+                if(RL != "Liquid Permeability Test")
                 {
-                    MessageBox.Show(s + " is not a valid burst pressure data file!", "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(s + " is not a liquid permeability data file!", "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     continue;
                 }
                 string[] splitStuff;
@@ -258,26 +258,33 @@ namespace LukMachine
 
                 string[] busted = header.Split(',');
                 //lets convert it to a double just to format it back to TEXT.
-                double bustedUP = Convert.ToDouble(busted[8]);
+
+
+                //julian commented out this
+                //double bustedUP = Convert.ToDouble(busted[8]);
+
                 label2.Text = "Data: " + comboBox1.Text;
                 label1.Text = "Sample ID: " + busted[0];
-                label3.Text = "Burst Pressure: " + bustedUP.ToString("###.00");
-                label4.Text = "Burst Volume: " + busted[10];
+                //label3.Text = "Burst Pressure: " + bustedUP.ToString("###.00");
+                //label4.Text = "Burst Volume: " + busted[10];
                 if(busted[2] == "N")
                 {
                     label5.Text = "Burst Ratio: N/A";
                 }
                 else
                 {
-                     double bRatio =  GetBurstRatio(Convert.ToDouble(busted[4]),Convert.ToDouble(bustedUP.ToString("###.00")));
-                    label5.Text = "Burst Ratio: " + bRatio.ToString("#.0000");
+                    //double bRatio =  GetBurstRatio(Convert.ToDouble(busted[4]),Convert.ToDouble(bustedUP.ToString("###.00")));
+                    //label5.Text = "Burst Ratio: " + bRatio.ToString("#.0000");
                 }
                 
 
             }
             //add a legend and axis titles.
             chart1.Legends.Add("s");
-            chart1.ChartAreas[0].AxisY.Title = "Pressure (" + lastPUnit + ")";
+
+            chart1.ChartAreas[0].AxisY.TitleFont= new System.Drawing.Font("Arial", 12F);
+      chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
+      chart1.ChartAreas[0].AxisY.Title = "Volume (" + lastPUnit + ")";
             chart1.ChartAreas[0].AxisX.Title = "Time (seconds)";
 
         }
@@ -484,8 +491,9 @@ namespace LukMachine
                 MessageBox.Show("Argument our of range!" + Environment.NewLine + ex.Message, "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            chart.Title.Text = "Pressure VS Time";
-            chart.YAxis.Title.Text = "Differential Pressure(" + splitStuff[3] + ")";
+            chart.Title.Text = "Volume VS Time";
+           
+      chart.YAxis.Title.Text = "Differential Pressure(" + splitStuff[3] + ")";
             chart.XAxis.Title.Text = "Time(seconds)";
             ws.Cells[ws.Dimension.Address.ToString()].AutoFitColumns();
             saveFileDialog1.FileName = splitStuff[0];

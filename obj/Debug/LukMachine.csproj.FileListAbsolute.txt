@@ -29,3 +29,4 @@ C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\EPPlus.xml
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.BurstDialog2.resources
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.export.resources
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Report.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Temperature.resources

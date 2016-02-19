@@ -103,6 +103,16 @@ namespace LukMachine.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _112_LeftArrowShort_Orange_32x32_72 {
+            get {
+                object obj = ResourceManager.GetObject("_112_LeftArrowShort_Orange_32x32_72", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _112_Minus_Orange_24x24_72 {
             get {
                 object obj = ResourceManager.GetObject("_112_Minus_Orange_24x24_72", resourceCulture);

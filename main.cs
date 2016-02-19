@@ -36,6 +36,13 @@ namespace LukMachine
 
       if (setupResult != DialogResult.Cancel)
       {
+        if (Properties.Settings.Default.useTemperature)
+        {
+          Temperature temp = new Temperature();
+          temp.ShowDialog();
+        }
+
+
         AutoScrn auto = new AutoScrn();
         auto.ShowDialog();
         if (Properties.Settings.Default.mustRunReport)
@@ -82,7 +89,7 @@ namespace LukMachine
 
     private void main_Load(object sender, EventArgs e)
     {
-
+      stopPumpCloseValves();
     }
 
     private void button2_Click(object sender, EventArgs e)
@@ -104,7 +111,34 @@ namespace LukMachine
 
     private void button4_Click(object sender, EventArgs e)
     {
-      NotImplemented();
+      this.Hide();
+      Report rep = new Report();
+      rep.ShowDialog();
+      this.Show();
+    }
+
+    private void main_FormClosed(object sender, FormClosedEventArgs e)
+    {
+      stopPumpCloseValves();
+    }
+
+
+    public void stopPumpCloseValves() //this looks like it's not working
+    {
+      //stop main pump
+      COMMS.Instance.ZeroRegulator(1);
+      //stop refill pump
+      COMMS.Instance.MoveMotorValve(1, "S");  
+      //close all 3 valves
+      COMMS.Instance.MoveValve(4, "C");
+      COMMS.Instance.MoveValve(5, "C");
+      COMMS.Instance.MoveValve(6, "C");
+      //close drain valve
+      COMMS.Instance.MoveValve(3, "C");
+      //close relief pressure valve
+      COMMS.Instance.MoveValve(2, "C");
+      //close pent valve so that it wont drain
+      COMMS.Instance.MoveValve(1, "C");
     }
   }
 }

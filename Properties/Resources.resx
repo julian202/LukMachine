@@ -190,4 +190,7 @@
   <data name="_1438802662_Config" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1438802662_Config.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="_112_LeftArrowShort_Orange_32x32_72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\112_LeftArrowShort_Orange_32x32_72.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

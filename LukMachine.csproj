@@ -106,6 +106,12 @@
     <Compile Include="Setup.Designer.cs">
       <DependentUpon>Setup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Temperature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Temperature.Designer.cs">
+      <DependentUpon>Temperature.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AutoScrn.resx">
       <DependentUpon>AutoScrn.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Setup.resx">
       <DependentUpon>Setup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Temperature.resx">
+      <DependentUpon>Temperature.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -224,6 +233,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\023_Tip_48x48_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\112_LeftArrowShort_Orange_32x32_72.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

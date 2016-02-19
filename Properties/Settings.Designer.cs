@@ -446,5 +446,89 @@ namespace LukMachine.Properties {
                 this["ExportPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Chamber {
+            get {
+                return ((string)(this["Chamber"]));
+            }
+            set {
+                this["Chamber"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SelectedFlowRate {
+            get {
+                return ((string)(this["SelectedFlowRate"]));
+            }
+            set {
+                this["SelectedFlowRate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int selectedTemp {
+            get {
+                return ((int)(this["selectedTemp"]));
+            }
+            set {
+                this["selectedTemp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool useTemperature {
+            get {
+                return ((bool)(this["useTemperature"]));
+            }
+            set {
+                this["useTemperature"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public string LowPumpSetting {
+            get {
+                return ((string)(this["LowPumpSetting"]));
+            }
+            set {
+                this["LowPumpSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        public string MediumPumpSetting {
+            get {
+                return ((string)(this["MediumPumpSetting"]));
+            }
+            set {
+                this["MediumPumpSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public string HighPumpSetting {
+            get {
+                return ((string)(this["HighPumpSetting"]));
+            }
+            set {
+                this["HighPumpSetting"] = value;
+            }
+        }
     }
 }
