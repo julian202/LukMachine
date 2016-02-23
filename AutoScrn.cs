@@ -42,7 +42,7 @@ namespace LukMachine
           string X = splitString2[1];
           string Y = splitString2[0];
           chart1.Series["Series1"].Points.AddXY(Y, X);
-          try
+          /*try
           {
             if (Convert.ToInt32(Convert.ToDouble(Y)) > 0)
             {
@@ -53,7 +53,7 @@ namespace LukMachine
           {
             Console.WriteLine("JP " + ex.Message);
             //throw;
-          }
+          }*/
           
           dataGridView1.Rows.Add(Y.ToString(), X.ToString());
           System.Diagnostics.Debug.WriteLine("X: " + X.ToString() + " Y: " + Y.ToString());

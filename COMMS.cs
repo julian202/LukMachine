@@ -343,13 +343,15 @@ namespace LukMachine
     {
       int minCount = Properties.Settings.Default.MinReservoirCount;
       int maxCount = Properties.Settings.Default.MaxReservoirCount;
-      return (Convert.ToInt32(getReservoirLevelCount())-minCount)/(maxCount- minCount);
+      int level = Convert.ToInt32(getReservoirLevelCount());
+      int percentage = 100*(level - minCount) / (maxCount - minCount);
+      return percentage;
     }
     public Int32 getCollectedLevelPercent()
     {
       int minCount = Properties.Settings.Default.MinCollectedCount;
       int maxCount = Properties.Settings.Default.MaxCollectedCount;
-      return (Convert.ToInt32(getCollectedLevelCount()) - minCount) / (maxCount - minCount);
+      return 100*(Convert.ToInt32(getCollectedLevelCount()) - minCount) / (maxCount - minCount);
     }
 
     public string getReservoirLevelCount()
@@ -501,7 +503,7 @@ namespace LukMachine
       {
         return 0;
       }
-      
+  
 
       
     }

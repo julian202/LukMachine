@@ -40,6 +40,8 @@ namespace LukMachine
     private bool heater4Off;
     private bool changedFluidSpeed;
     private Thread myThread;
+    public delegate void UpdateTextCallback(string text);
+
 
     private void Manual_Load(object sender, EventArgs e)
     {
@@ -55,23 +57,7 @@ namespace LukMachine
 
     }
 
-    public static void PumpCollectedVolumeToReservoir()
-    {
-      while (COMMS.Instance.getCollectedLevelPercent() > 5) //if collected reservoir is more than 5% full empty it:
-      {
-        COMMS.Instance.MoveValve(1, "O");
-        COMMS.Instance.MoveValve(2, "C");
-        COMMS.Instance.MoveValve(3, "C");
-        //start pump1
-        COMMS.Instance.MoveMotorValve(1, "O");
 
-      }
-      //stop pump1
-      COMMS.Instance.MoveMotorValve(1, "S");
-      COMMS.Instance.MoveValve(1, "C");
-      COMMS.Instance.MoveValve(3, "C");
-
-    }
 
     private void timer1_Tick(object sender, EventArgs e)
     {
@@ -87,19 +73,41 @@ namespace LukMachine
       label1.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
 
       //read penetrometers
-      //label2.Text = "Penetrometer 1: " + COMMS.Instance.getReservoirLevelCount(); //is COMMS.Instance.MotorValvePosition(1);
-      //label3.Text = "Penetrometer 2: " + COMMS.Instance.getCollectedLevelCount(); //is COMMS.Instance.MotorValvePosition(2);
-      //labelReservoir.Text = COMMS.Instance.getReservoirLevelPercent().ToString();
-      //labelCollected.Text = COMMS.Instance.getCollectedLevelPercent().ToString();
+      int ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+      groupBoxReservoir.Text = "Reservoir " + ReservoirPercent.ToString() + "% Full";
+      int CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
+      groupBoxCollected.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
+
+      label2.Text = "Penetrometer 1: " + COMMS.Instance.getReservoirLevelCount() + " (" + ReservoirPercent.ToString() + "%)"; //is COMMS.Instance.MotorValvePosition(1);
+      label3.Text = "Penetrometer 2: " + COMMS.Instance.getCollectedLevelCount() + " (" + CollectedPercent.ToString() + "%)"; //is COMMS.Instance.MotorValvePosition(2);
+
+      verticalProgressBar1.Value = ReservoirPercent;
+      verticalProgressBar2.Value = CollectedPercent;
 
 
 
       //maybe read temperatures...
-      if (checkBox1.Checked) checkBox1.Text = "Temp 1: " + COMMS.Instance.ReadAthenaTemp(1);
-      if (checkBox2.Checked) checkBox2.Text = "Temp 2: " + COMMS.Instance.ReadAthenaTemp(2);
-      if (checkBox3.Checked) checkBox3.Text = "Temp 3: " + COMMS.Instance.ReadAthenaTemp(3);
-      if (checkBox4.Checked) checkBox4.Text = "Temp 4: " + COMMS.Instance.ReadAthenaTemp(4);
-
+      double temp;
+      if (checkBox1.Checked)
+      {
+        temp = COMMS.Instance.ReadAthenaTemp(1);
+        checkBox1.Text = "Temp 1: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+      }
+      if (checkBox2.Checked)
+      {
+        temp = COMMS.Instance.ReadAthenaTemp(2);
+        checkBox2.Text = "Temp 2: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+      }
+      if (checkBox3.Checked)
+      {
+        temp = COMMS.Instance.ReadAthenaTemp(3);
+        checkBox3.Text = "Temp 3: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+      }
+      if (checkBox4.Checked)
+      {
+        temp = COMMS.Instance.ReadAthenaTemp(4);
+        checkBox4.Text = "Temp 4: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+      }
       //control solenoid valves
       if (openValve)
       {
@@ -316,11 +324,15 @@ namespace LukMachine
     private void button1_Click(object sender, EventArgs e)
     {
       openValve7 = true;
+      pictureBox3.Image = global::LukMachine.Properties.Resources.open1;
+      pictureBox2.Image = global::LukMachine.Properties.Resources.close;
     }
 
     private void button2_Click(object sender, EventArgs e)
     {
       closeValve7 = true;
+      pictureBox2.Image = global::LukMachine.Properties.Resources.open1;
+      pictureBox3.Image = global::LukMachine.Properties.Resources.close;
     }
 
     private void button11_Click(object sender, EventArgs e)
@@ -436,11 +448,16 @@ namespace LukMachine
 
     public void myPumpThread()
     {
-      Console.WriteLine("sleeping..");
-      Thread.Sleep(3000);
-      button21.Invoke(new UpdateTextCallback(this.UpdateText), new object[] {"Text generated on non - UI thread."});
+      PumpCollectedVolumeToReservoir(); //this method contains a while loop checking collected volume until its empty.
+
+      //Console.WriteLine("sleeping..");
+      //Thread.Sleep(3000);
+
+      //set button text back to it's original text by calling my method UpdateText:
+      button21.Invoke(new UpdateTextCallback(this.UpdateText), new object[] { "Text generated on non - UI thread." });
       Console.WriteLine("my thread finished");
     }
+
 
     private void UpdateText(string text)
     {
@@ -450,7 +467,26 @@ namespace LukMachine
       button21.Enabled = true;
     }
 
-    public delegate void UpdateTextCallback(string text);
+    public static void PumpCollectedVolumeToReservoir()
+    {
+      while (COMMS.Instance.getCollectedLevelPercent() > 5) //if collected reservoir is more than 5% full empty it:
+      {
+        //now refilling reservoir with the liquid from the collected volume
+        Valves.OpenValve1();
+        Valves.CloseValve2();
+        Valves.CloseValve3();
+        //start refill pump 1
+        Pumps.StartPump1();
+      }
+      //stop refill pump 1
+      Pumps.StopPump1();
+      Valves.CloseValve1();
 
+    }
+
+    private void checkBox1_CheckedChanged(object sender, EventArgs e)
+    {
+
+    }
   }
 }

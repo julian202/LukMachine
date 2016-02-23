@@ -32,13 +32,13 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manual));
       this.timer1 = new System.Windows.Forms.Timer(this.components);
       this.groupBox9 = new System.Windows.Forms.GroupBox();
-      this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.button17 = new System.Windows.Forms.Button();
       this.button18 = new System.Windows.Forms.Button();
       this.comboBox2 = new System.Windows.Forms.ComboBox();
       this.timer2 = new System.Windows.Forms.Timer(this.components);
       this.timer3 = new System.Windows.Forms.Timer(this.components);
       this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.pictureBox3 = new System.Windows.Forms.PictureBox();
       this.pictureBox2 = new System.Windows.Forms.PictureBox();
       this.button1 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
@@ -92,15 +92,15 @@
       this.aGauge5 = new AGaugeApp.AGauge();
       this.button21 = new System.Windows.Forms.Button();
       this.groupBox6 = new System.Windows.Forms.GroupBox();
+      this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
+      this.groupBoxCollected = new System.Windows.Forms.GroupBox();
       this.label8 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
-      this.groupBox10 = new System.Windows.Forms.GroupBox();
-      this.groupBox11 = new System.Windows.Forms.GroupBox();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.groupBox9.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.groupBox1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
       this.groupBox2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -112,8 +112,8 @@
       this.groupBox5.SuspendLayout();
       this.groupBox8.SuspendLayout();
       this.groupBox6.SuspendLayout();
-      this.groupBox10.SuspendLayout();
-      this.groupBox11.SuspendLayout();
+      this.groupBoxReservoir.SuspendLayout();
+      this.groupBoxCollected.SuspendLayout();
       this.SuspendLayout();
       // 
       // timer1
@@ -123,11 +123,10 @@
       // 
       // groupBox9
       // 
-      this.groupBox9.Controls.Add(this.pictureBox1);
       this.groupBox9.Controls.Add(this.button17);
       this.groupBox9.Controls.Add(this.button18);
       this.groupBox9.Controls.Add(this.comboBox2);
-      this.groupBox9.Location = new System.Drawing.Point(950, 260);
+      this.groupBox9.Location = new System.Drawing.Point(975, 260);
       this.groupBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox9.Name = "groupBox9";
       this.groupBox9.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -136,21 +135,10 @@
       this.groupBox9.TabStop = false;
       this.groupBox9.Text = "Solenoid Valves";
       // 
-      // pictureBox1
-      // 
-      this.pictureBox1.Image = global::LukMachine.Properties.Resources.close;
-      this.pictureBox1.Location = new System.Drawing.Point(48, 132);
-      this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(125, 21);
-      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.pictureBox1.TabIndex = 7;
-      this.pictureBox1.TabStop = false;
-      // 
       // button17
       // 
       this.button17.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.button17.Location = new System.Drawing.Point(123, 61);
+      this.button17.Location = new System.Drawing.Point(120, 81);
       this.button17.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.button17.Name = "button17";
       this.button17.Size = new System.Drawing.Size(81, 61);
@@ -161,7 +149,7 @@
       // button18
       // 
       this.button18.Image = global::LukMachine.Properties.Resources.redX3;
-      this.button18.Location = new System.Drawing.Point(19, 61);
+      this.button18.Location = new System.Drawing.Point(18, 81);
       this.button18.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.button18.Name = "button18";
       this.button18.Size = new System.Drawing.Size(81, 61);
@@ -181,7 +169,7 @@
             "5",
             "6",
             "7"});
-      this.comboBox2.Location = new System.Drawing.Point(19, 23);
+      this.comboBox2.Location = new System.Drawing.Point(18, 36);
       this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.comboBox2.Name = "comboBox2";
       this.comboBox2.Size = new System.Drawing.Size(183, 33);
@@ -197,25 +185,37 @@
       // 
       // groupBox1
       // 
+      this.groupBox1.Controls.Add(this.pictureBox3);
       this.groupBox1.Controls.Add(this.pictureBox2);
       this.groupBox1.Controls.Add(this.button1);
       this.groupBox1.Controls.Add(this.button2);
-      this.groupBox1.Location = new System.Drawing.Point(630, 260);
+      this.groupBox1.Location = new System.Drawing.Point(619, 260);
       this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox1.Name = "groupBox1";
       this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.groupBox1.Size = new System.Drawing.Size(312, 170);
+      this.groupBox1.Size = new System.Drawing.Size(348, 170);
       this.groupBox1.TabIndex = 27;
       this.groupBox1.TabStop = false;
-      this.groupBox1.Text = "3-Way Valve Chamber Select";
+      this.groupBox1.Text = "Chamber Select (3-Way Valve )";
+      // 
+      // pictureBox3
+      // 
+      this.pictureBox3.Image = global::LukMachine.Properties.Resources.close;
+      this.pictureBox3.Location = new System.Drawing.Point(179, 124);
+      this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.pictureBox3.Name = "pictureBox3";
+      this.pictureBox3.Size = new System.Drawing.Size(81, 21);
+      this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.pictureBox3.TabIndex = 8;
+      this.pictureBox3.TabStop = false;
       // 
       // pictureBox2
       // 
       this.pictureBox2.Image = global::LukMachine.Properties.Resources.close;
-      this.pictureBox2.Location = new System.Drawing.Point(90, 118);
+      this.pictureBox2.Location = new System.Drawing.Point(75, 124);
       this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.pictureBox2.Name = "pictureBox2";
-      this.pictureBox2.Size = new System.Drawing.Size(125, 21);
+      this.pictureBox2.Size = new System.Drawing.Size(81, 21);
       this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.pictureBox2.TabIndex = 7;
       this.pictureBox2.TabStop = false;
@@ -223,7 +223,7 @@
       // button1
       // 
       this.button1.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.button1.Location = new System.Drawing.Point(165, 40);
+      this.button1.Location = new System.Drawing.Point(179, 53);
       this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(81, 61);
@@ -234,7 +234,7 @@
       // button2
       // 
       this.button2.Image = global::LukMachine.Properties.Resources._112_LeftArrowShort_Orange_32x32_72;
-      this.button2.Location = new System.Drawing.Point(61, 40);
+      this.button2.Location = new System.Drawing.Point(75, 53);
       this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(81, 61);
@@ -614,7 +614,7 @@
       this.groupBox7.Controls.Add(this.label12);
       this.groupBox7.Controls.Add(this.trackBar4);
       this.groupBox7.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.groupBox7.Location = new System.Drawing.Point(1136, 32);
+      this.groupBox7.Location = new System.Drawing.Point(1176, 34);
       this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
       this.groupBox7.Name = "groupBox7";
       this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
@@ -733,11 +733,12 @@
       this.checkBox1.TabIndex = 37;
       this.checkBox1.Text = "Temp 1: N/A";
       this.checkBox1.UseVisualStyleBackColor = true;
+      this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
       // 
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(7, 88);
+      this.label3.Location = new System.Drawing.Point(482, 87);
       this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(167, 25);
@@ -747,7 +748,7 @@
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(6, 30);
+      this.label2.Location = new System.Drawing.Point(481, 29);
       this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(167, 25);
@@ -761,7 +762,7 @@
       this.groupBox8.Controls.Add(this.aGauge5);
       this.groupBox8.Location = new System.Drawing.Point(18, 14);
       this.groupBox8.Name = "groupBox8";
-      this.groupBox8.Size = new System.Drawing.Size(363, 222);
+      this.groupBox8.Size = new System.Drawing.Size(363, 225);
       this.groupBox8.TabIndex = 39;
       this.groupBox8.TabStop = false;
       this.groupBox8.Text = "Pressure (PSI)";
@@ -770,7 +771,7 @@
       // 
       this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label1.Location = new System.Drawing.Point(31, 156);
+      this.label1.Location = new System.Drawing.Point(33, 159);
       this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(294, 37);
@@ -807,7 +808,7 @@
         ""};
       this.aGauge5.CapText = "";
       this.aGauge5.Center = new System.Drawing.Point(140, 170);
-      this.aGauge5.Location = new System.Drawing.Point(34, 18);
+      this.aGauge5.Location = new System.Drawing.Point(34, 27);
       this.aGauge5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.aGauge5.MaxValue = 60000F;
       this.aGauge5.MinValue = 0F;
@@ -888,9 +889,9 @@
       // button21
       // 
       this.button21.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button21.Location = new System.Drawing.Point(12, 151);
+      this.button21.Location = new System.Drawing.Point(467, 153);
       this.button21.Name = "button21";
-      this.button21.Size = new System.Drawing.Size(211, 77);
+      this.button21.Size = new System.Drawing.Size(276, 59);
       this.button21.TabIndex = 40;
       this.button21.Text = "Pump collected volume back to reservoir";
       this.button21.UseVisualStyleBackColor = true;
@@ -899,23 +900,42 @@
       // groupBox6
       // 
       this.groupBox6.Controls.Add(this.button21);
-      this.groupBox6.Controls.Add(this.groupBox11);
-      this.groupBox6.Controls.Add(this.groupBox10);
-      this.groupBox6.Controls.Add(this.label8);
-      this.groupBox6.Controls.Add(this.label5);
+      this.groupBox6.Controls.Add(this.groupBoxReservoir);
+      this.groupBox6.Controls.Add(this.groupBoxCollected);
       this.groupBox6.Controls.Add(this.label2);
       this.groupBox6.Controls.Add(this.label3);
+      this.groupBox6.Controls.Add(this.label8);
+      this.groupBox6.Controls.Add(this.label5);
       this.groupBox6.Location = new System.Drawing.Point(389, 14);
       this.groupBox6.Name = "groupBox6";
-      this.groupBox6.Size = new System.Drawing.Size(661, 238);
+      this.groupBox6.Size = new System.Drawing.Size(780, 238);
       this.groupBox6.TabIndex = 40;
       this.groupBox6.TabStop = false;
-      this.groupBox6.Text = "Volume";
+      // 
+      // groupBoxReservoir
+      // 
+      this.groupBoxReservoir.Controls.Add(this.verticalProgressBar1);
+      this.groupBoxReservoir.Location = new System.Drawing.Point(6, 18);
+      this.groupBoxReservoir.Name = "groupBoxReservoir";
+      this.groupBoxReservoir.Size = new System.Drawing.Size(212, 212);
+      this.groupBoxReservoir.TabIndex = 43;
+      this.groupBoxReservoir.TabStop = false;
+      this.groupBoxReservoir.Text = "Reservoir Volume";
+      // 
+      // groupBoxCollected
+      // 
+      this.groupBoxCollected.Controls.Add(this.verticalProgressBar2);
+      this.groupBoxCollected.Location = new System.Drawing.Point(229, 18);
+      this.groupBoxCollected.Name = "groupBoxCollected";
+      this.groupBoxCollected.Size = new System.Drawing.Size(212, 212);
+      this.groupBoxCollected.TabIndex = 41;
+      this.groupBoxCollected.TabStop = false;
+      this.groupBoxCollected.Text = "Collected Volume";
       // 
       // label8
       // 
       this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(24, 117);
+      this.label8.Location = new System.Drawing.Point(499, 116);
       this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label8.Name = "label8";
       this.label8.Size = new System.Drawing.Size(194, 25);
@@ -925,32 +945,12 @@
       // label5
       // 
       this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(24, 59);
+      this.label5.Location = new System.Drawing.Point(499, 58);
       this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label5.Name = "label5";
       this.label5.Size = new System.Drawing.Size(120, 25);
       this.label5.TabIndex = 41;
       this.label5.Text = "(Reservoir)";
-      // 
-      // groupBox10
-      // 
-      this.groupBox10.Controls.Add(this.verticalProgressBar2);
-      this.groupBox10.Location = new System.Drawing.Point(451, 16);
-      this.groupBox10.Name = "groupBox10";
-      this.groupBox10.Size = new System.Drawing.Size(194, 212);
-      this.groupBox10.TabIndex = 41;
-      this.groupBox10.TabStop = false;
-      this.groupBox10.Text = "Collected Volume";
-      // 
-      // groupBox11
-      // 
-      this.groupBox11.Controls.Add(this.verticalProgressBar1);
-      this.groupBox11.Location = new System.Drawing.Point(245, 18);
-      this.groupBox11.Name = "groupBox11";
-      this.groupBox11.Size = new System.Drawing.Size(200, 210);
-      this.groupBox11.TabIndex = 43;
-      this.groupBox11.TabStop = false;
-      this.groupBox11.Text = "Reservoir";
       // 
       // verticalProgressBar1
       // 
@@ -958,15 +958,13 @@
       this.verticalProgressBar1.Name = "verticalProgressBar1";
       this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
       this.verticalProgressBar1.TabIndex = 43;
-      this.verticalProgressBar1.Value = 50;
       // 
       // verticalProgressBar2
       // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(58, 41);
+      this.verticalProgressBar2.Location = new System.Drawing.Point(70, 40);
       this.verticalProgressBar2.Name = "verticalProgressBar2";
       this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
       this.verticalProgressBar2.TabIndex = 44;
-      this.verticalProgressBar2.Value = 50;
       // 
       // Manual
       // 
@@ -992,8 +990,8 @@
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Manual_FormClosing);
       this.Load += new System.EventHandler(this.Manual_Load);
       this.groupBox9.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.groupBox1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
       this.groupBox2.ResumeLayout(false);
       this.groupBox2.PerformLayout();
@@ -1011,8 +1009,8 @@
       this.groupBox8.ResumeLayout(false);
       this.groupBox6.ResumeLayout(false);
       this.groupBox6.PerformLayout();
-      this.groupBox10.ResumeLayout(false);
-      this.groupBox11.ResumeLayout(false);
+      this.groupBoxReservoir.ResumeLayout(false);
+      this.groupBoxCollected.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -1021,7 +1019,6 @@
         #endregion
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.ComboBox comboBox2;
@@ -1085,7 +1082,8 @@
     private System.Windows.Forms.Label label5;
     private VerticalProgressBar verticalProgressBar1;
     private VerticalProgressBar verticalProgressBar2;
-    private System.Windows.Forms.GroupBox groupBox10;
-    private System.Windows.Forms.GroupBox groupBox11;
+    private System.Windows.Forms.GroupBox groupBoxCollected;
+    private System.Windows.Forms.GroupBox groupBoxReservoir;
+    private System.Windows.Forms.PictureBox pictureBox3;
   }
 }
