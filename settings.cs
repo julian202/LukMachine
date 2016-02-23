@@ -113,5 +113,10 @@ namespace LukMachine
       //reset to default settings, need to ask the user, "Fo Realz bro?"
       Properties.Settings.Default.Reset();
     }
+
+    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
   }
 }

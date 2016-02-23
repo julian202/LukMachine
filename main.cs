@@ -31,6 +31,7 @@ namespace LukMachine
       }
 
       this.Hide();
+
       Setup setScrn = new Setup();
       DialogResult setupResult = setScrn.ShowDialog();
 
@@ -45,11 +46,12 @@ namespace LukMachine
 
         AutoScrn auto = new AutoScrn();
         auto.ShowDialog();
-        if (Properties.Settings.Default.mustRunReport)
+        
+        /*if (Properties.Settings.Default.mustRunReport)
         {
           Report rep = new Report();
           rep.ShowDialog();
-        }
+        }*/
       }
       this.Show();
     }
@@ -129,16 +131,30 @@ namespace LukMachine
       COMMS.Instance.ZeroRegulator(1);
       //stop refill pump
       COMMS.Instance.MoveMotorValve(1, "S");  
-      //close all 3 valves
+      /*close all 3 valves
       COMMS.Instance.MoveValve(4, "C");
       COMMS.Instance.MoveValve(5, "C");
-      COMMS.Instance.MoveValve(6, "C");
+      COMMS.Instance.MoveValve(6, "C");*/
       //close drain valve
       COMMS.Instance.MoveValve(3, "C");
       //close relief pressure valve
       COMMS.Instance.MoveValve(2, "C");
       //close pent valve so that it wont drain
       COMMS.Instance.MoveValve(1, "C");
+    }
+
+    private void button5_Click(object sender, EventArgs e)
+    {
+      DialogResult asdf;
+      while ((asdf = openCOM()) == DialogResult.Retry)
+      {
+
+      }
+      if (asdf == DialogResult.Abort)
+      {
+        return;
+      }
+      Console.WriteLine ( COMMS.Instance.rsEcho("jk"));
     }
   }
 }

@@ -530,5 +530,89 @@ namespace LukMachine.Properties {
                 this["HighPumpSetting"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60000")]
+        public double twoVolt {
+            get {
+                return ((double)(this["twoVolt"]));
+            }
+            set {
+                this["twoVolt"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2000")]
+        public double ground {
+            get {
+                return ((double)(this["ground"]));
+            }
+            set {
+                this["ground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10000")]
+        public string MaxPent3Reading {
+            get {
+                return ((string)(this["MaxPent3Reading"]));
+            }
+            set {
+                this["MaxPent3Reading"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("62000")]
+        public int MaxReservoirCount {
+            get {
+                return ((int)(this["MaxReservoirCount"]));
+            }
+            set {
+                this["MaxReservoirCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("62000")]
+        public int MaxCollectedCount {
+            get {
+                return ((int)(this["MaxCollectedCount"]));
+            }
+            set {
+                this["MaxCollectedCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2000")]
+        public int MinReservoirCount {
+            get {
+                return ((int)(this["MinReservoirCount"]));
+            }
+            set {
+                this["MinReservoirCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2000")]
+        public int MinCollectedCount {
+            get {
+                return ((int)(this["MinCollectedCount"]));
+            }
+            set {
+                this["MinCollectedCount"] = value;
+            }
+        }
     }
 }

@@ -75,24 +75,40 @@ namespace LukMachine
 
     public void AbortTest()
     {
-      Progress("Preparing to cancel the test, please wait...");
-      //stop pump
-      //
-      testPaused = false;
-      abort = true;
-      //COMMS.Instance.Pause(2);
-      Progress("Stopping pump...");
-      PassThrough('A', stopPumpCMD);
-      pumpRunning = false;
-      Progress("relieving pressure...");
-      COMMS.Instance.MoveMotorValve(1, "O");
-      COMMS.Instance.Pause(15);
-      COMMS.Instance.MoveMotorValve(1, "S");
-      Progress("resetting machine...");
-      COMMS.Instance.Pause(2);
-      Progress("closing data file...");
-      testPaused = false;
-      Progress("Ending test process");
+      try
+      {
+
+
+        Progress("Preparing to cancel the test, please wait...");
+        testPaused = false;
+        abort = true;
+        //COMMS.Instance.Pause(1); //wait 1 second
+        System.Windows.Forms.MessageBox.Show("Data saved to " + Properties.Settings.Default.TestData);
+
+        /*
+        //stop main pump
+        Progress("Stopping pump...");
+        COMMS.Instance.ZeroRegulator(1);
+        pumpRunning = false;
+
+        //open relief pressure valve
+        Progress("Relieving pressure...");
+        COMMS.Instance.MoveValve(2, "O");
+        */
+
+        /*
+        //open pent valve so that it drains to reservoir
+        COMMS.Instance.MoveValve(1, "O");
+
+        //start refill pump
+        Progress("Disposing collected volume...");
+        COMMS.Instance.MoveMotorValve(1, "O");*/
+
+        //COMMS.Instance.Pause(15);
+        testPaused = false;
+        Progress("You can close this window now");
+      }
+      catch { }
     }
 
     public void PauseTest()
@@ -121,7 +137,7 @@ namespace LukMachine
         {
           Progress("Test resumed.");
           //convert pressure rate to pump speed
-          PassThrough('A', runPumpCMD);
+          //PassThrough('A', runPumpCMD);
           pumpRunning = true;
         }
       }
@@ -132,159 +148,114 @@ namespace LukMachine
       testPaused = false;
     }
 
+  
     public void RunBurstTest()
     {
-      //open manifold valves and run main pump
+      Progress("Checking reservoir levels...");
+      //Manual.PumpCollectedVolumeToReservoir();
+      
+
+
+      Progress("Test started...");
+
+      //run main pump
       if (Properties.Settings.Default.SelectedFlowRate == "Low")
       {
-        COMMS.Instance.MoveValve(4, "O");
-        COMMS.Instance.MoveValve(5, "C");
-        COMMS.Instance.MoveValve(6, "C");
         //run main pump at low setting
-        COMMS.Instance.SetRegulator(1, (Convert.ToInt32(Properties.Settings.Default.LowPumpSetting))*4000/100);  //2600 is 1/3 of 4000 
+        COMMS.Instance.SetRegulator(1, (Convert.ToInt32(Properties.Settings.Default.LowPumpSetting)) * 4000 / 100);  //2600 is 1/3 of 4000 
         //System.Windows.Forms.MessageBox.Show(((Convert.ToInt32(Properties.Settings.Default.LowPumpSetting)) * 4000 / 100).ToString());
       }
       if (Properties.Settings.Default.SelectedFlowRate == "Medium")
       {
-        COMMS.Instance.MoveValve(4, "C");
-        COMMS.Instance.MoveValve(5, "O");
-        COMMS.Instance.MoveValve(6, "C");
         //run main pump at medium setting
         COMMS.Instance.SetRegulator(1, (Convert.ToInt32(Properties.Settings.Default.MediumPumpSetting)) * 4000 / 100);  //2600 is 2/3 of 4000
       }
       if (Properties.Settings.Default.SelectedFlowRate == "High")
       {
-        COMMS.Instance.MoveValve(4, "C");
-        COMMS.Instance.MoveValve(5, "C");
-        COMMS.Instance.MoveValve(6, "O");
         //run main pump at high setting
         COMMS.Instance.SetRegulator(1, (Convert.ToInt32(Properties.Settings.Default.HighPumpSetting)) * 4000 / 100);
       }
 
-
-      //open stream
       SR = new StreamWriter(dataFile);
-      InitializeTest();
-      //Write out header
+      //InitializeTest();
       WriteHeader();
       bool overVolume = false;
-      bool hasBurst = false; bool overPressure = false; double currentPressure; double lastPressure = 0; double startTime = 0;
+      double currentPressure; double startTime = 0;
       double currentTime = 0; double outputTime = 0; double outputPressure = 0; string counts = ""; double realCounts = 0;
-      //convert pressure rate to pump speed
-      double pumpSpeed = pressureRate * 100;
-      //max pump speed = 9999
-      if (pumpSpeed > 9999) pumpSpeed = 9999;
-      //string it.
-      string fixPumpSpeed = pumpSpeed.ToString("0000");
-      //send it.
-      PassThrough('A', "#FL" + fixPumpSpeed + (char)13);
-      pumpRunning = true;
-      //start pump
-      PassThrough('A', runPumpCMD);
-      Progress("Building pressure under sample...");
-      counts = COMMS.Instance.ReadPressureGauge(1);
-      realCounts = Convert.ToDouble(counts);
-      currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / 62000; //pconv
+      string volumeReading = ""; //is pent 3 reading.
+      double volumeConverted;
+      double ground = Properties.Settings.Default.ground;
+      double twoVolt = Properties.Settings.Default.twoVolt;
 
       startTime = Convert.ToDouble(Environment.TickCount) + 500.0;
       maxPressure *= pConversion;
       maxTestPressure *= pConversion;
-      while (!abort && !overPressure && !hasBurst && !overPressure && !overVolume)
+      while (!abort && !overVolume)
       {
-
+        //read pressure
         counts = COMMS.Instance.ReadPressureGauge(1);
         realCounts = Convert.ToDouble(counts);
-        currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / 62000;
-
+        currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //twoVolt is 60000
         outputPressure = currentPressure * pConversion;
+
+        //read penetrometer
+        volumeReading = COMMS.Instance.MotorValvePosition(1); //this would be pent 3 (the testing pent)
+        volumeConverted = Convert.ToInt32(volumeReading) * 1;
+
+        //read current time
         currentTime = Convert.ToDouble(Environment.TickCount) - startTime;
         outputTime = currentTime / 1000;
 
         //keep rough track of how many mL we have pumped.
         double mlsMoved = (pressureRate / 60.0) * outputTime;
 
+        //write data to file and report progress
+        SR.WriteLine(outputTime.ToString("#.000") + "," + volumeConverted.ToString("###.000"));
+        Progress("Reading:" + outputTime.ToString("#.000") + "," + volumeConverted.ToString("###.000"));
 
-        if (outputPressure != lastPressure && outputPressure >= 0)
+
+        //Stop if over max pressure.
+        if (outputPressure > p1Max) //add to this if volume is empty or pent is full
         {
-          if (Properties.Settings.Default.SubtractExpansion)
-          {
-            //if they have selected 
-            outputPressure -= (Properties.Settings.Default.ExpansionPressure * pConversion);
-          }
-          Progress("Reading:" + outputPressure.ToString("###.000") + "," + outputTime.ToString("#.000"));
-          SR.WriteLine(outputTime.ToString("#.000") + "," + outputPressure.ToString("###.000"));
+          abort = true;
+          testPaused = true;
+          //stop main pump
+          COMMS.Instance.ZeroRegulator(1);
+          //open relief pressure valve
+          COMMS.Instance.MoveValve(2, "O");
+          Progress("Machine has reached it's maximum pressure range! The test will be aborted.");
+          Progress("Data saved to " + Properties.Settings.Default.TestData);
+          SR.WriteLine("Machine has reached it's maximum pressure range! The test was aborted.");
+          SR.Close();
+          System.Windows.Forms.MessageBox.Show("Machine has reached it's maximum pressure. The test has been stopped. Data saved to " + Properties.Settings.Default.TestData);
+          COMMS.Instance.Pause(1); //wait 1 second for other thread to finish
         }
 
-        //if this, then it burst
-        if (lastPressure > 0)
+        //Stop if over max volume.
+        if (Convert.ToInt32(volumeReading) >= Convert.ToInt32(Properties.Settings.Default.MaxPent3Reading))
         {
-          //Progress("Entered first statement, lastPressure > 0");
-          double p = outputPressure - lastPressure;
-          //Progress(p.ToString() + " >? " +  dropPressure.ToString());
-          if ((lastPressure - outputPressure) >= dropPressure)
-          {
-            PassThrough('A', stopPumpCMD);
-            hasBurst = true;
-            Progress("Sample burst detected.");
-            COMMS.Instance.MoveMotorValve(1, "O");
-            COMMS.Instance.Pause(10);
-            COMMS.Instance.MoveMotorValve(1, "C");
-            Progress("B=" + lastPressure.ToString("#.000"));
-            SR.WriteLine("");
-            SR.WriteLine("Burst Pressure=" + lastPressure.ToString("#.000"));
-            SR.WriteLine("Burst Volume=" + mlsMoved.ToString("#.0000"));
-            SR.Close();
-          }
-        }
-        lastPressure = outputPressure;
-        //if this then it is over pressure.
-        if ((outputPressure >= maxTestPressure || outputPressure >= maxPressure || mlsMoved >= Properties.Settings.Default.MaxPumpVolume) && !hasBurst)
-        {
-          //send stop pump command.
-          PassThrough('A', stopPumpCMD);
-          //open motor valve to relieve pressure
-          COMMS.Instance.MoveMotorValve(1, "O");
-          //over max test pressure
-          if (outputPressure >= maxTestPressure)
-          {
-            overPressure = true;
-            Progress("Machine has reached maximum test pressure! The test will be aborted.");
-            Progress("current Pressure: " + outputPressure.ToString() + " Max test pressure: " + maxTestPressure.ToString());
-            SR.WriteLine("Machine has reached maximum test pressure! The test was aborted.");
-            SR.Close();
-            abort = true;
-            testPaused = true;
-
-          }
-          //over safe operating pressure
-          if (outputPressure >= maxPressure && !hasBurst)
-          {
-            overPressure = true;
-            Progress("Machine has reached it's maximum safe pressure range! The test will be aborted.");
-            SR.WriteLine("Machine has reached it's maximum safe pressure range! The test was aborted.");
-            SR.Close();
-            abort = true;
-            testPaused = true;
-
-          }
-          if (mlsMoved >= Properties.Settings.Default.MaxPumpVolume)
-          {
-            overVolume = true;
-            Progress("Machine has reached it's maximum safe volume range, the test will be aborted.");
-            SR.WriteLine("Machine has reached it's maximum safe volume range, the test was aborted.");
-            SR.Close();
-            abort = true;
-            testPaused = true;
-          }
+          abort = true;
+          testPaused = true;
+          overVolume = true;
+          //stop main pump
+          COMMS.Instance.ZeroRegulator(1);
+          //open relief pressure valve
+          COMMS.Instance.MoveValve(2, "O");
+          Progress("Machine has reached it's maximum volume range, the test has stopped.");
+          SR.WriteLine("Machine has reached it's maximum volume range, the test was aborted.");
+          SR.Close();
+          System.Windows.Forms.MessageBox.Show("Machine has reached it's maximum volume range. The test has been stopped. Data saved to " + Properties.Settings.Default.TestData);
+          COMMS.Instance.Pause(1); //wait 1 second for other thread to finish
         }
         //see if we need to pause, or abort.
-        PauseTest();
+        //PauseTest();
       }
       if (abort)
       {
-        Progress("Test Aborted");
+        Progress("Test Stopped");
       }
       SR.Close();
+      Progress("Test Ended");
     }
 
     public void RunBurstTest2()
@@ -318,21 +289,21 @@ namespace LukMachine
         grammage = "N/A";
       }
       //Make a hat for the data.
-      SR.WriteLine("Burst Pressure Analysis");
+      SR.WriteLine("Liquid Permeability Test");
       SR.WriteLine("");
       SR.WriteLine("Sample Info");
       SR.WriteLine("");
       SR.WriteLine("Sample ID=" + sampleID);
       SR.WriteLine("Lot Number=" + lotNumber);
-      SR.WriteLine("Paper Sample=" + paper);
-      SR.WriteLine("Sheets=" + sheets);
-      SR.WriteLine("Grammage=" + grammage);
+      //SR.WriteLine("Paper Sample=" + paper);
+      //SR.WriteLine("Sheets=" + sheets);
+      //SR.WriteLine("Grammage=" + grammage);
       SR.WriteLine("");
       SR.WriteLine("Test Details");
       SR.WriteLine("");
       SR.WriteLine(DateTime.Now.ToString("dd/MM/yyyy H:mm"));
       SR.WriteLine("Pressure Units=" + pUnits);
-      SR.WriteLine("Pressure Rate(mL / min)=" + pressureRate.ToString());
+      //SR.WriteLine("Pressure Rate(mL / min)=" + pressureRate.ToString());
       SR.WriteLine("");
       SR.WriteLine("Data");
       SR.WriteLine("");

@@ -134,5 +134,26 @@
     <Setting Name="HighPumpSetting" Type="System.String" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
+    <Setting Name="twoVolt" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">60000</Value>
+    </Setting>
+    <Setting Name="ground" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
+    <Setting Name="MaxPent3Reading" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10000</Value>
+    </Setting>
+    <Setting Name="MaxReservoirCount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">62000</Value>
+    </Setting>
+    <Setting Name="MaxCollectedCount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">62000</Value>
+    </Setting>
+    <Setting Name="MinReservoirCount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
+    <Setting Name="MinCollectedCount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

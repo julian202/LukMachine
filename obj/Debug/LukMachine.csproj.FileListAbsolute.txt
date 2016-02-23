@@ -30,3 +30,4 @@ C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Burst
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.export.resources
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Report.resources
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Temperature.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Wait.resources

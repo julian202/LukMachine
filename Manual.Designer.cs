@@ -74,11 +74,6 @@
       this.label6 = new System.Windows.Forms.Label();
       this.button7 = new System.Windows.Forms.Button();
       this.button8 = new System.Windows.Forms.Button();
-      this.groupBox6 = new System.Windows.Forms.GroupBox();
-      this.label8 = new System.Windows.Forms.Label();
-      this.label9 = new System.Windows.Forms.Label();
-      this.label5 = new System.Windows.Forms.Label();
-      this.trackBar3 = new System.Windows.Forms.TrackBar();
       this.groupBox7 = new System.Windows.Forms.GroupBox();
       this.label13 = new System.Windows.Forms.Label();
       this.label10 = new System.Windows.Forms.Label();
@@ -95,6 +90,16 @@
       this.groupBox8 = new System.Windows.Forms.GroupBox();
       this.label1 = new System.Windows.Forms.Label();
       this.aGauge5 = new AGaugeApp.AGauge();
+      this.button21 = new System.Windows.Forms.Button();
+      this.groupBox6 = new System.Windows.Forms.GroupBox();
+      this.label8 = new System.Windows.Forms.Label();
+      this.label5 = new System.Windows.Forms.Label();
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
+      this.label9 = new System.Windows.Forms.Label();
+      this.label17 = new System.Windows.Forms.Label();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
+      this.labelReservoir = new System.Windows.Forms.Label();
+      this.labelCollected = new System.Windows.Forms.Label();
       this.groupBox9.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.groupBox1.SuspendLayout();
@@ -104,12 +109,11 @@
       this.groupBox3.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
       this.groupBox4.SuspendLayout();
-      this.groupBox6.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
       this.groupBox7.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).BeginInit();
       this.groupBox5.SuspendLayout();
       this.groupBox8.SuspendLayout();
+      this.groupBox6.SuspendLayout();
       this.SuspendLayout();
       // 
       // timer1
@@ -123,7 +127,7 @@
       this.groupBox9.Controls.Add(this.button17);
       this.groupBox9.Controls.Add(this.button18);
       this.groupBox9.Controls.Add(this.comboBox2);
-      this.groupBox9.Location = new System.Drawing.Point(709, 236);
+      this.groupBox9.Location = new System.Drawing.Point(950, 236);
       this.groupBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox9.Name = "groupBox9";
       this.groupBox9.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -180,7 +184,7 @@
       this.comboBox2.Location = new System.Drawing.Point(19, 23);
       this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.comboBox2.Name = "comboBox2";
-      this.comboBox2.Size = new System.Drawing.Size(183, 29);
+      this.comboBox2.Size = new System.Drawing.Size(183, 33);
       this.comboBox2.TabIndex = 0;
       // 
       // timer2
@@ -196,7 +200,7 @@
       this.groupBox1.Controls.Add(this.pictureBox2);
       this.groupBox1.Controls.Add(this.button1);
       this.groupBox1.Controls.Add(this.button2);
-      this.groupBox1.Location = new System.Drawing.Point(389, 236);
+      this.groupBox1.Location = new System.Drawing.Point(630, 236);
       this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox1.Name = "groupBox1";
       this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -244,11 +248,11 @@
       this.groupBox2.Controls.Add(this.button3);
       this.groupBox2.Controls.Add(this.button4);
       this.groupBox2.Controls.Add(this.trackBar1);
-      this.groupBox2.Location = new System.Drawing.Point(18, 414);
+      this.groupBox2.Location = new System.Drawing.Point(18, 425);
       this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox2.Name = "groupBox2";
       this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.groupBox2.Size = new System.Drawing.Size(363, 153);
+      this.groupBox2.Size = new System.Drawing.Size(363, 148);
       this.groupBox2.TabIndex = 28;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Refill Pump (Pump 1, 24V MV1)";
@@ -259,7 +263,7 @@
       this.label4.Location = new System.Drawing.Point(134, 23);
       this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(75, 22);
+      this.label4.Size = new System.Drawing.Size(86, 25);
       this.label4.TabIndex = 8;
       this.label4.Text = "Counts:";
       this.label4.Visible = false;
@@ -293,7 +297,7 @@
       this.trackBar1.Margin = new System.Windows.Forms.Padding(4);
       this.trackBar1.Maximum = 4000;
       this.trackBar1.Name = "trackBar1";
-      this.trackBar1.Size = new System.Drawing.Size(329, 56);
+      this.trackBar1.Size = new System.Drawing.Size(329, 69);
       this.trackBar1.SmallChange = 10;
       this.trackBar1.TabIndex = 7;
       this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
@@ -316,7 +320,7 @@
       this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox3.Name = "groupBox3";
       this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.groupBox3.Size = new System.Drawing.Size(363, 170);
+      this.groupBox3.Size = new System.Drawing.Size(363, 181);
       this.groupBox3.TabIndex = 29;
       this.groupBox3.TabStop = false;
       this.groupBox3.Text = "Main Pump (Pump 2, 0-10V out1)";
@@ -326,7 +330,7 @@
       this.button20.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.button20.Location = new System.Drawing.Point(258, 122);
       this.button20.Name = "button20";
-      this.button20.Size = new System.Drawing.Size(84, 29);
+      this.button20.Size = new System.Drawing.Size(84, 32);
       this.button20.TabIndex = 15;
       this.button20.Text = "Settings";
       this.button20.UseVisualStyleBackColor = true;
@@ -336,7 +340,7 @@
       // 
       this.button19.Location = new System.Drawing.Point(178, 122);
       this.button19.Name = "button19";
-      this.button19.Size = new System.Drawing.Size(70, 29);
+      this.button19.Size = new System.Drawing.Size(70, 32);
       this.button19.TabIndex = 14;
       this.button19.Text = "High";
       this.button19.UseVisualStyleBackColor = true;
@@ -346,7 +350,7 @@
       // 
       this.button6.Location = new System.Drawing.Point(101, 122);
       this.button6.Name = "button6";
-      this.button6.Size = new System.Drawing.Size(70, 29);
+      this.button6.Size = new System.Drawing.Size(70, 32);
       this.button6.TabIndex = 13;
       this.button6.Text = "Med";
       this.button6.UseVisualStyleBackColor = true;
@@ -356,7 +360,7 @@
       // 
       this.button5.Location = new System.Drawing.Point(25, 121);
       this.button5.Name = "button5";
-      this.button5.Size = new System.Drawing.Size(70, 29);
+      this.button5.Size = new System.Drawing.Size(70, 32);
       this.button5.TabIndex = 12;
       this.button5.Text = "Low";
       this.button5.UseVisualStyleBackColor = true;
@@ -367,7 +371,7 @@
       this.label16.AutoSize = true;
       this.label16.Location = new System.Drawing.Point(202, 83);
       this.label16.Name = "label16";
-      this.label16.Size = new System.Drawing.Size(27, 22);
+      this.label16.Size = new System.Drawing.Size(32, 25);
       this.label16.TabIndex = 11;
       this.label16.Text = "%";
       // 
@@ -375,7 +379,7 @@
       // 
       this.textBox5.Location = new System.Drawing.Point(147, 80);
       this.textBox5.Name = "textBox5";
-      this.textBox5.Size = new System.Drawing.Size(49, 29);
+      this.textBox5.Size = new System.Drawing.Size(49, 33);
       this.textBox5.TabIndex = 10;
       this.textBox5.Text = "0";
       this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -408,7 +412,7 @@
       this.trackBar2.Margin = new System.Windows.Forms.Padding(4);
       this.trackBar2.Maximum = 4000;
       this.trackBar2.Name = "trackBar2";
-      this.trackBar2.Size = new System.Drawing.Size(329, 56);
+      this.trackBar2.Size = new System.Drawing.Size(329, 69);
       this.trackBar2.SmallChange = 10;
       this.trackBar2.TabIndex = 7;
       this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.None;
@@ -433,11 +437,11 @@
       this.groupBox4.Controls.Add(this.label6);
       this.groupBox4.Controls.Add(this.button7);
       this.groupBox4.Controls.Add(this.button8);
-      this.groupBox4.Location = new System.Drawing.Point(389, 414);
+      this.groupBox4.Location = new System.Drawing.Point(389, 425);
       this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox4.Name = "groupBox4";
       this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.groupBox4.Size = new System.Drawing.Size(598, 143);
+      this.groupBox4.Size = new System.Drawing.Size(598, 138);
       this.groupBox4.TabIndex = 27;
       this.groupBox4.TabStop = false;
       this.groupBox4.Text = "Heaters";
@@ -447,7 +451,7 @@
       this.textBox4.Location = new System.Drawing.Point(386, 90);
       this.textBox4.Margin = new System.Windows.Forms.Padding(4);
       this.textBox4.Name = "textBox4";
-      this.textBox4.Size = new System.Drawing.Size(69, 29);
+      this.textBox4.Size = new System.Drawing.Size(69, 33);
       this.textBox4.TabIndex = 20;
       // 
       // label15
@@ -456,7 +460,7 @@
       this.label15.Location = new System.Drawing.Point(303, 94);
       this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label15.Name = "label15";
-      this.label15.Size = new System.Drawing.Size(87, 22);
+      this.label15.Size = new System.Drawing.Size(101, 25);
       this.label15.TabIndex = 19;
       this.label15.Text = "Heater 4:";
       // 
@@ -487,7 +491,7 @@
       this.textBox3.Location = new System.Drawing.Point(386, 33);
       this.textBox3.Margin = new System.Windows.Forms.Padding(4);
       this.textBox3.Name = "textBox3";
-      this.textBox3.Size = new System.Drawing.Size(69, 29);
+      this.textBox3.Size = new System.Drawing.Size(69, 33);
       this.textBox3.TabIndex = 16;
       // 
       // label14
@@ -496,7 +500,7 @@
       this.label14.Location = new System.Drawing.Point(303, 37);
       this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label14.Name = "label14";
-      this.label14.Size = new System.Drawing.Size(87, 22);
+      this.label14.Size = new System.Drawing.Size(101, 25);
       this.label14.TabIndex = 15;
       this.label14.Text = "Heater 3:";
       // 
@@ -527,7 +531,7 @@
       this.textBox2.Location = new System.Drawing.Point(100, 90);
       this.textBox2.Margin = new System.Windows.Forms.Padding(4);
       this.textBox2.Name = "textBox2";
-      this.textBox2.Size = new System.Drawing.Size(69, 29);
+      this.textBox2.Size = new System.Drawing.Size(69, 33);
       this.textBox2.TabIndex = 12;
       // 
       // button9
@@ -557,7 +561,7 @@
       this.textBox1.Location = new System.Drawing.Point(100, 33);
       this.textBox1.Margin = new System.Windows.Forms.Padding(4);
       this.textBox1.Name = "textBox1";
-      this.textBox1.Size = new System.Drawing.Size(69, 29);
+      this.textBox1.Size = new System.Drawing.Size(69, 33);
       this.textBox1.TabIndex = 9;
       // 
       // label7
@@ -566,7 +570,7 @@
       this.label7.Location = new System.Drawing.Point(17, 94);
       this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label7.Name = "label7";
-      this.label7.Size = new System.Drawing.Size(87, 22);
+      this.label7.Size = new System.Drawing.Size(101, 25);
       this.label7.TabIndex = 8;
       this.label7.Text = "Heater 2:";
       // 
@@ -576,7 +580,7 @@
       this.label6.Location = new System.Drawing.Point(17, 37);
       this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label6.Name = "label6";
-      this.label6.Size = new System.Drawing.Size(87, 22);
+      this.label6.Size = new System.Drawing.Size(101, 25);
       this.label6.TabIndex = 7;
       this.label6.Text = "Heater 1:";
       // 
@@ -602,66 +606,6 @@
       this.button8.UseVisualStyleBackColor = true;
       this.button8.Click += new System.EventHandler(this.button8_Click);
       // 
-      // groupBox6
-      // 
-      this.groupBox6.Controls.Add(this.label8);
-      this.groupBox6.Controls.Add(this.label9);
-      this.groupBox6.Controls.Add(this.label5);
-      this.groupBox6.Controls.Add(this.trackBar3);
-      this.groupBox6.Location = new System.Drawing.Point(954, 19);
-      this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
-      this.groupBox6.Name = "groupBox6";
-      this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
-      this.groupBox6.Size = new System.Drawing.Size(206, 226);
-      this.groupBox6.TabIndex = 36;
-      this.groupBox6.TabStop = false;
-      this.groupBox6.Text = "Fluid Speed";
-      this.groupBox6.Visible = false;
-      // 
-      // label8
-      // 
-      this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(81, 86);
-      this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-      this.label8.Name = "label8";
-      this.label8.Size = new System.Drawing.Size(104, 22);
-      this.label8.TabIndex = 12;
-      this.label8.Text = "2 - Medium";
-      this.label8.Visible = false;
-      // 
-      // label9
-      // 
-      this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(81, 124);
-      this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-      this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(78, 22);
-      this.label9.TabIndex = 11;
-      this.label9.Text = "1 - Slow";
-      this.label9.Visible = false;
-      // 
-      // label5
-      // 
-      this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(81, 47);
-      this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(74, 22);
-      this.label5.TabIndex = 9;
-      this.label5.Text = "3 - Fast";
-      this.label5.Visible = false;
-      // 
-      // trackBar3
-      // 
-      this.trackBar3.LargeChange = 1;
-      this.trackBar3.Location = new System.Drawing.Point(34, 39);
-      this.trackBar3.Margin = new System.Windows.Forms.Padding(4);
-      this.trackBar3.Maximum = 2;
-      this.trackBar3.Name = "trackBar3";
-      this.trackBar3.Orientation = System.Windows.Forms.Orientation.Vertical;
-      this.trackBar3.Size = new System.Drawing.Size(56, 120);
-      this.trackBar3.TabIndex = 8;
-      // 
       // groupBox7
       // 
       this.groupBox7.Controls.Add(this.label13);
@@ -670,7 +614,7 @@
       this.groupBox7.Controls.Add(this.label12);
       this.groupBox7.Controls.Add(this.trackBar4);
       this.groupBox7.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.groupBox7.Location = new System.Drawing.Point(709, 14);
+      this.groupBox7.Location = new System.Drawing.Point(1012, 32);
       this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
       this.groupBox7.Name = "groupBox7";
       this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
@@ -678,6 +622,8 @@
       this.groupBox7.TabIndex = 37;
       this.groupBox7.TabStop = false;
       this.groupBox7.Text = "Fluid Speed";
+      this.groupBox7.Visible = false;
+      this.groupBox7.Enter += new System.EventHandler(this.groupBox7_Enter);
       // 
       // label13
       // 
@@ -685,7 +631,7 @@
       this.label13.Location = new System.Drawing.Point(81, 149);
       this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label13.Name = "label13";
-      this.label13.Size = new System.Drawing.Size(98, 22);
+      this.label13.Size = new System.Drawing.Size(111, 25);
       this.label13.TabIndex = 13;
       this.label13.Text = "0 - Closed";
       // 
@@ -695,7 +641,7 @@
       this.label10.Location = new System.Drawing.Point(81, 74);
       this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label10.Name = "label10";
-      this.label10.Size = new System.Drawing.Size(104, 22);
+      this.label10.Size = new System.Drawing.Size(120, 25);
       this.label10.TabIndex = 12;
       this.label10.Text = "2 - Medium";
       // 
@@ -705,7 +651,7 @@
       this.label11.Location = new System.Drawing.Point(81, 112);
       this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label11.Name = "label11";
-      this.label11.Size = new System.Drawing.Size(78, 22);
+      this.label11.Size = new System.Drawing.Size(90, 25);
       this.label11.TabIndex = 11;
       this.label11.Text = "1 - Slow";
       // 
@@ -715,7 +661,7 @@
       this.label12.Location = new System.Drawing.Point(81, 35);
       this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label12.Name = "label12";
-      this.label12.Size = new System.Drawing.Size(74, 22);
+      this.label12.Size = new System.Drawing.Size(85, 25);
       this.label12.TabIndex = 9;
       this.label12.Text = "3 - Fast";
       // 
@@ -727,7 +673,7 @@
       this.trackBar4.Maximum = 3;
       this.trackBar4.Name = "trackBar4";
       this.trackBar4.Orientation = System.Windows.Forms.Orientation.Vertical;
-      this.trackBar4.Size = new System.Drawing.Size(56, 146);
+      this.trackBar4.Size = new System.Drawing.Size(69, 146);
       this.trackBar4.TabIndex = 8;
       this.trackBar4.Scroll += new System.EventHandler(this.trackBar4_Scroll);
       // 
@@ -737,22 +683,20 @@
       this.groupBox5.Controls.Add(this.checkBox3);
       this.groupBox5.Controls.Add(this.checkBox2);
       this.groupBox5.Controls.Add(this.checkBox1);
-      this.groupBox5.Controls.Add(this.label3);
-      this.groupBox5.Controls.Add(this.label2);
-      this.groupBox5.Location = new System.Drawing.Point(389, 14);
+      this.groupBox5.Location = new System.Drawing.Point(389, 236);
       this.groupBox5.Name = "groupBox5";
-      this.groupBox5.Size = new System.Drawing.Size(312, 210);
+      this.groupBox5.Size = new System.Drawing.Size(223, 181);
       this.groupBox5.TabIndex = 38;
       this.groupBox5.TabStop = false;
-      this.groupBox5.Text = "Readings";
+      this.groupBox5.Text = "Temperatures";
       // 
       // checkBox4
       // 
       this.checkBox4.AutoSize = true;
-      this.checkBox4.Location = new System.Drawing.Point(22, 169);
+      this.checkBox4.Location = new System.Drawing.Point(22, 136);
       this.checkBox4.Margin = new System.Windows.Forms.Padding(4);
       this.checkBox4.Name = "checkBox4";
-      this.checkBox4.Size = new System.Drawing.Size(137, 26);
+      this.checkBox4.Size = new System.Drawing.Size(159, 29);
       this.checkBox4.TabIndex = 40;
       this.checkBox4.Text = "Temp 4: N/A";
       this.checkBox4.UseVisualStyleBackColor = true;
@@ -760,10 +704,10 @@
       // checkBox3
       // 
       this.checkBox3.AutoSize = true;
-      this.checkBox3.Location = new System.Drawing.Point(22, 140);
+      this.checkBox3.Location = new System.Drawing.Point(22, 103);
       this.checkBox3.Margin = new System.Windows.Forms.Padding(4);
       this.checkBox3.Name = "checkBox3";
-      this.checkBox3.Size = new System.Drawing.Size(137, 26);
+      this.checkBox3.Size = new System.Drawing.Size(159, 29);
       this.checkBox3.TabIndex = 39;
       this.checkBox3.Text = "Temp 3: N/A";
       this.checkBox3.UseVisualStyleBackColor = true;
@@ -771,10 +715,10 @@
       // checkBox2
       // 
       this.checkBox2.AutoSize = true;
-      this.checkBox2.Location = new System.Drawing.Point(22, 111);
+      this.checkBox2.Location = new System.Drawing.Point(22, 70);
       this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
       this.checkBox2.Name = "checkBox2";
-      this.checkBox2.Size = new System.Drawing.Size(137, 26);
+      this.checkBox2.Size = new System.Drawing.Size(159, 29);
       this.checkBox2.TabIndex = 38;
       this.checkBox2.Text = "Temp 2: N/A";
       this.checkBox2.UseVisualStyleBackColor = true;
@@ -782,10 +726,10 @@
       // checkBox1
       // 
       this.checkBox1.AutoSize = true;
-      this.checkBox1.Location = new System.Drawing.Point(22, 82);
+      this.checkBox1.Location = new System.Drawing.Point(22, 37);
       this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
       this.checkBox1.Name = "checkBox1";
-      this.checkBox1.Size = new System.Drawing.Size(137, 26);
+      this.checkBox1.Size = new System.Drawing.Size(159, 29);
       this.checkBox1.TabIndex = 37;
       this.checkBox1.Text = "Temp 1: N/A";
       this.checkBox1.UseVisualStyleBackColor = true;
@@ -793,20 +737,20 @@
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(18, 57);
+      this.label3.Location = new System.Drawing.Point(7, 88);
       this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(147, 22);
+      this.label3.Size = new System.Drawing.Size(167, 25);
       this.label3.TabIndex = 36;
       this.label3.Text = "Penetrometer 2:";
       // 
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(18, 32);
+      this.label2.Location = new System.Drawing.Point(6, 30);
       this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(147, 22);
+      this.label2.Size = new System.Drawing.Size(167, 25);
       this.label2.TabIndex = 35;
       this.label2.Text = "Penetrometer 1:";
       // 
@@ -940,15 +884,119 @@
       this.aGauge5.Text = "confiningGauge";
       this.aGauge5.Value = 0F;
       // 
+      // button21
+      // 
+      this.button21.Location = new System.Drawing.Point(38, 154);
+      this.button21.Name = "button21";
+      this.button21.Size = new System.Drawing.Size(202, 39);
+      this.button21.TabIndex = 40;
+      this.button21.Text = "Pump to Reservoir";
+      this.button21.UseVisualStyleBackColor = true;
+      this.button21.Click += new System.EventHandler(this.button21_Click);
+      // 
+      // groupBox6
+      // 
+      this.groupBox6.Controls.Add(this.labelCollected);
+      this.groupBox6.Controls.Add(this.labelReservoir);
+      this.groupBox6.Controls.Add(this.label9);
+      this.groupBox6.Controls.Add(this.label17);
+      this.groupBox6.Controls.Add(this.verticalProgressBar2);
+      this.groupBox6.Controls.Add(this.verticalProgressBar1);
+      this.groupBox6.Controls.Add(this.label8);
+      this.groupBox6.Controls.Add(this.label5);
+      this.groupBox6.Controls.Add(this.button21);
+      this.groupBox6.Controls.Add(this.label2);
+      this.groupBox6.Controls.Add(this.label3);
+      this.groupBox6.Location = new System.Drawing.Point(389, 14);
+      this.groupBox6.Name = "groupBox6";
+      this.groupBox6.Size = new System.Drawing.Size(598, 210);
+      this.groupBox6.TabIndex = 40;
+      this.groupBox6.TabStop = false;
+      this.groupBox6.Text = "Volume";
+      // 
+      // label8
+      // 
+      this.label8.AutoSize = true;
+      this.label8.Location = new System.Drawing.Point(24, 117);
+      this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+      this.label8.Name = "label8";
+      this.label8.Size = new System.Drawing.Size(194, 25);
+      this.label8.TabIndex = 42;
+      this.label8.Text = "(Collected Volume)";
+      // 
+      // label5
+      // 
+      this.label5.AutoSize = true;
+      this.label5.Location = new System.Drawing.Point(24, 59);
+      this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(120, 25);
+      this.label5.TabIndex = 41;
+      this.label5.Text = "(Reservoir)";
+      // 
+      // verticalProgressBar1
+      // 
+      this.verticalProgressBar1.Location = new System.Drawing.Point(299, 48);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar1.TabIndex = 43;
+      this.verticalProgressBar1.Value = 50;
+      // 
+      // label9
+      // 
+      this.label9.AutoSize = true;
+      this.label9.Location = new System.Drawing.Point(421, 20);
+      this.label9.Name = "label9";
+      this.label9.Size = new System.Drawing.Size(180, 25);
+      this.label9.TabIndex = 46;
+      this.label9.Text = "Collected Volume";
+      // 
+      // label17
+      // 
+      this.label17.AutoSize = true;
+      this.label17.Location = new System.Drawing.Point(290, 18);
+      this.label17.Name = "label17";
+      this.label17.Size = new System.Drawing.Size(106, 25);
+      this.label17.TabIndex = 45;
+      this.label17.Text = "Reservoir";
+      // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(452, 48);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar2.TabIndex = 44;
+      this.verticalProgressBar2.Value = 50;
+      // 
+      // labelReservoir
+      // 
+      this.labelReservoir.AutoSize = true;
+      this.labelReservoir.Location = new System.Drawing.Point(339, 175);
+      this.labelReservoir.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+      this.labelReservoir.Name = "labelReservoir";
+      this.labelReservoir.Size = new System.Drawing.Size(32, 25);
+      this.labelReservoir.TabIndex = 47;
+      this.labelReservoir.Text = "%";
+      // 
+      // labelCollected
+      // 
+      this.labelCollected.AutoSize = true;
+      this.labelCollected.Location = new System.Drawing.Point(488, 175);
+      this.labelCollected.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+      this.labelCollected.Name = "labelCollected";
+      this.labelCollected.Size = new System.Drawing.Size(32, 25);
+      this.labelCollected.TabIndex = 48;
+      this.labelCollected.Text = "%";
+      // 
       // Manual
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
+      this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1070, 593);
+      this.ClientSize = new System.Drawing.Size(1171, 593);
+      this.Controls.Add(this.groupBox6);
       this.Controls.Add(this.groupBox8);
       this.Controls.Add(this.groupBox5);
       this.Controls.Add(this.groupBox7);
-      this.Controls.Add(this.groupBox6);
       this.Controls.Add(this.groupBox4);
       this.Controls.Add(this.groupBox3);
       this.Controls.Add(this.groupBox2);
@@ -974,15 +1022,14 @@
       ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
       this.groupBox4.ResumeLayout(false);
       this.groupBox4.PerformLayout();
-      this.groupBox6.ResumeLayout(false);
-      this.groupBox6.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
       this.groupBox7.ResumeLayout(false);
       this.groupBox7.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).EndInit();
       this.groupBox5.ResumeLayout(false);
       this.groupBox5.PerformLayout();
       this.groupBox8.ResumeLayout(false);
+      this.groupBox6.ResumeLayout(false);
+      this.groupBox6.PerformLayout();
       this.ResumeLayout(false);
 
         }
@@ -1016,11 +1063,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
-    private System.Windows.Forms.GroupBox groupBox6;
-    private System.Windows.Forms.Label label9;
-    private System.Windows.Forms.Label label5;
-    private System.Windows.Forms.TrackBar trackBar3;
-    private System.Windows.Forms.Label label8;
     private System.Windows.Forms.GroupBox groupBox7;
     private System.Windows.Forms.Label label13;
     private System.Windows.Forms.Label label10;
@@ -1053,5 +1095,15 @@
     private System.Windows.Forms.Button button19;
     private System.Windows.Forms.Button button6;
     private System.Windows.Forms.Button button5;
+    private System.Windows.Forms.Button button21;
+    private System.Windows.Forms.GroupBox groupBox6;
+    private System.Windows.Forms.Label label8;
+    private System.Windows.Forms.Label label5;
+    private VerticalProgressBar verticalProgressBar1;
+    private System.Windows.Forms.Label labelCollected;
+    private System.Windows.Forms.Label labelReservoir;
+    private System.Windows.Forms.Label label9;
+    private System.Windows.Forms.Label label17;
+    private VerticalProgressBar verticalProgressBar2;
   }
 }

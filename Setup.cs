@@ -68,6 +68,7 @@ namespace LukMachine
       if (result == DialogResult.No)
       {
         Properties.Settings.Default.mustRunReport = false;
+        Properties.Settings.Default.Save();
         this.DialogResult = DialogResult.Cancel;
         this.Close();
       }
@@ -79,19 +80,14 @@ namespace LukMachine
     }
 
 
-
-
-
     private void button2_Click(object sender, EventArgs e)
     {
       //parse Inputs For Errors:
-
       if (radioButtonDiskChamber.Checked == false && radioButtonRingChamber.Checked == false)
       {
         MessageBox.Show("Please select the type of chamber!", "Note", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
       }
-
       if (radioButtonHigh.Checked == false && radioButtonMedium.Checked == false && radioButtonLow.Checked == false)
       {
         MessageBox.Show("Please select the type of flow rate!", "Note", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -133,7 +129,7 @@ namespace LukMachine
       }
 
       //Save MaximumPressure
-      try
+      /*try
       {
         int maxPress = Convert.ToInt32(textBox3.Text);
         if (maxPress > 0 && maxPress < Properties.Settings.Default.maxPressure)
@@ -150,9 +146,9 @@ namespace LukMachine
       {
         MessageBox.Show("Please enter a whole number for Maximum Pressure!" + Environment.NewLine + ex.Message, "Note", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
-      }
+      }*/
 
-      //Save pressure rate
+      /*//Save pressure rate
       try
       {
         Properties.Settings.Default.TestRate = Convert.ToDouble(textBox5.Text);
@@ -161,7 +157,7 @@ namespace LukMachine
       {
         MessageBox.Show("Please enter a whole/decimal number for Pressure Rate!" + Environment.NewLine + ex.Message, "Note", MessageBoxButtons.OK, MessageBoxIcon.Error);
         return;
-      }
+      }*/
 
       //Save file path
       if (textBox6.Text.Length == 0)
@@ -179,6 +175,13 @@ namespace LukMachine
         Properties.Settings.Default.mustRunReport = true;
       }
 
+      Wait waitForm = new Wait();
+      if (Properties.Settings.Default.COMM != "Demo")
+      {     
+        waitForm.Show();
+        waitForm.Refresh();
+      }
+        
       //Move 3-way valve to selected chamber
       if (radioButtonRingChamber.Checked)
       {
@@ -190,8 +193,36 @@ namespace LukMachine
         Properties.Settings.Default.Chamber = "Disk";
         COMMS.Instance.MoveValve(7, "C");//left chamber
       }
+      if (Properties.Settings.Default.COMM != "Demo")
+      {
+        COMMS.Instance.Pause(1); //wait 1 second just to not start all the valves at the same time.
+      }
+      //Open manifold valves
+      if (Properties.Settings.Default.SelectedFlowRate == "Low")
+      {
+        COMMS.Instance.MoveValve(4, "O");
+        COMMS.Instance.MoveValve(5, "C");
+        COMMS.Instance.MoveValve(6, "C");
+      }
+      if (Properties.Settings.Default.SelectedFlowRate == "Medium")
+      {
+        COMMS.Instance.MoveValve(4, "C");
+        COMMS.Instance.MoveValve(5, "O");
+        COMMS.Instance.MoveValve(6, "C");
+      }
+      if (Properties.Settings.Default.SelectedFlowRate == "High")
+      {
+        COMMS.Instance.MoveValve(4, "C");
+        COMMS.Instance.MoveValve(5, "C");
+        COMMS.Instance.MoveValve(6, "O");
+      }
 
-      
+
+      if (Properties.Settings.Default.COMM != "Demo")
+      {
+        COMMS.Instance.Pause(7); //wait 7 seconds for valves to finish moving
+        waitForm.Hide();
+      }
 
 
       Properties.Settings.Default.Save();
@@ -322,7 +353,7 @@ namespace LukMachine
       textBox5.Text = Properties.Settings.Default.TestRate.ToString();
       //textBox4.Text = Properties.Settings.Default.TestDetection.ToString();
     }
-
+    /*
     private void radioButton1_CheckedChanged(object sender, EventArgs e)
     {
       if (radioButton1.Checked)
@@ -337,7 +368,7 @@ namespace LukMachine
         textBox7.Enabled = true;
         Properties.Settings.Default.paper = true;
       }
-    }
+    }*/
 
     private void numericUpDown1_ValueChanged(object sender, EventArgs e)
     {
@@ -394,6 +425,7 @@ namespace LukMachine
         Properties.Settings.Default.useTemperature = false;
         textBoxTemperature.Enabled = false;
       }
+      Properties.Settings.Default.Save();
     }
   }
 }

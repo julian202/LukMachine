@@ -201,6 +201,7 @@ namespace LukMachine
       //next response should be the value we need
       try
       {
+        //received = _serialPort.ReadExisting();
         received = _serialPort.ReadTo(newLine);
         System.Diagnostics.Debug.Write("Return Value: " + received + Environment.NewLine);
         return received;
@@ -336,6 +337,28 @@ namespace LukMachine
     {
       string command = vPos + valveNum.ToString();
       Send(command);
+    }
+
+    public Int32 getReservoirLevelPercent()
+    {
+      int minCount = Properties.Settings.Default.MinReservoirCount;
+      int maxCount = Properties.Settings.Default.MaxReservoirCount;
+      return (Convert.ToInt32(getReservoirLevelCount())-minCount)/(maxCount- minCount);
+    }
+    public Int32 getCollectedLevelPercent()
+    {
+      int minCount = Properties.Settings.Default.MinCollectedCount;
+      int maxCount = Properties.Settings.Default.MaxCollectedCount;
+      return (Convert.ToInt32(getCollectedLevelCount()) - minCount) / (maxCount - minCount);
+    }
+
+    public string getReservoirLevelCount()
+    {
+      return COMMS.Instance.MotorValvePosition(1);
+    }
+    public string getCollectedLevelCount()
+    {
+      return COMMS.Instance.MotorValvePosition(2);
     }
 
     public string MotorValvePosition(int valveNum)

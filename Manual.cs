@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,8 +18,8 @@ namespace LukMachine
       InitializeComponent();
     }
 
-    private double ground = 2000.0;
-    private double twoVolt = 60000.0;
+    private double ground = Properties.Settings.Default.ground;
+    private double twoVolt = Properties.Settings.Default.twoVolt;
     private bool openValve;
     private bool openValve7;
     private bool closeValve;
@@ -38,9 +39,16 @@ namespace LukMachine
     private bool heater4On;
     private bool heater4Off;
     private bool changedFluidSpeed;
+    private Thread myThread;
+    public delegate void ProgressEventHandler2(string a);
+    public event ProgressEventHandler2 Progress2;
 
     private void Manual_Load(object sender, EventArgs e)
     {
+
+      //Progress2 += new ProgressEventHandler2(Cat);
+      Progress2 += Cat;
+
       double conversionFactor = Properties.Settings.Default.PressureConversionFactor;
 
       double maxVal = Properties.Settings.Default.p1Max;
@@ -51,6 +59,24 @@ namespace LukMachine
       aGauge5.RangesEndValue[2] = (float)Math.Round(maxVal, 2);
 
       timer1.Enabled = true;
+
+    }
+
+    public static void PumpCollectedVolumeToReservoir()
+    {
+      while (COMMS.Instance.getCollectedLevelPercent() > 5) //if collected reservoir is more than 5% full empty it:
+      {
+        COMMS.Instance.MoveValve(1, "O");
+        COMMS.Instance.MoveValve(2, "C");
+        COMMS.Instance.MoveValve(3, "C");
+        //start pump1
+        COMMS.Instance.MoveMotorValve(1, "O");
+
+      }
+      //stop pump1
+      COMMS.Instance.MoveMotorValve(1, "S");
+      COMMS.Instance.MoveValve(1, "C");
+      COMMS.Instance.MoveValve(3, "C");
 
     }
 
@@ -68,8 +94,12 @@ namespace LukMachine
       label1.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
 
       //read penetrometers
-      label2.Text = "Penetrometer 1: " + COMMS.Instance.MotorValvePosition(1);
-      label3.Text = "Penetrometer 2: " + COMMS.Instance.MotorValvePosition(2);
+      label2.Text = "Penetrometer 1: " + COMMS.Instance.getReservoirLevelCount(); //is COMMS.Instance.MotorValvePosition(1);
+      label3.Text = "Penetrometer 2: " + COMMS.Instance.getCollectedLevelCount(); //is COMMS.Instance.MotorValvePosition(2);
+      labelReservoir.Text = COMMS.Instance.getReservoirLevelPercent().ToString();
+      labelCollected.Text = COMMS.Instance.getCollectedLevelPercent().ToString();
+
+
 
       //maybe read temperatures...
       if (checkBox1.Checked) checkBox1.Text = "Temp 1: " + COMMS.Instance.ReadAthenaTemp(1);
@@ -191,7 +221,7 @@ namespace LukMachine
           COMMS.Instance.MoveValve(5, "C");
           COMMS.Instance.MoveValve(6, "C");
         }
-        if (trackBar4.Value == 1) 
+        if (trackBar4.Value == 1)
         {
           //slow speed
           COMMS.Instance.MoveValve(4, "O");
@@ -262,7 +292,7 @@ namespace LukMachine
       stopPump1 = true;
     }
 
-   
+
 
     private void button3_Click(object sender, EventArgs e)
     {
@@ -341,7 +371,7 @@ namespace LukMachine
       trackBar2.Value = trackBar2.Maximum;
       textBox5.Text = ((trackBar2.Value) * 100 / 4000).ToString();
       startPump2 = true;
-      
+
     }
 
     private void button16_Click(object sender, EventArgs e)
@@ -354,12 +384,12 @@ namespace LukMachine
     private void trackBar2_Scroll(object sender, EventArgs e)
     {
       startPump2 = true;
-      textBox5.Text= ((trackBar2.Value)*100/4000).ToString();
+      textBox5.Text = ((trackBar2.Value) * 100 / 4000).ToString();
     }
 
     private void textBox5_TextChanged(object sender, EventArgs e)
     {
-      trackBar2.Value = Convert.ToInt32(textBox5.Text)*4000/100;
+      trackBar2.Value = Convert.ToInt32(textBox5.Text) * 4000 / 100;
       startPump2 = true;
     }
 
@@ -375,7 +405,7 @@ namespace LukMachine
     {
       int newvalue = Convert.ToInt32(Properties.Settings.Default.MediumPumpSetting) * 4000 / 100;
       //trackBar2.Value = newvalue;
-     textBox5.Text = (newvalue * 100 / 4000).ToString();
+      textBox5.Text = (newvalue * 100 / 4000).ToString();
       startPump2 = true;
     }
 
@@ -395,5 +425,39 @@ namespace LukMachine
       setScrn.ShowDialog();
       Show();
     }
+
+    private void groupBox7_Enter(object sender, EventArgs e)
+    {
+
+    }
+
+   
+
+    private void button21_Click(object sender, EventArgs e)
+    {
+      //PumpCollectedVolumeToReservoir();
+      //Progress2 += Run_Test_Progress;
+      myThread = new Thread(myPumpThread);
+      myThread.Start();
+    }
+
+    public void myPumpThread()
+    {
+      Console.WriteLine("my thread started");
+      Thread.Sleep(2000);
+      string j = "juli";
+      
+      Progress2("asdf");
+      Thread.Sleep(2000);
+      Console.WriteLine("my thread finished");
+    }
+
+    public void Cat(string sd)
+    {
+      Console.WriteLine("Cat");
+      //MessageBox.Show("Cat"); 
+      
+    }
+
   }
 }
