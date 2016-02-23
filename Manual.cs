@@ -40,17 +40,10 @@ namespace LukMachine
     private bool heater4Off;
     private bool changedFluidSpeed;
     private Thread myThread;
-    public delegate void ProgressEventHandler2(string a);
-    public event ProgressEventHandler2 Progress2;
 
     private void Manual_Load(object sender, EventArgs e)
     {
-
-      //Progress2 += new ProgressEventHandler2(Cat);
-      Progress2 += PumpMethod;
-
       double conversionFactor = Properties.Settings.Default.PressureConversionFactor;
-
       double maxVal = Properties.Settings.Default.p1Max;
       double stepSize = (Math.Round(maxVal * conversionFactor)) / 5;
       aGauge5.MaxValue = (float)Math.Round(maxVal, 2);
@@ -431,13 +424,9 @@ namespace LukMachine
 
     }
 
-
     string temptext;
-
     private void button21_Click(object sender, EventArgs e)
     {
-      //PumpCollectedVolumeToReservoir();
-      //Progress2 += Run_Test_Progress;
       temptext = button21.Text;
       button21.Text = "Please wait until pumping ends";
       button21.Enabled = false;
@@ -447,30 +436,17 @@ namespace LukMachine
 
     public void myPumpThread()
     {
-      Console.WriteLine("my thread started");
-      //Thread.Sleep(2000);
-      
-      //Progress2("asdf");
-      //Thread.Sleep(2000);
-
-      button21.Invoke(new UpdateTextCallback(this.UpdateText),
-            new object[] {"Text generated on non - UI thread."});
       Console.WriteLine("sleeping..");
       Thread.Sleep(3000);
+      button21.Invoke(new UpdateTextCallback(this.UpdateText), new object[] {"Text generated on non - UI thread."});
       Console.WriteLine("my thread finished");
-    }
-
-    public void PumpMethod(string sd)
-    {
-      Console.WriteLine("Cat");
-      //MessageBox.Show("Cat"); 
-      
     }
 
     private void UpdateText(string text)
     {
       Console.WriteLine("Entering UpdateText()");
-      button21.Text = text;
+      //button21.Text = text;  // use this if you want to set the text from the other thread.
+      button21.Text = temptext;
       button21.Enabled = true;
     }
 
