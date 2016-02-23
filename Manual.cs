@@ -47,7 +47,7 @@ namespace LukMachine
     {
 
       //Progress2 += new ProgressEventHandler2(Cat);
-      Progress2 += Cat;
+      Progress2 += PumpMethod;
 
       double conversionFactor = Properties.Settings.Default.PressureConversionFactor;
 
@@ -83,7 +83,7 @@ namespace LukMachine
     private void timer1_Tick(object sender, EventArgs e)
     {
       //read pressure gauge, convert to PSI (will need to * by conversion factor and set units label later)
-      double rawP1 = Convert.ToDouble(COMMS.Instance.ReadPressureGauge(1));
+      double rawP1 = 0; // Convert.ToDouble(COMMS.Instance.ReadPressureGauge(1));
       double p1Psi = (rawP1 - ground) * Properties.Settings.Default.p1Max / twoVolt;
       aGauge5.Value = (float)p1Psi;
 
@@ -94,10 +94,10 @@ namespace LukMachine
       label1.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
 
       //read penetrometers
-      label2.Text = "Penetrometer 1: " + COMMS.Instance.getReservoirLevelCount(); //is COMMS.Instance.MotorValvePosition(1);
-      label3.Text = "Penetrometer 2: " + COMMS.Instance.getCollectedLevelCount(); //is COMMS.Instance.MotorValvePosition(2);
-      labelReservoir.Text = COMMS.Instance.getReservoirLevelPercent().ToString();
-      labelCollected.Text = COMMS.Instance.getCollectedLevelPercent().ToString();
+      //label2.Text = "Penetrometer 1: " + COMMS.Instance.getReservoirLevelCount(); //is COMMS.Instance.MotorValvePosition(1);
+      //label3.Text = "Penetrometer 2: " + COMMS.Instance.getCollectedLevelCount(); //is COMMS.Instance.MotorValvePosition(2);
+      //labelReservoir.Text = COMMS.Instance.getReservoirLevelPercent().ToString();
+      //labelCollected.Text = COMMS.Instance.getCollectedLevelPercent().ToString();
 
 
 
@@ -431,12 +431,16 @@ namespace LukMachine
 
     }
 
-   
+
+    string temptext;
 
     private void button21_Click(object sender, EventArgs e)
     {
       //PumpCollectedVolumeToReservoir();
       //Progress2 += Run_Test_Progress;
+      temptext = button21.Text;
+      button21.Text = "Please wait until pumping ends";
+      button21.Enabled = false;
       myThread = new Thread(myPumpThread);
       myThread.Start();
     }
@@ -444,20 +448,33 @@ namespace LukMachine
     public void myPumpThread()
     {
       Console.WriteLine("my thread started");
-      Thread.Sleep(2000);
-      string j = "juli";
+      //Thread.Sleep(2000);
       
-      Progress2("asdf");
-      Thread.Sleep(2000);
+      //Progress2("asdf");
+      //Thread.Sleep(2000);
+
+      button21.Invoke(new UpdateTextCallback(this.UpdateText),
+            new object[] {"Text generated on non - UI thread."});
+      Console.WriteLine("sleeping..");
+      Thread.Sleep(3000);
       Console.WriteLine("my thread finished");
     }
 
-    public void Cat(string sd)
+    public void PumpMethod(string sd)
     {
       Console.WriteLine("Cat");
       //MessageBox.Show("Cat"); 
       
     }
+
+    private void UpdateText(string text)
+    {
+      Console.WriteLine("Entering UpdateText()");
+      button21.Text = text;
+      button21.Enabled = true;
+    }
+
+    public delegate void UpdateTextCallback(string text);
 
   }
 }

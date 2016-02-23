@@ -491,9 +491,19 @@ namespace LukMachine
     public double ReadAthenaTemp(int channel)
     {
       string returnValue = rsEcho("TT" + channel.ToString());
-      double fixReturn = double.Parse(returnValue) / 10;
 
-      return fixReturn;
+      try
+      {
+        double fixReturn = double.Parse(returnValue) / 10;
+        return fixReturn;
+      }
+      catch (Exception)
+      {
+        return 0;
+      }
+      
+
+      
     }
 
     public void MoveGenerator(int genChannel, int speed)

@@ -94,12 +94,10 @@
       this.groupBox6 = new System.Windows.Forms.GroupBox();
       this.label8 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
+      this.groupBox10 = new System.Windows.Forms.GroupBox();
+      this.groupBox11 = new System.Windows.Forms.GroupBox();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
-      this.label9 = new System.Windows.Forms.Label();
-      this.label17 = new System.Windows.Forms.Label();
       this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
-      this.labelReservoir = new System.Windows.Forms.Label();
-      this.labelCollected = new System.Windows.Forms.Label();
       this.groupBox9.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.groupBox1.SuspendLayout();
@@ -114,6 +112,8 @@
       this.groupBox5.SuspendLayout();
       this.groupBox8.SuspendLayout();
       this.groupBox6.SuspendLayout();
+      this.groupBox10.SuspendLayout();
+      this.groupBox11.SuspendLayout();
       this.SuspendLayout();
       // 
       // timer1
@@ -127,7 +127,7 @@
       this.groupBox9.Controls.Add(this.button17);
       this.groupBox9.Controls.Add(this.button18);
       this.groupBox9.Controls.Add(this.comboBox2);
-      this.groupBox9.Location = new System.Drawing.Point(950, 236);
+      this.groupBox9.Location = new System.Drawing.Point(950, 260);
       this.groupBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox9.Name = "groupBox9";
       this.groupBox9.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -200,7 +200,7 @@
       this.groupBox1.Controls.Add(this.pictureBox2);
       this.groupBox1.Controls.Add(this.button1);
       this.groupBox1.Controls.Add(this.button2);
-      this.groupBox1.Location = new System.Drawing.Point(630, 236);
+      this.groupBox1.Location = new System.Drawing.Point(630, 260);
       this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox1.Name = "groupBox1";
       this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -437,7 +437,7 @@
       this.groupBox4.Controls.Add(this.label6);
       this.groupBox4.Controls.Add(this.button7);
       this.groupBox4.Controls.Add(this.button8);
-      this.groupBox4.Location = new System.Drawing.Point(389, 425);
+      this.groupBox4.Location = new System.Drawing.Point(389, 449);
       this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox4.Name = "groupBox4";
       this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -614,7 +614,7 @@
       this.groupBox7.Controls.Add(this.label12);
       this.groupBox7.Controls.Add(this.trackBar4);
       this.groupBox7.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.groupBox7.Location = new System.Drawing.Point(1012, 32);
+      this.groupBox7.Location = new System.Drawing.Point(1136, 32);
       this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
       this.groupBox7.Name = "groupBox7";
       this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
@@ -683,7 +683,7 @@
       this.groupBox5.Controls.Add(this.checkBox3);
       this.groupBox5.Controls.Add(this.checkBox2);
       this.groupBox5.Controls.Add(this.checkBox1);
-      this.groupBox5.Location = new System.Drawing.Point(389, 236);
+      this.groupBox5.Location = new System.Drawing.Point(389, 260);
       this.groupBox5.Name = "groupBox5";
       this.groupBox5.Size = new System.Drawing.Size(223, 181);
       this.groupBox5.TabIndex = 38;
@@ -756,11 +756,12 @@
       // 
       // groupBox8
       // 
+      this.groupBox8.AutoSize = true;
       this.groupBox8.Controls.Add(this.label1);
       this.groupBox8.Controls.Add(this.aGauge5);
       this.groupBox8.Location = new System.Drawing.Point(18, 14);
       this.groupBox8.Name = "groupBox8";
-      this.groupBox8.Size = new System.Drawing.Size(363, 210);
+      this.groupBox8.Size = new System.Drawing.Size(363, 222);
       this.groupBox8.TabIndex = 39;
       this.groupBox8.TabStop = false;
       this.groupBox8.Text = "Pressure (PSI)";
@@ -886,30 +887,27 @@
       // 
       // button21
       // 
-      this.button21.Location = new System.Drawing.Point(38, 154);
+      this.button21.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.button21.Location = new System.Drawing.Point(12, 151);
       this.button21.Name = "button21";
-      this.button21.Size = new System.Drawing.Size(202, 39);
+      this.button21.Size = new System.Drawing.Size(211, 77);
       this.button21.TabIndex = 40;
-      this.button21.Text = "Pump to Reservoir";
+      this.button21.Text = "Pump collected volume back to reservoir";
       this.button21.UseVisualStyleBackColor = true;
       this.button21.Click += new System.EventHandler(this.button21_Click);
       // 
       // groupBox6
       // 
-      this.groupBox6.Controls.Add(this.labelCollected);
-      this.groupBox6.Controls.Add(this.labelReservoir);
-      this.groupBox6.Controls.Add(this.label9);
-      this.groupBox6.Controls.Add(this.label17);
-      this.groupBox6.Controls.Add(this.verticalProgressBar2);
-      this.groupBox6.Controls.Add(this.verticalProgressBar1);
+      this.groupBox6.Controls.Add(this.button21);
+      this.groupBox6.Controls.Add(this.groupBox11);
+      this.groupBox6.Controls.Add(this.groupBox10);
       this.groupBox6.Controls.Add(this.label8);
       this.groupBox6.Controls.Add(this.label5);
-      this.groupBox6.Controls.Add(this.button21);
       this.groupBox6.Controls.Add(this.label2);
       this.groupBox6.Controls.Add(this.label3);
       this.groupBox6.Location = new System.Drawing.Point(389, 14);
       this.groupBox6.Name = "groupBox6";
-      this.groupBox6.Size = new System.Drawing.Size(598, 210);
+      this.groupBox6.Size = new System.Drawing.Size(661, 238);
       this.groupBox6.TabIndex = 40;
       this.groupBox6.TabStop = false;
       this.groupBox6.Text = "Volume";
@@ -934,65 +932,48 @@
       this.label5.TabIndex = 41;
       this.label5.Text = "(Reservoir)";
       // 
+      // groupBox10
+      // 
+      this.groupBox10.Controls.Add(this.verticalProgressBar2);
+      this.groupBox10.Location = new System.Drawing.Point(451, 16);
+      this.groupBox10.Name = "groupBox10";
+      this.groupBox10.Size = new System.Drawing.Size(194, 212);
+      this.groupBox10.TabIndex = 41;
+      this.groupBox10.TabStop = false;
+      this.groupBox10.Text = "Collected Volume";
+      // 
+      // groupBox11
+      // 
+      this.groupBox11.Controls.Add(this.verticalProgressBar1);
+      this.groupBox11.Location = new System.Drawing.Point(245, 18);
+      this.groupBox11.Name = "groupBox11";
+      this.groupBox11.Size = new System.Drawing.Size(200, 210);
+      this.groupBox11.TabIndex = 43;
+      this.groupBox11.TabStop = false;
+      this.groupBox11.Text = "Reservoir";
+      // 
       // verticalProgressBar1
       // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(299, 48);
+      this.verticalProgressBar1.Location = new System.Drawing.Point(63, 39);
       this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
       this.verticalProgressBar1.TabIndex = 43;
       this.verticalProgressBar1.Value = 50;
       // 
-      // label9
-      // 
-      this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(421, 20);
-      this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(180, 25);
-      this.label9.TabIndex = 46;
-      this.label9.Text = "Collected Volume";
-      // 
-      // label17
-      // 
-      this.label17.AutoSize = true;
-      this.label17.Location = new System.Drawing.Point(290, 18);
-      this.label17.Name = "label17";
-      this.label17.Size = new System.Drawing.Size(106, 25);
-      this.label17.TabIndex = 45;
-      this.label17.Text = "Reservoir";
-      // 
       // verticalProgressBar2
       // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(452, 48);
+      this.verticalProgressBar2.Location = new System.Drawing.Point(58, 41);
       this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
       this.verticalProgressBar2.TabIndex = 44;
       this.verticalProgressBar2.Value = 50;
-      // 
-      // labelReservoir
-      // 
-      this.labelReservoir.AutoSize = true;
-      this.labelReservoir.Location = new System.Drawing.Point(339, 175);
-      this.labelReservoir.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-      this.labelReservoir.Name = "labelReservoir";
-      this.labelReservoir.Size = new System.Drawing.Size(32, 25);
-      this.labelReservoir.TabIndex = 47;
-      this.labelReservoir.Text = "%";
-      // 
-      // labelCollected
-      // 
-      this.labelCollected.AutoSize = true;
-      this.labelCollected.Location = new System.Drawing.Point(488, 175);
-      this.labelCollected.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-      this.labelCollected.Name = "labelCollected";
-      this.labelCollected.Size = new System.Drawing.Size(32, 25);
-      this.labelCollected.TabIndex = 48;
-      this.labelCollected.Text = "%";
       // 
       // Manual
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1171, 593);
+      this.AutoSize = true;
+      this.ClientSize = new System.Drawing.Size(1296, 593);
       this.Controls.Add(this.groupBox6);
       this.Controls.Add(this.groupBox8);
       this.Controls.Add(this.groupBox5);
@@ -1030,7 +1011,10 @@
       this.groupBox8.ResumeLayout(false);
       this.groupBox6.ResumeLayout(false);
       this.groupBox6.PerformLayout();
+      this.groupBox10.ResumeLayout(false);
+      this.groupBox11.ResumeLayout(false);
       this.ResumeLayout(false);
+      this.PerformLayout();
 
         }
 
@@ -1100,10 +1084,8 @@
     private System.Windows.Forms.Label label8;
     private System.Windows.Forms.Label label5;
     private VerticalProgressBar verticalProgressBar1;
-    private System.Windows.Forms.Label labelCollected;
-    private System.Windows.Forms.Label labelReservoir;
-    private System.Windows.Forms.Label label9;
-    private System.Windows.Forms.Label label17;
     private VerticalProgressBar verticalProgressBar2;
+    private System.Windows.Forms.GroupBox groupBox10;
+    private System.Windows.Forms.GroupBox groupBox11;
   }
 }
