@@ -29,7 +29,6 @@ namespace LukMachine
 
     //declare a new serial port object to be used throughout class.
     SerialPort _serialPort = new SerialPort("something", 115200, Parity.None, 8, StopBits.One);
-
     public bool demoMode = false;
     public string comPort = null;
     public string version = "1.0.0";
@@ -69,6 +68,8 @@ namespace LukMachine
       try
       {
         _serialPort.PortName = portNum;
+        _serialPort.ReadTimeout = 3000;
+        _serialPort.WriteTimeout = 3000;
         //if the port ain't open it, open it.
         if (!(_serialPort.IsOpen))
           _serialPort.Open();
@@ -140,13 +141,26 @@ namespace LukMachine
         _serialPort.Write(toSend);
         //get the first respose, which will be the echo command
         //character
+
+        Thread.Sleep(20);
+
+        //MessageBox.Show(_serialPort.ReadExisting());
+
         received = _serialPort.ReadTo(newLine);
-        System.Diagnostics.Debug.Write("Echo: " + received + Environment.NewLine);
+
+        System.Diagnostics.Debug.Write("Send(): Sent " + toSend + " received " + received + Environment.NewLine);
 
         System.Diagnostics.Debug.Write("Send Command: " + toSend + Environment.NewLine);
       }
+      catch (TimeoutException kj)
+      {
+        MessageBox.Show("Timeout READING COMPORT");
+         //return;
+      }
+
       catch (IndexOutOfRangeException kj)
       {
+        MessageBox.Show("ERROR READING COMPORT");
         ClosePort();
         OpenPort("Demo");
         DialogResult stuff = MessageBox.Show("Error: " + kj.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -156,17 +170,17 @@ namespace LukMachine
       catch (InvalidOperationException qT)
       {
         //ERROR HERE
+        DialogResult stuff = MessageBox.Show("Error: " + qT.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
         ClosePort();
         OpenPort("Demo");
-        DialogResult stuff = MessageBox.Show("Error: " + qT.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         //return;
       }
       catch (IOException ex)
       {
+        DialogResult stuff = MessageBox.Show("Error: " + ex.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
         ClosePort();
         OpenPort("Demo");
-        DialogResult stuff = MessageBox.Show("Error: " + ex.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         //return;
       }
@@ -202,12 +216,19 @@ namespace LukMachine
       try
       {
         //received = _serialPort.ReadExisting();
+        //Thread.Sleep(200);
         received = _serialPort.ReadTo(newLine);
-        System.Diagnostics.Debug.Write("Return Value: " + received + Environment.NewLine);
+        System.Diagnostics.Debug.Write("rsEcho(): Sent " + toSend + " received " + received + Environment.NewLine);
         return received;
+      }
+      catch (TimeoutException kj)
+      {
+        MessageBox.Show("Timeout READING COMPORT");
+        return null;
       }
       catch (IOException ex)
       {
+        MessageBox.Show("ERROR READING COMPORT");
         System.Diagnostics.Debug.WriteLine(ex.Message);
         return null;
       }
@@ -344,23 +365,23 @@ namespace LukMachine
       int minCount = Properties.Settings.Default.MinReservoirCount;
       int maxCount = Properties.Settings.Default.MaxReservoirCount;
       int level = Convert.ToInt32(getReservoirLevelCount());
-      int percentage = 100*(level - minCount) / (maxCount - minCount);
+      int percentage = 100 * (level - minCount) / (maxCount - minCount);
       return percentage;
     }
     public Int32 getCollectedLevelPercent()
     {
       int minCount = Properties.Settings.Default.MinCollectedCount;
       int maxCount = Properties.Settings.Default.MaxCollectedCount;
-      return 100*(Convert.ToInt32(getCollectedLevelCount()) - minCount) / (maxCount - minCount);
+      return 100 * (Convert.ToInt32(getCollectedLevelCount()) - minCount) / (maxCount - minCount);
     }
 
     public string getReservoirLevelCount()
     {
-      return COMMS.Instance.MotorValvePosition(1);
+      return COMMS.Instance.MotorValvePosition(2); //pent2
     }
     public string getCollectedLevelCount()
     {
-      return COMMS.Instance.MotorValvePosition(2);
+      return COMMS.Instance.MotorValvePosition(1); //pent3
     }
 
     public string MotorValvePosition(int valveNum)
@@ -503,9 +524,9 @@ namespace LukMachine
       {
         return 0;
       }
-  
 
-      
+
+
     }
 
     public void MoveGenerator(int genChannel, int speed)

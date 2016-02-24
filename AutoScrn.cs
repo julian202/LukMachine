@@ -66,17 +66,30 @@ namespace LukMachine
         else if (message.Contains("set label7 to targetTemp"))
         {
           targetTemp = Properties.Settings.Default.selectedTemp;
-          label7.Text = targetTemp.ToString();
+          int targetTempInCelsius = (Convert.ToInt32((targetTemp - 32) * 5 / 9));
+          label7.Text = targetTemp.ToString() + " F / " + String.Format("{0:0}", targetTempInCelsius) + " C ";
+
         }
         else if (message.Contains("set label5 to currentTemp"))
         {
           string[] msgSplit = message.Split('=');
           int myint = Convert.ToInt32(Convert.ToDouble(msgSplit[1]));
           //MessageBox.Show(myint.ToString());  
-          label5.Text = String.Format("{0:0}", myint);
+          int myintInCelsius = (Convert.ToInt32((myint - 32) * 5 / 9));
+          label5.Text = String.Format("{0:0}", myint) + " F / " + String.Format("{0:0}", myintInCelsius) + " C ";
           //MessageBox.Show(label5.Text);
         }
+        else if (message.Contains("disable stop button"))
+        {
+          button2.Enabled = false;
+        }
         
+          else if (message.Contains("display pressure"))
+        {
+          string[] msgSplit = message.Split('=');
+          string pressure = msgSplit[1];
+          labelPressure.Text = (Convert.ToInt32(Convert.ToDouble(pressure))).ToString() + " PSI";
+        }
 
         else if (message.Contains("hide panel1"))
         {
@@ -90,13 +103,13 @@ namespace LukMachine
         {
           //read penetrometers
           int ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
-          label2.Text = "Reservoir " + ReservoirPercent.ToString() + "% Full";
+          groupBoxReservoir.Text = "Reservoir " + ReservoirPercent.ToString() + "% Full";
           int CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
-          label3.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
+          groupBoxCollectedVolume.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
           verticalProgressBar1.Value = ReservoirPercent;
           verticalProgressBar2.Value = CollectedPercent;
         }
-       
+
 
         else if (message.Contains("B="))
         {

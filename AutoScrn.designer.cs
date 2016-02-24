@@ -40,8 +40,6 @@
       this.button1 = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
       this.listBox1 = new System.Windows.Forms.ListBox();
-      this.label2 = new System.Windows.Forms.Label();
-      this.label3 = new System.Windows.Forms.Label();
       this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.panel1 = new System.Windows.Forms.Panel();
@@ -51,10 +49,17 @@
       this.label7 = new System.Windows.Forms.Label();
       this.label8 = new System.Windows.Forms.Label();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.groupBoxPressure = new System.Windows.Forms.GroupBox();
+      this.labelPressure = new System.Windows.Forms.Label();
+      this.groupBoxCollectedVolume = new System.Windows.Forms.GroupBox();
+      this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
       this.groupBox1.SuspendLayout();
+      this.groupBoxPressure.SuspendLayout();
+      this.groupBoxCollectedVolume.SuspendLayout();
+      this.groupBoxReservoir.SuspendLayout();
       this.SuspendLayout();
       // 
       // chart1
@@ -165,27 +170,9 @@
       this.listBox1.Size = new System.Drawing.Size(664, 61);
       this.listBox1.TabIndex = 7;
       // 
-      // label2
-      // 
-      this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(95, 15);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(94, 23);
-      this.label2.TabIndex = 11;
-      this.label2.Text = "Reservoir";
-      // 
-      // label3
-      // 
-      this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(294, 15);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(162, 23);
-      this.label3.TabIndex = 12;
-      this.label3.Text = "Collected Volume";
-      // 
       // verticalProgressBar2
       // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(322, 54);
+      this.verticalProgressBar2.Location = new System.Drawing.Point(64, 42);
       this.verticalProgressBar2.Name = "verticalProgressBar2";
       this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
       this.verticalProgressBar2.TabIndex = 10;
@@ -193,7 +180,7 @@
       // 
       // verticalProgressBar1
       // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(99, 54);
+      this.verticalProgressBar1.Location = new System.Drawing.Point(63, 42);
       this.verticalProgressBar1.Name = "verticalProgressBar1";
       this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
       this.verticalProgressBar1.TabIndex = 9;
@@ -220,7 +207,7 @@
       // 
       this.label5.AutoSize = true;
       this.label5.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label5.Location = new System.Drawing.Point(152, 93);
+      this.label5.Location = new System.Drawing.Point(146, 93);
       this.label5.Name = "label5";
       this.label5.Size = new System.Drawing.Size(17, 24);
       this.label5.TabIndex = 17;
@@ -240,11 +227,11 @@
       // 
       this.label7.AutoSize = true;
       this.label7.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label7.Location = new System.Drawing.Point(148, 48);
+      this.label7.Location = new System.Drawing.Point(146, 48);
       this.label7.Name = "label7";
-      this.label7.Size = new System.Drawing.Size(65, 24);
+      this.label7.Size = new System.Drawing.Size(74, 24);
       this.label7.TabIndex = 15;
-      this.label7.Text = "label7";
+      this.label7.Text = "not set";
       // 
       // label8
       // 
@@ -262,12 +249,52 @@
       this.groupBox1.Controls.Add(this.label5);
       this.groupBox1.Controls.Add(this.label7);
       this.groupBox1.Controls.Add(this.label6);
-      this.groupBox1.Location = new System.Drawing.Point(555, 15);
+      this.groupBox1.Location = new System.Drawing.Point(449, 12);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(248, 149);
+      this.groupBox1.Size = new System.Drawing.Size(248, 190);
       this.groupBox1.TabIndex = 18;
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = "Temperature";
+      // 
+      // groupBoxPressure
+      // 
+      this.groupBoxPressure.Controls.Add(this.labelPressure);
+      this.groupBoxPressure.Location = new System.Drawing.Point(703, 12);
+      this.groupBoxPressure.Name = "groupBoxPressure";
+      this.groupBoxPressure.Size = new System.Drawing.Size(190, 190);
+      this.groupBoxPressure.TabIndex = 19;
+      this.groupBoxPressure.TabStop = false;
+      this.groupBoxPressure.Text = "Pressure";
+      // 
+      // labelPressure
+      // 
+      this.labelPressure.AutoSize = true;
+      this.labelPressure.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelPressure.Location = new System.Drawing.Point(61, 65);
+      this.labelPressure.Name = "labelPressure";
+      this.labelPressure.Size = new System.Drawing.Size(44, 24);
+      this.labelPressure.TabIndex = 15;
+      this.labelPressure.Text = "PSI";
+      // 
+      // groupBoxCollectedVolume
+      // 
+      this.groupBoxCollectedVolume.Controls.Add(this.verticalProgressBar2);
+      this.groupBoxCollectedVolume.Location = new System.Drawing.Point(224, 12);
+      this.groupBoxCollectedVolume.Name = "groupBoxCollectedVolume";
+      this.groupBoxCollectedVolume.Size = new System.Drawing.Size(219, 190);
+      this.groupBoxCollectedVolume.TabIndex = 20;
+      this.groupBoxCollectedVolume.TabStop = false;
+      this.groupBoxCollectedVolume.Text = "Collected Volume";
+      // 
+      // groupBoxReservoir
+      // 
+      this.groupBoxReservoir.Controls.Add(this.verticalProgressBar1);
+      this.groupBoxReservoir.Location = new System.Drawing.Point(13, 12);
+      this.groupBoxReservoir.Name = "groupBoxReservoir";
+      this.groupBoxReservoir.Size = new System.Drawing.Size(205, 190);
+      this.groupBoxReservoir.TabIndex = 21;
+      this.groupBoxReservoir.TabStop = false;
+      this.groupBoxReservoir.Text = "Reservoir";
       // 
       // AutoScrn
       // 
@@ -275,12 +302,11 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.ClientSize = new System.Drawing.Size(905, 629);
+      this.Controls.Add(this.groupBoxReservoir);
+      this.Controls.Add(this.groupBoxCollectedVolume);
+      this.Controls.Add(this.groupBoxPressure);
       this.Controls.Add(this.groupBox1);
       this.Controls.Add(this.panel1);
-      this.Controls.Add(this.label3);
-      this.Controls.Add(this.label2);
-      this.Controls.Add(this.verticalProgressBar2);
-      this.Controls.Add(this.verticalProgressBar1);
       this.Controls.Add(this.listBox1);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.button3);
@@ -303,6 +329,10 @@
       this.panel1.PerformLayout();
       this.groupBox1.ResumeLayout(false);
       this.groupBox1.PerformLayout();
+      this.groupBoxPressure.ResumeLayout(false);
+      this.groupBoxPressure.PerformLayout();
+      this.groupBoxCollectedVolume.ResumeLayout(false);
+      this.groupBoxReservoir.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -321,8 +351,6 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn PressureColumn;
     private VerticalProgressBar verticalProgressBar1;
     private VerticalProgressBar verticalProgressBar2;
-    private System.Windows.Forms.Label label2;
-    private System.Windows.Forms.Label label3;
     private System.Windows.Forms.Label label4;
     public System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.Label label5;
@@ -330,6 +358,10 @@
     private System.Windows.Forms.Label label7;
     private System.Windows.Forms.Label label8;
     private System.Windows.Forms.GroupBox groupBox1;
+    private System.Windows.Forms.GroupBox groupBoxPressure;
+    private System.Windows.Forms.Label labelPressure;
+    private System.Windows.Forms.GroupBox groupBoxCollectedVolume;
+    private System.Windows.Forms.GroupBox groupBoxReservoir;
     // private System.Windows.Controls.ProgressBar progbar;
 
 

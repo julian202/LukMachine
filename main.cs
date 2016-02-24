@@ -15,6 +15,7 @@ namespace LukMachine
     public main()
     {
       InitializeComponent();
+   
     }
 
     private void button1_Click(object sender, EventArgs e)
@@ -155,7 +156,7 @@ namespace LukMachine
       {
         return;
       }
-      Console.WriteLine ( COMMS.Instance.rsEcho("jk"));
+      //Console.WriteLine ( COMMS.Instance.rsEcho("jk"));
     }
   }
 }

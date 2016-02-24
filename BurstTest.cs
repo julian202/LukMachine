@@ -190,22 +190,7 @@ namespace LukMachine
         targetTemp = Properties.Settings.Default.selectedTemp;
         while ((currentTemp < targetTemp - 2) || (currentTemp > targetTemp + 2))
         {
-          //read tank temperature
-          athena1Temp = COMMS.Instance.ReadAthenaTemp(1);
-          //read pipes temperature
-          athena2Temp = COMMS.Instance.ReadAthenaTemp(2);
-          //read selected chamber temperature
-          if (Properties.Settings.Default.Chamber == "Ring")
-          {
-            chamberTemp = COMMS.Instance.ReadAthenaTemp(3);
-          }
-          else if (Properties.Settings.Default.Chamber == "Disk")
-          {
-            chamberTemp = COMMS.Instance.ReadAthenaTemp(4);
-          }
-          //get average temp and display it
-          currentTemp = (athena1Temp + athena2Temp + chamberTemp) / 3;
-          Progress("set label5 to currentTemp=" + currentTemp.ToString());
+          ReadTemperatureAndSetLabel();
           Thread.Sleep(2000);//wait before checking again
           //Console.WriteLine("athena1Temp " + athena1Temp);
           //Console.WriteLine("chamberTemp " + chamberTemp);
@@ -215,6 +200,26 @@ namespace LukMachine
       {
         MessageBox.Show("Problem reading temperature from Athena ");
       }
+    }
+
+    public void ReadTemperatureAndSetLabel()
+    {
+      //read tank temperature
+      athena1Temp = COMMS.Instance.ReadAthenaTemp(1);
+      //read pipes temperature
+      athena2Temp = COMMS.Instance.ReadAthenaTemp(2);
+      //read selected chamber temperature
+      if (Properties.Settings.Default.Chamber == "Ring")
+      {
+        chamberTemp = COMMS.Instance.ReadAthenaTemp(3);
+      }
+      else if (Properties.Settings.Default.Chamber == "Disk")
+      {
+        chamberTemp = COMMS.Instance.ReadAthenaTemp(4);
+      }
+      //get average temp and display it
+      currentTemp = (athena1Temp + athena2Temp + chamberTemp) / 3;
+      Progress("set label5 to currentTemp=" + currentTemp.ToString());
     }
 
     public void RunBurstTest()
@@ -266,6 +271,7 @@ namespace LukMachine
       startTime = Convert.ToDouble(Environment.TickCount) + 500.0;
       maxPressure *= pConversion;
       maxTestPressure *= pConversion;
+
       while (!abort && !overVolume)
       {
         //read pressure
@@ -273,6 +279,7 @@ namespace LukMachine
         realCounts = Convert.ToDouble(counts);
         currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //twoVolt is 60000
         outputPressure = currentPressure * pConversion;
+        Progress("display pressure ="+ outputPressure.ToString());
 
         //read penetrometer
         volumeReading = COMMS.Instance.MotorValvePosition(1); //this would be pent 3 (the testing pent)
@@ -299,17 +306,21 @@ namespace LukMachine
           COMMS.Instance.ZeroRegulator(1);
           //open relief pressure valve
           COMMS.Instance.MoveValve(2, "O");
+          Progress("disable stop button");
           Progress("Machine has reached it's maximum pressure range! The test will be aborted.");
           Progress("Data saved to " + Properties.Settings.Default.TestData);
-          SR.WriteLine("Machine has reached it's maximum pressure range! The test was aborted.");
+          SR.WriteLine("Machine has reached it's maximum pressure range! The test was aborted. Pressure was "+ outputPressure.ToString()+ ", max is "+ p1Max.ToString());
           SR.Close();
           System.Windows.Forms.MessageBox.Show("Machine has reached it's maximum pressure. The test has been stopped. Data saved to " + Properties.Settings.Default.TestData);
           COMMS.Instance.Pause(1); //wait 1 second for other thread to finish
+        
         }
 
         //Stop if over max volume.
         if (Convert.ToInt32(volumeReading) >= Convert.ToInt32(Properties.Settings.Default.MaxPent3Reading))
         {
+          Console.WriteLine("volumeReading is "+ volumeReading);
+          Console.WriteLine("MaxPent3Reading is " + Properties.Settings.Default.MaxPent3Reading);
           abort = true;
           testPaused = true;
           overVolume = true;
@@ -317,6 +328,7 @@ namespace LukMachine
           COMMS.Instance.ZeroRegulator(1);
           //open relief pressure valve
           COMMS.Instance.MoveValve(2, "O");
+          Progress("disable stop button");
           Progress("Machine has reached it's maximum volume range, the test has stopped.");
           SR.WriteLine("Machine has reached it's maximum volume range, the test was aborted.");
           SR.Close();
@@ -325,6 +337,8 @@ namespace LukMachine
         }
         //see if we need to pause, or abort.
         //PauseTest();
+        Progress("Read volume levels");
+        ReadTemperatureAndSetLabel();
       }
       if (abort)
       {
