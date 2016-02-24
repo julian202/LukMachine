@@ -16,5 +16,10 @@ namespace LukMachine
     {
       InitializeComponent();
     }
+
+    private void Wait_Load(object sender, EventArgs e)
+    {
+
+    }
   }
 }

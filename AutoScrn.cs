@@ -16,6 +16,11 @@ namespace LukMachine
     public delegate void ProgressEventHandler(string message);
     BurstTest test;
     private Thread testThread;
+    private double currentTemp;
+    private double targetTemp;
+    private double athena1Temp; //temp of tank
+    private double athena2Temp; //temp of pipes
+    private double chamberTemp;
 
     public AutoScrn()
     {
@@ -54,10 +59,45 @@ namespace LukMachine
             Console.WriteLine("JP " + ex.Message);
             //throw;
           }*/
-          
+
           dataGridView1.Rows.Add(Y.ToString(), X.ToString());
           System.Diagnostics.Debug.WriteLine("X: " + X.ToString() + " Y: " + Y.ToString());
         }
+        else if (message.Contains("set label7 to targetTemp"))
+        {
+          targetTemp = Properties.Settings.Default.selectedTemp;
+          label7.Text = targetTemp.ToString();
+        }
+        else if (message.Contains("set label5 to currentTemp"))
+        {
+          string[] msgSplit = message.Split('=');
+          int myint = Convert.ToInt32(Convert.ToDouble(msgSplit[1]));
+          //MessageBox.Show(myint.ToString());  
+          label5.Text = String.Format("{0:0}", myint);
+          //MessageBox.Show(label5.Text);
+        }
+        
+
+        else if (message.Contains("hide panel1"))
+        {
+          panel1.Visible = false;
+        }
+        else if (message.Contains("disable stop button"))
+        {
+          button2.Enabled = false;
+        }
+        else if (message.Contains("Read volume levels"))
+        {
+          //read penetrometers
+          int ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+          label2.Text = "Reservoir " + ReservoirPercent.ToString() + "% Full";
+          int CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
+          label3.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
+          verticalProgressBar1.Value = ReservoirPercent;
+          verticalProgressBar2.Value = CollectedPercent;
+        }
+       
+
         else if (message.Contains("B="))
         {
           //do some stuff, maybe open the repOrt with a capital NOW.
@@ -89,6 +129,7 @@ namespace LukMachine
         }
       }
     }
+
     private void AutoScrn_Load(object sender, EventArgs e)
     {
       Text = "Auto test [" + Properties.Settings.Default.TestSampleID + "]";
@@ -101,15 +142,13 @@ namespace LukMachine
       chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
       chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
       startTestButton();
-
     }
-
+   
     private void button1_Click(object sender, EventArgs e)
     {
-      startTestButton();
+      startTestButton();     
     }
-
-
+    
     private void startTestButton()
     {
       if (button1.Text == "Start Test")
@@ -166,7 +205,7 @@ namespace LukMachine
       //open relief pressure valve
       //Progress("Relieving pressure...");
       COMMS.Instance.MoveValve(2, "O");
-      
+
     }
 
     private void button3_Click(object sender, EventArgs e)

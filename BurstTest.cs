@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.IO;
+using System.Windows.Forms;
 
 namespace LukMachine
 {
   class BurstTest
   {
+    public delegate void UpdateTextCallback(string text);
     public delegate void ProgressEventHandler(string message);
     public event ProgressEventHandler Progress;
     public bool testPaused = false;
@@ -37,6 +39,13 @@ namespace LukMachine
     //
     //Set up data file
     StreamWriter SR;
+
+    private double currentTemp;
+    private double targetTemp;
+    private double athena1Temp; //temp of tank
+    private double athena2Temp; //temp of pipes
+    private double chamberTemp;
+
     private void PassThrough(char c, string toSend) //PassThrough('A', stopPumpCMD); stopPumpCMD = "#ST" + (char)13; runPumpCMD = "#RU" + (char)13;  
     {
       string chrs = toSend.Length.ToString("00");
@@ -148,14 +157,81 @@ namespace LukMachine
       testPaused = false;
     }
 
-  
+    public void PumpCollectedVolumeToReservoir() //refill reservoir with the liquid from the collected volume
+    {
+      Progress("Read volume levels");
+      int maxPercentFull = 5;
+      if (COMMS.Instance.getCollectedLevelPercent() > maxPercentFull)
+      {
+        Valves.OpenValve1();
+        Valves.CloseValve2();
+        Valves.CloseValve3();
+        //start refill pump 1
+        Pumps.StartPump1();
+      }
+      int test =COMMS.Instance.getCollectedLevelPercent();
+      while (COMMS.Instance.getCollectedLevelPercent() >= maxPercentFull) //if collected reservoir is more than 5% full empty it:
+      {
+        Progress("Read volume levels");
+        Thread.Sleep(200);
+        //wait until collected level is below minpercent
+      }
+      //stop refill pump 1
+      Pumps.StopPump1();
+      Valves.CloseValve1();
+    }
+
+
+    public void HeatMachineToTargetTemperature()
+    {
+      Progress("set label7 to targetTemp");
+      try
+      {
+        targetTemp = Properties.Settings.Default.selectedTemp;
+        while ((currentTemp < targetTemp - 2) || (currentTemp > targetTemp + 2))
+        {
+          //read tank temperature
+          athena1Temp = COMMS.Instance.ReadAthenaTemp(1);
+          //read pipes temperature
+          athena2Temp = COMMS.Instance.ReadAthenaTemp(2);
+          //read selected chamber temperature
+          if (Properties.Settings.Default.Chamber == "Ring")
+          {
+            chamberTemp = COMMS.Instance.ReadAthenaTemp(3);
+          }
+          else if (Properties.Settings.Default.Chamber == "Disk")
+          {
+            chamberTemp = COMMS.Instance.ReadAthenaTemp(4);
+          }
+          //get average temp and display it
+          currentTemp = (athena1Temp + athena2Temp + chamberTemp) / 3;
+          Progress("set label5 to currentTemp=" + currentTemp.ToString());
+          Thread.Sleep(2000);//wait before checking again
+          //Console.WriteLine("athena1Temp " + athena1Temp);
+          //Console.WriteLine("chamberTemp " + chamberTemp);
+        }    
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Problem reading temperature from Athena ");
+      }
+    }
+
     public void RunBurstTest()
     {
       Progress("Checking reservoir levels...");
-      //Manual.PumpCollectedVolumeToReservoir();
-      
+      PumpCollectedVolumeToReservoir();
+      Thread.Sleep(1000);
+      Progress("Done checking reservoir levels...");
+      if (Properties.Settings.Default.useTemperature)
+      {
+        HeatMachineToTargetTemperature(); //this enters a while loop until the temperatue is right.
+      }
+      Progress("hide panel1");
 
+      //Progress("disable stop button"); 
 
+      //panel1.Visible = false;
       Progress("Test started...");
 
       //run main pump

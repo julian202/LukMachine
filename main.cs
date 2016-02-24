@@ -37,11 +37,12 @@ namespace LukMachine
 
       if (setupResult != DialogResult.Cancel)
       {
+        /* //this is now in burst test
         if (Properties.Settings.Default.useTemperature)
         {
           Temperature temp = new Temperature();
           temp.ShowDialog();
-        }
+        }*/
 
 
         AutoScrn auto = new AutoScrn();

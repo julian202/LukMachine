@@ -175,12 +175,13 @@ namespace LukMachine
         Properties.Settings.Default.mustRunReport = true;
       }
 
+      /*
       Wait waitForm = new Wait();
       if (Properties.Settings.Default.COMM != "Demo")
       {     
         waitForm.Show();
         waitForm.Refresh();
-      }
+      }*/
         
       //Move 3-way valve to selected chamber
       if (radioButtonRingChamber.Checked)
@@ -195,7 +196,7 @@ namespace LukMachine
       }
       if (Properties.Settings.Default.COMM != "Demo")
       {
-        COMMS.Instance.Pause(1); //wait 1 second just to not start all the valves at the same time.
+        //COMMS.Instance.Pause(1); //wait 1 second just to not start all the valves at the same time.
       }
       //Open manifold valves
       if (Properties.Settings.Default.SelectedFlowRate == "Low")
@@ -220,8 +221,8 @@ namespace LukMachine
 
       if (Properties.Settings.Default.COMM != "Demo")
       {
-        COMMS.Instance.Pause(7); //wait 7 seconds for valves to finish moving
-        waitForm.Hide();
+        //COMMS.Instance.Pause(7); //wait 7 seconds for valves to finish moving
+        //waitForm.Hide();
       }
 
 
