@@ -41,7 +41,13 @@ namespace LukMachine
     private bool changedFluidSpeed;
     private Thread myThread;
     public delegate void UpdateTextCallback(string text);
-
+    bool Valve3wayToRight;
+    double outputPressure = 0; string counts = ""; double realCounts = 0; double currentPressure;
+    private double pConversion = Properties.Settings.Default.defaultPressureConversion;
+    double p1Psi;
+    double rawP1;
+    bool MainPumpOn;
+    bool RefillPumpOn;
 
     private void Manual_Load(object sender, EventArgs e)
     {
@@ -52,37 +58,54 @@ namespace LukMachine
       aGauge5.ScaleLinesMajorStepValue = (float)Math.Round(stepSize, 2);
       aGauge5.RangesStartValue[2] = (float)(Math.Round(maxVal - stepSize, 2));
       aGauge5.RangesEndValue[2] = (float)Math.Round(maxVal, 2);
-
+      aGauge1.MaxValue = (float)Math.Round(maxVal, 2);
+      aGauge1.ScaleLinesMajorStepValue = (float)Math.Round(stepSize, 2);
+      aGauge1.RangesStartValue[2] = (float)(Math.Round(maxVal - stepSize, 2));
+      aGauge1.RangesEndValue[2] = (float)Math.Round(maxVal, 2);
+      Valve3wayToRight = true;
+      MainPumpOn = false;
+      RefillPumpOn = false;
       timer1.Enabled = true;
 
     }
 
-
-
     private void timer1_Tick(object sender, EventArgs e)
     {
       //read pressure gauge, convert to PSI (will need to * by conversion factor and set units label later)
+      counts = COMMS.Instance.ReadPressureGauge(1);
+      realCounts = Convert.ToDouble(counts);
+      currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //twoVolt is 60000
+      outputPressure = currentPressure * pConversion;
+      p1Psi = outputPressure;
+      rawP1 = realCounts;
+      /*
       double rawP1 = 0; // Convert.ToDouble(COMMS.Instance.ReadPressureGauge(1));
-      double p1Psi = (rawP1 - ground) * Properties.Settings.Default.p1Max / twoVolt;
+      double p1Psi = (rawP1 - ground) * Properties.Settings.Default.p1Max / twoVolt;*/
       aGauge5.Value = (float)p1Psi;
+      aGauge1.Value = (float)p1Psi;
 
       if (p1Psi < 0)
       {
         p1Psi = 0;
       }
       label1.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
+      label30.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
 
       //read penetrometers
       int ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
       groupBoxReservoir.Text = "Reservoir " + ReservoirPercent.ToString() + "% Full";
+      label29.Text = ReservoirPercent.ToString() + "% Full";
       int CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
       groupBoxCollected.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
+      label28.Text = CollectedPercent.ToString() + "% Full";
 
       label2.Text = "Penetrometer 1: " + COMMS.Instance.getReservoirLevelCount() + " (" + ReservoirPercent.ToString() + "%)"; //is COMMS.Instance.MotorValvePosition(1);
       label3.Text = "Penetrometer 2: " + COMMS.Instance.getCollectedLevelCount() + " (" + CollectedPercent.ToString() + "%)"; //is COMMS.Instance.MotorValvePosition(2);
 
       verticalProgressBar1.Value = ReservoirPercent;
       verticalProgressBar2.Value = CollectedPercent;
+      verticalProgressBar3.Value = CollectedPercent;
+      verticalProgressBar4.Value = ReservoirPercent;
 
 
 
@@ -161,6 +184,7 @@ namespace LukMachine
       {
         startPump2 = false;
         //COMMS.Instance.IncreaseRegulator(2, trackBar2.Value);
+        trackBar2.Value = trackBar3.Value;
         COMMS.Instance.SetRegulator(1, trackBar2.Value);  //4000 is 10V, analog output 1. (which is 0-10V)
       }
       if (stopPump2)
@@ -455,13 +479,13 @@ namespace LukMachine
 
       //set button text back to it's original text by calling my method UpdateText:
       button21.Invoke(new UpdateTextCallback(this.UpdateText), new object[] { "Text generated on non - UI thread." });
-      Console.WriteLine("my thread finished");
+      System.Diagnostics.Debug.WriteLine("my thread finished");
     }
 
 
     private void UpdateText(string text)
     {
-      Console.WriteLine("Entering UpdateText()");
+      System.Diagnostics.Debug.WriteLine("Entering UpdateText()");
       //button21.Text = text;  // use this if you want to set the text from the other thread.
       button21.Text = temptext;
       button21.Enabled = true;
@@ -487,6 +511,198 @@ namespace LukMachine
     private void checkBox1_CheckedChanged(object sender, EventArgs e)
     {
 
+    }
+
+    private void verticalProgressBar3_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void verticalProgressBar4_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void changeColor(object sender)
+    {
+      if (((Microsoft.VisualBasic.PowerPacks.RectangleShape)sender).BackColor == Color.Green)
+      {
+        ((Microsoft.VisualBasic.PowerPacks.RectangleShape)sender).BackColor = Color.Brown;
+        //MessageBox.Show(((Microsoft.VisualBasic.PowerPacks.RectangleShape)sender).Name);
+      }
+      else
+      {
+        ((Microsoft.VisualBasic.PowerPacks.RectangleShape)sender).BackColor = Color.Green;
+      }
+    }
+
+    private void rectangleShape2_Click(object sender, EventArgs e)
+    {
+      if (rectangleShape2.BackColor == Color.Green)
+      {
+        Valves.CloseValve4();
+      }
+      else
+      {
+        Valves.OpenValve4();
+      }
+      changeColor(sender);
+    }
+
+    private void rectangleShape4_Click(object sender, EventArgs e)
+    {
+      if (rectangleShape4.BackColor == Color.Green)
+      {
+        Valves.CloseValve5();
+      }
+      else
+      {
+        Valves.OpenValve5();
+      }
+      changeColor(sender);
+    }
+
+    private void rectangleShape5_Click(object sender, EventArgs e)
+    {
+      if (rectangleShape5.BackColor == Color.Green)
+      {
+        Valves.CloseValve6();
+      }
+      else
+      {
+        Valves.OpenValve6();
+      }
+      changeColor(sender);
+    }
+
+    private void rectangleShape11_Click(object sender, EventArgs e)
+    {
+      if (rectangleShape11.BackColor == Color.Green)
+      {
+        Valves.CloseValve2();
+      }
+      else
+      {
+        Valves.OpenValve2();
+      }
+      changeColor(sender);
+    }
+
+    private void rectangleShape6_Click(object sender, EventArgs e)
+    {
+      if (rectangleShape6.BackColor == Color.Green)
+      {
+        Valves.CloseValve3();
+      }
+      else
+      {
+        Valves.OpenValve3();
+      }
+      changeColor(sender);
+    }
+
+    private void rectangleShape12_Click(object sender, EventArgs e)
+    {
+      if (rectangleShape12.BackColor == Color.Green)
+      {
+        Valves.CloseValve1();
+      }
+      else
+      {
+        Valves.OpenValve1();
+      }
+      changeColor(sender);
+    }
+
+    private void panelleft_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
+
+    private void rectangleShape8_Click(object sender, EventArgs e)
+    {
+      if (Valve3wayToRight)
+      {
+        rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
+        Valve3wayToRight = false;
+        Valves.CloseValve7();  //valve 7 is the 3 way valve
+        System.Diagnostics.Debug.WriteLine("set to left chamber");
+      }
+      else
+      {
+        rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
+        Valve3wayToRight = true;
+        Valves.OpenValve7();
+        System.Diagnostics.Debug.WriteLine("set to right chamber");
+      }
+    }
+
+    private void rectangleShape15_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void rectangleShape14_Click(object sender, EventArgs e)
+    {
+      if (RefillPumpOn)
+      {
+        rectangleShape14.BackColor = Color.Gray;
+        label21.BackColor = Color.Gray;
+        label22.BackColor = Color.Gray;
+        label22.Text = "Pump OFF";
+        Pumps.StopPump1();
+        RefillPumpOn = false;
+      }
+      else
+      {
+        rectangleShape14.BackColor = Color.Bisque;
+        label21.BackColor = Color.Bisque;
+        label22.BackColor = Color.Bisque;
+        label22.Text = "Pump ON";
+        Pumps.StartPump1();
+        RefillPumpOn = true;
+      }
+    }
+
+    private void button23_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void button27_Click(object sender, EventArgs e)
+    {
+      trackBar3.Value = trackBar3.Maximum;
+      textBox6.Text = ((trackBar3.Value) * 100 / 4000).ToString();
+      startPump2 = true;
+    }
+
+    private void button26_Click(object sender, EventArgs e)
+    {
+      trackBar3.Value = 0;
+      textBox6.Text = ((trackBar3.Value) * 100 / 4000).ToString();
+      stopPump2 = true;
+    }
+
+    private void trackBar3_Scroll(object sender, EventArgs e)
+    {
+      startPump2 = true;
+      textBox6.Text = ((trackBar3.Value) * 100 / 4000).ToString();
+      label17.Text = "Pump " + textBox6.Text +"%";
+    }
+
+    private void button24_Click(object sender, EventArgs e)
+    {
+      int newvalue = Convert.ToInt32(Properties.Settings.Default.MediumPumpSetting) * 4000 / 100;
+      //trackBar2.Value = newvalue;
+      textBox6.Text = (newvalue * 100 / 4000).ToString();
+      startPump2 = true;
+    }
+
+    private void textBox6_TextChanged(object sender, EventArgs e)
+    {
+      trackBar3.Value = Convert.ToInt32(textBox6.Text) * 4000 / 100;
+      startPump2 = true;
+      label17.Text = "Pump " + textBox6.Text + "%";
     }
   }
 }

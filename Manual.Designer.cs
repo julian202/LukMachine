@@ -96,6 +96,68 @@
       this.groupBoxCollected = new System.Windows.Forms.GroupBox();
       this.label8 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
+      this.tabControl1 = new System.Windows.Forms.TabControl();
+      this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.label27 = new System.Windows.Forms.Label();
+      this.label26 = new System.Windows.Forms.Label();
+      this.label25 = new System.Windows.Forms.Label();
+      this.label24 = new System.Windows.Forms.Label();
+      this.label23 = new System.Windows.Forms.Label();
+      this.label22 = new System.Windows.Forms.Label();
+      this.label21 = new System.Windows.Forms.Label();
+      this.label20 = new System.Windows.Forms.Label();
+      this.label19 = new System.Windows.Forms.Label();
+      this.label18 = new System.Windows.Forms.Label();
+      this.label9 = new System.Windows.Forms.Label();
+      this.label17 = new System.Windows.Forms.Label();
+      this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+      this.rectangleShape20 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape19 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape18 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape17 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape16 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape6 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape15 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.lineShape9 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+      this.rectangleShape11 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.lineShape8 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+      this.lineShape7 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+      this.rectangleShape14 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.lineShape6 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+      this.lineShape5 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+      this.rectangleShape13 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape12 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.lineShape4 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+      this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+      this.rectangleShape10 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape9 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape8 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape7 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape5 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape4 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.lineShape3 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+      this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.tabPage2 = new System.Windows.Forms.TabPage();
+      this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+      this.label28 = new System.Windows.Forms.Label();
+      this.label29 = new System.Windows.Forms.Label();
+      this.groupBox10 = new System.Windows.Forms.GroupBox();
+      this.label30 = new System.Windows.Forms.Label();
+      this.aGauge1 = new AGaugeApp.AGauge();
+      this.groupBox11 = new System.Windows.Forms.GroupBox();
+      this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+      this.groupBox12 = new System.Windows.Forms.GroupBox();
+      this.button22 = new System.Windows.Forms.Button();
+      this.button24 = new System.Windows.Forms.Button();
+      this.label31 = new System.Windows.Forms.Label();
+      this.textBox6 = new System.Windows.Forms.TextBox();
+      this.button26 = new System.Windows.Forms.Button();
+      this.button27 = new System.Windows.Forms.Button();
+      this.trackBar3 = new System.Windows.Forms.TrackBar();
+      this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.groupBox9.SuspendLayout();
@@ -114,6 +176,13 @@
       this.groupBox6.SuspendLayout();
       this.groupBoxReservoir.SuspendLayout();
       this.groupBoxCollected.SuspendLayout();
+      this.tabControl1.SuspendLayout();
+      this.tabPage1.SuspendLayout();
+      this.tabPage2.SuspendLayout();
+      this.groupBox10.SuspendLayout();
+      this.groupBox11.SuspendLayout();
+      this.groupBox12.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
       this.SuspendLayout();
       // 
       // timer1
@@ -126,11 +195,11 @@
       this.groupBox9.Controls.Add(this.button17);
       this.groupBox9.Controls.Add(this.button18);
       this.groupBox9.Controls.Add(this.comboBox2);
-      this.groupBox9.Location = new System.Drawing.Point(975, 260);
+      this.groupBox9.Location = new System.Drawing.Point(949, 239);
       this.groupBox9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox9.Name = "groupBox9";
       this.groupBox9.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.groupBox9.Size = new System.Drawing.Size(219, 173);
+      this.groupBox9.Size = new System.Drawing.Size(197, 173);
       this.groupBox9.TabIndex = 26;
       this.groupBox9.TabStop = false;
       this.groupBox9.Text = "Solenoid Valves";
@@ -138,7 +207,7 @@
       // button17
       // 
       this.button17.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.button17.Location = new System.Drawing.Point(120, 81);
+      this.button17.Location = new System.Drawing.Point(102, 81);
       this.button17.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.button17.Name = "button17";
       this.button17.Size = new System.Drawing.Size(81, 61);
@@ -149,7 +218,7 @@
       // button18
       // 
       this.button18.Image = global::LukMachine.Properties.Resources.redX3;
-      this.button18.Location = new System.Drawing.Point(18, 81);
+      this.button18.Location = new System.Drawing.Point(13, 81);
       this.button18.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.button18.Name = "button18";
       this.button18.Size = new System.Drawing.Size(81, 61);
@@ -169,10 +238,10 @@
             "5",
             "6",
             "7"});
-      this.comboBox2.Location = new System.Drawing.Point(18, 36);
+      this.comboBox2.Location = new System.Drawing.Point(13, 36);
       this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.comboBox2.Name = "comboBox2";
-      this.comboBox2.Size = new System.Drawing.Size(183, 33);
+      this.comboBox2.Size = new System.Drawing.Size(170, 33);
       this.comboBox2.TabIndex = 0;
       // 
       // timer2
@@ -189,14 +258,14 @@
       this.groupBox1.Controls.Add(this.pictureBox2);
       this.groupBox1.Controls.Add(this.button1);
       this.groupBox1.Controls.Add(this.button2);
-      this.groupBox1.Location = new System.Drawing.Point(619, 260);
+      this.groupBox1.Location = new System.Drawing.Point(613, 239);
       this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox1.Name = "groupBox1";
       this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.groupBox1.Size = new System.Drawing.Size(348, 170);
+      this.groupBox1.Size = new System.Drawing.Size(328, 170);
       this.groupBox1.TabIndex = 27;
       this.groupBox1.TabStop = false;
-      this.groupBox1.Text = "Chamber Select (3-Way Valve )";
+      this.groupBox1.Text = "Chamber Select (3-Way Valve)";
       // 
       // pictureBox3
       // 
@@ -248,11 +317,11 @@
       this.groupBox2.Controls.Add(this.button3);
       this.groupBox2.Controls.Add(this.button4);
       this.groupBox2.Controls.Add(this.trackBar1);
-      this.groupBox2.Location = new System.Drawing.Point(18, 425);
+      this.groupBox2.Location = new System.Drawing.Point(6, 417);
       this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox2.Name = "groupBox2";
       this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.groupBox2.Size = new System.Drawing.Size(363, 148);
+      this.groupBox2.Size = new System.Drawing.Size(363, 141);
       this.groupBox2.TabIndex = 28;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Refill Pump (Pump 1, 24V MV1)";
@@ -316,14 +385,15 @@
       this.groupBox3.Controls.Add(this.button16);
       this.groupBox3.Controls.Add(this.button15);
       this.groupBox3.Controls.Add(this.trackBar2);
-      this.groupBox3.Location = new System.Drawing.Point(18, 236);
+      this.groupBox3.Location = new System.Drawing.Point(6, 239);
       this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox3.Name = "groupBox3";
       this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.groupBox3.Size = new System.Drawing.Size(363, 181);
+      this.groupBox3.Size = new System.Drawing.Size(363, 170);
       this.groupBox3.TabIndex = 29;
       this.groupBox3.TabStop = false;
       this.groupBox3.Text = "Main Pump (Pump 2, 0-10V out1)";
+      this.groupBox3.Visible = false;
       // 
       // button20
       // 
@@ -437,18 +507,18 @@
       this.groupBox4.Controls.Add(this.label6);
       this.groupBox4.Controls.Add(this.button7);
       this.groupBox4.Controls.Add(this.button8);
-      this.groupBox4.Location = new System.Drawing.Point(389, 449);
+      this.groupBox4.Location = new System.Drawing.Point(383, 426);
       this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox4.Name = "groupBox4";
       this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.groupBox4.Size = new System.Drawing.Size(598, 138);
+      this.groupBox4.Size = new System.Drawing.Size(598, 132);
       this.groupBox4.TabIndex = 27;
       this.groupBox4.TabStop = false;
       this.groupBox4.Text = "Heaters";
       // 
       // textBox4
       // 
-      this.textBox4.Location = new System.Drawing.Point(386, 90);
+      this.textBox4.Location = new System.Drawing.Point(386, 84);
       this.textBox4.Margin = new System.Windows.Forms.Padding(4);
       this.textBox4.Name = "textBox4";
       this.textBox4.Size = new System.Drawing.Size(69, 33);
@@ -457,7 +527,7 @@
       // label15
       // 
       this.label15.AutoSize = true;
-      this.label15.Location = new System.Drawing.Point(303, 94);
+      this.label15.Location = new System.Drawing.Point(303, 88);
       this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label15.Name = "label15";
       this.label15.Size = new System.Drawing.Size(101, 25);
@@ -467,7 +537,7 @@
       // button13
       // 
       this.button13.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.button13.Location = new System.Drawing.Point(527, 80);
+      this.button13.Location = new System.Drawing.Point(527, 74);
       this.button13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.button13.Name = "button13";
       this.button13.Size = new System.Drawing.Size(56, 44);
@@ -478,7 +548,7 @@
       // button14
       // 
       this.button14.Image = global::LukMachine.Properties.Resources.redX3;
-      this.button14.Location = new System.Drawing.Point(464, 80);
+      this.button14.Location = new System.Drawing.Point(464, 74);
       this.button14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.button14.Name = "button14";
       this.button14.Size = new System.Drawing.Size(56, 44);
@@ -528,7 +598,7 @@
       // 
       // textBox2
       // 
-      this.textBox2.Location = new System.Drawing.Point(100, 90);
+      this.textBox2.Location = new System.Drawing.Point(100, 84);
       this.textBox2.Margin = new System.Windows.Forms.Padding(4);
       this.textBox2.Name = "textBox2";
       this.textBox2.Size = new System.Drawing.Size(69, 33);
@@ -537,7 +607,7 @@
       // button9
       // 
       this.button9.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.button9.Location = new System.Drawing.Point(241, 80);
+      this.button9.Location = new System.Drawing.Point(241, 74);
       this.button9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.button9.Name = "button9";
       this.button9.Size = new System.Drawing.Size(56, 44);
@@ -548,7 +618,7 @@
       // button10
       // 
       this.button10.Image = global::LukMachine.Properties.Resources.redX3;
-      this.button10.Location = new System.Drawing.Point(178, 80);
+      this.button10.Location = new System.Drawing.Point(178, 74);
       this.button10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.button10.Name = "button10";
       this.button10.Size = new System.Drawing.Size(56, 44);
@@ -567,7 +637,7 @@
       // label7
       // 
       this.label7.AutoSize = true;
-      this.label7.Location = new System.Drawing.Point(17, 94);
+      this.label7.Location = new System.Drawing.Point(17, 88);
       this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
       this.label7.Name = "label7";
       this.label7.Size = new System.Drawing.Size(101, 25);
@@ -614,7 +684,7 @@
       this.groupBox7.Controls.Add(this.label12);
       this.groupBox7.Controls.Add(this.trackBar4);
       this.groupBox7.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.groupBox7.Location = new System.Drawing.Point(1176, 34);
+      this.groupBox7.Location = new System.Drawing.Point(1183, 21);
       this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
       this.groupBox7.Name = "groupBox7";
       this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
@@ -683,7 +753,7 @@
       this.groupBox5.Controls.Add(this.checkBox3);
       this.groupBox5.Controls.Add(this.checkBox2);
       this.groupBox5.Controls.Add(this.checkBox1);
-      this.groupBox5.Location = new System.Drawing.Point(389, 260);
+      this.groupBox5.Location = new System.Drawing.Point(383, 239);
       this.groupBox5.Name = "groupBox5";
       this.groupBox5.Size = new System.Drawing.Size(223, 181);
       this.groupBox5.TabIndex = 38;
@@ -760,7 +830,7 @@
       this.groupBox8.AutoSize = true;
       this.groupBox8.Controls.Add(this.label1);
       this.groupBox8.Controls.Add(this.aGauge5);
-      this.groupBox8.Location = new System.Drawing.Point(18, 14);
+      this.groupBox8.Location = new System.Drawing.Point(6, 6);
       this.groupBox8.Name = "groupBox8";
       this.groupBox8.Size = new System.Drawing.Size(363, 225);
       this.groupBox8.TabIndex = 39;
@@ -906,9 +976,9 @@
       this.groupBox6.Controls.Add(this.label3);
       this.groupBox6.Controls.Add(this.label8);
       this.groupBox6.Controls.Add(this.label5);
-      this.groupBox6.Location = new System.Drawing.Point(389, 14);
+      this.groupBox6.Location = new System.Drawing.Point(377, 6);
       this.groupBox6.Name = "groupBox6";
-      this.groupBox6.Size = new System.Drawing.Size(780, 238);
+      this.groupBox6.Size = new System.Drawing.Size(763, 225);
       this.groupBox6.TabIndex = 40;
       this.groupBox6.TabStop = false;
       // 
@@ -917,7 +987,7 @@
       this.groupBoxReservoir.Controls.Add(this.verticalProgressBar1);
       this.groupBoxReservoir.Location = new System.Drawing.Point(6, 18);
       this.groupBoxReservoir.Name = "groupBoxReservoir";
-      this.groupBoxReservoir.Size = new System.Drawing.Size(212, 212);
+      this.groupBoxReservoir.Size = new System.Drawing.Size(212, 194);
       this.groupBoxReservoir.TabIndex = 43;
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir Volume";
@@ -927,7 +997,7 @@
       this.groupBoxCollected.Controls.Add(this.verticalProgressBar2);
       this.groupBoxCollected.Location = new System.Drawing.Point(229, 18);
       this.groupBoxCollected.Name = "groupBoxCollected";
-      this.groupBoxCollected.Size = new System.Drawing.Size(212, 212);
+      this.groupBoxCollected.Size = new System.Drawing.Size(212, 194);
       this.groupBoxCollected.TabIndex = 41;
       this.groupBoxCollected.TabStop = false;
       this.groupBoxCollected.Text = "Collected Volume";
@@ -952,16 +1022,761 @@
       this.label5.TabIndex = 41;
       this.label5.Text = "(Reservoir)";
       // 
+      // tabControl1
+      // 
+      this.tabControl1.Controls.Add(this.tabPage1);
+      this.tabControl1.Controls.Add(this.tabPage2);
+      this.tabControl1.Location = new System.Drawing.Point(12, 12);
+      this.tabControl1.Name = "tabControl1";
+      this.tabControl1.SelectedIndex = 0;
+      this.tabControl1.Size = new System.Drawing.Size(1156, 605);
+      this.tabControl1.TabIndex = 41;
+      // 
+      // tabPage1
+      // 
+      this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+      this.tabPage1.Controls.Add(this.groupBox12);
+      this.tabPage1.Controls.Add(this.groupBox11);
+      this.tabPage1.Controls.Add(this.groupBox10);
+      this.tabPage1.Controls.Add(this.label29);
+      this.tabPage1.Controls.Add(this.label28);
+      this.tabPage1.Controls.Add(this.label27);
+      this.tabPage1.Controls.Add(this.verticalProgressBar4);
+      this.tabPage1.Controls.Add(this.label23);
+      this.tabPage1.Controls.Add(this.label22);
+      this.tabPage1.Controls.Add(this.label21);
+      this.tabPage1.Controls.Add(this.label20);
+      this.tabPage1.Controls.Add(this.verticalProgressBar3);
+      this.tabPage1.Controls.Add(this.label19);
+      this.tabPage1.Controls.Add(this.label18);
+      this.tabPage1.Controls.Add(this.label9);
+      this.tabPage1.Controls.Add(this.label17);
+      this.tabPage1.Controls.Add(this.shapeContainer1);
+      this.tabPage1.Location = new System.Drawing.Point(4, 34);
+      this.tabPage1.Name = "tabPage1";
+      this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage1.Size = new System.Drawing.Size(1148, 567);
+      this.tabPage1.TabIndex = 0;
+      this.tabPage1.Text = "Diagram Control";
+      // 
+      // label27
+      // 
+      this.label27.AutoSize = true;
+      this.label27.Location = new System.Drawing.Point(366, 424);
+      this.label27.Name = "label27";
+      this.label27.Size = new System.Drawing.Size(106, 25);
+      this.label27.TabIndex = 54;
+      this.label27.Text = "Reservoir";
+      // 
+      // label26
+      // 
+      this.label26.AutoSize = true;
+      this.label26.Location = new System.Drawing.Point(99, 99);
+      this.label26.Name = "label26";
+      this.label26.Size = new System.Drawing.Size(168, 25);
+      this.label26.TabIndex = 53;
+      this.label26.Text = "Pressure Gauge";
+      // 
+      // label25
+      // 
+      this.label25.AutoSize = true;
+      this.label25.Location = new System.Drawing.Point(99, 64);
+      this.label25.Name = "label25";
+      this.label25.Size = new System.Drawing.Size(120, 25);
+      this.label25.TabIndex = 52;
+      this.label25.Text = "Open valve";
+      // 
+      // label24
+      // 
+      this.label24.AutoSize = true;
+      this.label24.Location = new System.Drawing.Point(99, 29);
+      this.label24.Name = "label24";
+      this.label24.Size = new System.Drawing.Size(136, 25);
+      this.label24.TabIndex = 51;
+      this.label24.Text = "Closed valve";
+      // 
+      // label23
+      // 
+      this.label23.AutoSize = true;
+      this.label23.BackColor = System.Drawing.Color.Gray;
+      this.label23.Location = new System.Drawing.Point(549, 489);
+      this.label23.Name = "label23";
+      this.label23.Size = new System.Drawing.Size(59, 25);
+      this.label23.TabIndex = 49;
+      this.label23.Text = "Main";
+      // 
+      // label22
+      // 
+      this.label22.AutoSize = true;
+      this.label22.BackColor = System.Drawing.Color.Gray;
+      this.label22.Location = new System.Drawing.Point(50, 434);
+      this.label22.Name = "label22";
+      this.label22.Size = new System.Drawing.Size(117, 25);
+      this.label22.TabIndex = 48;
+      this.label22.Text = "Pump OFF";
+      // 
+      // label21
+      // 
+      this.label21.AutoSize = true;
+      this.label21.BackColor = System.Drawing.Color.Gray;
+      this.label21.Location = new System.Drawing.Point(71, 409);
+      this.label21.Name = "label21";
+      this.label21.Size = new System.Drawing.Size(66, 25);
+      this.label21.TabIndex = 47;
+      this.label21.Text = "Refill ";
+      // 
+      // label20
+      // 
+      this.label20.AutoSize = true;
+      this.label20.Location = new System.Drawing.Point(42, 512);
+      this.label20.Name = "label20";
+      this.label20.Size = new System.Drawing.Size(68, 25);
+      this.label20.TabIndex = 46;
+      this.label20.Text = "Outlet";
+      // 
+      // label19
+      // 
+      this.label19.AutoSize = true;
+      this.label19.Location = new System.Drawing.Point(152, 173);
+      this.label19.Name = "label19";
+      this.label19.Size = new System.Drawing.Size(180, 25);
+      this.label19.TabIndex = 5;
+      this.label19.Text = "Collected Volume";
+      // 
+      // label18
+      // 
+      this.label18.AutoSize = true;
+      this.label18.Location = new System.Drawing.Point(676, 66);
+      this.label18.Name = "label18";
+      this.label18.Size = new System.Drawing.Size(118, 25);
+      this.label18.TabIndex = 4;
+      this.label18.Text = "Chamber 2";
+      // 
+      // label9
+      // 
+      this.label9.AutoSize = true;
+      this.label9.Location = new System.Drawing.Point(390, 65);
+      this.label9.Name = "label9";
+      this.label9.Size = new System.Drawing.Size(118, 25);
+      this.label9.TabIndex = 3;
+      this.label9.Text = "Chamber 1";
+      // 
+      // label17
+      // 
+      this.label17.AutoSize = true;
+      this.label17.BackColor = System.Drawing.Color.Gray;
+      this.label17.Location = new System.Drawing.Point(542, 518);
+      this.label17.Name = "label17";
+      this.label17.Size = new System.Drawing.Size(106, 25);
+      this.label17.TabIndex = 2;
+      this.label17.Text = "Pump 0%";
+      // 
+      // shapeContainer1
+      // 
+      this.shapeContainer1.Location = new System.Drawing.Point(3, 3);
+      this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
+      this.shapeContainer1.Name = "shapeContainer1";
+      this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.rectangleShape20,
+            this.rectangleShape16,
+            this.rectangleShape6,
+            this.rectangleShape15,
+            this.lineShape9,
+            this.rectangleShape11,
+            this.lineShape8,
+            this.lineShape7,
+            this.rectangleShape14,
+            this.lineShape6,
+            this.lineShape5,
+            this.rectangleShape13,
+            this.rectangleShape12,
+            this.lineShape4,
+            this.lineShape1,
+            this.rectangleShape10,
+            this.rectangleShape9,
+            this.rectangleShape8,
+            this.rectangleShape7,
+            this.rectangleShape1,
+            this.rectangleShape5,
+            this.rectangleShape4,
+            this.rectangleShape2,
+            this.lineShape3,
+            this.rectangleShape3});
+      this.shapeContainer1.Size = new System.Drawing.Size(1142, 561);
+      this.shapeContainer1.TabIndex = 0;
+      this.shapeContainer1.TabStop = false;
+      // 
+      // rectangleShape20
+      // 
+      this.rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
+      this.rectangleShape20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+      this.rectangleShape20.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape20.BorderWidth = 3;
+      this.rectangleShape20.Location = new System.Drawing.Point(569, 117);
+      this.rectangleShape20.Name = "rectangleShape20";
+      this.rectangleShape20.Size = new System.Drawing.Size(46, 45);
+      this.rectangleShape20.Click += new System.EventHandler(this.rectangleShape8_Click);
+      // 
+      // rectangleShape19
+      // 
+      this.rectangleShape19.BackColor = System.Drawing.Color.Orange;
+      this.rectangleShape19.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape19.BorderWidth = 3;
+      this.rectangleShape19.CornerRadius = 15;
+      this.rectangleShape19.Location = new System.Drawing.Point(38, 68);
+      this.rectangleShape19.Name = "rectangleShape19";
+      this.rectangleShape19.Size = new System.Drawing.Size(30, 30);
+      // 
+      // rectangleShape18
+      // 
+      this.rectangleShape18.BackColor = System.Drawing.Color.Green;
+      this.rectangleShape18.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape18.BorderWidth = 3;
+      this.rectangleShape18.Location = new System.Drawing.Point(30, 35);
+      this.rectangleShape18.Name = "rectangleShape18";
+      this.rectangleShape18.Size = new System.Drawing.Size(45, 25);
+      this.rectangleShape18.Click += new System.EventHandler(this.rectangleShape11_Click);
+      // 
+      // rectangleShape17
+      // 
+      this.rectangleShape17.BackColor = System.Drawing.Color.Brown;
+      this.rectangleShape17.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape17.BorderWidth = 3;
+      this.rectangleShape17.Location = new System.Drawing.Point(30, 2);
+      this.rectangleShape17.Name = "rectangleShape17";
+      this.rectangleShape17.Size = new System.Drawing.Size(45, 25);
+      this.rectangleShape17.Click += new System.EventHandler(this.rectangleShape11_Click);
+      // 
+      // rectangleShape16
+      // 
+      this.rectangleShape16.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape16.BorderWidth = 3;
+      this.rectangleShape16.Location = new System.Drawing.Point(254, 277);
+      this.rectangleShape16.Name = "rectangleShape16";
+      this.rectangleShape16.Size = new System.Drawing.Size(99, 198);
+      // 
+      // rectangleShape6
+      // 
+      this.rectangleShape6.BackColor = System.Drawing.Color.Brown;
+      this.rectangleShape6.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape6.BorderWidth = 3;
+      this.rectangleShape6.Location = new System.Drawing.Point(154, 487);
+      this.rectangleShape6.Name = "rectangleShape6";
+      this.rectangleShape6.Size = new System.Drawing.Size(83, 60);
+      this.rectangleShape6.Click += new System.EventHandler(this.rectangleShape6_Click);
+      // 
+      // rectangleShape15
+      // 
+      this.rectangleShape15.BackColor = System.Drawing.Color.Gray;
+      this.rectangleShape15.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape15.BorderWidth = 3;
+      this.rectangleShape15.Location = new System.Drawing.Point(516, 465);
+      this.rectangleShape15.Name = "rectangleShape15";
+      this.rectangleShape15.Size = new System.Drawing.Size(147, 89);
+      this.rectangleShape15.Click += new System.EventHandler(this.rectangleShape15_Click);
+      // 
+      // lineShape9
+      // 
+      this.lineShape9.BorderWidth = 3;
+      this.lineShape9.Name = "lineShape9";
+      this.lineShape9.X1 = 127;
+      this.lineShape9.X2 = 544;
+      this.lineShape9.Y1 = 518;
+      this.lineShape9.Y2 = 518;
+      // 
+      // rectangleShape11
+      // 
+      this.rectangleShape11.BackColor = System.Drawing.Color.Brown;
+      this.rectangleShape11.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape11.BorderWidth = 3;
+      this.rectangleShape11.Location = new System.Drawing.Point(397, 228);
+      this.rectangleShape11.Name = "rectangleShape11";
+      this.rectangleShape11.Size = new System.Drawing.Size(83, 60);
+      this.rectangleShape11.Click += new System.EventHandler(this.rectangleShape11_Click);
+      // 
+      // lineShape8
+      // 
+      this.lineShape8.BorderWidth = 3;
+      this.lineShape8.Name = "lineShape8";
+      this.lineShape8.X1 = 305;
+      this.lineShape8.X2 = 305;
+      this.lineShape8.Y1 = 518;
+      this.lineShape8.Y2 = 258;
+      // 
+      // lineShape7
+      // 
+      this.lineShape7.BorderWidth = 3;
+      this.lineShape7.Name = "lineShape7";
+      this.lineShape7.X1 = 214;
+      this.lineShape7.X2 = 214;
+      this.lineShape7.Y1 = 431;
+      this.lineShape7.Y2 = 258;
+      // 
+      // rectangleShape14
+      // 
+      this.rectangleShape14.BackColor = System.Drawing.Color.Gray;
+      this.rectangleShape14.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape14.BorderWidth = 3;
+      this.rectangleShape14.Location = new System.Drawing.Point(35, 393);
+      this.rectangleShape14.Name = "rectangleShape14";
+      this.rectangleShape14.Size = new System.Drawing.Size(131, 77);
+      this.rectangleShape14.Click += new System.EventHandler(this.rectangleShape14_Click);
+      // 
+      // lineShape6
+      // 
+      this.lineShape6.BorderWidth = 3;
+      this.lineShape6.Name = "lineShape6";
+      this.lineShape6.X1 = 140;
+      this.lineShape6.X2 = 214;
+      this.lineShape6.Y1 = 431;
+      this.lineShape6.Y2 = 431;
+      // 
+      // lineShape5
+      // 
+      this.lineShape5.BorderWidth = 3;
+      this.lineShape5.Name = "lineShape5";
+      this.lineShape5.X1 = 214;
+      this.lineShape5.X2 = 589;
+      this.lineShape5.Y1 = 258;
+      this.lineShape5.Y2 = 258;
+      // 
+      // rectangleShape13
+      // 
+      this.rectangleShape13.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape13.BorderWidth = 3;
+      this.rectangleShape13.Location = new System.Drawing.Point(45, 37);
+      this.rectangleShape13.Name = "rectangleShape13";
+      this.rectangleShape13.Size = new System.Drawing.Size(99, 198);
+      // 
+      // rectangleShape12
+      // 
+      this.rectangleShape12.BackColor = System.Drawing.Color.Brown;
+      this.rectangleShape12.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape12.BorderWidth = 3;
+      this.rectangleShape12.Location = new System.Drawing.Point(64, 269);
+      this.rectangleShape12.Name = "rectangleShape12";
+      this.rectangleShape12.Size = new System.Drawing.Size(60, 83);
+      this.rectangleShape12.Click += new System.EventHandler(this.rectangleShape12_Click);
+      // 
+      // lineShape4
+      // 
+      this.lineShape4.BorderWidth = 3;
+      this.lineShape4.Name = "lineShape4";
+      this.lineShape4.X1 = 94;
+      this.lineShape4.X2 = 94;
+      this.lineShape4.Y1 = 433;
+      this.lineShape4.Y2 = 10;
+      // 
+      // lineShape1
+      // 
+      this.lineShape1.BorderWidth = 3;
+      this.lineShape1.Name = "lineShape1";
+      this.lineShape1.X1 = 94;
+      this.lineShape1.X2 = 445;
+      this.lineShape1.Y1 = 10;
+      this.lineShape1.Y2 = 10;
+      // 
+      // rectangleShape10
+      // 
+      this.rectangleShape10.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape10.BorderWidth = 3;
+      this.rectangleShape10.Location = new System.Drawing.Point(661, 34);
+      this.rectangleShape10.Name = "rectangleShape10";
+      this.rectangleShape10.Size = new System.Drawing.Size(149, 80);
+      // 
+      // rectangleShape9
+      // 
+      this.rectangleShape9.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape9.BorderWidth = 3;
+      this.rectangleShape9.Location = new System.Drawing.Point(371, 33);
+      this.rectangleShape9.Name = "rectangleShape9";
+      this.rectangleShape9.Size = new System.Drawing.Size(149, 80);
+      // 
+      // rectangleShape8
+      // 
+      this.rectangleShape8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+      this.rectangleShape8.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape8.BorderWidth = 3;
+      this.rectangleShape8.Location = new System.Drawing.Point(552, 103);
+      this.rectangleShape8.Name = "rectangleShape8";
+      this.rectangleShape8.Size = new System.Drawing.Size(79, 71);
+      this.rectangleShape8.Click += new System.EventHandler(this.rectangleShape8_Click);
+      // 
+      // rectangleShape7
+      // 
+      this.rectangleShape7.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape7.BorderWidth = 3;
+      this.rectangleShape7.Location = new System.Drawing.Point(445, 10);
+      this.rectangleShape7.Name = "rectangleShape7";
+      this.rectangleShape7.Size = new System.Drawing.Size(290, 130);
+      // 
+      // rectangleShape1
+      // 
+      this.rectangleShape1.BackColor = System.Drawing.Color.Orange;
+      this.rectangleShape1.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape1.BorderWidth = 3;
+      this.rectangleShape1.CornerRadius = 28;
+      this.rectangleShape1.Location = new System.Drawing.Point(559, 187);
+      this.rectangleShape1.Name = "rectangleShape1";
+      this.rectangleShape1.Size = new System.Drawing.Size(59, 57);
+      // 
+      // rectangleShape5
+      // 
+      this.rectangleShape5.BackColor = System.Drawing.Color.Brown;
+      this.rectangleShape5.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape5.BorderWidth = 3;
+      this.rectangleShape5.Location = new System.Drawing.Point(635, 324);
+      this.rectangleShape5.Name = "rectangleShape5";
+      this.rectangleShape5.Size = new System.Drawing.Size(60, 83);
+      this.rectangleShape5.Click += new System.EventHandler(this.rectangleShape5_Click);
+      // 
+      // rectangleShape4
+      // 
+      this.rectangleShape4.BackColor = System.Drawing.Color.Brown;
+      this.rectangleShape4.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape4.BorderWidth = 3;
+      this.rectangleShape4.Location = new System.Drawing.Point(559, 324);
+      this.rectangleShape4.Name = "rectangleShape4";
+      this.rectangleShape4.Size = new System.Drawing.Size(60, 83);
+      this.rectangleShape4.Click += new System.EventHandler(this.rectangleShape4_Click);
+      // 
+      // rectangleShape2
+      // 
+      this.rectangleShape2.BackColor = System.Drawing.Color.Brown;
+      this.rectangleShape2.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape2.BorderWidth = 3;
+      this.rectangleShape2.Location = new System.Drawing.Point(482, 325);
+      this.rectangleShape2.Name = "rectangleShape2";
+      this.rectangleShape2.Size = new System.Drawing.Size(60, 83);
+      this.rectangleShape2.Click += new System.EventHandler(this.rectangleShape2_Click);
+      // 
+      // lineShape3
+      // 
+      this.lineShape3.BorderWidth = 3;
+      this.lineShape3.Name = "lineShape3";
+      this.lineShape3.X1 = 589;
+      this.lineShape3.X2 = 589;
+      this.lineShape3.Y1 = 483;
+      this.lineShape3.Y2 = 151;
+      // 
+      // rectangleShape3
+      // 
+      this.rectangleShape3.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape3.BorderWidth = 3;
+      this.rectangleShape3.Location = new System.Drawing.Point(512, 292);
+      this.rectangleShape3.Name = "rectangleShape3";
+      this.rectangleShape3.Size = new System.Drawing.Size(154, 144);
+      // 
+      // tabPage2
+      // 
+      this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+      this.tabPage2.Controls.Add(this.groupBox7);
+      this.tabPage2.Controls.Add(this.groupBox6);
+      this.tabPage2.Controls.Add(this.groupBox8);
+      this.tabPage2.Controls.Add(this.groupBox9);
+      this.tabPage2.Controls.Add(this.groupBox5);
+      this.tabPage2.Controls.Add(this.groupBox1);
+      this.tabPage2.Controls.Add(this.groupBox4);
+      this.tabPage2.Controls.Add(this.groupBox2);
+      this.tabPage2.Controls.Add(this.groupBox3);
+      this.tabPage2.Location = new System.Drawing.Point(4, 34);
+      this.tabPage2.Name = "tabPage2";
+      this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+      this.tabPage2.Size = new System.Drawing.Size(1148, 567);
+      this.tabPage2.TabIndex = 1;
+      this.tabPage2.Text = "Other Controls";
+      // 
+      // label28
+      // 
+      this.label28.AutoSize = true;
+      this.label28.Location = new System.Drawing.Point(152, 204);
+      this.label28.Name = "label28";
+      this.label28.Size = new System.Drawing.Size(70, 25);
+      this.label28.TabIndex = 55;
+      this.label28.Text = "% Full";
+      // 
+      // label29
+      // 
+      this.label29.AutoSize = true;
+      this.label29.Location = new System.Drawing.Point(366, 455);
+      this.label29.Name = "label29";
+      this.label29.Size = new System.Drawing.Size(70, 25);
+      this.label29.TabIndex = 56;
+      this.label29.Text = "% Full";
+      // 
+      // groupBox10
+      // 
+      this.groupBox10.AutoSize = true;
+      this.groupBox10.Controls.Add(this.label30);
+      this.groupBox10.Controls.Add(this.aGauge1);
+      this.groupBox10.Location = new System.Drawing.Point(767, 201);
+      this.groupBox10.Name = "groupBox10";
+      this.groupBox10.Size = new System.Drawing.Size(363, 225);
+      this.groupBox10.TabIndex = 57;
+      this.groupBox10.TabStop = false;
+      this.groupBox10.Text = "Pressure (PSI)";
+      // 
+      // label30
+      // 
+      this.label30.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label30.Location = new System.Drawing.Point(33, 159);
+      this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+      this.label30.Name = "label30";
+      this.label30.Size = new System.Drawing.Size(294, 37);
+      this.label30.TabIndex = 27;
+      this.label30.Text = "100.00 PSI | 60000 cts";
+      this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+      // 
+      // aGauge1
+      // 
+      this.aGauge1.BaseArcColor = System.Drawing.Color.Gray;
+      this.aGauge1.BaseArcRadius = 150;
+      this.aGauge1.BaseArcStart = 215;
+      this.aGauge1.BaseArcSweep = 110;
+      this.aGauge1.BaseArcWidth = 2;
+      this.aGauge1.Cap_Idx = ((byte)(1));
+      this.aGauge1.CapColors = new System.Drawing.Color[] {
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Black};
+      this.aGauge1.CapPosition = new System.Drawing.Point(10, 10);
+      this.aGauge1.CapsPosition = new System.Drawing.Point[] {
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10),
+        new System.Drawing.Point(10, 10)};
+      this.aGauge1.CapsText = new string[] {
+        "",
+        "",
+        "",
+        "",
+        ""};
+      this.aGauge1.CapText = "";
+      this.aGauge1.Center = new System.Drawing.Point(140, 170);
+      this.aGauge1.Location = new System.Drawing.Point(34, 27);
+      this.aGauge1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.aGauge1.MaxValue = 60000F;
+      this.aGauge1.MinValue = 0F;
+      this.aGauge1.Name = "aGauge1";
+      this.aGauge1.NeedleColor1 = AGaugeApp.AGauge.NeedleColorEnum.Blue;
+      this.aGauge1.NeedleColor2 = System.Drawing.Color.RoyalBlue;
+      this.aGauge1.NeedleRadius = 150;
+      this.aGauge1.NeedleType = 1;
+      this.aGauge1.NeedleWidth = 2;
+      this.aGauge1.Range_Idx = ((byte)(2));
+      this.aGauge1.RangeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+      this.aGauge1.RangeEnabled = true;
+      this.aGauge1.RangeEndValue = 5000F;
+      this.aGauge1.RangeInnerRadius = 140;
+      this.aGauge1.RangeOuterRadius = 150;
+      this.aGauge1.RangesColor = new System.Drawing.Color[] {
+        System.Drawing.Color.RoyalBlue,
+        System.Drawing.Color.Red,
+        System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192))))),
+        System.Drawing.SystemColors.Control,
+        System.Drawing.SystemColors.Control};
+      this.aGauge1.RangesEnabled = new bool[] {
+        false,
+        false,
+        true,
+        false,
+        false};
+      this.aGauge1.RangesEndValue = new float[] {
+        5000F,
+        400F,
+        5000F,
+        0F,
+        0F};
+      this.aGauge1.RangesInnerRadius = new int[] {
+        145,
+        70,
+        140,
+        70,
+        70};
+      this.aGauge1.RangesOuterRadius = new int[] {
+        150,
+        80,
+        150,
+        80,
+        80};
+      this.aGauge1.RangesStartValue = new float[] {
+        0F,
+        300F,
+        4500F,
+        0F,
+        0F};
+      this.aGauge1.RangeStartValue = 4500F;
+      this.aGauge1.ScaleLinesInterColor = System.Drawing.Color.RosyBrown;
+      this.aGauge1.ScaleLinesInterInnerRadius = 145;
+      this.aGauge1.ScaleLinesInterOuterRadius = 150;
+      this.aGauge1.ScaleLinesInterWidth = 2;
+      this.aGauge1.ScaleLinesMajorColor = System.Drawing.Color.Gray;
+      this.aGauge1.ScaleLinesMajorInnerRadius = 140;
+      this.aGauge1.ScaleLinesMajorOuterRadius = 150;
+      this.aGauge1.ScaleLinesMajorStepValue = 12000F;
+      this.aGauge1.ScaleLinesMajorWidth = 2;
+      this.aGauge1.ScaleLinesMinorColor = System.Drawing.Color.Gray;
+      this.aGauge1.ScaleLinesMinorInnerRadius = 145;
+      this.aGauge1.ScaleLinesMinorNumOf = 9;
+      this.aGauge1.ScaleLinesMinorOuterRadius = 150;
+      this.aGauge1.ScaleLinesMinorWidth = 1;
+      this.aGauge1.ScaleNumbersColor = System.Drawing.Color.Blue;
+      this.aGauge1.ScaleNumbersFormat = null;
+      this.aGauge1.ScaleNumbersRadius = 158;
+      this.aGauge1.ScaleNumbersRotation = 90;
+      this.aGauge1.ScaleNumbersStartScaleLine = 0;
+      this.aGauge1.ScaleNumbersStepScaleLines = 1;
+      this.aGauge1.Size = new System.Drawing.Size(294, 138);
+      this.aGauge1.TabIndex = 26;
+      this.aGauge1.Text = "confiningGauge";
+      this.aGauge1.Value = 0F;
+      // 
+      // groupBox11
+      // 
+      this.groupBox11.Controls.Add(this.label24);
+      this.groupBox11.Controls.Add(this.label25);
+      this.groupBox11.Controls.Add(this.label26);
+      this.groupBox11.Controls.Add(this.shapeContainer2);
+      this.groupBox11.Location = new System.Drawing.Point(827, 6);
+      this.groupBox11.Name = "groupBox11";
+      this.groupBox11.Size = new System.Drawing.Size(303, 138);
+      this.groupBox11.TabIndex = 58;
+      this.groupBox11.TabStop = false;
+      this.groupBox11.Text = "Legend";
+      // 
+      // shapeContainer2
+      // 
+      this.shapeContainer2.Location = new System.Drawing.Point(3, 29);
+      this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
+      this.shapeContainer2.Name = "shapeContainer2";
+      this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.rectangleShape19,
+            this.rectangleShape18,
+            this.rectangleShape17});
+      this.shapeContainer2.Size = new System.Drawing.Size(297, 106);
+      this.shapeContainer2.TabIndex = 0;
+      this.shapeContainer2.TabStop = false;
+      // 
+      // groupBox12
+      // 
+      this.groupBox12.Controls.Add(this.button22);
+      this.groupBox12.Controls.Add(this.button24);
+      this.groupBox12.Controls.Add(this.label31);
+      this.groupBox12.Controls.Add(this.textBox6);
+      this.groupBox12.Controls.Add(this.button26);
+      this.groupBox12.Controls.Add(this.button27);
+      this.groupBox12.Controls.Add(this.trackBar3);
+      this.groupBox12.Location = new System.Drawing.Point(767, 434);
+      this.groupBox12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.groupBox12.Name = "groupBox12";
+      this.groupBox12.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.groupBox12.Size = new System.Drawing.Size(363, 121);
+      this.groupBox12.TabIndex = 59;
+      this.groupBox12.TabStop = false;
+      this.groupBox12.Text = "Main Pump (Pump 2, 0-10V out1)";
+      // 
+      // button22
+      // 
+      this.button22.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.button22.Location = new System.Drawing.Point(266, 78);
+      this.button22.Name = "button22";
+      this.button22.Size = new System.Drawing.Size(84, 32);
+      this.button22.TabIndex = 15;
+      this.button22.Text = "Settings";
+      this.button22.UseVisualStyleBackColor = true;
+      // 
+      // button24
+      // 
+      this.button24.Location = new System.Drawing.Point(110, 78);
+      this.button24.Name = "button24";
+      this.button24.Size = new System.Drawing.Size(70, 32);
+      this.button24.TabIndex = 13;
+      this.button24.Text = "Med";
+      this.button24.UseVisualStyleBackColor = true;
+      this.button24.Click += new System.EventHandler(this.button24_Click);
+      // 
+      // label31
+      // 
+      this.label31.AutoSize = true;
+      this.label31.Location = new System.Drawing.Point(313, 37);
+      this.label31.Name = "label31";
+      this.label31.Size = new System.Drawing.Size(32, 25);
+      this.label31.TabIndex = 11;
+      this.label31.Text = "%";
+      // 
+      // textBox6
+      // 
+      this.textBox6.Location = new System.Drawing.Point(258, 34);
+      this.textBox6.Name = "textBox6";
+      this.textBox6.Size = new System.Drawing.Size(49, 33);
+      this.textBox6.TabIndex = 10;
+      this.textBox6.Text = "0";
+      this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+      // 
+      // button26
+      // 
+      this.button26.Location = new System.Drawing.Point(25, 78);
+      this.button26.Name = "button26";
+      this.button26.Size = new System.Drawing.Size(84, 32);
+      this.button26.TabIndex = 9;
+      this.button26.Text = "Stop";
+      this.button26.UseVisualStyleBackColor = true;
+      this.button26.Click += new System.EventHandler(this.button26_Click);
+      // 
+      // button27
+      // 
+      this.button27.Location = new System.Drawing.Point(181, 78);
+      this.button27.Name = "button27";
+      this.button27.Size = new System.Drawing.Size(84, 32);
+      this.button27.TabIndex = 8;
+      this.button27.Text = "Max Speed";
+      this.button27.UseVisualStyleBackColor = true;
+      this.button27.Click += new System.EventHandler(this.button27_Click);
+      // 
+      // trackBar3
+      // 
+      this.trackBar3.LargeChange = 100;
+      this.trackBar3.Location = new System.Drawing.Point(15, 37);
+      this.trackBar3.Margin = new System.Windows.Forms.Padding(4);
+      this.trackBar3.Maximum = 4000;
+      this.trackBar3.Name = "trackBar3";
+      this.trackBar3.Size = new System.Drawing.Size(236, 69);
+      this.trackBar3.SmallChange = 10;
+      this.trackBar3.TabIndex = 7;
+      this.trackBar3.TickStyle = System.Windows.Forms.TickStyle.None;
+      this.trackBar3.Scroll += new System.EventHandler(this.trackBar3_Scroll);
+      // 
+      // verticalProgressBar4
+      // 
+      this.verticalProgressBar4.Location = new System.Drawing.Point(265, 291);
+      this.verticalProgressBar4.Name = "verticalProgressBar4";
+      this.verticalProgressBar4.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar4.TabIndex = 50;
+      this.verticalProgressBar4.Click += new System.EventHandler(this.verticalProgressBar4_Click);
+      // 
+      // verticalProgressBar3
+      // 
+      this.verticalProgressBar3.Location = new System.Drawing.Point(56, 49);
+      this.verticalProgressBar3.Name = "verticalProgressBar3";
+      this.verticalProgressBar3.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar3.TabIndex = 45;
+      this.verticalProgressBar3.Click += new System.EventHandler(this.verticalProgressBar3_Click);
+      // 
       // verticalProgressBar1
       // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(63, 39);
+      this.verticalProgressBar1.Location = new System.Drawing.Point(63, 35);
       this.verticalProgressBar1.Name = "verticalProgressBar1";
       this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
       this.verticalProgressBar1.TabIndex = 43;
       // 
       // verticalProgressBar2
       // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(70, 40);
+      this.verticalProgressBar2.Location = new System.Drawing.Point(70, 36);
       this.verticalProgressBar2.Name = "verticalProgressBar2";
       this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
       this.verticalProgressBar2.TabIndex = 44;
@@ -971,16 +1786,8 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoSize = true;
-      this.ClientSize = new System.Drawing.Size(1296, 593);
-      this.Controls.Add(this.groupBox6);
-      this.Controls.Add(this.groupBox8);
-      this.Controls.Add(this.groupBox5);
-      this.Controls.Add(this.groupBox7);
-      this.Controls.Add(this.groupBox4);
-      this.Controls.Add(this.groupBox3);
-      this.Controls.Add(this.groupBox2);
-      this.Controls.Add(this.groupBox1);
-      this.Controls.Add(this.groupBox9);
+      this.ClientSize = new System.Drawing.Size(1166, 614);
+      this.Controls.Add(this.tabControl1);
       this.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -1011,8 +1818,18 @@
       this.groupBox6.PerformLayout();
       this.groupBoxReservoir.ResumeLayout(false);
       this.groupBoxCollected.ResumeLayout(false);
+      this.tabControl1.ResumeLayout(false);
+      this.tabPage1.ResumeLayout(false);
+      this.tabPage1.PerformLayout();
+      this.tabPage2.ResumeLayout(false);
+      this.tabPage2.PerformLayout();
+      this.groupBox10.ResumeLayout(false);
+      this.groupBox11.ResumeLayout(false);
+      this.groupBox11.PerformLayout();
+      this.groupBox12.ResumeLayout(false);
+      this.groupBox12.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
       this.ResumeLayout(false);
-      this.PerformLayout();
 
         }
 
@@ -1085,5 +1902,67 @@
     private System.Windows.Forms.GroupBox groupBoxCollected;
     private System.Windows.Forms.GroupBox groupBoxReservoir;
     private System.Windows.Forms.PictureBox pictureBox3;
+    private System.Windows.Forms.TabControl tabControl1;
+    private System.Windows.Forms.TabPage tabPage1;
+    private System.Windows.Forms.TabPage tabPage2;
+    private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+    private System.Windows.Forms.Label label17;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape5;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape4;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape2;
+    private Microsoft.VisualBasic.PowerPacks.LineShape lineShape3;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape3;
+    private System.ComponentModel.BackgroundWorker backgroundWorker1;
+    private VerticalProgressBar verticalProgressBar3;
+    private System.Windows.Forms.Label label19;
+    private System.Windows.Forms.Label label18;
+    private System.Windows.Forms.Label label9;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape13;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape12;
+    private Microsoft.VisualBasic.PowerPacks.LineShape lineShape4;
+    private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape10;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape9;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape8;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape7;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
+    private VerticalProgressBar verticalProgressBar4;
+    private System.Windows.Forms.Label label23;
+    private System.Windows.Forms.Label label22;
+    private System.Windows.Forms.Label label21;
+    private System.Windows.Forms.Label label20;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape16;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape6;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape15;
+    private Microsoft.VisualBasic.PowerPacks.LineShape lineShape9;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape11;
+    private Microsoft.VisualBasic.PowerPacks.LineShape lineShape8;
+    private Microsoft.VisualBasic.PowerPacks.LineShape lineShape7;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape14;
+    private Microsoft.VisualBasic.PowerPacks.LineShape lineShape6;
+    private Microsoft.VisualBasic.PowerPacks.LineShape lineShape5;
+    private System.Windows.Forms.Label label25;
+    private System.Windows.Forms.Label label24;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape18;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape17;
+    private System.Windows.Forms.Label label26;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape19;
+    private System.Windows.Forms.Label label27;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape20;
+    private System.Windows.Forms.Label label29;
+    private System.Windows.Forms.Label label28;
+    private System.Windows.Forms.GroupBox groupBox11;
+    private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
+    private System.Windows.Forms.GroupBox groupBox10;
+    private System.Windows.Forms.Label label30;
+    private AGaugeApp.AGauge aGauge1;
+    private System.Windows.Forms.GroupBox groupBox12;
+    private System.Windows.Forms.Button button22;
+    private System.Windows.Forms.Button button24;
+    private System.Windows.Forms.Label label31;
+    private System.Windows.Forms.TextBox textBox6;
+    private System.Windows.Forms.Button button26;
+    private System.Windows.Forms.Button button27;
+    private System.Windows.Forms.TrackBar trackBar3;
   }
 }
