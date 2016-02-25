@@ -30,6 +30,8 @@
     {
       System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
       System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoScrn));
       this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
       this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -44,9 +46,7 @@
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.panel1 = new System.Windows.Forms.Panel();
       this.label4 = new System.Windows.Forms.Label();
-      this.label5 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
-      this.label7 = new System.Windows.Forms.Label();
       this.label8 = new System.Windows.Forms.Label();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
       this.groupBoxPressure = new System.Windows.Forms.GroupBox();
@@ -95,7 +95,17 @@
       this.dataGridView1.Location = new System.Drawing.Point(682, 208);
       this.dataGridView1.Name = "dataGridView1";
       this.dataGridView1.ReadOnly = true;
+      dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+      dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+      dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+      dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
       this.dataGridView1.RowHeadersVisible = false;
+      dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
       this.dataGridView1.Size = new System.Drawing.Size(213, 308);
       this.dataGridView1.TabIndex = 1;
       // 
@@ -203,51 +213,29 @@
       this.label4.TabIndex = 0;
       this.label4.Text = "Please wait...  (setting reservoirs / temperature)";
       // 
-      // label5
-      // 
-      this.label5.AutoSize = true;
-      this.label5.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label5.Location = new System.Drawing.Point(146, 93);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(17, 24);
-      this.label5.TabIndex = 17;
-      this.label5.Text = "-";
-      // 
       // label6
       // 
       this.label6.AutoSize = true;
       this.label6.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label6.Location = new System.Drawing.Point(37, 94);
+      this.label6.Location = new System.Drawing.Point(37, 110);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(103, 24);
       this.label6.TabIndex = 16;
       this.label6.Text = "Current  =";
       // 
-      // label7
-      // 
-      this.label7.AutoSize = true;
-      this.label7.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label7.Location = new System.Drawing.Point(146, 48);
-      this.label7.Name = "label7";
-      this.label7.Size = new System.Drawing.Size(74, 24);
-      this.label7.TabIndex = 15;
-      this.label7.Text = "not set";
-      // 
       // label8
       // 
       this.label8.AutoSize = true;
       this.label8.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label8.Location = new System.Drawing.Point(37, 48);
+      this.label8.Location = new System.Drawing.Point(36, 59);
       this.label8.Name = "label8";
-      this.label8.Size = new System.Drawing.Size(104, 24);
+      this.label8.Size = new System.Drawing.Size(186, 24);
       this.label8.TabIndex = 14;
-      this.label8.Text = "Target    =";
+      this.label8.Text = "Target    =   not set";
       // 
       // groupBox1
       // 
       this.groupBox1.Controls.Add(this.label8);
-      this.groupBox1.Controls.Add(this.label5);
-      this.groupBox1.Controls.Add(this.label7);
       this.groupBox1.Controls.Add(this.label6);
       this.groupBox1.Location = new System.Drawing.Point(449, 12);
       this.groupBox1.Name = "groupBox1";
@@ -353,9 +341,7 @@
     private VerticalProgressBar verticalProgressBar2;
     private System.Windows.Forms.Label label4;
     public System.Windows.Forms.Panel panel1;
-    private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Label label6;
-    private System.Windows.Forms.Label label7;
     private System.Windows.Forms.Label label8;
     private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.GroupBox groupBoxPressure;

@@ -61,13 +61,16 @@ namespace LukMachine
           }*/
 
           dataGridView1.Rows.Add(Y.ToString(), X.ToString());
+          //dataGridView1.TopIndex = listBox1.Items.Count - 1;
+          //now scroll to the last row:
+          dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
           System.Diagnostics.Debug.WriteLine("X: " + X.ToString() + " Y: " + Y.ToString());
         }
         else if (message.Contains("set label7 to targetTemp"))
         {
           targetTemp = Properties.Settings.Default.selectedTemp;
           int targetTempInCelsius = (Convert.ToInt32((targetTemp - 32) * 5 / 9));
-          label7.Text = targetTemp.ToString() + " F / " + String.Format("{0:0}", targetTempInCelsius) + " C ";
+          label8.Text = "Target    = " + targetTemp.ToString() + " F / " + String.Format("{0:0}", targetTempInCelsius) + " C ";
 
         }
         else if (message.Contains("set label5 to currentTemp"))
@@ -76,7 +79,7 @@ namespace LukMachine
           int myint = Convert.ToInt32(Convert.ToDouble(msgSplit[1]));
           //MessageBox.Show(myint.ToString());  
           int myintInCelsius = (Convert.ToInt32((myint - 32) * 5 / 9));
-          label5.Text = String.Format("{0:0}", myint) + " F / " + String.Format("{0:0}", myintInCelsius) + " C ";
+          label6.Text = "Current  =  "+String.Format("{0:0}", myint) + " F / " + String.Format("{0:0}", myintInCelsius) + " C ";
           //MessageBox.Show(label5.Text);
         }
         else if (message.Contains("disable stop button"))
@@ -99,15 +102,22 @@ namespace LukMachine
         {
           button2.Enabled = false;
         }
-        else if (message.Contains("Read volume levels"))
+        else if (message.Contains("display volume levels"))
         {
           //read penetrometers
-          int ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+          string[] msgSplit = message.Split('=');
+          //MessageBox.Show("message = "+ message);
+          string ReservoirPercent = msgSplit[1];
+          string CollectedPercent = msgSplit[2];
+          //MessageBox.Show("ReservoirPercent = " + ReservoirPercent+ " CollectedPercent = " + CollectedPercent);
+          //int ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
           groupBoxReservoir.Text = "Reservoir " + ReservoirPercent.ToString() + "% Full";
-          int CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
+          //int CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
           groupBoxCollectedVolume.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
-          verticalProgressBar1.Value = ReservoirPercent;
-          verticalProgressBar2.Value = CollectedPercent;
+          //MessageBox.Show("ReservoirPercent = " + ReservoirPercent + " CollectedPercent = " + CollectedPercent);
+
+          verticalProgressBar1.Value = Convert.ToInt32(ReservoirPercent);
+          verticalProgressBar2.Value = Convert.ToInt32(CollectedPercent);
         }
 
 
@@ -209,7 +219,16 @@ namespace LukMachine
       button2.Enabled = false;
       test.AbortTest();
       //testThread.Abort();
+
+      //this sleep added to try to fix program hanging on next line (.Join):
+      listBox1.TopIndex = listBox1.Items.Count - 1;
+      Thread.Sleep(2000);
+      listBox1.TopIndex = listBox1.Items.Count - 1;
+      listBox1.Items.Add("You can close this window now");
+      listBox1.TopIndex = listBox1.Items.Count - 1;
+      System.Windows.Forms.MessageBox.Show("Data saved to " + Properties.Settings.Default.TestData);
       testThread.Join();
+
       //stop main pump
       //Progress("Stopping pump...");
       COMMS.Instance.ZeroRegulator(1);

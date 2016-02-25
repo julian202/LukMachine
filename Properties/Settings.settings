@@ -140,8 +140,8 @@
     <Setting Name="ground" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2000</Value>
     </Setting>
-    <Setting Name="MaxPent3Reading" Type="System.String" Scope="User">
-      <Value Profile="(Default)">10000</Value>
+    <Setting Name="MaxPent3PercentFull" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">99</Value>
     </Setting>
     <Setting Name="MaxReservoirCount" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">62000</Value>
@@ -154,6 +154,9 @@
     </Setting>
     <Setting Name="MinCollectedCount" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2000</Value>
+    </Setting>
+    <Setting Name="maxEmptyCollectedPercentFull" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
     </Setting>
   </Settings>
 </SettingsFile>

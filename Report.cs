@@ -126,6 +126,9 @@ namespace LukMachine
         RL = SR.ReadLine(); //Data
         RL = SR.ReadLine(); //blank
 
+        RL = SR.ReadLine(); //Time, Volume
+        RL = SR.ReadLine(); //blank
+
         //setup data table for current sample
         dataSet1.Tables.Add(fileName);
         dataSet1.Tables[fileName].Columns.Add("Pressure");

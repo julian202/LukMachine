@@ -68,13 +68,17 @@ namespace LukMachine
       try
       {
         _serialPort.PortName = portNum;
-        _serialPort.ReadTimeout = 3000;
-        _serialPort.WriteTimeout = 3000;
+        _serialPort.ReadTimeout = 4000;
+        _serialPort.WriteTimeout = 4000;
+        _serialPort.StopBits = System.IO.Ports.StopBits.One;
+        _serialPort.Parity = System.IO.Ports.Parity.None;
+        _serialPort.DataBits = 8;
+       
         //if the port ain't open it, open it.
         if (!(_serialPort.IsOpen))
           _serialPort.Open();
         commBusy = false;
-        System.Diagnostics.Debug.Write("COMM Port: " + portNum + " Opened");
+        System.Diagnostics.Debug.WriteLine("COMM Port: " + portNum + " Opened");
         comPort = portNum;
         connected = true;
         demoMode = false;
@@ -144,13 +148,24 @@ namespace LukMachine
 
         Thread.Sleep(20);
 
-        //MessageBox.Show(_serialPort.ReadExisting());
+        /*
+        int count = 1;
+        System.Diagnostics.Debug.WriteLine("Sent Serial = " + toSend);
+        System.Diagnostics.Debug.WriteLine("Reading serial count = " + count);
+        received = _serialPort.ReadExisting();
+        System.Diagnostics.Debug.WriteLine("Received = " + received);
+        while (received != "")
+        {
+          System.Diagnostics.Debug.WriteLine("Reading serial count = " + count);
+          received = _serialPort.ReadExisting();
+          System.Diagnostics.Debug.WriteLine("Received = " + received);
+          count++;        
+        }*/
 
+        System.Diagnostics.Debug.WriteLine("Sent Serial = " + toSend);
         received = _serialPort.ReadTo(newLine);
+        System.Diagnostics.Debug.WriteLine("Received = " + received);
 
-        System.Diagnostics.Debug.Write("Send(): Sent " + toSend + " received " + received + Environment.NewLine);
-
-        System.Diagnostics.Debug.Write("Send Command: " + toSend + Environment.NewLine);
       }
       catch (TimeoutException kj)
       {
@@ -215,10 +230,10 @@ namespace LukMachine
       //next response should be the value we need
       try
       {
-        //received = _serialPort.ReadExisting();
-        //Thread.Sleep(200);
+        System.Diagnostics.Debug.WriteLine("ReadingECHO: Sent " + toSend);
         received = _serialPort.ReadTo(newLine);
-        System.Diagnostics.Debug.Write("rsEcho(): Sent " + toSend + " received " + received + Environment.NewLine);
+        System.Diagnostics.Debug.WriteLine("Received " + received);
+
         return received;
       }
       catch (TimeoutException kj)
@@ -359,20 +374,23 @@ namespace LukMachine
       string command = vPos + valveNum.ToString();
       Send(command);
     }
-
+    public static int ReservoirLevelCount;
     public Int32 getReservoirLevelPercent()
     {
       int minCount = Properties.Settings.Default.MinReservoirCount;
       int maxCount = Properties.Settings.Default.MaxReservoirCount;
-      int level = Convert.ToInt32(getReservoirLevelCount());
-      int percentage = 100 * (level - minCount) / (maxCount - minCount);
+      ReservoirLevelCount = Convert.ToInt32(getReservoirLevelCount());
+      int percentage = 100 * (ReservoirLevelCount - minCount) / (maxCount - minCount);
       return percentage;
     }
+
+    public static int CollectedLevelCount;
     public Int32 getCollectedLevelPercent()
     {
       int minCount = Properties.Settings.Default.MinCollectedCount;
       int maxCount = Properties.Settings.Default.MaxCollectedCount;
-      return 100 * (Convert.ToInt32(getCollectedLevelCount()) - minCount) / (maxCount - minCount);
+      CollectedLevelCount = Convert.ToInt32(getCollectedLevelCount());
+      return 100 * (CollectedLevelCount - minCount) / (maxCount - minCount);
     }
 
     public string getReservoirLevelCount()
@@ -513,11 +531,14 @@ namespace LukMachine
 
     public double ReadAthenaTemp(int channel)
     {
+      System.Diagnostics.Debug.WriteLine("Reading Temperature, Sending to rsEcho TT" +channel.ToString());
       string returnValue = rsEcho("TT" + channel.ToString());
 
       try
       {
+        System.Diagnostics.Debug.WriteLine("Now trying to convert returned temperature to double");
         double fixReturn = double.Parse(returnValue) / 10;
+        System.Diagnostics.Debug.WriteLine("Done, returned temperature = "+ fixReturn.ToString());
         return fixReturn;
       }
       catch (Exception)

@@ -557,13 +557,13 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10000")]
-        public string MaxPent3Reading {
+        [global::System.Configuration.DefaultSettingValueAttribute("99")]
+        public int MaxPent3PercentFull {
             get {
-                return ((string)(this["MaxPent3Reading"]));
+                return ((int)(this["MaxPent3PercentFull"]));
             }
             set {
-                this["MaxPent3Reading"] = value;
+                this["MaxPent3PercentFull"] = value;
             }
         }
         
@@ -612,6 +612,18 @@ namespace LukMachine.Properties {
             }
             set {
                 this["MinCollectedCount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int maxEmptyCollectedPercentFull {
+            get {
+                return ((int)(this["maxEmptyCollectedPercentFull"]));
+            }
+            set {
+                this["maxEmptyCollectedPercentFull"] = value;
             }
         }
     }

@@ -86,13 +86,11 @@ namespace LukMachine
     {
       try
       {
-
-
         Progress("Preparing to cancel the test, please wait...");
         testPaused = false;
         abort = true;
         //COMMS.Instance.Pause(1); //wait 1 second
-        System.Windows.Forms.MessageBox.Show("Data saved to " + Properties.Settings.Default.TestData);
+        //System.Windows.Forms.MessageBox.Show("Data saved to " + Properties.Settings.Default.TestData);
 
         /*
         //stop main pump
@@ -114,8 +112,8 @@ namespace LukMachine
         COMMS.Instance.MoveMotorValve(1, "O");*/
 
         //COMMS.Instance.Pause(15);
-        testPaused = false;
-        Progress("You can close this window now");
+        //testPaused = false;
+        //Progress("You can close this window now");
       }
       catch { }
     }
@@ -159,9 +157,14 @@ namespace LukMachine
 
     public void PumpCollectedVolumeToReservoir() //refill reservoir with the liquid from the collected volume
     {
-      Progress("Read volume levels");
-      int maxPercentFull = 5;
-      if (COMMS.Instance.getCollectedLevelPercent() > maxPercentFull)
+      //Progress("Read volume levels");
+      int ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+      int CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
+      //MessageBox.Show("ReservoirPercent "+ ReservoirPercent+ " CollectedPercent "+ CollectedPercent);
+      Progress("display volume levels =" + ReservoirPercent.ToString() + "=" + CollectedPercent.ToString());//fix this, dont read twice
+
+      int maxPercentFull = Properties.Settings.Default.maxEmptyCollectedPercentFull;
+      if (CollectedPercent > maxPercentFull)
       {
         Valves.OpenValve1();
         Valves.CloseValve2();
@@ -170,9 +173,13 @@ namespace LukMachine
         Pumps.StartPump1();
       }
       int test =COMMS.Instance.getCollectedLevelPercent();
-      while (COMMS.Instance.getCollectedLevelPercent() >= maxPercentFull) //if collected reservoir is more than 5% full empty it:
+      while (CollectedPercent >= maxPercentFull) //if collected reservoir is more than 5% full empty it:
       {
-        Progress("Read volume levels");
+        //Progress("Read volume levels");
+        ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+        CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
+        Progress("display volume levels =" + ReservoirPercent.ToString() + "=" + CollectedPercent.ToString());//fix this, dont read twice
+
         Thread.Sleep(200);
         //wait until collected level is below minpercent
       }
@@ -224,22 +231,26 @@ namespace LukMachine
 
     public void RunBurstTest()
     {
+      //Check reservoir levels
       Progress("Checking reservoir levels...");
       PumpCollectedVolumeToReservoir();
       Thread.Sleep(1000);
-      Progress("Done checking reservoir levels...");
+      Progress("Done checking reservoir levels");
+
+      //Check temperature levels
       if (Properties.Settings.Default.useTemperature)
       {
+        Progress("Heating machine to target temperature. Please wait...");
         HeatMachineToTargetTemperature(); //this enters a while loop until the temperatue is right.
+        Progress("Done Heating machine to target temperature");
       }
-      Progress("hide panel1");
 
+      //Hide "please wait" panel
+      Progress("hide panel1");
       //Progress("disable stop button"); 
 
-      //panel1.Visible = false;
-      Progress("Test started...");
-
-      //run main pump
+      //Run main pump
+      Progress("Starting pump...");     
       if (Properties.Settings.Default.SelectedFlowRate == "Low")
       {
         //run main pump at low setting
@@ -257,14 +268,14 @@ namespace LukMachine
         COMMS.Instance.SetRegulator(1, (Convert.ToInt32(Properties.Settings.Default.HighPumpSetting)) * 4000 / 100);
       }
 
-      SR = new StreamWriter(dataFile);
+      //Write data to file
       //InitializeTest();
+      SR = new StreamWriter(dataFile);
       WriteHeader();
+      SR.Close();
       bool overVolume = false;
       double currentPressure; double startTime = 0;
       double currentTime = 0; double outputTime = 0; double outputPressure = 0; string counts = ""; double realCounts = 0;
-      string volumeReading = ""; //is pent 3 reading.
-      double volumeConverted;
       double ground = Properties.Settings.Default.ground;
       double twoVolt = Properties.Settings.Default.twoVolt;
 
@@ -272,6 +283,10 @@ namespace LukMachine
       maxPressure *= pConversion;
       maxTestPressure *= pConversion;
 
+      //Main loop
+      int ReservoirPercent;
+      int CollectedPercent;
+      Progress("Now running");
       while (!abort && !overVolume)
       {
         //read pressure
@@ -281,9 +296,13 @@ namespace LukMachine
         outputPressure = currentPressure * pConversion;
         Progress("display pressure ="+ outputPressure.ToString());
 
-        //read penetrometer
-        volumeReading = COMMS.Instance.MotorValvePosition(1); //this would be pent 3 (the testing pent)
-        volumeConverted = Convert.ToInt32(volumeReading) * 1;
+        //read penetrometers
+        ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+        CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
+        Progress("display volume levels =" + ReservoirPercent.ToString() + "=" + CollectedPercent.ToString());//fix this, dont read twice
+
+        //read temperature
+        ReadTemperatureAndSetLabel();
 
         //read current time
         currentTime = Convert.ToDouble(Environment.TickCount) - startTime;
@@ -293,9 +312,11 @@ namespace LukMachine
         double mlsMoved = (pressureRate / 60.0) * outputTime;
 
         //write data to file and report progress
-        SR.WriteLine(outputTime.ToString("#.000") + "," + volumeConverted.ToString("###.000"));
-        Progress("Reading:" + outputTime.ToString("#.000") + "," + volumeConverted.ToString("###.000"));
-
+        SR = new StreamWriter(dataFile, true); 
+        SR.WriteLine(outputTime.ToString("#.00") + "," + COMMS.CollectedLevelCount.ToString());
+        SR.Close();
+        Progress("Reading:" + outputTime.ToString("#.00") + "," + COMMS.CollectedLevelCount.ToString());
+        // with formating: Progress("Reading:" + outputTime.ToString("#.000") + "," + COMMS.CollectedLevelCount.ToString("###.00"));
 
         //Stop if over max pressure.
         if (outputPressure > p1Max) //add to this if volume is empty or pent is full
@@ -309,18 +330,19 @@ namespace LukMachine
           Progress("disable stop button");
           Progress("Machine has reached it's maximum pressure range! The test will be aborted.");
           Progress("Data saved to " + Properties.Settings.Default.TestData);
+          SR = new StreamWriter(dataFile, true);
           SR.WriteLine("Machine has reached it's maximum pressure range! The test was aborted. Pressure was "+ outputPressure.ToString()+ ", max is "+ p1Max.ToString());
           SR.Close();
+          
           System.Windows.Forms.MessageBox.Show("Machine has reached it's maximum pressure. The test has been stopped. Data saved to " + Properties.Settings.Default.TestData);
-          COMMS.Instance.Pause(1); //wait 1 second for other thread to finish
-        
+          //COMMS.Instance.Pause(1); //wait 1 second for other thread to finish      
         }
 
         //Stop if over max volume.
-        if (Convert.ToInt32(volumeReading) >= Convert.ToInt32(Properties.Settings.Default.MaxPent3Reading))
+        if (CollectedPercent >= Properties.Settings.Default.MaxPent3PercentFull)
         {
-          Console.WriteLine("volumeReading is "+ volumeReading);
-          Console.WriteLine("MaxPent3Reading is " + Properties.Settings.Default.MaxPent3Reading);
+          System.Diagnostics.Debug.WriteLine("volumeReading is "+ COMMS.CollectedLevelCount);
+          System.Diagnostics.Debug.WriteLine("MaxPent3Reading is " + Properties.Settings.Default.MaxPent3PercentFull);
           abort = true;
           testPaused = true;
           overVolume = true;
@@ -330,21 +352,21 @@ namespace LukMachine
           COMMS.Instance.MoveValve(2, "O");
           Progress("disable stop button");
           Progress("Machine has reached it's maximum volume range, the test has stopped.");
+          SR = new StreamWriter(dataFile, true);
           SR.WriteLine("Machine has reached it's maximum volume range, the test was aborted.");
           SR.Close();
           System.Windows.Forms.MessageBox.Show("Machine has reached it's maximum volume range. The test has been stopped. Data saved to " + Properties.Settings.Default.TestData);
-          COMMS.Instance.Pause(1); //wait 1 second for other thread to finish
+          //COMMS.Instance.Pause(1); //wait 1 second for other thread to finish
         }
         //see if we need to pause, or abort.
-        //PauseTest();
-        Progress("Read volume levels");
-        ReadTemperatureAndSetLabel();
+        //PauseTest();      
       }
       if (abort)
       {
-        Progress("Test Stopped");
+        //Progress("Test Stopped");
+        System.Diagnostics.Debug.WriteLine("Test aborted successfully becuase this message is sent from BurstTest thread");
       }
-      SR.Close();
+      //SR.Close();
       Progress("Test Ended");
     }
 
@@ -381,7 +403,7 @@ namespace LukMachine
       //Make a hat for the data.
       SR.WriteLine("Liquid Permeability Test");
       SR.WriteLine("");
-      SR.WriteLine("Sample Info");
+      SR.WriteLine("Sample Info:");
       SR.WriteLine("");
       SR.WriteLine("Sample ID=" + sampleID);
       SR.WriteLine("Lot Number=" + lotNumber);
@@ -389,13 +411,15 @@ namespace LukMachine
       //SR.WriteLine("Sheets=" + sheets);
       //SR.WriteLine("Grammage=" + grammage);
       SR.WriteLine("");
-      SR.WriteLine("Test Details");
+      SR.WriteLine("Test Details:");
       SR.WriteLine("");
       SR.WriteLine(DateTime.Now.ToString("dd/MM/yyyy H:mm"));
       SR.WriteLine("Pressure Units=" + pUnits);
       //SR.WriteLine("Pressure Rate(mL / min)=" + pressureRate.ToString());
       SR.WriteLine("");
-      SR.WriteLine("Data");
+      SR.WriteLine("Data:");
+      SR.WriteLine("");
+      SR.WriteLine("Time, Collected Volume");
       SR.WriteLine("");
     }
   }
