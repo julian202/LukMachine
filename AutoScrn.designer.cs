@@ -32,11 +32,10 @@
       System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoScrn));
       this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
       this.dataGridView1 = new System.Windows.Forms.DataGridView();
-      this.TimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.PressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.button3 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
@@ -53,6 +52,8 @@
       this.labelPressure = new System.Windows.Forms.Label();
       this.groupBoxCollectedVolume = new System.Windows.Forms.GroupBox();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
+      this.TimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.PressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
@@ -75,7 +76,7 @@
       series1.IsVisibleInLegend = false;
       series1.Name = "Series1";
       this.chart1.Series.Add(series1);
-      this.chart1.Size = new System.Drawing.Size(664, 308);
+      this.chart1.Size = new System.Drawing.Size(646, 308);
       this.chart1.TabIndex = 0;
       this.chart1.Text = "chart1";
       // 
@@ -88,13 +89,6 @@
       this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
       this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
       this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-      this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TimeColumn,
-            this.PressureColumn});
-      this.dataGridView1.Location = new System.Drawing.Point(682, 208);
-      this.dataGridView1.Name = "dataGridView1";
-      this.dataGridView1.ReadOnly = true;
       dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
       dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
       dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -102,24 +96,28 @@
       dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
       dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
       dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-      this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-      this.dataGridView1.RowHeadersVisible = false;
+      this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+      this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TimeColumn,
+            this.PressureColumn});
+      this.dataGridView1.Location = new System.Drawing.Point(664, 208);
+      this.dataGridView1.Name = "dataGridView1";
+      this.dataGridView1.ReadOnly = true;
       dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-      this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
-      this.dataGridView1.Size = new System.Drawing.Size(213, 308);
+      dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+      dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+      dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+      dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+      this.dataGridView1.RowHeadersVisible = false;
+      dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+      this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      this.dataGridView1.Size = new System.Drawing.Size(231, 308);
       this.dataGridView1.TabIndex = 1;
-      // 
-      // TimeColumn
-      // 
-      this.TimeColumn.HeaderText = "Time(sec)";
-      this.TimeColumn.Name = "TimeColumn";
-      this.TimeColumn.ReadOnly = true;
-      // 
-      // PressureColumn
-      // 
-      this.PressureColumn.HeaderText = "Volume";
-      this.PressureColumn.Name = "PressureColumn";
-      this.PressureColumn.ReadOnly = true;
       // 
       // button3
       // 
@@ -139,9 +137,9 @@
       // 
       this.button2.Enabled = false;
       this.button2.Image = global::LukMachine.Properties.Resources._109_AllAnnotations_Error_32x32_72;
-      this.button2.Location = new System.Drawing.Point(682, 528);
+      this.button2.Location = new System.Drawing.Point(664, 528);
       this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(211, 86);
+      this.button2.Size = new System.Drawing.Size(229, 86);
       this.button2.TabIndex = 3;
       this.button2.Text = "Stop Test";
       this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -177,7 +175,7 @@
       this.listBox1.ItemHeight = 19;
       this.listBox1.Location = new System.Drawing.Point(12, 553);
       this.listBox1.Name = "listBox1";
-      this.listBox1.Size = new System.Drawing.Size(664, 61);
+      this.listBox1.Size = new System.Drawing.Size(646, 61);
       this.listBox1.TabIndex = 7;
       // 
       // verticalProgressBar2
@@ -284,6 +282,18 @@
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir";
       // 
+      // TimeColumn
+      // 
+      this.TimeColumn.HeaderText = "Time(sec)";
+      this.TimeColumn.Name = "TimeColumn";
+      this.TimeColumn.ReadOnly = true;
+      // 
+      // PressureColumn
+      // 
+      this.PressureColumn.HeaderText = "Volume(ml)";
+      this.PressureColumn.Name = "PressureColumn";
+      this.PressureColumn.ReadOnly = true;
+      // 
       // AutoScrn
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
@@ -335,8 +345,6 @@
     private System.Windows.Forms.Button button3;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.ListBox listBox1;
-    private System.Windows.Forms.DataGridViewTextBoxColumn TimeColumn;
-    private System.Windows.Forms.DataGridViewTextBoxColumn PressureColumn;
     private VerticalProgressBar verticalProgressBar1;
     private VerticalProgressBar verticalProgressBar2;
     private System.Windows.Forms.Label label4;
@@ -348,6 +356,8 @@
     private System.Windows.Forms.Label labelPressure;
     private System.Windows.Forms.GroupBox groupBoxCollectedVolume;
     private System.Windows.Forms.GroupBox groupBoxReservoir;
+    private System.Windows.Forms.DataGridViewTextBoxColumn TimeColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn PressureColumn;
     // private System.Windows.Controls.ProgressBar progbar;
 
 

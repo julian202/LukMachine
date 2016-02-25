@@ -41,7 +41,7 @@ namespace LukMachine
 
     private void textBox6_Enter(object sender, EventArgs e)
     {
-      label7.Text = "Data File: This field will determine where your burst data is stored.";
+      label7.Text = "Data File: This field will determine where your data is stored.";
     }
 
     private void button3_Click(object sender, EventArgs e)

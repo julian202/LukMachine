@@ -68,6 +68,12 @@
     </Compile>
     <Compile Include="BurstTest.cs" />
     <Compile Include="COMMS.cs" />
+    <Compile Include="DataSavedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataSavedForm.Designer.cs">
+      <DependentUpon>DataSavedForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="export.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BurstDialog2.resx">
       <DependentUpon>BurstDialog2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataSavedForm.resx">
+      <DependentUpon>DataSavedForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="export.resx">
       <DependentUpon>export.cs</DependentUpon>
