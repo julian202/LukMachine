@@ -51,6 +51,88 @@ namespace LukMachine
 
     private void Manual_Load(object sender, EventArgs e)
     {
+      if (Properties.Settings.Default.RefillPumpState)
+      {
+        rectangleShape14.BackColor = Color.Bisque;
+        label21.BackColor = Color.Bisque;
+        label22.BackColor = Color.Bisque;
+        label22.Text = "Pump ON";
+        RefillPumpOn = true;
+      }
+      else
+      {
+        rectangleShape14.BackColor = Color.Gray;
+        label21.BackColor = Color.Gray;
+        label22.BackColor = Color.Gray;
+        label22.Text = "Pump OFF";
+        RefillPumpOn = false;
+      }
+
+      if (Properties.Settings.Default.Valve1State)
+      {
+        rectangleShape12.BackColor = Color.Green;
+      }
+      else
+      {
+        rectangleShape12.BackColor = Color.Brown;
+      }
+
+      if (Properties.Settings.Default.Valve2State)
+      {
+        rectangleShape11.BackColor = Color.Green;
+      }
+      else
+      {
+        rectangleShape11.BackColor = Color.Brown;
+      }
+
+      if (Properties.Settings.Default.Valve3State)
+      {
+        rectangleShape6.BackColor = Color.Green;
+      }
+      else
+      {
+        rectangleShape6.BackColor = Color.Brown;
+      }
+
+      if (Properties.Settings.Default.Valve4State)
+      {
+        rectangleShape2.BackColor = Color.Green;
+      }
+      else
+      {
+        rectangleShape2.BackColor = Color.Brown;
+      }
+
+      if (Properties.Settings.Default.Valve5State)
+      {
+        rectangleShape4.BackColor = Color.Green;
+      }
+      else
+      {
+        rectangleShape4.BackColor = Color.Brown;
+      }
+
+      if (Properties.Settings.Default.Valve6State)
+      {
+        rectangleShape5.BackColor = Color.Green;
+      }
+      else
+      {
+        rectangleShape5.BackColor = Color.Brown;
+      }
+
+      if (Properties.Settings.Default.Valve7State)
+      {
+        rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
+        Valve3wayToRight = true;
+      }
+      else
+      {
+        rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
+        Valve3wayToRight = false;
+      }
+
       double conversionFactor = Properties.Settings.Default.PressureConversionFactor;
       double maxVal = Properties.Settings.Default.p1Max;
       double stepSize = (Math.Round(maxVal * conversionFactor)) / 5;
@@ -62,15 +144,37 @@ namespace LukMachine
       aGauge1.ScaleLinesMajorStepValue = (float)Math.Round(stepSize, 2);
       aGauge1.RangesStartValue[2] = (float)(Math.Round(maxVal - stepSize, 2));
       aGauge1.RangesEndValue[2] = (float)Math.Round(maxVal, 2);
-      Valve3wayToRight = true;
+      //Valve3wayToRight = true;
       MainPumpOn = false;
-      RefillPumpOn = false;
+      //RefillPumpOn = false;
       timer1.Enabled = true;
 
     }
 
+    bool refilldone = false;
+    bool startRefill = false;
+    ManualWait form = new ManualWait();
+
     private void timer1_Tick(object sender, EventArgs e)
     {
+      if (startRefill)
+      {
+        form.Show();
+        if (COMMS.Instance.getCollectedLevelPercent() < 5)
+        {
+          refilldone = true;
+        }
+      }
+
+      if (refilldone)
+      {
+        Pumps.StopPump1();
+        Valves.CloseValve1();
+        form.Hide();
+        refilldone = false;
+        startRefill = false;
+      }
+
       //read pressure gauge, convert to PSI (will need to * by conversion factor and set units label later)
       counts = COMMS.Instance.ReadPressureGauge(1);
       realCounts = Convert.ToDouble(counts);
@@ -108,90 +212,92 @@ namespace LukMachine
       verticalProgressBar4.Value = ReservoirPercent;
 
 
-
       //maybe read temperatures...
       double temp;
       if (checkBox1.Checked)
       {
         temp = COMMS.Instance.ReadAthenaTemp(1);
-        checkBox1.Text = "Temp 1: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        checkBox1.Text = "Chamber 1 Temp: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
       }
       if (checkBox2.Checked)
       {
         temp = COMMS.Instance.ReadAthenaTemp(2);
-        checkBox2.Text = "Temp 2: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        checkBox2.Text = "Chamber 2 Temp: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
       }
       if (checkBox3.Checked)
       {
         temp = COMMS.Instance.ReadAthenaTemp(3);
-        checkBox3.Text = "Temp 3: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        checkBox3.Text = "Reservoir 1 Temp: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
       }
       if (checkBox4.Checked)
       {
         temp = COMMS.Instance.ReadAthenaTemp(4);
-        checkBox4.Text = "Temp 4: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        checkBox4.Text = "Pipe Temp: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
       }
       //control solenoid valves
       if (openValve)
       {
         openValve = false;
-        COMMS.Instance.MoveValve(Convert.ToInt32(comboBox2.Text), "O");
+        Valves.OpenValve(Convert.ToInt32(comboBox2.Text));
       }
       if (closeValve)
       {
         closeValve = false;
-        COMMS.Instance.MoveValve(Convert.ToInt32(comboBox2.Text), "C");
+        Valves.CloseValve(Convert.ToInt32(comboBox2.Text));
       }
       //3 way valve
       if (openValve7)
       {
         openValve7 = false;
-        COMMS.Instance.MoveValve(7, "O");//right chamber
+        Valves.OpenValve(7);//right chamber
+
       }
       if (closeValve7)
       {
         closeValve7 = false;
-        COMMS.Instance.MoveValve(7, "C");
+        Valves.CloseValve(7);
       }
-
 
       //control 3way valve (because it might be different later)
       if (open3Way)
       {
         open3Way = false;
-        COMMS.Instance.MoveValve(7, "O");
+        Valves.OpenValve(7);//right chamber
       }
       if (close3Way)
       {
         close3Way = false;
-        COMMS.Instance.MoveValve(7, "C");
+        Valves.CloseValve(7);
       }
 
       //pump controls (analog out)
       if (startPump1)
       {
         startPump1 = false;
-        //COMMS.Instance.IncreaseRegulator(1, trackBar1.Value);
-        COMMS.Instance.MoveMotorValve(1, "O");
+        Pumps.StartPump1();
       }
       if (stopPump1)
       {
         stopPump1 = false;
-        //COMMS.Instance.ZeroRegulator(1);
-        COMMS.Instance.MoveMotorValve(1, "S");
+        Pumps.StopPump1();
       }
       if (startPump2)
       {
         startPump2 = false;
         //COMMS.Instance.IncreaseRegulator(2, trackBar2.Value);
-        trackBar2.Value = trackBar3.Value;
-        COMMS.Instance.SetRegulator(1, trackBar2.Value);  //4000 is 10V, analog output 1. (which is 0-10V)
+        //trackBar2.Value = trackBar3.Value;
+        Pumps.SetPump2(trackBar3.Value * 100 / 4000); //4000 is 10V, analog output 1. (which is 0-10V)
+        rectangleShape15.BackColor = Color.Beige;
+        label23.BackColor = Color.Beige;
+        label17.BackColor = Color.Beige;
       }
       if (stopPump2)
       {
         stopPump2 = false;
-        //COMMS.Instance.ZeroRegulator(2);
-        COMMS.Instance.ZeroRegulator(1);
+        Pumps.SetPump2(0);
+        rectangleShape15.BackColor = Color.Gray;
+        label23.BackColor = Color.Gray;
+        label17.BackColor = Color.Gray;
       }
       if (heater1On)
       {
@@ -242,36 +348,32 @@ namespace LukMachine
         if (trackBar4.Value == 0)
         {
           //close all 3 valves
-          COMMS.Instance.MoveValve(4, "C");
-          COMMS.Instance.MoveValve(5, "C");
-          COMMS.Instance.MoveValve(6, "C");
+          Valves.CloseValve4();
+          Valves.CloseValve5();
+          Valves.CloseValve6();
         }
         if (trackBar4.Value == 1)
         {
           //slow speed
-          COMMS.Instance.MoveValve(4, "O");
-          COMMS.Instance.MoveValve(5, "C");
-          COMMS.Instance.MoveValve(6, "C");
+          Valves.OpenValve4();
+          Valves.CloseValve5();
+          Valves.CloseValve6();
         }
         if (trackBar4.Value == 2)
         {
           //medium speed
-          COMMS.Instance.MoveValve(4, "C");
-          COMMS.Instance.MoveValve(5, "O");
-          COMMS.Instance.MoveValve(6, "C");
+          Valves.CloseValve4();
+          Valves.OpenValve5();
+          Valves.CloseValve6();
         }
         if (trackBar4.Value == 3)
         {
           //fast speed
-          COMMS.Instance.MoveValve(4, "C");
-          COMMS.Instance.MoveValve(5, "C");
-          COMMS.Instance.MoveValve(6, "O");
+          Valves.CloseValve4();
+          Valves.CloseValve5();
+          Valves.OpenValve6();
         }
-
-
       }
-
-
     }
 
     private void Manual_FormClosing(object sender, FormClosingEventArgs e)
@@ -491,23 +593,6 @@ namespace LukMachine
       button21.Enabled = true;
     }
 
-    public static void PumpCollectedVolumeToReservoir()
-    {
-      while (COMMS.Instance.getCollectedLevelPercent() > 5) //if collected reservoir is more than 5% full empty it:
-      {
-        //now refilling reservoir with the liquid from the collected volume
-        Valves.OpenValve1();
-        Valves.CloseValve2();
-        Valves.CloseValve3();
-        //start refill pump 1
-        Pumps.StartPump1();
-      }
-      //stop refill pump 1
-      Pumps.StopPump1();
-      Valves.CloseValve1();
-
-    }
-
     private void checkBox1_CheckedChanged(object sender, EventArgs e)
     {
 
@@ -625,13 +710,16 @@ namespace LukMachine
       {
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
         Valve3wayToRight = false;
+        Properties.Settings.Default.Valve7State = false;
         Valves.CloseValve7();  //valve 7 is the 3 way valve
         System.Diagnostics.Debug.WriteLine("set to left chamber");
+
       }
       else
       {
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
         Valve3wayToRight = true;
+        Properties.Settings.Default.Valve7State = true;
         Valves.OpenValve7();
         System.Diagnostics.Debug.WriteLine("set to right chamber");
       }
@@ -687,7 +775,11 @@ namespace LukMachine
     {
       startPump2 = true;
       textBox6.Text = ((trackBar3.Value) * 100 / 4000).ToString();
-      label17.Text = "Pump " + textBox6.Text +"%";
+      label17.Text = "Pump " + textBox6.Text + "%";
+      if (trackBar3.Value == 0)
+      {
+        stopPump2 = true;
+      }
     }
 
     private void button24_Click(object sender, EventArgs e)
@@ -700,9 +792,140 @@ namespace LukMachine
 
     private void textBox6_TextChanged(object sender, EventArgs e)
     {
-      trackBar3.Value = Convert.ToInt32(textBox6.Text) * 4000 / 100;
-      startPump2 = true;
-      label17.Text = "Pump " + textBox6.Text + "%";
+      try
+      {
+        trackBar3.Value = Convert.ToInt32(textBox6.Text) * 4000 / 100;
+        startPump2 = true;
+        label17.Text = "Pump " + textBox6.Text + "%";
+        if (trackBar3.Value == 0)
+        {
+          stopPump2 = true;
+        }
+      }
+      catch
+      {
+        MessageBox.Show("invalid");
+      }
+    }
+
+    private void textBoxTemp_TextChanged(object sender, EventArgs e)
+    {
+      labelSetTemp.Text = "deg C (" + (Math.Round((Convert.ToDouble(textBoxTemp.Text) * 9 / 5 + 32))).ToString() + " F)";
+    }
+
+    private void button22_Click(object sender, EventArgs e)
+    {
+      //settings button
+      settings setScrn = new settings();
+      Hide();
+      setScrn.ShowDialog();
+      Show();
+    }
+
+    private void button21_Click_1(object sender, EventArgs e)
+    {
+      PumpCollectedVolumeToReservoir();
+    }
+
+
+    public void PumpCollectedVolumeToReservoir()
+    {
+
+      startRefill = true;
+      Valves.OpenValve1();
+      Valves.CloseValve2();
+      Valves.CloseValve3();
+      //start refill pump 1
+      Pumps.StartPump1();
+
+
+      //stop refill pump 1
+      //Pumps.StopPump1();
+      //Valves.CloseValve1();
+      // form.Hide();
+      //refilldone = true;
+    }
+
+
+
+
+    private void checkBoxHeatSystem_CheckedChanged(object sender, EventArgs e)
+    {
+      if (checkBoxHeatSystem.Checked == false)
+      {
+        textBoxTemp.Text = "20";
+        heat();
+      }
+      else
+      {
+        if (textBoxTemp.Text == "")
+        {
+          //MessageBox.Show("Please enter a temperature");
+          textBoxTemp.Text = "20";
+        }
+        heat();
+      }
+    }
+
+    double chamberTemp;
+    double currentTemp;
+    double athena1Temp;
+    double athena2Temp;
+    double targetTemp;
+
+    private void heat()
+    {
+      try
+      {
+        //ReadAllTemperatures();
+        //targetTemp = Properties.Settings.Default.selectedTemp; 
+
+
+        //while ((currentTemp < targetTemp - 2) || (currentTemp > targetTemp + 2))
+        // {
+        //ReadAllTemperatures();
+        //set heaters:
+        targetTemp = Convert.ToDouble(textBoxTemp.Text);
+        COMMS.Instance.SetAthenaTemp(1, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+        COMMS.Instance.SetAthenaTemp(2, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+        COMMS.Instance.SetAthenaTemp(3, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+        COMMS.Instance.SetAthenaTemp(4, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+
+        //Thread.Sleep(2000);//wait before checking again
+        //Console.WriteLine("athena1Temp " + athena1Temp);
+        //Console.WriteLine("chamberTemp " + chamberTemp);
+        //}
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Problem reading temperature from Athena ");
+      }
+    }
+
+    private void ReadAllTemperatures()
+    {
+      targetTemp = Convert.ToDouble(textBoxTemp.Text);
+      athena1Temp = COMMS.Instance.ReadAthenaTemp(1);
+      //read pipes temperature
+      athena2Temp = COMMS.Instance.ReadAthenaTemp(2);
+      //read selected chamber temperature
+      if (Properties.Settings.Default.Chamber == "Ring")
+      {
+        chamberTemp = COMMS.Instance.ReadAthenaTemp(3);
+      }
+      else
+      {
+        chamberTemp = COMMS.Instance.ReadAthenaTemp(4);
+      }
+      //get average temp and display it
+      currentTemp = (athena1Temp + athena2Temp + chamberTemp) / 3;
+    }
+
+    private void textBox6_KeyUp(object sender, KeyEventArgs e)
+    {
+
+
+
     }
   }
 }

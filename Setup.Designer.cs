@@ -61,12 +61,14 @@
       this.radioButton2 = new System.Windows.Forms.RadioButton();
       this.radioButton1 = new System.Windows.Forms.RadioButton();
       this.label9 = new System.Windows.Forms.Label();
+      this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
       this.button3 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.pictureBox2 = new System.Windows.Forms.PictureBox();
-      this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+      this.label14 = new System.Windows.Forms.Label();
+      this.textBox4 = new System.Windows.Forms.TextBox();
       this.groupBox1.SuspendLayout();
       this.panel2.SuspendLayout();
       this.panel1.SuspendLayout();
@@ -178,6 +180,8 @@
       // 
       // groupBox1
       // 
+      this.groupBox1.Controls.Add(this.label14);
+      this.groupBox1.Controls.Add(this.textBox4);
       this.groupBox1.Controls.Add(this.checkBoxTemperature);
       this.groupBox1.Controls.Add(this.panel2);
       this.groupBox1.Controls.Add(this.label13);
@@ -219,7 +223,7 @@
       // checkBoxTemperature
       // 
       this.checkBoxTemperature.AutoSize = true;
-      this.checkBoxTemperature.Location = new System.Drawing.Point(231, 398);
+      this.checkBoxTemperature.Location = new System.Drawing.Point(231, 388);
       this.checkBoxTemperature.Name = "checkBoxTemperature";
       this.checkBoxTemperature.Size = new System.Drawing.Size(22, 21);
       this.checkBoxTemperature.TabIndex = 36;
@@ -262,7 +266,7 @@
       // label13
       // 
       this.label13.AutoSize = true;
-      this.label13.Location = new System.Drawing.Point(334, 396);
+      this.label13.Location = new System.Drawing.Point(334, 386);
       this.label13.Name = "label13";
       this.label13.Size = new System.Drawing.Size(151, 23);
       this.label13.TabIndex = 35;
@@ -270,7 +274,7 @@
       // 
       // textBoxTemperature
       // 
-      this.textBoxTemperature.Location = new System.Drawing.Point(265, 393);
+      this.textBoxTemperature.Location = new System.Drawing.Point(265, 383);
       this.textBoxTemperature.Name = "textBoxTemperature";
       this.textBoxTemperature.Size = new System.Drawing.Size(63, 30);
       this.textBoxTemperature.TabIndex = 34;
@@ -279,7 +283,7 @@
       // label12
       // 
       this.label12.AutoSize = true;
-      this.label12.Location = new System.Drawing.Point(20, 396);
+      this.label12.Location = new System.Drawing.Point(20, 386);
       this.label12.Name = "label12";
       this.label12.Size = new System.Drawing.Size(163, 23);
       this.label12.TabIndex = 33;
@@ -290,10 +294,11 @@
       this.panel1.Controls.Add(this.radioButtonHigh);
       this.panel1.Controls.Add(this.radioButtonLow);
       this.panel1.Controls.Add(this.radioButtonMedium);
-      this.panel1.Location = new System.Drawing.Point(231, 279);
+      this.panel1.Location = new System.Drawing.Point(458, 268);
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(200, 100);
       this.panel1.TabIndex = 32;
+      this.panel1.Visible = false;
       // 
       // radioButtonHigh
       // 
@@ -306,6 +311,7 @@
       this.radioButtonHigh.TabStop = true;
       this.radioButtonHigh.Text = "High";
       this.radioButtonHigh.UseVisualStyleBackColor = true;
+      this.radioButtonHigh.CheckedChanged += new System.EventHandler(this.radioButtonHigh_CheckedChanged);
       // 
       // radioButtonLow
       // 
@@ -334,11 +340,11 @@
       // label8
       // 
       this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(20, 295);
+      this.label8.Location = new System.Drawing.Point(20, 306);
       this.label8.Name = "label8";
-      this.label8.Size = new System.Drawing.Size(167, 23);
+      this.label8.Size = new System.Drawing.Size(223, 23);
       this.label8.TabIndex = 28;
-      this.label8.Text = "Select Flow Rate:";
+      this.label8.Text = "Select Pump Flow Rate:";
       this.label8.Click += new System.EventHandler(this.label8_Click);
       // 
       // label5
@@ -434,6 +440,13 @@
       this.label9.Text = "Paper Sample:";
       this.label9.Visible = false;
       // 
+      // saveFileDialog1
+      // 
+      this.saveFileDialog1.DefaultExt = "pmi";
+      this.saveFileDialog1.Filter = "PMI Data File|*.pmi";
+      this.saveFileDialog1.Title = "Select data file";
+      this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+      // 
       // button3
       // 
       this.button3.Image = global::LukMachine.Properties.Resources.OpenSelectedItemHS;
@@ -489,12 +502,23 @@
       this.pictureBox2.TabIndex = 13;
       this.pictureBox2.TabStop = false;
       // 
-      // saveFileDialog1
+      // label14
       // 
-      this.saveFileDialog1.DefaultExt = "pmi";
-      this.saveFileDialog1.Filter = "PMI Data File|*.pmi";
-      this.saveFileDialog1.Title = "Select data file";
-      this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+      this.label14.AutoSize = true;
+      this.label14.Location = new System.Drawing.Point(312, 306);
+      this.label14.Name = "label14";
+      this.label14.Size = new System.Drawing.Size(78, 23);
+      this.label14.TabIndex = 38;
+      this.label14.Text = "ml / min";
+      // 
+      // textBox4
+      // 
+      this.textBox4.Location = new System.Drawing.Point(243, 303);
+      this.textBox4.Name = "textBox4";
+      this.textBox4.Size = new System.Drawing.Size(63, 30);
+      this.textBox4.TabIndex = 37;
+      this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
       // 
       // Setup
       // 
@@ -563,5 +587,7 @@
     private System.Windows.Forms.RadioButton radioButtonRingChamber;
     private System.Windows.Forms.RadioButton radioButtonDiskChamber;
     private System.Windows.Forms.CheckBox checkBoxTemperature;
+    private System.Windows.Forms.Label label14;
+    private System.Windows.Forms.TextBox textBox4;
   }
 }

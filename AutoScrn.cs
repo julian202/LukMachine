@@ -235,12 +235,13 @@ namespace LukMachine
 
       //stop main pump
       //Progress("Stopping pump...");
-      COMMS.Instance.ZeroRegulator(1);
+      //COMMS.Instance.ZeroRegulator(1);
+      Pumps.SetPump2(0);
       //pumpRunning = false;
 
       //open relief pressure valve
       //Progress("Relieving pressure...");
-      COMMS.Instance.MoveValve(2, "O");
+      Valves.OpenValve2();
 
     }
 

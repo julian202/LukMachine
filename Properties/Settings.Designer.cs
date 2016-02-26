@@ -626,5 +626,137 @@ namespace LukMachine.Properties {
                 this["maxEmptyCollectedPercentFull"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string flowRate {
+            get {
+                return ((string)(this["flowRate"]));
+            }
+            set {
+                this["flowRate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SelectedPumpSpeed {
+            get {
+                return ((string)(this["SelectedPumpSpeed"]));
+            }
+            set {
+                this["SelectedPumpSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Valve1State {
+            get {
+                return ((bool)(this["Valve1State"]));
+            }
+            set {
+                this["Valve1State"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Valve2State {
+            get {
+                return ((bool)(this["Valve2State"]));
+            }
+            set {
+                this["Valve2State"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Valve3State {
+            get {
+                return ((bool)(this["Valve3State"]));
+            }
+            set {
+                this["Valve3State"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Valve4State {
+            get {
+                return ((bool)(this["Valve4State"]));
+            }
+            set {
+                this["Valve4State"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Valve5State {
+            get {
+                return ((bool)(this["Valve5State"]));
+            }
+            set {
+                this["Valve5State"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Valve6State {
+            get {
+                return ((bool)(this["Valve6State"]));
+            }
+            set {
+                this["Valve6State"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Valve7State {
+            get {
+                return ((bool)(this["Valve7State"]));
+            }
+            set {
+                this["Valve7State"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool RefillPumpState {
+            get {
+                return ((bool)(this["RefillPumpState"]));
+            }
+            set {
+                this["RefillPumpState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int MainPumpStatePercent {
+            get {
+                return ((int)(this["MainPumpStatePercent"]));
+            }
+            set {
+                this["MainPumpStatePercent"] = value;
+            }
+        }
     }
 }

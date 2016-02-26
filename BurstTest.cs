@@ -195,6 +195,12 @@ namespace LukMachine
       try
       {
         targetTemp = Properties.Settings.Default.selectedTemp;
+        //set heaters to target temp:
+        COMMS.Instance.SetAthenaTemp(1, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+        COMMS.Instance.SetAthenaTemp(2, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+        COMMS.Instance.SetAthenaTemp(3, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+        COMMS.Instance.SetAthenaTemp(4, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+
         while ((currentTemp < targetTemp - 2) || (currentTemp > targetTemp + 2))
         {
           ReadTemperatureAndSetLabel();
@@ -250,7 +256,10 @@ namespace LukMachine
       //Progress("disable stop button"); 
 
       //Run main pump
-      Progress("Starting pump...");     
+      Progress("Starting pump...");
+      Pumps.SetPump2((Convert.ToInt32(Properties.Settings.Default.flowRate)) /10); //10 because 1000ml is 100% pump speed. 
+  
+      /* 
       if (Properties.Settings.Default.SelectedFlowRate == "Low")
       {
         //run main pump at low setting
@@ -266,7 +275,7 @@ namespace LukMachine
       {
         //run main pump at high setting
         COMMS.Instance.SetRegulator(1, (Convert.ToInt32(Properties.Settings.Default.HighPumpSetting)) * 4000 / 100);
-      }
+      }*/
 
       //Write data to file
       //InitializeTest();
@@ -324,9 +333,9 @@ namespace LukMachine
           abort = true;
           testPaused = true;
           //stop main pump
-          COMMS.Instance.ZeroRegulator(1);
+          Pumps.SetPump2(0);
           //open relief pressure valve
-          COMMS.Instance.MoveValve(2, "O");
+          Valves.OpenValve2();
           Progress("disable stop button");
           Progress("Machine has reached it's maximum pressure range! The test will be aborted.");
           Progress("Data saved to " + Properties.Settings.Default.TestData);
@@ -347,9 +356,9 @@ namespace LukMachine
           testPaused = true;
           overVolume = true;
           //stop main pump
-          COMMS.Instance.ZeroRegulator(1);
+          Pumps.SetPump2(0);
           //open relief pressure valve
-          COMMS.Instance.MoveValve(2, "O");
+          Valves.OpenValve2();
           Progress("disable stop button");
           Progress("Machine has reached it's maximum volume range, the test has stopped.");
           SR = new StreamWriter(dataFile, true);

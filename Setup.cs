@@ -127,6 +127,9 @@ namespace LukMachine
       {
         Properties.Settings.Default.SelectedFlowRate = "Low";
       }
+      
+      //
+
 
       //Save MaximumPressure
       /*try
@@ -187,12 +190,12 @@ namespace LukMachine
       if (radioButtonRingChamber.Checked)
       {
         Properties.Settings.Default.Chamber = "Ring";
-        COMMS.Instance.MoveValve(7, "O");//right chamber
+        Valves.OpenValve7();//right chamber
       }
       else if (radioButtonDiskChamber.Checked)
       {
         Properties.Settings.Default.Chamber = "Disk";
-        COMMS.Instance.MoveValve(7, "C");//left chamber
+        Valves.CloseValve7();//left chamber
       }
       if (Properties.Settings.Default.COMM != "Demo")
       {
@@ -201,21 +204,21 @@ namespace LukMachine
       //Open manifold valves
       if (Properties.Settings.Default.SelectedFlowRate == "Low")
       {
-        COMMS.Instance.MoveValve(4, "O");
-        COMMS.Instance.MoveValve(5, "C");
-        COMMS.Instance.MoveValve(6, "C");
+        Valves.OpenValve4();
+        Valves.CloseValve5();
+        Valves.CloseValve6();
       }
       if (Properties.Settings.Default.SelectedFlowRate == "Medium")
       {
-        COMMS.Instance.MoveValve(4, "C");
-        COMMS.Instance.MoveValve(5, "O");
-        COMMS.Instance.MoveValve(6, "C");
+        Valves.CloseValve4();
+        Valves.OpenValve5();
+        Valves.CloseValve6();
       }
       if (Properties.Settings.Default.SelectedFlowRate == "High")
       {
-        COMMS.Instance.MoveValve(4, "C");
-        COMMS.Instance.MoveValve(5, "C");
-        COMMS.Instance.MoveValve(6, "O");
+        Valves.CloseValve4();
+        Valves.CloseValve5();
+        Valves.OpenValve6();
       }
 
 
@@ -427,6 +430,41 @@ namespace LukMachine
         textBoxTemperature.Enabled = false;
       }
       Properties.Settings.Default.Save();
+    }
+
+    private void textBox4_TextChanged(object sender, EventArgs e)
+    {
+      Properties.Settings.Default.flowRate = textBox4.Text;
+      double flowrate = Convert.ToDouble(textBox4.Text);
+
+      if (flowrate >=0 && flowrate < 50)
+      {
+        radioButtonLow.Checked = true;
+        radioButtonMedium.Checked = false;
+        radioButtonHigh.Checked = false;
+      }
+      else if (flowrate >= 50 && flowrate < 200)
+      {
+        radioButtonLow.Checked = false;
+        radioButtonMedium.Checked = true;
+        radioButtonHigh.Checked = false;
+      }
+      else if (flowrate >= 200 && flowrate < 1000)
+      {
+        radioButtonLow.Checked = false;
+        radioButtonMedium.Checked = false;
+        radioButtonHigh.Checked = true;
+      }
+      else
+      {
+        MessageBox.Show("Value must be between 0 and 1000");
+      }
+
+    }
+
+    private void radioButtonHigh_CheckedChanged(object sender, EventArgs e)
+    {
+
     }
   }
 }

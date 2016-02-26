@@ -34,3 +34,4 @@ C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Wait.
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.DataSavedForm.resources
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\Microsoft.VisualBasic.PowerPacks.dll
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\Microsoft.VisualBasic.PowerPacks.xml
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.ManualWait.resources
