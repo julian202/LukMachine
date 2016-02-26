@@ -758,5 +758,17 @@ namespace LukMachine.Properties {
                 this["MainPumpStatePercent"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TargetPressure {
+            get {
+                return ((string)(this["TargetPressure"]));
+            }
+            set {
+                this["TargetPressure"] = value;
+            }
+        }
     }
 }

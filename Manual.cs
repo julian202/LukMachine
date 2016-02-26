@@ -48,6 +48,7 @@ namespace LukMachine
     double rawP1;
     bool MainPumpOn;
     bool RefillPumpOn;
+    int targetPressure = 0;
 
     private void Manual_Load(object sender, EventArgs e)
     {
@@ -68,6 +69,44 @@ namespace LukMachine
         RefillPumpOn = false;
       }
 
+      updateValveColors();
+      //updateValveColors doesn't do valve 7 just becuase it flickers so do it here now:
+      if (Properties.Settings.Default.Valve7State)
+      {
+        rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
+        Valve3wayToRight = true;
+      }
+      else
+      {
+        rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
+        Valve3wayToRight = false;
+      }
+
+
+      double conversionFactor = Properties.Settings.Default.PressureConversionFactor;
+      double maxVal = Properties.Settings.Default.p1Max;
+      double stepSize = (Math.Round(maxVal * conversionFactor)) / 5;
+      aGauge5.MaxValue = (float)Math.Round(maxVal, 2);
+      aGauge5.ScaleLinesMajorStepValue = (float)Math.Round(stepSize, 2);
+      aGauge5.RangesStartValue[2] = (float)(Math.Round(maxVal - stepSize, 2));
+      aGauge5.RangesEndValue[2] = (float)Math.Round(maxVal, 2);
+      aGauge1.MaxValue = (float)Math.Round(maxVal, 2);
+      aGauge1.ScaleLinesMajorStepValue = (float)Math.Round(stepSize, 2);
+      aGauge1.RangesStartValue[2] = (float)(Math.Round(maxVal - stepSize, 2));
+      aGauge1.RangesEndValue[2] = (float)Math.Round(maxVal, 2);
+      //Valve3wayToRight = true;
+      MainPumpOn = false;
+      //RefillPumpOn = false;
+      timer1.Enabled = true;
+
+    }
+
+    bool refilldone = false;
+    bool startRefill = false;
+    ManualWait form = new ManualWait();
+
+    private void updateValveColors()
+    {
       if (Properties.Settings.Default.Valve1State)
       {
         rectangleShape12.BackColor = Color.Green;
@@ -120,43 +159,13 @@ namespace LukMachine
       else
       {
         rectangleShape5.BackColor = Color.Brown;
-      }
-
-      if (Properties.Settings.Default.Valve7State)
-      {
-        rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-        Valve3wayToRight = true;
-      }
-      else
-      {
-        rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
-        Valve3wayToRight = false;
-      }
-
-      double conversionFactor = Properties.Settings.Default.PressureConversionFactor;
-      double maxVal = Properties.Settings.Default.p1Max;
-      double stepSize = (Math.Round(maxVal * conversionFactor)) / 5;
-      aGauge5.MaxValue = (float)Math.Round(maxVal, 2);
-      aGauge5.ScaleLinesMajorStepValue = (float)Math.Round(stepSize, 2);
-      aGauge5.RangesStartValue[2] = (float)(Math.Round(maxVal - stepSize, 2));
-      aGauge5.RangesEndValue[2] = (float)Math.Round(maxVal, 2);
-      aGauge1.MaxValue = (float)Math.Round(maxVal, 2);
-      aGauge1.ScaleLinesMajorStepValue = (float)Math.Round(stepSize, 2);
-      aGauge1.RangesStartValue[2] = (float)(Math.Round(maxVal - stepSize, 2));
-      aGauge1.RangesEndValue[2] = (float)Math.Round(maxVal, 2);
-      //Valve3wayToRight = true;
-      MainPumpOn = false;
-      //RefillPumpOn = false;
-      timer1.Enabled = true;
-
+      }     
     }
-
-    bool refilldone = false;
-    bool startRefill = false;
-    ManualWait form = new ManualWait();
 
     private void timer1_Tick(object sender, EventArgs e)
     {
+      updateValveColors();  //gets values from properties
+
       if (startRefill)
       {
         form.Show();
@@ -175,26 +184,7 @@ namespace LukMachine
         startRefill = false;
       }
 
-      //read pressure gauge, convert to PSI (will need to * by conversion factor and set units label later)
-      counts = COMMS.Instance.ReadPressureGauge(1);
-      realCounts = Convert.ToDouble(counts);
-      currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //twoVolt is 60000
-      outputPressure = currentPressure * pConversion;
-      p1Psi = outputPressure;
-      rawP1 = realCounts;
-      /*
-      double rawP1 = 0; // Convert.ToDouble(COMMS.Instance.ReadPressureGauge(1));
-      double p1Psi = (rawP1 - ground) * Properties.Settings.Default.p1Max / twoVolt;*/
-      aGauge5.Value = (float)p1Psi;
-      aGauge1.Value = (float)p1Psi;
-
-      if (p1Psi < 0)
-      {
-        p1Psi = 0;
-      }
-      label1.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
-      label30.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
-
+      
       //read penetrometers
       int ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
       groupBoxReservoir.Text = "Reservoir " + ReservoirPercent.ToString() + "% Full";
@@ -206,10 +196,22 @@ namespace LukMachine
       label2.Text = "Penetrometer 1: " + COMMS.Instance.getReservoirLevelCount() + " (" + ReservoirPercent.ToString() + "%)"; //is COMMS.Instance.MotorValvePosition(1);
       label3.Text = "Penetrometer 2: " + COMMS.Instance.getCollectedLevelCount() + " (" + CollectedPercent.ToString() + "%)"; //is COMMS.Instance.MotorValvePosition(2);
 
-      verticalProgressBar1.Value = ReservoirPercent;
-      verticalProgressBar2.Value = CollectedPercent;
-      verticalProgressBar3.Value = CollectedPercent;
-      verticalProgressBar4.Value = ReservoirPercent;
+
+      try
+      {
+        verticalProgressBar1.Value = ReservoirPercent;
+        verticalProgressBar2.Value = CollectedPercent;
+        verticalProgressBar3.Value = CollectedPercent;
+        verticalProgressBar4.Value = ReservoirPercent;
+      }
+      catch (Exception)
+      {
+
+
+      }
+
+      //update valve colors:
+      updateValveColors();  //gets values from properties
 
 
       //maybe read temperatures...
@@ -391,17 +393,6 @@ namespace LukMachine
       openValve = true;
     }
 
-    private void timer2_Tick(object sender, EventArgs e)
-    {
-      groupBox9.Enabled = false;
-
-
-    }
-
-    private void timer3_Tick(object sender, EventArgs e)
-    {
-
-    }
 
     private void trackBar1_ValueChanged(object sender, EventArgs e)
     {
@@ -925,6 +916,110 @@ namespace LukMachine
     {
 
 
+
+    }
+
+    private void rectangleShape5_MouseHover(object sender, EventArgs e)
+    {
+      //rectangleShape5
+    }
+
+    private void buttonSetRate_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void textBox7_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void button23_Click_1(object sender, EventArgs e)
+    {
+      try
+      {
+        targetPressure = Convert.ToInt32(textBox7.Text);
+        Properties.Settings.Default.TargetPressure = targetPressure.ToString();
+      }
+      catch (Exception)
+      {
+        targetPressure = 0;
+        Properties.Settings.Default.TargetPressure = "0";
+        MessageBox.Show("Please enter an integer number for target pressure ");
+      }
+
+      if (targetPressure >= 0 && targetPressure < 33)
+      {
+        Valves.OpenValve4();
+        Valves.CloseValve5();
+        Valves.CloseValve6();
+      }
+      if (targetPressure >= 33 && targetPressure < 66)
+      {
+        Valves.CloseValve4();
+        Valves.OpenValve5();
+        Valves.CloseValve6();
+      }
+      if (targetPressure >= 66)
+      {
+        Valves.CloseValve4();
+        Valves.CloseValve5();
+        Valves.OpenValve6();
+      }
+
+
+    }
+
+    private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+    {
+
+    }
+
+    private void timer2_Tick(object sender, EventArgs e)
+    {
+      readPressureAndDisplayIt(); //this also sets the currentPressure.
+      if (checkBoxTargetPressure.Checked)
+      {     
+        //MessageBox.Show("d");
+        if (targetPressure > currentPressure)
+        {
+          Pumps.IncreaseMainPump(1);
+        }
+        else if (targetPressure < currentPressure)
+        {
+          Pumps.DecreaseMainPump(1);
+        }
+        else
+        {
+
+        }
+        label17.Text = "Pump "+ Properties.Settings.Default.MainPumpStatePercent+"%";
+
+
+      }
+    }
+
+    private void readPressureAndDisplayIt()
+    {
+      //read pressure gauge, convert to PSI (will need to * by conversion factor and set units label later)
+      counts = COMMS.Instance.ReadPressureGauge(1);
+      realCounts = Convert.ToDouble(counts);
+      currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //twoVolt is 60000
+      outputPressure = currentPressure * pConversion;
+      p1Psi = outputPressure;
+      rawP1 = realCounts;
+      /*
+      double rawP1 = 0; // Convert.ToDouble(COMMS.Instance.ReadPressureGauge(1));
+      double p1Psi = (rawP1 - ground) * Properties.Settings.Default.p1Max / twoVolt;*/
+      // aGauge5.Value = (float)p1Psi;
+      aGauge1.Value = (float)p1Psi;
+      if (p1Psi < 0)
+      {
+        p1Psi = 0;
+      }
+      //label1.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
+      //label30.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
+      groupBox13.Text = "Current Pressure: " + p1Psi.ToString("#0.000") + " PSI (" + rawP1.ToString() + " cts)";
 
     }
   }

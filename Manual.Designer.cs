@@ -36,7 +36,6 @@
       this.button18 = new System.Windows.Forms.Button();
       this.comboBox2 = new System.Windows.Forms.ComboBox();
       this.timer2 = new System.Windows.Forms.Timer(this.components);
-      this.timer3 = new System.Windows.Forms.Timer(this.components);
       this.groupBox1 = new System.Windows.Forms.GroupBox();
       this.pictureBox3 = new System.Windows.Forms.PictureBox();
       this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -87,14 +86,22 @@
       this.aGauge5 = new AGaugeApp.AGauge();
       this.groupBox6 = new System.Windows.Forms.GroupBox();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.groupBoxCollected = new System.Windows.Forms.GroupBox();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.label8 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.label33 = new System.Windows.Forms.Label();
+      this.groupBox5 = new System.Windows.Forms.GroupBox();
+      this.checkBoxTargetPressure = new System.Windows.Forms.CheckBox();
+      this.button23 = new System.Windows.Forms.Button();
+      this.label32 = new System.Windows.Forms.Label();
+      this.textBox7 = new System.Windows.Forms.TextBox();
+      this.label30 = new System.Windows.Forms.Label();
       this.groupBox13 = new System.Windows.Forms.GroupBox();
       this.aGauge1 = new AGaugeApp.AGauge();
-      this.label30 = new System.Windows.Forms.Label();
       this.groupBox10 = new System.Windows.Forms.GroupBox();
       this.checkBoxHeatSystem = new System.Windows.Forms.CheckBox();
       this.labelSetTemp = new System.Windows.Forms.Label();
@@ -123,15 +130,17 @@
       this.label29 = new System.Windows.Forms.Label();
       this.label28 = new System.Windows.Forms.Label();
       this.label27 = new System.Windows.Forms.Label();
+      this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
       this.label23 = new System.Windows.Forms.Label();
       this.label22 = new System.Windows.Forms.Label();
       this.label21 = new System.Windows.Forms.Label();
       this.label20 = new System.Windows.Forms.Label();
-      this.label19 = new System.Windows.Forms.Label();
+      this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
       this.label18 = new System.Windows.Forms.Label();
       this.label9 = new System.Windows.Forms.Label();
       this.label17 = new System.Windows.Forms.Label();
       this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+      this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
       this.rectangleShape20 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.rectangleShape16 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.rectangleShape6 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
@@ -159,10 +168,6 @@
       this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-      this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
-      this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
-      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
-      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.groupBox9.SuspendLayout();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -180,6 +185,7 @@
       this.groupBoxCollected.SuspendLayout();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
+      this.groupBox5.SuspendLayout();
       this.groupBox13.SuspendLayout();
       this.groupBox10.SuspendLayout();
       this.groupBox12.SuspendLayout();
@@ -250,11 +256,9 @@
       // 
       // timer2
       // 
+      this.timer2.Enabled = true;
+      this.timer2.Interval = 500;
       this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-      // 
-      // timer3
-      // 
-      this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
       // 
       // groupBox1
       // 
@@ -931,6 +935,13 @@
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir Volume";
       // 
+      // verticalProgressBar1
+      // 
+      this.verticalProgressBar1.Location = new System.Drawing.Point(63, 35);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
+      this.verticalProgressBar1.TabIndex = 43;
+      // 
       // groupBoxCollected
       // 
       this.groupBoxCollected.Controls.Add(this.verticalProgressBar2);
@@ -940,6 +951,13 @@
       this.groupBoxCollected.TabIndex = 41;
       this.groupBoxCollected.TabStop = false;
       this.groupBoxCollected.Text = "Collected Volume";
+      // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(70, 36);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
+      this.verticalProgressBar2.TabIndex = 44;
       // 
       // label8
       // 
@@ -974,6 +992,8 @@
       // tabPage1
       // 
       this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+      this.tabPage1.Controls.Add(this.label33);
+      this.tabPage1.Controls.Add(this.groupBox5);
       this.tabPage1.Controls.Add(this.groupBox13);
       this.tabPage1.Controls.Add(this.groupBox10);
       this.tabPage1.Controls.Add(this.button21);
@@ -992,7 +1012,6 @@
       this.tabPage1.Controls.Add(this.label21);
       this.tabPage1.Controls.Add(this.label20);
       this.tabPage1.Controls.Add(this.verticalProgressBar3);
-      this.tabPage1.Controls.Add(this.label19);
       this.tabPage1.Controls.Add(this.label18);
       this.tabPage1.Controls.Add(this.label9);
       this.tabPage1.Controls.Add(this.label17);
@@ -1004,16 +1023,85 @@
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "Diagram Control";
       // 
+      // label33
+      // 
+      this.label33.AutoSize = true;
+      this.label33.Location = new System.Drawing.Point(152, 120);
+      this.label33.Name = "label33";
+      this.label33.Size = new System.Drawing.Size(180, 25);
+      this.label33.TabIndex = 77;
+      this.label33.Text = "Collected Volume";
+      // 
+      // groupBox5
+      // 
+      this.groupBox5.Controls.Add(this.checkBoxTargetPressure);
+      this.groupBox5.Controls.Add(this.button23);
+      this.groupBox5.Controls.Add(this.label32);
+      this.groupBox5.Controls.Add(this.textBox7);
+      this.groupBox5.Controls.Add(this.label30);
+      this.groupBox5.Location = new System.Drawing.Point(723, 195);
+      this.groupBox5.Name = "groupBox5";
+      this.groupBox5.Size = new System.Drawing.Size(396, 64);
+      this.groupBox5.TabIndex = 76;
+      this.groupBox5.TabStop = false;
+      // 
+      // checkBoxTargetPressure
+      // 
+      this.checkBoxTargetPressure.AutoSize = true;
+      this.checkBoxTargetPressure.Location = new System.Drawing.Point(13, 28);
+      this.checkBoxTargetPressure.Name = "checkBoxTargetPressure";
+      this.checkBoxTargetPressure.Size = new System.Drawing.Size(22, 21);
+      this.checkBoxTargetPressure.TabIndex = 76;
+      this.checkBoxTargetPressure.UseVisualStyleBackColor = true;
+      // 
+      // button23
+      // 
+      this.button23.Location = new System.Drawing.Point(322, 22);
+      this.button23.Name = "button23";
+      this.button23.Size = new System.Drawing.Size(61, 32);
+      this.button23.TabIndex = 16;
+      this.button23.Text = "Go";
+      this.button23.UseVisualStyleBackColor = true;
+      this.button23.Click += new System.EventHandler(this.button23_Click_1);
+      // 
+      // label32
+      // 
+      this.label32.AutoSize = true;
+      this.label32.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label32.Location = new System.Drawing.Point(39, 26);
+      this.label32.Name = "label32";
+      this.label32.Size = new System.Drawing.Size(171, 25);
+      this.label32.TabIndex = 75;
+      this.label32.Text = "Target Pressure:";
+      // 
+      // textBox7
+      // 
+      this.textBox7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.textBox7.Location = new System.Drawing.Point(214, 24);
+      this.textBox7.Name = "textBox7";
+      this.textBox7.Size = new System.Drawing.Size(53, 30);
+      this.textBox7.TabIndex = 73;
+      this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
+      // 
+      // label30
+      // 
+      this.label30.AutoSize = true;
+      this.label30.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label30.Location = new System.Drawing.Point(273, 27);
+      this.label30.Name = "label30";
+      this.label30.Size = new System.Drawing.Size(42, 23);
+      this.label30.TabIndex = 74;
+      this.label30.Text = "PSI";
+      // 
       // groupBox13
       // 
       this.groupBox13.Controls.Add(this.aGauge1);
-      this.groupBox13.Controls.Add(this.label30);
-      this.groupBox13.Location = new System.Drawing.Point(721, 232);
+      this.groupBox13.Location = new System.Drawing.Point(723, 265);
       this.groupBox13.Name = "groupBox13";
-      this.groupBox13.Size = new System.Drawing.Size(363, 194);
+      this.groupBox13.Size = new System.Drawing.Size(396, 161);
       this.groupBox13.TabIndex = 74;
       this.groupBox13.TabStop = false;
-      this.groupBox13.Text = "Pressure (PSI)";
+      this.groupBox13.Text = "Current Pressure (PSI)";
       // 
       // aGauge1
       // 
@@ -1044,7 +1132,7 @@
         ""};
       this.aGauge1.CapText = "";
       this.aGauge1.Center = new System.Drawing.Point(140, 170);
-      this.aGauge1.Location = new System.Drawing.Point(36, 33);
+      this.aGauge1.Location = new System.Drawing.Point(53, 29);
       this.aGauge1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.aGauge1.MaxValue = 60000F;
       this.aGauge1.MinValue = 0F;
@@ -1117,28 +1205,17 @@
       this.aGauge1.ScaleNumbersRotation = 90;
       this.aGauge1.ScaleNumbersStartScaleLine = 0;
       this.aGauge1.ScaleNumbersStepScaleLines = 1;
-      this.aGauge1.Size = new System.Drawing.Size(294, 122);
+      this.aGauge1.Size = new System.Drawing.Size(299, 122);
       this.aGauge1.TabIndex = 26;
       this.aGauge1.Text = "confiningGauge";
       this.aGauge1.Value = 0F;
-      // 
-      // label30
-      // 
-      this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label30.Location = new System.Drawing.Point(36, 151);
-      this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-      this.label30.Name = "label30";
-      this.label30.Size = new System.Drawing.Size(294, 37);
-      this.label30.TabIndex = 27;
-      this.label30.Text = "100.00 PSI | 60000 cts";
-      this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // groupBox10
       // 
       this.groupBox10.Controls.Add(this.checkBoxHeatSystem);
       this.groupBox10.Controls.Add(this.labelSetTemp);
       this.groupBox10.Controls.Add(this.textBoxTemp);
-      this.groupBox10.Location = new System.Drawing.Point(175, 21);
+      this.groupBox10.Location = new System.Drawing.Point(158, 23);
       this.groupBox10.Name = "groupBox10";
       this.groupBox10.Size = new System.Drawing.Size(174, 85);
       this.groupBox10.TabIndex = 73;
@@ -1179,11 +1256,11 @@
       // button21
       // 
       this.button21.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button21.Location = new System.Drawing.Point(888, 154);
+      this.button21.Location = new System.Drawing.Point(109, 252);
       this.button21.Name = "button21";
-      this.button21.Size = new System.Drawing.Size(239, 64);
+      this.button21.Size = new System.Drawing.Size(107, 125);
       this.button21.TabIndex = 69;
-      this.button21.Text = "Pump collected volume back to reservoir";
+      this.button21.Text = "Pump Collected back to Reservoir ";
       this.button21.UseVisualStyleBackColor = true;
       this.button21.Click += new System.EventHandler(this.button21_Click_1);
       // 
@@ -1203,7 +1280,7 @@
       // 
       this.checkBox3.AutoSize = true;
       this.checkBox3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBox3.Location = new System.Drawing.Point(650, 192);
+      this.checkBox3.Location = new System.Drawing.Point(933, 159);
       this.checkBox3.Margin = new System.Windows.Forms.Padding(4);
       this.checkBox3.Name = "checkBox3";
       this.checkBox3.Size = new System.Drawing.Size(173, 27);
@@ -1215,7 +1292,7 @@
       // 
       this.checkBox2.AutoSize = true;
       this.checkBox2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBox2.Location = new System.Drawing.Point(650, 161);
+      this.checkBox2.Location = new System.Drawing.Point(660, 161);
       this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
       this.checkBox2.Name = "checkBox2";
       this.checkBox2.Size = new System.Drawing.Size(231, 27);
@@ -1244,11 +1321,11 @@
       this.groupBox12.Controls.Add(this.button26);
       this.groupBox12.Controls.Add(this.button27);
       this.groupBox12.Controls.Add(this.trackBar3);
-      this.groupBox12.Location = new System.Drawing.Point(721, 434);
+      this.groupBox12.Location = new System.Drawing.Point(723, 434);
       this.groupBox12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.groupBox12.Name = "groupBox12";
       this.groupBox12.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.groupBox12.Size = new System.Drawing.Size(363, 121);
+      this.groupBox12.Size = new System.Drawing.Size(396, 121);
       this.groupBox12.TabIndex = 59;
       this.groupBox12.TabStop = false;
       this.groupBox12.Text = "Main Pump (Pump 2, 0-10V out1)";
@@ -1256,7 +1333,7 @@
       // button22
       // 
       this.button22.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button22.Location = new System.Drawing.Point(266, 78);
+      this.button22.Location = new System.Drawing.Point(279, 78);
       this.button22.Name = "button22";
       this.button22.Size = new System.Drawing.Size(84, 32);
       this.button22.TabIndex = 15;
@@ -1266,7 +1343,7 @@
       // 
       // button24
       // 
-      this.button24.Location = new System.Drawing.Point(110, 78);
+      this.button24.Location = new System.Drawing.Point(123, 78);
       this.button24.Name = "button24";
       this.button24.Size = new System.Drawing.Size(70, 32);
       this.button24.TabIndex = 13;
@@ -1277,7 +1354,7 @@
       // label31
       // 
       this.label31.AutoSize = true;
-      this.label31.Location = new System.Drawing.Point(313, 37);
+      this.label31.Location = new System.Drawing.Point(326, 37);
       this.label31.Name = "label31";
       this.label31.Size = new System.Drawing.Size(32, 25);
       this.label31.TabIndex = 11;
@@ -1285,7 +1362,7 @@
       // 
       // textBox6
       // 
-      this.textBox6.Location = new System.Drawing.Point(258, 34);
+      this.textBox6.Location = new System.Drawing.Point(271, 34);
       this.textBox6.Name = "textBox6";
       this.textBox6.Size = new System.Drawing.Size(49, 33);
       this.textBox6.TabIndex = 10;
@@ -1296,7 +1373,7 @@
       // 
       // button26
       // 
-      this.button26.Location = new System.Drawing.Point(25, 78);
+      this.button26.Location = new System.Drawing.Point(38, 78);
       this.button26.Name = "button26";
       this.button26.Size = new System.Drawing.Size(84, 32);
       this.button26.TabIndex = 9;
@@ -1306,7 +1383,7 @@
       // 
       // button27
       // 
-      this.button27.Location = new System.Drawing.Point(181, 78);
+      this.button27.Location = new System.Drawing.Point(194, 78);
       this.button27.Name = "button27";
       this.button27.Size = new System.Drawing.Size(84, 32);
       this.button27.TabIndex = 8;
@@ -1317,7 +1394,7 @@
       // trackBar3
       // 
       this.trackBar3.LargeChange = 100;
-      this.trackBar3.Location = new System.Drawing.Point(15, 37);
+      this.trackBar3.Location = new System.Drawing.Point(28, 37);
       this.trackBar3.Margin = new System.Windows.Forms.Padding(4);
       this.trackBar3.Maximum = 4000;
       this.trackBar3.Name = "trackBar3";
@@ -1413,7 +1490,7 @@
       // label29
       // 
       this.label29.AutoSize = true;
-      this.label29.Location = new System.Drawing.Point(366, 449);
+      this.label29.Location = new System.Drawing.Point(366, 418);
       this.label29.Name = "label29";
       this.label29.Size = new System.Drawing.Size(70, 25);
       this.label29.TabIndex = 56;
@@ -1422,7 +1499,8 @@
       // label28
       // 
       this.label28.AutoSize = true;
-      this.label28.Location = new System.Drawing.Point(157, 154);
+      this.label28.BackColor = System.Drawing.Color.Transparent;
+      this.label28.Location = new System.Drawing.Point(152, 153);
       this.label28.Name = "label28";
       this.label28.Size = new System.Drawing.Size(70, 25);
       this.label28.TabIndex = 55;
@@ -1431,17 +1509,25 @@
       // label27
       // 
       this.label27.AutoSize = true;
-      this.label27.Location = new System.Drawing.Point(366, 418);
+      this.label27.Location = new System.Drawing.Point(366, 387);
       this.label27.Name = "label27";
       this.label27.Size = new System.Drawing.Size(106, 25);
       this.label27.TabIndex = 54;
       this.label27.Text = "Reservoir";
       // 
+      // verticalProgressBar4
+      // 
+      this.verticalProgressBar4.Location = new System.Drawing.Point(265, 291);
+      this.verticalProgressBar4.Name = "verticalProgressBar4";
+      this.verticalProgressBar4.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar4.TabIndex = 50;
+      this.verticalProgressBar4.Click += new System.EventHandler(this.verticalProgressBar4_Click);
+      // 
       // label23
       // 
       this.label23.AutoSize = true;
       this.label23.BackColor = System.Drawing.Color.Gray;
-      this.label23.Location = new System.Drawing.Point(549, 489);
+      this.label23.Location = new System.Drawing.Point(450, 484);
       this.label23.Name = "label23";
       this.label23.Size = new System.Drawing.Size(59, 25);
       this.label23.TabIndex = 49;
@@ -1476,14 +1562,13 @@
       this.label20.TabIndex = 46;
       this.label20.Text = "Outlet";
       // 
-      // label19
+      // verticalProgressBar3
       // 
-      this.label19.AutoSize = true;
-      this.label19.Location = new System.Drawing.Point(157, 123);
-      this.label19.Name = "label19";
-      this.label19.Size = new System.Drawing.Size(180, 25);
-      this.label19.TabIndex = 5;
-      this.label19.Text = "Collected Volume";
+      this.verticalProgressBar3.Location = new System.Drawing.Point(47, 49);
+      this.verticalProgressBar3.Name = "verticalProgressBar3";
+      this.verticalProgressBar3.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar3.TabIndex = 45;
+      this.verticalProgressBar3.Click += new System.EventHandler(this.verticalProgressBar3_Click);
       // 
       // label18
       // 
@@ -1507,7 +1592,7 @@
       // 
       this.label17.AutoSize = true;
       this.label17.BackColor = System.Drawing.Color.Gray;
-      this.label17.Location = new System.Drawing.Point(542, 518);
+      this.label17.Location = new System.Drawing.Point(443, 513);
       this.label17.Name = "label17";
       this.label17.Size = new System.Drawing.Size(106, 25);
       this.label17.TabIndex = 2;
@@ -1519,6 +1604,7 @@
       this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
       this.shapeContainer1.Name = "shapeContainer1";
       this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.lineShape2,
             this.rectangleShape20,
             this.rectangleShape16,
             this.rectangleShape6,
@@ -1547,6 +1633,15 @@
       this.shapeContainer1.Size = new System.Drawing.Size(1142, 561);
       this.shapeContainer1.TabIndex = 0;
       this.shapeContainer1.TabStop = false;
+      // 
+      // lineShape2
+      // 
+      this.lineShape2.BorderWidth = 3;
+      this.lineShape2.Name = "lineShape2";
+      this.lineShape2.X1 = 95;
+      this.lineShape2.X2 = 95;
+      this.lineShape2.Y1 = 37;
+      this.lineShape2.Y2 = 10;
       // 
       // rectangleShape20
       // 
@@ -1582,7 +1677,7 @@
       this.rectangleShape15.BackColor = System.Drawing.Color.Gray;
       this.rectangleShape15.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
       this.rectangleShape15.BorderWidth = 3;
-      this.rectangleShape15.Location = new System.Drawing.Point(516, 465);
+      this.rectangleShape15.Location = new System.Drawing.Point(418, 464);
       this.rectangleShape15.Name = "rectangleShape15";
       this.rectangleShape15.Size = new System.Drawing.Size(147, 89);
       this.rectangleShape15.Click += new System.EventHandler(this.rectangleShape15_Click);
@@ -1592,7 +1687,7 @@
       this.lineShape9.BorderWidth = 3;
       this.lineShape9.Name = "lineShape9";
       this.lineShape9.X1 = 127;
-      this.lineShape9.X2 = 544;
+      this.lineShape9.X2 = 589;
       this.lineShape9.Y1 = 518;
       this.lineShape9.Y2 = 518;
       // 
@@ -1619,8 +1714,8 @@
       // 
       this.lineShape7.BorderWidth = 3;
       this.lineShape7.Name = "lineShape7";
-      this.lineShape7.X1 = 214;
-      this.lineShape7.X2 = 214;
+      this.lineShape7.X1 = 228;
+      this.lineShape7.X2 = 228;
       this.lineShape7.Y1 = 431;
       this.lineShape7.Y2 = 258;
       // 
@@ -1639,7 +1734,7 @@
       this.lineShape6.BorderWidth = 3;
       this.lineShape6.Name = "lineShape6";
       this.lineShape6.X1 = 140;
-      this.lineShape6.X2 = 214;
+      this.lineShape6.X2 = 228;
       this.lineShape6.Y1 = 431;
       this.lineShape6.Y2 = 431;
       // 
@@ -1647,7 +1742,7 @@
       // 
       this.lineShape5.BorderWidth = 3;
       this.lineShape5.Name = "lineShape5";
-      this.lineShape5.X1 = 214;
+      this.lineShape5.X1 = 228;
       this.lineShape5.X2 = 589;
       this.lineShape5.Y1 = 258;
       this.lineShape5.Y2 = 258;
@@ -1656,7 +1751,7 @@
       // 
       this.rectangleShape13.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
       this.rectangleShape13.BorderWidth = 3;
-      this.rectangleShape13.Location = new System.Drawing.Point(45, 37);
+      this.rectangleShape13.Location = new System.Drawing.Point(36, 37);
       this.rectangleShape13.Name = "rectangleShape13";
       this.rectangleShape13.Size = new System.Drawing.Size(99, 198);
       // 
@@ -1665,7 +1760,7 @@
       this.rectangleShape12.BackColor = System.Drawing.Color.Brown;
       this.rectangleShape12.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
       this.rectangleShape12.BorderWidth = 3;
-      this.rectangleShape12.Location = new System.Drawing.Point(64, 269);
+      this.rectangleShape12.Location = new System.Drawing.Point(32, 269);
       this.rectangleShape12.Name = "rectangleShape12";
       this.rectangleShape12.Size = new System.Drawing.Size(60, 83);
       this.rectangleShape12.Click += new System.EventHandler(this.rectangleShape12_Click);
@@ -1674,10 +1769,10 @@
       // 
       this.lineShape4.BorderWidth = 3;
       this.lineShape4.Name = "lineShape4";
-      this.lineShape4.X1 = 94;
-      this.lineShape4.X2 = 94;
-      this.lineShape4.Y1 = 433;
-      this.lineShape4.Y2 = 10;
+      this.lineShape4.X1 = 62;
+      this.lineShape4.X2 = 62;
+      this.lineShape4.Y1 = 393;
+      this.lineShape4.Y2 = 234;
       // 
       // lineShape1
       // 
@@ -1741,6 +1836,7 @@
       this.rectangleShape5.Name = "rectangleShape5";
       this.rectangleShape5.Size = new System.Drawing.Size(60, 83);
       this.rectangleShape5.Click += new System.EventHandler(this.rectangleShape5_Click);
+      this.rectangleShape5.MouseHover += new System.EventHandler(this.rectangleShape5_MouseHover);
       // 
       // rectangleShape4
       // 
@@ -1768,7 +1864,7 @@
       this.lineShape3.Name = "lineShape3";
       this.lineShape3.X1 = 589;
       this.lineShape3.X2 = 589;
-      this.lineShape3.Y1 = 483;
+      this.lineShape3.Y1 = 518;
       this.lineShape3.Y2 = 151;
       // 
       // rectangleShape3
@@ -1797,35 +1893,9 @@
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Other Controls";
       // 
-      // verticalProgressBar4
+      // backgroundWorker1
       // 
-      this.verticalProgressBar4.Location = new System.Drawing.Point(265, 291);
-      this.verticalProgressBar4.Name = "verticalProgressBar4";
-      this.verticalProgressBar4.Size = new System.Drawing.Size(84, 180);
-      this.verticalProgressBar4.TabIndex = 50;
-      this.verticalProgressBar4.Click += new System.EventHandler(this.verticalProgressBar4_Click);
-      // 
-      // verticalProgressBar3
-      // 
-      this.verticalProgressBar3.Location = new System.Drawing.Point(56, 49);
-      this.verticalProgressBar3.Name = "verticalProgressBar3";
-      this.verticalProgressBar3.Size = new System.Drawing.Size(84, 180);
-      this.verticalProgressBar3.TabIndex = 45;
-      this.verticalProgressBar3.Click += new System.EventHandler(this.verticalProgressBar3_Click);
-      // 
-      // verticalProgressBar1
-      // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(63, 35);
-      this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
-      this.verticalProgressBar1.TabIndex = 43;
-      // 
-      // verticalProgressBar2
-      // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(70, 36);
-      this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
-      this.verticalProgressBar2.TabIndex = 44;
+      this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
       // 
       // Manual
       // 
@@ -1865,6 +1935,8 @@
       this.tabControl1.ResumeLayout(false);
       this.tabPage1.ResumeLayout(false);
       this.tabPage1.PerformLayout();
+      this.groupBox5.ResumeLayout(false);
+      this.groupBox5.PerformLayout();
       this.groupBox13.ResumeLayout(false);
       this.groupBox10.ResumeLayout(false);
       this.groupBox10.PerformLayout();
@@ -1886,7 +1958,6 @@
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button1;
@@ -1954,7 +2025,6 @@
     private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape3;
     private System.ComponentModel.BackgroundWorker backgroundWorker1;
     private VerticalProgressBar verticalProgressBar3;
-    private System.Windows.Forms.Label label19;
     private System.Windows.Forms.Label label18;
     private System.Windows.Forms.Label label9;
     private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape13;
@@ -1993,7 +2063,6 @@
     private System.Windows.Forms.Label label28;
     private System.Windows.Forms.GroupBox groupBox11;
     private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
-    private System.Windows.Forms.Label label30;
     private AGaugeApp.AGauge aGauge1;
     private System.Windows.Forms.GroupBox groupBox12;
     private System.Windows.Forms.Button button22;
@@ -2013,5 +2082,13 @@
     private System.Windows.Forms.Label labelSetTemp;
     private System.Windows.Forms.GroupBox groupBox10;
     private System.Windows.Forms.GroupBox groupBox13;
+    private System.Windows.Forms.GroupBox groupBox5;
+    private System.Windows.Forms.Label label32;
+    private System.Windows.Forms.TextBox textBox7;
+    private System.Windows.Forms.Label label30;
+    private Microsoft.VisualBasic.PowerPacks.LineShape lineShape2;
+    private System.Windows.Forms.Label label33;
+    private System.Windows.Forms.Button button23;
+    private System.Windows.Forms.CheckBox checkBoxTargetPressure;
   }
 }

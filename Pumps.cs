@@ -24,7 +24,31 @@ namespace LukMachine
       Properties.Settings.Default.MainPumpStatePercent = percent;
     }
 
-    
+    public static void IncreaseMainPump(int percent) //Increases MainPump by percent %
+    {
+      if ((Properties.Settings.Default.MainPumpStatePercent + percent)<=100) //becuase pump can't be less than 0.
+      {
+        SetPump2(Properties.Settings.Default.MainPumpStatePercent + percent);
+      }
+      else
+      {
+        System.Diagnostics.Debug.WriteLine("can't make pump 2 higher than 100%");
+      }
+    }
+
+    public static void DecreaseMainPump(int percent) //Increases MainPump by percent %
+    {
+      if (Properties.Settings.Default.MainPumpStatePercent>= percent) //becuase pump can't be less than 0.
+      {
+        SetPump2(Properties.Settings.Default.MainPumpStatePercent - percent);
+      }
+      else
+      {
+        System.Diagnostics.Debug.WriteLine("can't make pump 2 lower than 0%");
+      }
+      
+    }
+
   }
 
 

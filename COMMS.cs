@@ -719,6 +719,10 @@ namespace LukMachine
       Send("A" + channel.ToString() + amount.ToString("0000"));
     }
 
+
+  
+
+
     public void IncreaseRegulator(int channel, int amount)
     {
 

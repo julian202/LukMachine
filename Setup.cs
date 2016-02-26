@@ -57,6 +57,8 @@ namespace LukMachine
 
     private void button1_Click(object sender, EventArgs e)
     {
+      this.Close();
+      /*
       DialogResult result = MessageBox.Show("You are about to exit the test setup window, would you like to save your current test setup?", "Note", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
       if (result == DialogResult.Yes)
       {
@@ -76,7 +78,7 @@ namespace LukMachine
       {
         //this.DialogResult = DialogResult.Cancel;
         return;
-      }
+      }*/
     }
 
 
@@ -353,8 +355,8 @@ namespace LukMachine
         textBox1.Text = sampleID;
       }
 
-      textBox3.Text = Properties.Settings.Default.TestMaximumPressure.ToString();
-      textBox5.Text = Properties.Settings.Default.TestRate.ToString();
+      //textBox3.Text = Properties.Settings.Default.TestMaximumPressure.ToString();
+      //textBox5.Text = Properties.Settings.Default.TestRate.ToString();
       //textBox4.Text = Properties.Settings.Default.TestDetection.ToString();
     }
     /*
@@ -434,6 +436,7 @@ namespace LukMachine
 
     private void textBox4_TextChanged(object sender, EventArgs e)
     {
+      /*
       Properties.Settings.Default.flowRate = textBox4.Text;
       double flowrate = Convert.ToDouble(textBox4.Text);
 
@@ -459,10 +462,15 @@ namespace LukMachine
       {
         MessageBox.Show("Value must be between 0 and 1000");
       }
-
+      */
     }
 
     private void radioButtonHigh_CheckedChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void textBoxTemperature_TextChanged(object sender, EventArgs e)
     {
 
     }
