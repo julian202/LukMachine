@@ -10,12 +10,12 @@ namespace LukMachine
   {
     public static void StartPump1()
     {
-      COMMS.Instance.MoveMotorValve(1, "O");
+      COMMS.Instance.MoveMotorValve(3, "O");
       Properties.Settings.Default.RefillPumpState = true;
     }
     public static void StopPump1()
     {
-      COMMS.Instance.MoveMotorValve(1, "S");
+      COMMS.Instance.MoveMotorValve(3, "S");
       Properties.Settings.Default.RefillPumpState = false;
     }
     public static void SetPump2(int percent)

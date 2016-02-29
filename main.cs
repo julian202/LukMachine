@@ -129,18 +129,20 @@ namespace LukMachine
 
     public void stopPumpCloseValves() //this looks like it's not working
     {
+      /*
       //stop main pump
       Pumps.SetPump2(0);
       //stop refill pump
       COMMS.Instance.MoveMotorValve(1, "S");  
-      /*close all 3 valves?
-      */
+      //close all 3 valves?
+      
       //close drain valve
       Valves.CloseValve3();
       //close relief pressure valve
       Valves.CloseValve2();
       //close pent valve so that it wont drain
       Valves.CloseValve1();
+*/
     }
 
     private void button5_Click(object sender, EventArgs e)

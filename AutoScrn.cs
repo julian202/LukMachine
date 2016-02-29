@@ -224,7 +224,7 @@ namespace LukMachine
       listBox1.TopIndex = listBox1.Items.Count - 1;
       Thread.Sleep(2000);
       listBox1.TopIndex = listBox1.Items.Count - 1;
-      listBox1.Items.Add("You can close this window now");
+      listBox1.Items.Add("You may close this window now");
       listBox1.TopIndex = listBox1.Items.Count - 1;
       //System.Windows.Forms.MessageBox.Show("Data saved to " + Properties.Settings.Default.TestData);
       DataSavedForm Form = new DataSavedForm();

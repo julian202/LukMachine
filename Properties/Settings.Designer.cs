@@ -770,5 +770,71 @@ namespace LukMachine.Properties {
                 this["TargetPressure"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TextboxPressure {
+            get {
+                return ((string)(this["TextboxPressure"]));
+            }
+            set {
+                this["TextboxPressure"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TextboxDuration {
+            get {
+                return ((string)(this["TextboxDuration"]));
+            }
+            set {
+                this["TextboxDuration"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>0</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection CollectionPressure {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["CollectionPressure"]));
+            }
+            set {
+                this["CollectionPressure"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>0</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection CollectionDuration {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["CollectionDuration"]));
+            }
+            set {
+                this["CollectionDuration"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>0</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection CollectionTemperature {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["CollectionTemperature"]));
+            }
+            set {
+                this["CollectionTemperature"] = value;
+            }
+        }
     }
 }

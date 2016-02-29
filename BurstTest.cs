@@ -58,7 +58,10 @@ namespace LukMachine
       //make sure pump is stopped
       Progress("Initiliazing test...");
       PassThrough('A', stopPumpCMD);
-      COMMS.Instance.MoveMotorValve(1, "C");
+
+      //COMMS.Instance.MoveMotorValve(1, "C");
+      Pumps.StopPump1();
+
       //COMMS.Instance.Pause(30);
       //need to watch valve until it has stopped.
       bool notClosed = true; int mvPos;

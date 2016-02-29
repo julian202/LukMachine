@@ -52,7 +52,7 @@ namespace LukMachine
 
     private void textBox2_Enter(object sender, EventArgs e)
     {
-      label7.Text = "Lot Number: This field is optional, and can be used to further help you classift your samples or tests.";
+      label7.Text = "Lot Number: This field is optional, and can be used to further help you classify your samples or tests.";
     }
 
     private void button1_Click(object sender, EventArgs e)
@@ -129,7 +129,7 @@ namespace LukMachine
       {
         Properties.Settings.Default.SelectedFlowRate = "Low";
       }
-      
+
       //
 
 
@@ -187,7 +187,7 @@ namespace LukMachine
         waitForm.Show();
         waitForm.Refresh();
       }*/
-        
+
       //Move 3-way valve to selected chamber
       if (radioButtonRingChamber.Checked)
       {
@@ -240,6 +240,9 @@ namespace LukMachine
 
     private void Setup_Load(object sender, EventArgs e)
     {
+      textBoxPressure.Text = Properties.Settings.Default.TextboxPressure;
+      textBoxDuration.Text = Properties.Settings.Default.TextboxDuration;
+
       if (Properties.Settings.Default.useTemperature)
       {
         checkBoxTemperature.Checked = true;
@@ -474,5 +477,100 @@ namespace LukMachine
     {
 
     }
+
+    private void buttonAdd_Click(object sender, EventArgs e)
+    {
+      string pressure;
+      string duration;
+      string temperature;
+      double n;
+
+      //parse double inputs and add to new row in list
+      if (double.TryParse(textBoxPressure.Text, out n))
+      {
+        pressure = n.ToString();
+      }
+      else
+      {
+        MessageBox.Show("Please enter a valid number for pressure");
+        return;
+      }
+
+      if (double.TryParse(textBoxDuration.Text, out n))
+      {
+        duration = n.ToString();
+      }
+      else
+      {
+        MessageBox.Show("Please enter a valid number for duration");
+        return;
+      }
+
+      if (checkBoxTemperature.Checked)
+      {
+        if (double.TryParse(textBoxTemperature.Text, out n))
+        {
+          temperature = n.ToString();
+        }
+        else
+        {
+          MessageBox.Show("Please enter a valid number for temperature");
+          return;
+        }
+      }
+      else
+      {
+        temperature = "-";
+      }
+
+      dataGridView1.Rows.Add(pressure, duration, temperature);
+      saveValues();
+    }
+
+    private void saveValues()
+    {
+      Properties.Settings.Default.CollectionPressure.Clear();
+      Properties.Settings.Default.CollectionDuration.Clear();
+      Properties.Settings.Default.CollectionTemperature.Clear();
+      DataGridViewRowCollection drc = dataGridView1.Rows;
+      foreach (DataGridViewRow item in drc)
+      {
+        Properties.Settings.Default.CollectionPressure.Add(item.Cells[0].Value.ToString());
+        Properties.Settings.Default.CollectionDuration.Add(item.Cells[1].Value.ToString());
+        Properties.Settings.Default.CollectionTemperature.Add(item.Cells[2].Value.ToString());
+      }
+    }
+
+    private void button4_Click(object sender, EventArgs e)
+    {
+      foreach (DataGridViewCell oneCell in dataGridView1.SelectedCells)
+      {
+        if (oneCell.Selected)
+          dataGridView1.Rows.RemoveAt(oneCell.RowIndex);
+      }
+      saveValues();
+    }
+
+    private void textBoxPressure_TextChanged(object sender, EventArgs e)
+    {
+      Properties.Settings.Default.TextboxPressure = textBoxPressure.Text;
+    }
+
+    private void textBoxDuration_TextChanged(object sender, EventArgs e)
+    {
+      Properties.Settings.Default.TextboxDuration = textBoxDuration.Text;
+    }
+
+  
+
+    private void button6_Click(object sender, EventArgs e)
+    {
+      dataGridView1.Rows.Clear();
+      for (int row = 0; row < Properties.Settings.Default.CollectionPressure.Count ; row++)
+      {
+        dataGridView1.Rows.Add(Properties.Settings.Default.CollectionPressure[row], Properties.Settings.Default.CollectionDuration[row], Properties.Settings.Default.CollectionTemperature[row]);
+      }
+    }
+
   }
 }
