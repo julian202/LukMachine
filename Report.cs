@@ -15,12 +15,18 @@ namespace LukMachine
     ArrayList distensionML = new ArrayList();
     ArrayList distensionCM = new ArrayList();
 
+    bool openSaved;
     string lastPUnit = "";
     public Report()
     {
-
       InitializeComponent();
+      openSaved = false;
 
+    }
+    public Report(bool openSavedParam)
+    {
+      InitializeComponent();
+      openSaved = openSavedParam;
     }
 
     private void button1_Click(object sender, EventArgs e)
@@ -28,7 +34,7 @@ namespace LukMachine
       OpenDataFiles(false);
     }
 
-    private void OpenDataFiles(bool knowName)
+    public void OpenDataFiles(bool knowName)
     {
 
       string[] selectedFiles;
@@ -47,9 +53,9 @@ namespace LukMachine
       }
       else
       {
-
         selectedFiles = new string[1];
         selectedFiles[0] = Properties.Settings.Default.TestData;
+        //MessageBox.Show(Properties.Settings.Default.TestData);
       }
 
       foreach (string s in selectedFiles)
@@ -62,6 +68,8 @@ namespace LukMachine
           MessageBox.Show("A file with the same name is already open. This file will be skipped.", "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Error);
           continue;
         }
+
+
         StreamReader SR = new StreamReader(s);
         string RL = SR.ReadLine();
         if (RL != "Liquid Permeability Test")
@@ -183,6 +191,7 @@ namespace LukMachine
         SR.Close();
       }
 
+
       //show the first item, what ever it is.
       if (comboBox1.Items.Count == 1)
       {
@@ -194,6 +203,12 @@ namespace LukMachine
       }
     }
 
+    private void readData()
+    {
+
+    }
+
+
     private void Report_Load(object sender, EventArgs e)
     {
       LoadDistensionTable();
@@ -202,6 +217,11 @@ namespace LukMachine
       {
         Properties.Settings.Default.mustRunReport = false;
         Properties.Settings.Default.Save();
+        OpenDataFiles(true);
+      }
+
+      if (openSaved)
+      {
         OpenDataFiles(true);
       }
     }
@@ -778,5 +798,6 @@ namespace LukMachine
     {
       MessageBox.Show(CalculateDistension(4.7).ToString());
     }
+
   }
 }

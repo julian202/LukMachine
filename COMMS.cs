@@ -142,6 +142,7 @@ namespace LukMachine
 
         //send out string and echo it to console
         //for troubleshooting
+
         _serialPort.Write(toSend);
         //get the first respose, which will be the echo command
         //character
@@ -175,17 +176,22 @@ namespace LukMachine
 
       catch (IndexOutOfRangeException kj)
       {
-        MessageBox.Show("ERROR READING COMPORT");
+        //MessageBox.Show("ERROR READING COMPORT");
         ClosePort();
         OpenPort("Demo");
-        DialogResult stuff = MessageBox.Show("Error: " + kj.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        DialogResult stuff = MessageBox.Show("USB not connected or machine has restarted, please restart the application. Error: " + kj.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         //return;
       }
       catch (InvalidOperationException qT)
       {
         //ERROR HERE
-        DialogResult stuff = MessageBox.Show("Error: " + qT.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        if (!dialogIsShowing)
+        {
+          dialogIsShowing = true;
+         DialogResult stuff = MessageBox.Show("USB not connected or machine has restarted, please restart the application. Error: " + qT.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+          dialogIsShowing = false;
+        }
         ClosePort();
         OpenPort("Demo");
 
@@ -201,6 +207,7 @@ namespace LukMachine
       }
       commBusy = false;
     }
+    bool dialogIsShowing = false;
 
     public string[] GetAvailablePorts()
     {

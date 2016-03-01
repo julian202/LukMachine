@@ -68,7 +68,9 @@ namespace LukMachine
         }
         else if (message.Contains("set label7 to targetTemp"))
         {
-          targetTemp = Properties.Settings.Default.selectedTemp;
+          //targetTemp = Properties.Settings.Default.selectedTemp;
+          string[] msgSplit = message.Split('=');
+          double targetTemp = Convert.ToDouble(msgSplit[1]);
           int targetTempInCelsius = (Convert.ToInt32((targetTemp - 32) * 5 / 9));
           label8.Text = "Target    = " + targetTemp.ToString() + " F / " + String.Format("{0:0}", targetTempInCelsius) + " C ";
 
@@ -79,21 +81,33 @@ namespace LukMachine
           int myint = Convert.ToInt32(Convert.ToDouble(msgSplit[1]));
           //MessageBox.Show(myint.ToString());  
           int myintInCelsius = (Convert.ToInt32((myint - 32) * 5 / 9));
-          label6.Text = "Current  =  "+String.Format("{0:0}", myint) + " F / " + String.Format("{0:0}", myintInCelsius) + " C ";
+          label6.Text = "Current  =  " + String.Format("{0:0}", myint) + " F / " + String.Format("{0:0}", myintInCelsius) + " C ";
           //MessageBox.Show(label5.Text);
         }
         else if (message.Contains("disable stop button"))
         {
           button2.Enabled = false;
         }
-        
-          else if (message.Contains("display pressure"))
+        else if (message.Contains("display pressure"))
         {
           string[] msgSplit = message.Split('=');
           string pressure = msgSplit[1];
-          labelPressure.Text = (Convert.ToInt32(Convert.ToDouble(pressure))).ToString() + " PSI";
+          labelPressure.Text = "Current  =  " + String.Format("{0:0.0} PSI", Convert.ToDouble(pressure));
+          string pumpstate = Properties.Settings.Default.MainPumpStatePercent.ToString();
+          labelPumpState.Text = "Pump State  =  " + pumpstate + "%";
         }
-
+        else if (message.Contains("display target pressure"))
+        {
+          string[] msgSplit = message.Split('=');
+          string targetpressure = msgSplit[1];
+          labelTargetPressure.Text = "Target    =  " + String.Format("{0:0.0} PSI", Convert.ToDouble(targetpressure));
+        }
+        else if (message.Contains("display duration"))
+        {
+          string[] msgSplit = message.Split('=');
+          string duration = msgSplit[1];
+          labelDuration.Text = "Duration  =  " + String.Format("{0:0.0} mins", Convert.ToDouble(duration));
+        }
         else if (message.Contains("hide panel1"))
         {
           panel1.Visible = false;
@@ -119,6 +133,11 @@ namespace LukMachine
           verticalProgressBar1.Value = Convert.ToInt32(ReservoirPercent);
           verticalProgressBar2.Value = Convert.ToInt32(CollectedPercent);
         }
+        else if (message.Contains("end Test"))
+        {
+          endTest();
+        }
+
 
 
         else if (message.Contains("B="))
@@ -160,18 +179,18 @@ namespace LukMachine
       {
         MessageBox.Show("Please verify that your sample is centered and that the clamping mechanism is safely securing the sample.");
       }
-      chart1.ChartAreas[0].AxisY.Title = "Volume (mL)";
+      chart1.ChartAreas[0].AxisY.Title = "Collected Volume (mL)";
       chart1.ChartAreas[0].AxisX.Title = "Time (seconds)";
       chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
       chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
       startTestButton();
     }
-   
+
     private void button1_Click(object sender, EventArgs e)
     {
-      startTestButton();     
+      startTestButton();
     }
-    
+
     private void startTestButton()
     {
       if (button1.Text == "Start Test")
@@ -216,14 +235,17 @@ namespace LukMachine
 
     private void button2_Click(object sender, EventArgs e)
     {
+      endTest();
+    }
+
+    private void endTest()
+    {
       button2.Enabled = false;
       test.AbortTest();
       //testThread.Abort();
 
       //this sleep added to try to fix program hanging on next line (.Join):
-      listBox1.TopIndex = listBox1.Items.Count - 1;
       Thread.Sleep(2000);
-      listBox1.TopIndex = listBox1.Items.Count - 1;
       listBox1.Items.Add("You may close this window now");
       listBox1.TopIndex = listBox1.Items.Count - 1;
       //System.Windows.Forms.MessageBox.Show("Data saved to " + Properties.Settings.Default.TestData);
@@ -242,7 +264,6 @@ namespace LukMachine
       //open relief pressure valve
       //Progress("Relieving pressure...");
       Valves.OpenValve2();
-
     }
 
     private void button3_Click(object sender, EventArgs e)

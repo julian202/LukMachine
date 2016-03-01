@@ -46,6 +46,12 @@ namespace LukMachine
     private double athena2Temp; //temp of pipes
     private double chamberTemp;
 
+    double outputPressure = 0; string counts = ""; double realCounts = 0; double currentPressure;
+    double p1Psi;
+    double rawP1;
+    double targetPressure = 0;
+    double currentDuration;
+
     private void PassThrough(char c, string toSend) //PassThrough('A', stopPumpCMD); stopPumpCMD = "#ST" + (char)13; runPumpCMD = "#RU" + (char)13;  
     {
       string chrs = toSend.Length.ToString("00");
@@ -89,7 +95,7 @@ namespace LukMachine
     {
       try
       {
-        Progress("Preparing to cancel the test, please wait...");
+        Progress("Preparing to stop the test, please wait...");
         testPaused = false;
         abort = true;
         //COMMS.Instance.Pause(1); //wait 1 second
@@ -158,6 +164,58 @@ namespace LukMachine
       testPaused = false;
     }
 
+    public void ReadPressureAndSetLabel()
+    {
+      //read pressure gauge, convert to PSI (will need to * by conversion factor and set units label later)
+      counts = COMMS.Instance.ReadPressureGauge(1);
+      realCounts = Convert.ToDouble(counts);
+      currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //twoVolt is 60000
+      outputPressure = currentPressure * pConversion;
+      p1Psi = outputPressure;
+      rawP1 = realCounts;
+      if (p1Psi < 0)
+      {
+        p1Psi = 0;
+      }
+      Progress("display pressure =" + outputPressure.ToString()); //this also displays Pump % state.
+    }
+
+    public void SetTargetPressureLabel()
+    {
+      Progress("display target pressure =" + targetPressure.ToString());
+    }
+
+    public void SetDurationLabel()
+    {
+      Progress("display duration =" + currentDuration.ToString());
+    }
+
+    public void GoToTargetPressure()
+    {
+      ReadPressureAndSetLabel();
+      SetTargetPressureLabel();
+      SetDurationLabel();
+ 
+        while (((currentPressure < (targetPressure - 0.1)) || (currentPressure > targetPressure + 0.1)) && !abort)
+      {
+        System.Diagnostics.Debug.WriteLine("currentPressure is " + currentPressure.ToString() + ",  targetPressure is " + targetPressure.ToString());
+
+        ReadPressureAndSetLabel();
+        Thread.Sleep(500);//wait before checking again
+                          //Console.WriteLine("athena1Temp " + athena1Temp);
+                          //Console.WriteLine("chamberTemp " + chamberTemp);
+        if (targetPressure > currentPressure)
+        {
+          Pumps.IncreaseMainPump(1);
+        }
+        else if (targetPressure < currentPressure)
+        {
+          Pumps.DecreaseMainPump(1);
+        }
+
+      }
+    }
+
     public void PumpCollectedVolumeToReservoir() //refill reservoir with the liquid from the collected volume
     {
       //Progress("Read volume levels");
@@ -169,13 +227,14 @@ namespace LukMachine
       int maxPercentFull = Properties.Settings.Default.maxEmptyCollectedPercentFull;
       if (CollectedPercent > maxPercentFull)
       {
+        Progress("Emptying collected volume...");
         Valves.OpenValve1();
         Valves.CloseValve2();
         Valves.CloseValve3();
         //start refill pump 1
         Pumps.StartPump1();
       }
-      int test =COMMS.Instance.getCollectedLevelPercent();
+      int test = COMMS.Instance.getCollectedLevelPercent();
       while (CollectedPercent >= maxPercentFull) //if collected reservoir is more than 5% full empty it:
       {
         //Progress("Read volume levels");
@@ -191,13 +250,14 @@ namespace LukMachine
       Valves.CloseValve1();
     }
 
-
     public void HeatMachineToTargetTemperature()
     {
-      Progress("set label7 to targetTemp");
+      Progress("set label7 to targetTemp="+targetTemp.ToString());
       try
       {
-        targetTemp = Properties.Settings.Default.selectedTemp;
+        //targetTemp = Properties.Settings.Default.selectedTemp;
+
+
         //set heaters to target temp:
         COMMS.Instance.SetAthenaTemp(1, (Math.Round(((targetTemp) * 9 / 5 + 32))));
         COMMS.Instance.SetAthenaTemp(2, (Math.Round(((targetTemp) * 9 / 5 + 32))));
@@ -210,7 +270,7 @@ namespace LukMachine
           Thread.Sleep(2000);//wait before checking again
           //Console.WriteLine("athena1Temp " + athena1Temp);
           //Console.WriteLine("chamberTemp " + chamberTemp);
-        }    
+        }
       }
       catch (Exception ex)
       {
@@ -237,6 +297,16 @@ namespace LukMachine
       currentTemp = (athena1Temp + athena2Temp + chamberTemp) / 3;
       Progress("set label5 to currentTemp=" + currentTemp.ToString());
     }
+    public bool IsNumeric(string input)
+    {
+      double test;
+      return double.TryParse(input, out test);
+    }
+
+    int stepCount;
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    //RunBurstTest()////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////
 
     public void RunBurstTest()
     {
@@ -247,38 +317,27 @@ namespace LukMachine
       Progress("Done checking reservoir levels");
 
       //Check temperature levels
-      if (Properties.Settings.Default.useTemperature)
+      string nextTemperature= Properties.Settings.Default.CollectionTemperature[0];    
+      if (IsNumeric(nextTemperature))  //Properties.Settings.Default.useTemperature
       {
+        targetTemp = Convert.ToDouble(nextTemperature);
         Progress("Heating machine to target temperature. Please wait...");
         HeatMachineToTargetTemperature(); //this enters a while loop until the temperatue is right.
         Progress("Done Heating machine to target temperature");
       }
 
+      //set presurre to target pressure
+      Progress("Setting pressure to target pressure. Please wait...");
+      stepCount = 0;
+      targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
+      currentDuration = Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]);
+      GoToTargetPressure();
+      Progress("Target pressure reached");
+
+
       //Hide "please wait" panel
       Progress("hide panel1");
       //Progress("disable stop button"); 
-
-      //Run main pump
-      Progress("Starting pump...");
-      Pumps.SetPump2((Convert.ToInt32(Properties.Settings.Default.flowRate)) /10); //10 because 1000ml is 100% pump speed. 
-  
-      /* 
-      if (Properties.Settings.Default.SelectedFlowRate == "Low")
-      {
-        //run main pump at low setting
-        COMMS.Instance.SetRegulator(1, (Convert.ToInt32(Properties.Settings.Default.LowPumpSetting)) * 4000 / 100);  //2600 is 1/3 of 4000 
-        //System.Windows.Forms.MessageBox.Show(((Convert.ToInt32(Properties.Settings.Default.LowPumpSetting)) * 4000 / 100).ToString());
-      }
-      if (Properties.Settings.Default.SelectedFlowRate == "Medium")
-      {
-        //run main pump at medium setting
-        COMMS.Instance.SetRegulator(1, (Convert.ToInt32(Properties.Settings.Default.MediumPumpSetting)) * 4000 / 100);  //2600 is 2/3 of 4000
-      }
-      if (Properties.Settings.Default.SelectedFlowRate == "High")
-      {
-        //run main pump at high setting
-        COMMS.Instance.SetRegulator(1, (Convert.ToInt32(Properties.Settings.Default.HighPumpSetting)) * 4000 / 100);
-      }*/
 
       //Write data to file
       //InitializeTest();
@@ -286,7 +345,7 @@ namespace LukMachine
       WriteHeader();
       SR.Close();
       bool overVolume = false;
-      double currentPressure; double startTime = 0;
+      double currentPressure; double startTime = 0; double stoppedTime = 0; double startStoppedTime = 0; double endStoppedTime = 0;
       double currentTime = 0; double outputTime = 0; double outputPressure = 0; string counts = ""; double realCounts = 0;
       double ground = Properties.Settings.Default.ground;
       double twoVolt = Properties.Settings.Default.twoVolt;
@@ -302,11 +361,7 @@ namespace LukMachine
       while (!abort && !overVolume)
       {
         //read pressure
-        counts = COMMS.Instance.ReadPressureGauge(1);
-        realCounts = Convert.ToDouble(counts);
-        currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //twoVolt is 60000
-        outputPressure = currentPressure * pConversion;
-        Progress("display pressure ="+ outputPressure.ToString());
+        ReadPressureAndSetLabel();
 
         //read penetrometers
         ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
@@ -316,19 +371,61 @@ namespace LukMachine
         //read temperature
         ReadTemperatureAndSetLabel();
 
+
         //read current time
-        currentTime = Convert.ToDouble(Environment.TickCount) - startTime;
+        currentTime = Convert.ToDouble(Environment.TickCount) - startTime - stoppedTime;
         outputTime = currentTime / 1000;
 
         //keep rough track of how many mL we have pumped.
         double mlsMoved = (pressureRate / 60.0) * outputTime;
 
         //write data to file and report progress
-        SR = new StreamWriter(dataFile, true); 
+        SR = new StreamWriter(dataFile, true);
         SR.WriteLine(outputTime.ToString("#.00") + "," + COMMS.CollectedLevelCount.ToString());
         SR.Close();
         Progress("Reading:" + outputTime.ToString("#.00") + "," + COMMS.CollectedLevelCount.ToString());
-        // with formating: Progress("Reading:" + outputTime.ToString("#.000") + "," + COMMS.CollectedLevelCount.ToString("###.00"));
+        Thread.Sleep(500);// this is the main sleep of the thread between reading so that it doesn't go too fast.
+        if (outputTime / 60 > currentDuration)
+        {
+          //save current time
+          startStoppedTime = Convert.ToDouble(Environment.TickCount);
+          Progress("Ended Period");
+          //set presurre to target pressure
+          Progress("Setting pressure to target pressure for next period. Please wait...");
+          stepCount++;
+          
+          //end if stepCount is bigger than the number of steps (i.e. periods)
+          if (stepCount>= Properties.Settings.Default.CollectionPressure.Count)
+          {
+            abort = true;
+            Progress("end Test");
+          }
+          else
+          {
+            targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
+            currentDuration = Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]);
+            GoToTargetPressure();
+            Progress("Target pressure reached");
+
+            nextTemperature = Properties.Settings.Default.CollectionTemperature[stepCount];
+            if (IsNumeric(nextTemperature))  //if it's not numeric then it is "-" and should be ignored
+            {
+              targetTemp = Convert.ToDouble(nextTemperature);
+              Progress("Heating machine to target temperature. Please wait...");
+              HeatMachineToTargetTemperature(); //this enters a while loop until the temperatue is right.
+              Progress("Done Heating machine to target temperature");
+            }
+
+
+            Progress("Starting next Period");
+            endStoppedTime = Convert.ToDouble(Environment.TickCount);
+            stoppedTime = stoppedTime + (endStoppedTime - startStoppedTime);
+            //set time that next period should stop (by getting current time in minutes and adding the duration of the next period)
+            currentTime = Convert.ToDouble(Environment.TickCount) - startTime - stoppedTime;
+            currentDuration = (currentTime / 1000) / 60 + (currentDuration);
+          }
+          
+        }
 
         //Stop if over max pressure.
         if (outputPressure > p1Max) //add to this if volume is empty or pent is full
@@ -343,17 +440,17 @@ namespace LukMachine
           Progress("Machine has reached it's maximum pressure range! The test will be aborted.");
           Progress("Data saved to " + Properties.Settings.Default.TestData);
           SR = new StreamWriter(dataFile, true);
-          SR.WriteLine("Machine has reached it's maximum pressure range! The test was aborted. Pressure was "+ outputPressure.ToString()+ ", max is "+ p1Max.ToString());
+          SR.WriteLine("Machine has reached it's maximum pressure range! The test was aborted. Pressure was " + outputPressure.ToString() + ", max is " + p1Max.ToString());
           SR.Close();
-          
-          System.Windows.Forms.MessageBox.Show("Machine has reached it's maximum pressure. The test has been stopped. Data saved to " + Properties.Settings.Default.TestData);
+
+          MessageBox.Show("Machine has reached it's maximum pressure. The test has been stopped. Data saved to " + Properties.Settings.Default.TestData);
           //COMMS.Instance.Pause(1); //wait 1 second for other thread to finish      
         }
 
         //Stop if over max volume.
         if (CollectedPercent >= Properties.Settings.Default.MaxPent3PercentFull)
         {
-          System.Diagnostics.Debug.WriteLine("volumeReading is "+ COMMS.CollectedLevelCount);
+          System.Diagnostics.Debug.WriteLine("volumeReading is " + COMMS.CollectedLevelCount);
           System.Diagnostics.Debug.WriteLine("MaxPent3Reading is " + Properties.Settings.Default.MaxPent3PercentFull);
           abort = true;
           testPaused = true;
