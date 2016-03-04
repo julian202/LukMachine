@@ -74,6 +74,94 @@ namespace LukMachine
 
     public static void CloseValve1()
     {
+      COMMS.Instance.MoveValve(1, "O");
+      Properties.Settings.Default.Valve1State = false;
+      Properties.Settings.Default.Save();
+    }
+    public static void OpenValve1()
+    {
+      COMMS.Instance.MoveValve(1, "C");
+      Properties.Settings.Default.Valve1State = true;
+      Properties.Settings.Default.Save();
+    }
+    public static void CloseValve2()
+    {
+      COMMS.Instance.MoveValve(2, "O");
+      Properties.Settings.Default.Valve2State = false;
+      Properties.Settings.Default.Save();
+    }
+    public static void OpenValve2()
+    {
+      COMMS.Instance.MoveValve(2, "C");
+      Properties.Settings.Default.Valve2State = true;
+      Properties.Settings.Default.Save();
+    }
+    public static void CloseValve3()
+    {
+      COMMS.Instance.MoveValve(3, "O");
+      Properties.Settings.Default.Valve3State = false;
+      Properties.Settings.Default.Save();
+    }
+    public static void OpenValve3()
+    {
+      COMMS.Instance.MoveValve(3, "C");
+      Properties.Settings.Default.Valve3State = true;
+      Properties.Settings.Default.Save();
+    }
+    public static void CloseValve4()
+    {
+      COMMS.Instance.MoveValve(4, "O");
+      Properties.Settings.Default.Valve4State = false;
+      Properties.Settings.Default.Save();
+    }
+    public static void OpenValve4()
+    {
+      COMMS.Instance.MoveValve(4, "C");
+      Properties.Settings.Default.Valve4State = true;
+      Properties.Settings.Default.Save();
+    }
+    public static void CloseValve5()
+    {
+      COMMS.Instance.MoveValve(5, "O");
+      Properties.Settings.Default.Valve5State = false;
+      Properties.Settings.Default.Save();
+    }
+    public static void OpenValve5()
+    {
+      COMMS.Instance.MoveValve(5, "C");
+      Properties.Settings.Default.Valve5State = true;
+      Properties.Settings.Default.Save();
+    }
+    public static void CloseValve6()
+    {
+      COMMS.Instance.MoveValve(6, "O");
+      Properties.Settings.Default.Valve6State = false;
+      Properties.Settings.Default.Save();
+    }
+    public static void OpenValve6()
+    {
+      COMMS.Instance.MoveValve(6, "C");
+      Properties.Settings.Default.Valve6State = true;
+      Properties.Settings.Default.Save();
+    }
+    public static void CloseValve7()
+    {
+      COMMS.Instance.MoveValve(7, "O");
+      Properties.Settings.Default.Valve7State = false;
+      Properties.Settings.Default.Save();
+    }
+    public static void OpenValve7()
+    {
+      COMMS.Instance.MoveValve(7, "C");
+      Properties.Settings.Default.Valve7State = true;
+      Properties.Settings.Default.Save();
+    }
+
+
+    ///interchanging O with C
+    /*
+    public static void CloseValve1()
+    {
       COMMS.Instance.MoveValve(1, "C");
       Properties.Settings.Default.Valve1State = false;
     }
@@ -141,6 +229,7 @@ namespace LukMachine
     {
       COMMS.Instance.MoveValve(7, "O");
       Properties.Settings.Default.Valve7State = true;
-    }
+    }*/
+
   }
 }

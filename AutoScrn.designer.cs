@@ -43,8 +43,6 @@
       this.button1 = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
       this.listBox1 = new System.Windows.Forms.ListBox();
-      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
-      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.panel1 = new System.Windows.Forms.Panel();
       this.label4 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
@@ -57,6 +55,10 @@
       this.labelPressure = new System.Windows.Forms.Label();
       this.groupBoxCollectedVolume = new System.Windows.Forms.GroupBox();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
+      this.button4 = new System.Windows.Forms.Button();
+      this.button5 = new System.Windows.Forms.Button();
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
@@ -193,22 +195,6 @@
       this.listBox1.Size = new System.Drawing.Size(646, 61);
       this.listBox1.TabIndex = 7;
       // 
-      // verticalProgressBar2
-      // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(65, 42);
-      this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar2.TabIndex = 10;
-      this.verticalProgressBar2.Value = 50;
-      // 
-      // verticalProgressBar1
-      // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(68, 42);
-      this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar1.TabIndex = 9;
-      this.verticalProgressBar1.Value = 50;
-      // 
       // panel1
       // 
       this.panel1.Controls.Add(this.label4);
@@ -330,12 +316,54 @@
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir";
       // 
+      // button4
+      // 
+      this.button4.AutoSize = true;
+      this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.button4.Location = new System.Drawing.Point(298, 563);
+      this.button4.Name = "button4";
+      this.button4.Size = new System.Drawing.Size(192, 42);
+      this.button4.TabIndex = 23;
+      this.button4.Text = "Open Report Window";
+      this.button4.UseVisualStyleBackColor = true;
+      this.button4.Click += new System.EventHandler(this.button4_Click);
+      // 
+      // button5
+      // 
+      this.button5.AutoSize = true;
+      this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.button5.Location = new System.Drawing.Point(522, 563);
+      this.button5.Name = "button5";
+      this.button5.Size = new System.Drawing.Size(116, 42);
+      this.button5.TabIndex = 22;
+      this.button5.Text = "Open folder";
+      this.button5.UseVisualStyleBackColor = true;
+      this.button5.Click += new System.EventHandler(this.button5_Click);
+      // 
+      // verticalProgressBar1
+      // 
+      this.verticalProgressBar1.Location = new System.Drawing.Point(68, 42);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar1.TabIndex = 9;
+      this.verticalProgressBar1.Value = 50;
+      // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(65, 42);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar2.TabIndex = 10;
+      this.verticalProgressBar2.Value = 50;
+      // 
       // AutoScrn
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.ClientSize = new System.Drawing.Size(905, 629);
+      this.Controls.Add(this.button4);
+      this.Controls.Add(this.button5);
       this.Controls.Add(this.groupBoxReservoir);
       this.Controls.Add(this.groupBoxCollectedVolume);
       this.Controls.Add(this.groupBoxPressure);
@@ -397,6 +425,8 @@
     private System.Windows.Forms.Label labelTargetPressure;
     private System.Windows.Forms.Label labelPumpState;
     private System.Windows.Forms.Label labelDuration;
+    private System.Windows.Forms.Button button4;
+    private System.Windows.Forms.Button button5;
     // private System.Windows.Controls.ProgressBar progbar;
 
 

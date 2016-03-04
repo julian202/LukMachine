@@ -52,6 +52,7 @@ namespace LukMachine
 
     private void Manual_Load(object sender, EventArgs e)
     {
+
       if (Properties.Settings.Default.RefillPumpState)
       {
         rectangleShape14.BackColor = Color.Bisque;
@@ -164,7 +165,7 @@ namespace LukMachine
 
     private void timer1_Tick(object sender, EventArgs e)
     {
-      updateValveColors();  //gets values from properties
+      //updateValveColors();  //gets values from properties
 
       if (startRefill)
       {
@@ -621,6 +622,7 @@ namespace LukMachine
       else
       {
         Valves.OpenValve4();
+       
       }
       changeColor(sender);
     }
@@ -669,6 +671,7 @@ namespace LukMachine
       if (rectangleShape6.BackColor == Color.Green)
       {
         Valves.CloseValve3();
+       
       }
       else
       {
@@ -682,10 +685,12 @@ namespace LukMachine
       if (rectangleShape12.BackColor == Color.Green)
       {
         Valves.CloseValve1();
+    
       }
       else
       {
         Valves.OpenValve1();
+
       }
       changeColor(sender);
     }
@@ -723,6 +728,10 @@ namespace LukMachine
 
     private void rectangleShape14_Click(object sender, EventArgs e)
     {
+      clickedPump1();
+    }
+    public void clickedPump1()
+    {
       if (RefillPumpOn)
       {
         rectangleShape14.BackColor = Color.Gray;
@@ -742,6 +751,7 @@ namespace LukMachine
         RefillPumpOn = true;
       }
     }
+
 
     private void button23_Click(object sender, EventArgs e)
     {
@@ -845,14 +855,17 @@ namespace LukMachine
       if (checkBoxHeatSystem.Checked == false)
       {
         textBoxTemp.Text = "20";
+        textBoxTemp.Enabled = false;
         heat();
+
       }
       else
       {
+        textBoxTemp.Enabled = true;
         if (textBoxTemp.Text == "")
         {
           //MessageBox.Show("Please enter a temperature");
-          textBoxTemp.Text = "20";
+          textBoxTemp.Text = "20";       
         }
         heat();
       }
@@ -1021,6 +1034,33 @@ namespace LukMachine
       //label30.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
       groupBox13.Text = "Current Pressure: " + p1Psi.ToString("#0.000") + " PSI (" + rawP1.ToString() + " cts)";
 
+    }
+
+    private void Manual_FormClosed(object sender, FormClosedEventArgs e)
+    {
+      //Close all pumps
+      Pumps.StopPump1();
+      Pumps.SetPump2(0);
+    }
+
+    private void label21_Click(object sender, EventArgs e)
+    {
+      clickedPump1();
+    }
+
+    private void label22_Click(object sender, EventArgs e)
+    {
+      clickedPump1();
+    }
+
+    private void tabPage1_Paint(object sender, PaintEventArgs e)
+    {
+      Graphics g = e.Graphics;
+      Pen pen = new Pen(Color.Gray, 7);
+      pen.StartCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
+      pen.EndCap = System.Drawing.Drawing2D.LineCap.NoAnchor;
+      e.Graphics.DrawLine(pen, 640, 520, 710, 520);
+      e.Graphics.DrawLine(pen, 650, 240, 715, 265);
     }
   }
 }

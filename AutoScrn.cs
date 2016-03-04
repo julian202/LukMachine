@@ -174,6 +174,8 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+      button4.Visible = false;
+      button5.Visible = false;
       Text = "Auto test [" + Properties.Settings.Default.TestSampleID + "]";
       if (Properties.Settings.Default.promptSafety)
       {
@@ -246,11 +248,14 @@ namespace LukMachine
 
       //this sleep added to try to fix program hanging on next line (.Join):
       Thread.Sleep(2000);
-      listBox1.Items.Add("You may close this window now");
+      listBox1.Items.Add("Data saved to " + Properties.Settings.Default.TestData);
+      listBox1.Items.Add("Test ended successfully");
+      button4.Visible = true;
+      button5.Visible = true;
       listBox1.TopIndex = listBox1.Items.Count - 1;
       //System.Windows.Forms.MessageBox.Show("Data saved to " + Properties.Settings.Default.TestData);
-      DataSavedForm Form = new DataSavedForm();
-      Form.Show();
+      //DataSavedForm Form = new DataSavedForm();
+      //Form.Show();
 
       testThread.Abort();
       testThread.Join();
@@ -272,6 +277,19 @@ namespace LukMachine
       this.Hide();
       manScrn.ShowDialog();
       this.Show();
+    }
+
+    private void button4_Click(object sender, EventArgs e)
+    {
+      this.Hide();
+      Report rep = new Report(true);
+      rep.ShowDialog();
+      this.Show();
+    }
+
+    private void button5_Click(object sender, EventArgs e)
+    {
+      System.Diagnostics.Process.Start("explorer.exe", System.IO.Directory.GetParent(Properties.Settings.Default.TestData).ToString());
     }
   }
 }

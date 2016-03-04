@@ -12,16 +12,19 @@ namespace LukMachine
     {
       COMMS.Instance.MoveMotorValve(3, "O");
       Properties.Settings.Default.RefillPumpState = true;
+      Properties.Settings.Default.Save();
     }
     public static void StopPump1()
     {
       COMMS.Instance.MoveMotorValve(3, "S");
       Properties.Settings.Default.RefillPumpState = false;
+      Properties.Settings.Default.Save();
     }
     public static void SetPump2(int percent)
     {
       COMMS.Instance.SetRegulator(1, percent * 4000 / 100);
       Properties.Settings.Default.MainPumpStatePercent = percent;
+      Properties.Settings.Default.Save();
     }
 
     public static void IncreaseMainPump(int percent) //Increases MainPump by percent %
@@ -34,6 +37,7 @@ namespace LukMachine
       {
         System.Diagnostics.Debug.WriteLine("can't make pump 2 higher than 100%");
       }
+      Properties.Settings.Default.Save();
     }
 
     public static void DecreaseMainPump(int percent) //Increases MainPump by percent %
@@ -46,7 +50,7 @@ namespace LukMachine
       {
         System.Diagnostics.Debug.WriteLine("can't make pump 2 lower than 0%");
       }
-      
+      Properties.Settings.Default.Save();
     }
 
   }

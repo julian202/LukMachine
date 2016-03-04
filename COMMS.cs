@@ -73,7 +73,7 @@ namespace LukMachine
         _serialPort.StopBits = System.IO.Ports.StopBits.One;
         _serialPort.Parity = System.IO.Ports.Parity.None;
         _serialPort.DataBits = 8;
-       
+
         //if the port ain't open it, open it.
         if (!(_serialPort.IsOpen))
           _serialPort.Open();
@@ -142,8 +142,15 @@ namespace LukMachine
 
         //send out string and echo it to console
         //for troubleshooting
+        try
+        {
+          _serialPort.Write(toSend);
+        }
+        catch (Exception)
+        {
+          MessageBox.Show("Timeout writing comport for " + toSend);
+        }
 
-        _serialPort.Write(toSend);
         //get the first respose, which will be the echo command
         //character
 
@@ -164,23 +171,26 @@ namespace LukMachine
         }*/
 
         System.Diagnostics.Debug.WriteLine("Sent Serial = " + toSend);
-        received = _serialPort.ReadTo(newLine);
-        System.Diagnostics.Debug.WriteLine("Received = " + received);
-
+        try
+        {
+          received = _serialPort.ReadTo(newLine);
+          System.Diagnostics.Debug.WriteLine("Received = " + received);
+        }
+        catch (Exception)
+        {
+          MessageBox.Show("Timeout reading comport for " + toSend + " (first response)");
+        }     
       }
       catch (TimeoutException kj)
       {
-        MessageBox.Show("Timeout READING COMPORT");
-         //return;
+        //return;
       }
-
       catch (IndexOutOfRangeException kj)
       {
         //MessageBox.Show("ERROR READING COMPORT");
         ClosePort();
         OpenPort("Demo");
         DialogResult stuff = MessageBox.Show("USB not connected or machine has restarted, please restart the application. Error: " + kj.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-
         //return;
       }
       catch (InvalidOperationException qT)
@@ -189,12 +199,11 @@ namespace LukMachine
         if (!dialogIsShowing)
         {
           dialogIsShowing = true;
-         DialogResult stuff = MessageBox.Show("USB not connected or machine has restarted, please restart the application. Error: " + qT.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+          DialogResult stuff = MessageBox.Show("USB not connected or machine has restarted, please restart the application. Error: " + qT.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
           dialogIsShowing = false;
         }
         ClosePort();
         OpenPort("Demo");
-
         //return;
       }
       catch (IOException ex)
@@ -240,17 +249,16 @@ namespace LukMachine
         System.Diagnostics.Debug.WriteLine("ReadingECHO: Sent " + toSend);
         received = _serialPort.ReadTo(newLine);
         System.Diagnostics.Debug.WriteLine("Received " + received);
-
         return received;
       }
       catch (TimeoutException kj)
       {
-        MessageBox.Show("Timeout READING COMPORT");
+        MessageBox.Show("Timeout reading comport for " + toSend + " (second response)");
         return null;
       }
       catch (IOException ex)
       {
-        MessageBox.Show("ERROR READING COMPORT");
+        MessageBox.Show("ERROR READING COMPORT (not a timeout)");
         System.Diagnostics.Debug.WriteLine(ex.Message);
         return null;
       }
@@ -538,14 +546,14 @@ namespace LukMachine
 
     public double ReadAthenaTemp(int channel)
     {
-      System.Diagnostics.Debug.WriteLine("Reading Temperature, Sending to rsEcho TT" +channel.ToString());
+      System.Diagnostics.Debug.WriteLine("Reading Temperature, Sending to rsEcho TT" + channel.ToString());
       string returnValue = rsEcho("TT" + channel.ToString());
 
       try
       {
         System.Diagnostics.Debug.WriteLine("Now trying to convert returned temperature to double");
         double fixReturn = double.Parse(returnValue) / 10;
-        System.Diagnostics.Debug.WriteLine("Done, returned temperature = "+ fixReturn.ToString());
+        System.Diagnostics.Debug.WriteLine("Done, returned temperature = " + fixReturn.ToString());
         return fixReturn;
       }
       catch (Exception)
@@ -727,7 +735,7 @@ namespace LukMachine
     }
 
 
-  
+
 
 
     public void IncreaseRegulator(int channel, int amount)
@@ -778,7 +786,7 @@ namespace LukMachine
 
     public int getGround()
     {
-      char channel = (Char)95;
+      char channel = (Char)95;  //this is underscore R_
       string asdf = rsEcho("R" + channel.ToString());
 
       try

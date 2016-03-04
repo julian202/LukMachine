@@ -129,6 +129,7 @@ namespace LukMachine
       {
         Properties.Settings.Default.SelectedFlowRate = "Low";
       }
+      Properties.Settings.Default.Save();
 
       //
 
@@ -173,11 +174,15 @@ namespace LukMachine
       else
       {
         Properties.Settings.Default.TestData = textBox6.Text;
+        Properties.Settings.Default.Save();
+
       }
 
       if (Properties.Settings.Default.autoReport)
       {
         Properties.Settings.Default.mustRunReport = true;
+        Properties.Settings.Default.Save();
+
       }
 
       /*
@@ -192,11 +197,15 @@ namespace LukMachine
       if (radioButtonRingChamber.Checked)
       {
         Properties.Settings.Default.Chamber = "Ring";
+        Properties.Settings.Default.Save();
+
         Valves.OpenValve7();//right chamber
       }
       else if (radioButtonDiskChamber.Checked)
       {
         Properties.Settings.Default.Chamber = "Disk";
+        Properties.Settings.Default.Save();
+
         Valves.CloseValve7();//left chamber
       }
       if (Properties.Settings.Default.COMM != "Demo")
@@ -539,6 +548,7 @@ namespace LukMachine
         Properties.Settings.Default.CollectionDuration.Add(item.Cells[1].Value.ToString());
         Properties.Settings.Default.CollectionTemperature.Add(item.Cells[2].Value.ToString());
       }
+      Properties.Settings.Default.Save();
     }
 
     private void button4_Click(object sender, EventArgs e)
@@ -554,14 +564,16 @@ namespace LukMachine
     private void textBoxPressure_TextChanged(object sender, EventArgs e)
     {
       Properties.Settings.Default.TextboxPressure = textBoxPressure.Text;
+      Properties.Settings.Default.Save();
     }
 
     private void textBoxDuration_TextChanged(object sender, EventArgs e)
     {
       Properties.Settings.Default.TextboxDuration = textBoxDuration.Text;
+      Properties.Settings.Default.Save();
     }
 
-  
+
 
     private void button6_Click(object sender, EventArgs e)
     {

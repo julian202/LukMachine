@@ -139,8 +139,10 @@ namespace LukMachine
 
         //setup data table for current sample
         dataSet1.Tables.Add(fileName);
-        dataSet1.Tables[fileName].Columns.Add("Pressure");
+        dataSet1.Tables[fileName].Columns.Add("Volume");
         dataSet1.Tables[fileName].Columns.Add("Time");
+        dataSet1.Tables[fileName].Columns.Add("Temperature");
+        dataSet1.Tables[fileName].Columns.Add("Pressure");
 
         //add sample name to combobox
         comboBox1.Items.Add(fileName);
@@ -153,10 +155,12 @@ namespace LukMachine
             string[] splitString = RL.Split(',');
             try
             {
-              double pressure = Convert.ToDouble(splitString[0]);
+              double volume = Convert.ToDouble(splitString[0]);
               double time = Convert.ToDouble(splitString[1]);
+              double temperature = Convert.ToDouble(splitString[2]);
+              double pressure = Convert.ToDouble(splitString[3]);
               //add doubles to data table for current sample
-              dataSet1.Tables[fileName].Rows.Add(pressure, time);
+              dataSet1.Tables[fileName].Rows.Add(volume, time, temperature, pressure);
             }
             catch (FormatException ex)
             {
@@ -244,6 +248,8 @@ namespace LukMachine
           chart1.Series.Add(s);
           //set chart type
           chart1.Series[s].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+          chart1.Series[comboBox1.Text].BorderWidth = 2;
+      
           //loop through the data table named for the sample id and add it to the series.
           foreach (DataRow asdf in dataSet1.Tables[s].Rows)
           {
@@ -312,6 +318,7 @@ namespace LukMachine
 
       chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
       chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
+      chart1.ChartAreas[0].AxisX.LineDashStyle= System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDotDot;
       chart1.ChartAreas[0].AxisY.Title = "Volume (mL)";
       chart1.ChartAreas[0].AxisX.Title = "Time (seconds)";
 
@@ -799,5 +806,106 @@ namespace LukMachine
       MessageBox.Show(CalculateDistension(4.7).ToString());
     }
 
+    private void radioButton2_CheckedChanged(object sender, EventArgs e)
+    {
+      if (radioButton2.Checked)
+      {
+        try
+        {
+          //MessageBox.Show("y");
+          chart1.Series.Clear();
+          chart1.Series.Add(comboBox1.Text);
+          chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+          chart1.Series[comboBox1.Text].BorderWidth = 2;
+          foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
+          {
+            chart1.Series[comboBox1.Text].Points.AddXY(Convert.ToDouble(asdf[2]), Convert.ToDouble(asdf[1]));
+          }
+          chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
+          chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
+          chart1.ChartAreas[0].AxisY.Title = "Volume (mL)";
+          chart1.ChartAreas[0].AxisX.Title = "Temperature (C)";
+
+          chart1.Titles.Clear();
+          System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+          title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+          title1.Text = "Volume VS Temperature";
+          chart1.Titles.Add(title1);
+        }
+        catch (Exception)
+        {
+         
+        }
+        
+      }
+    }
+
+    private void radioButton1_CheckedChanged(object sender, EventArgs e)
+    {
+      if (radioButton1.Checked)
+      {
+        try
+        {
+          chart1.Series.Clear();
+          chart1.Series.Add(comboBox1.Text);
+          chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+          chart1.Series[comboBox1.Text].BorderWidth = 2;
+          foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
+          {
+            chart1.Series[comboBox1.Text].Points.AddXY(Convert.ToDouble(asdf[0]), Convert.ToDouble(asdf[1]));
+          }
+          chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
+          chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
+          chart1.ChartAreas[0].AxisY.Title = "Volume (mL)";
+          chart1.ChartAreas[0].AxisX.Title = "Time (seconds)";
+
+          chart1.Titles.Clear();
+          System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+          title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+          title1.Text = "Volume VS Time";
+          chart1.Titles.Add(title1);
+        }
+        catch (Exception)
+        {
+
+        }
+        
+      }
+    }
+
+    private void radioButton3_CheckedChanged(object sender, EventArgs e)
+    {
+      if (radioButton3.Checked)
+      {
+        try
+        {
+
+          chart1.Series.Clear();
+          chart1.Series.Add(comboBox1.Text);
+          chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+          chart1.Series[comboBox1.Text].BorderWidth = 2;
+          foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
+          {
+            chart1.Series[comboBox1.Text].Points.AddXY(Convert.ToDouble(asdf[3]), Convert.ToDouble(asdf[1]));
+          }
+          chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
+          chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
+          chart1.ChartAreas[0].AxisY.Title = "Volume (mL)";
+          chart1.ChartAreas[0].AxisX.Title = "Pressure (PSI)";
+
+          chart1.Titles.Clear();
+          System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+          title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+          title1.Text = "Volume VS Pressure";
+          chart1.Titles.Add(title1);
+
+        }
+        catch (Exception)
+        {
+
+        }
+        
+      }
+    }
   }
 }

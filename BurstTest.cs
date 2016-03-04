@@ -37,6 +37,14 @@ namespace LukMachine
     private int ground = COMMS.Instance.getGround();
     private bool pumpRunning = false;
     //
+    bool overVolume = false;
+    double currentPressure; double startTime = 0; double stoppedTime = 0; double startStoppedTime = 0; double endStoppedTime = 0;
+    double currentTime = 0; double outputTime = 0; double outputPressure = 0; string counts = ""; double realCounts = 0;
+    //double ground = Properties.Settings.Default.ground;
+    //double twoVolt = Properties.Settings.Default.twoVolt;
+    int ReservoirPercent;
+    int CollectedPercent;
+
     //Set up data file
     StreamWriter SR;
 
@@ -46,7 +54,6 @@ namespace LukMachine
     private double athena2Temp; //temp of pipes
     private double chamberTemp;
 
-    double outputPressure = 0; string counts = ""; double realCounts = 0; double currentPressure;
     double p1Psi;
     double rawP1;
     double targetPressure = 0;
@@ -212,7 +219,6 @@ namespace LukMachine
         {
           Pumps.DecreaseMainPump(1);
         }
-
       }
     }
 
@@ -344,24 +350,34 @@ namespace LukMachine
       SR = new StreamWriter(dataFile);
       WriteHeader();
       SR.Close();
-      bool overVolume = false;
-      double currentPressure; double startTime = 0; double stoppedTime = 0; double startStoppedTime = 0; double endStoppedTime = 0;
-      double currentTime = 0; double outputTime = 0; double outputPressure = 0; string counts = ""; double realCounts = 0;
-      double ground = Properties.Settings.Default.ground;
-      double twoVolt = Properties.Settings.Default.twoVolt;
+      
 
-      startTime = Convert.ToDouble(Environment.TickCount) + 500.0;
+      startTime = Convert.ToDouble(Environment.TickCount); //+ 500.0
       maxPressure *= pConversion;
       maxTestPressure *= pConversion;
 
       //Main loop
-      int ReservoirPercent;
-      int CollectedPercent;
+      
       Progress("Now running");
+      string collectedLevelCount;
       while (!abort && !overVolume)
       {
-        //read pressure
+        //Read pressure
         ReadPressureAndSetLabel();
+
+        //If pressure is too low increase pump by 1% and viceversa
+        if (((currentPressure < (targetPressure - 0.1)) || (currentPressure > targetPressure + 0.1)) && !abort)
+        {
+          System.Diagnostics.Debug.WriteLine("currentPressure is " + currentPressure.ToString() + ",  targetPressure is " + targetPressure.ToString());
+          if (targetPressure > currentPressure)
+          {
+            Pumps.IncreaseMainPump(1);
+          }
+          else if (targetPressure < currentPressure)
+          {
+            Pumps.DecreaseMainPump(1);
+          }
+        }
 
         //read penetrometers
         ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
@@ -381,9 +397,10 @@ namespace LukMachine
 
         //write data to file and report progress
         SR = new StreamWriter(dataFile, true);
-        SR.WriteLine(outputTime.ToString("#.00") + "," + COMMS.CollectedLevelCount.ToString());
+        collectedLevelCount = COMMS.CollectedLevelCount.ToString();
+        SR.WriteLine(outputTime.ToString("0.00") + "," + collectedLevelCount + "," + currentTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
         SR.Close();
-        Progress("Reading:" + outputTime.ToString("#.00") + "," + COMMS.CollectedLevelCount.ToString());
+        Progress("Reading:" + outputTime.ToString("0.00") + "," + collectedLevelCount + "," + currentTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
         Thread.Sleep(500);// this is the main sleep of the thread between reading so that it doesn't go too fast.
         if (outputTime / 60 > currentDuration)
         {
@@ -528,7 +545,7 @@ namespace LukMachine
       SR.WriteLine("");
       SR.WriteLine("Data:");
       SR.WriteLine("");
-      SR.WriteLine("Time, Collected Volume");
+      SR.WriteLine("Time, Collected Volume, Temperature, Pressure");
       SR.WriteLine("");
     }
   }
