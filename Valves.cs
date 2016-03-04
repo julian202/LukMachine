@@ -146,13 +146,13 @@ namespace LukMachine
     }
     public static void CloseValve7()
     {
-      COMMS.Instance.MoveValve(7, "O");
+      COMMS.Instance.MoveValve(7, "C");
       Properties.Settings.Default.Valve7State = false;
       Properties.Settings.Default.Save();
     }
     public static void OpenValve7()
     {
-      COMMS.Instance.MoveValve(7, "C");
+      COMMS.Instance.MoveValve(7, "O");
       Properties.Settings.Default.Valve7State = true;
       Properties.Settings.Default.Save();
     }

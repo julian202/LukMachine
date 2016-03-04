@@ -104,7 +104,7 @@ namespace LukMachine
 
     bool refilldone = false;
     bool startRefill = false;
-    ManualWait form = new ManualWait();
+    //ManualWait form = new ManualWait();
 
     private void updateValveColors()
     {
@@ -169,7 +169,20 @@ namespace LukMachine
 
       if (startRefill)
       {
-        form.Show();
+        /*
+        if (!form.Visible)
+        {
+          form.ShowDialog();
+        }*/
+        button21.Text= "Pumping... Please wait...";
+        button21.Enabled = false;
+        //turn refill pump on:
+        rectangleShape14.BackColor = Color.Bisque;
+        label21.BackColor = Color.Bisque;
+        label22.BackColor = Color.Bisque;
+        label22.Text = "Pump ON";
+        Pumps.StartPump1();
+        RefillPumpOn = true;
         if (COMMS.Instance.getCollectedLevelPercent() < 5)
         {
           refilldone = true;
@@ -180,9 +193,19 @@ namespace LukMachine
       {
         Pumps.StopPump1();
         Valves.CloseValve1();
-        form.Hide();
+        //form.Hide();
+        button21.Text = "Pump Collected back to Reservoir";
+        button21.Enabled = true;
         refilldone = false;
         startRefill = false;
+        //stop refill pump:
+        rectangleShape14.BackColor = Color.Gray;
+        label21.BackColor = Color.Gray;
+        label22.BackColor = Color.Gray;
+        label22.Text = "Pump OFF";
+        Pumps.StopPump1();
+        RefillPumpOn = false;
+
       }
 
       
@@ -932,10 +955,6 @@ namespace LukMachine
 
     }
 
-    private void rectangleShape5_MouseHover(object sender, EventArgs e)
-    {
-      //rectangleShape5
-    }
 
     private void buttonSetRate_Click(object sender, EventArgs e)
     {
@@ -1061,6 +1080,100 @@ namespace LukMachine
       pen.EndCap = System.Drawing.Drawing2D.LineCap.NoAnchor;
       e.Graphics.DrawLine(pen, 640, 520, 710, 520);
       e.Graphics.DrawLine(pen, 650, 240, 715, 265);
+    }
+
+    private void rectangleShape12_MouseEnter(object sender, EventArgs e)
+    {
+      rectangleShape12.BorderWidth = 4;
+    }
+
+    private void rectangleShape12_MouseLeave(object sender, EventArgs e)
+    {
+      rectangleShape12.BorderWidth = 3;
+    }
+
+    private void rectangleShape6_MouseEnter(object sender, EventArgs e)
+    {
+      rectangleShape6.BorderWidth = 4;
+    }
+
+    private void rectangleShape6_MouseLeave(object sender, EventArgs e)
+    {
+      rectangleShape6.BorderWidth = 3;
+    }
+
+    private void rectangleShape11_MouseEnter(object sender, EventArgs e)
+    {
+      rectangleShape11.BorderWidth = 4;
+      //Refresh();
+      //rectangleShape11.Refresh();
+    }
+
+    private void rectangleShape11_MouseLeave(object sender, EventArgs e)
+    {
+      rectangleShape11.BorderWidth = 3;
+      //Refresh();
+      //rectangleShape11.Refresh();
+    }
+
+    private void rectangleShape8_MouseEnter(object sender, EventArgs e)
+    {
+      rectangleShape8.BorderWidth = 4;
+    }
+
+    private void rectangleShape8_MouseLeave(object sender, EventArgs e)
+    {
+      rectangleShape8.BorderWidth = 3;
+    }
+
+    private void rectangleShape2_MouseEnter(object sender, EventArgs e)
+    {
+      rectangleShape2.BorderWidth = 4;
+    }
+
+    private void rectangleShape2_MouseLeave(object sender, EventArgs e)
+    {
+      rectangleShape2.BorderWidth = 3;
+    }
+
+    private void rectangleShape4_MouseEnter(object sender, EventArgs e)
+    {
+      rectangleShape4.BorderWidth = 4;
+    }
+
+    private void rectangleShape4_MouseLeave(object sender, EventArgs e)
+    {
+      rectangleShape4.BorderWidth = 3;
+    }
+
+    private void rectangleShape5_MouseEnter(object sender, EventArgs e)
+    {
+      rectangleShape5.BorderWidth = 4;
+    }
+
+    private void rectangleShape5_MouseLeave(object sender, EventArgs e)
+    {
+      rectangleShape5.BorderWidth = 3;
+    }
+
+    private void rectangleShape20_MouseEnter(object sender, EventArgs e)
+    {
+      rectangleShape8.BorderWidth = 4;
+    }
+
+    private void rectangleShape14_MouseEnter(object sender, EventArgs e)
+    {
+      rectangleShape8.BorderWidth = 4;
+    }
+
+    private void button25_Click(object sender, EventArgs e)
+    {
+      Valves.OpenValve6();
+    }
+
+    private void button28_Click(object sender, EventArgs e)
+    {
+      Valves.CloseValve6();
     }
   }
 }

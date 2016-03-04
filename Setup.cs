@@ -85,6 +85,11 @@ namespace LukMachine
     private void button2_Click(object sender, EventArgs e)
     {
       //parse Inputs For Errors:
+      if (dataGridView1.RowCount==0)
+      {
+        MessageBox.Show("You must add values to the list");
+        return;
+      }
       if (radioButtonDiskChamber.Checked == false && radioButtonRingChamber.Checked == false)
       {
         MessageBox.Show("Please select the type of chamber!", "Note", MessageBoxButtons.OK, MessageBoxIcon.Error);

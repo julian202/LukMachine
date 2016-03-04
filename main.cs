@@ -15,7 +15,7 @@ namespace LukMachine
     public main()
     {
       InitializeComponent();
-   
+
     }
 
     private void button1_Click(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace LukMachine
 
         AutoScrn auto = new AutoScrn();
         auto.ShowDialog();
-        
+
         /*if (Properties.Settings.Default.mustRunReport)
         {
           Report rep = new Report();
@@ -98,11 +98,15 @@ namespace LukMachine
 
     private void button2_Click(object sender, EventArgs e)
     {
-      COMMS.Instance.OpenPort(Properties.Settings.Default.COMM);
-      Manual manctrl = new Manual();
-      Hide();
-      manctrl.ShowDialog();
-      Show();
+      bool success;
+      success = COMMS.Instance.OpenPort(Properties.Settings.Default.COMM);
+      if (success)
+      {
+        Manual manctrl = new Manual();
+        Hide();
+        manctrl.ShowDialog();
+        Show();
+      }
     }
 
     private void button3_Click(object sender, EventArgs e)

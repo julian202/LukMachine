@@ -93,6 +93,18 @@
       this.label5 = new System.Windows.Forms.Label();
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.label44 = new System.Windows.Forms.Label();
+      this.label43 = new System.Windows.Forms.Label();
+      this.label42 = new System.Windows.Forms.Label();
+      this.label41 = new System.Windows.Forms.Label();
+      this.label40 = new System.Windows.Forms.Label();
+      this.label39 = new System.Windows.Forms.Label();
+      this.label38 = new System.Windows.Forms.Label();
+      this.label37 = new System.Windows.Forms.Label();
+      this.label36 = new System.Windows.Forms.Label();
+      this.label35 = new System.Windows.Forms.Label();
+      this.label34 = new System.Windows.Forms.Label();
+      this.label19 = new System.Windows.Forms.Label();
       this.label33 = new System.Windows.Forms.Label();
       this.groupBox5 = new System.Windows.Forms.GroupBox();
       this.checkBoxTargetPressure = new System.Windows.Forms.CheckBox();
@@ -168,18 +180,8 @@
       this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-      this.label19 = new System.Windows.Forms.Label();
-      this.label34 = new System.Windows.Forms.Label();
-      this.label35 = new System.Windows.Forms.Label();
-      this.label36 = new System.Windows.Forms.Label();
-      this.label37 = new System.Windows.Forms.Label();
-      this.label38 = new System.Windows.Forms.Label();
-      this.label39 = new System.Windows.Forms.Label();
-      this.label40 = new System.Windows.Forms.Label();
-      this.label41 = new System.Windows.Forms.Label();
-      this.label42 = new System.Windows.Forms.Label();
-      this.label43 = new System.Windows.Forms.Label();
-      this.label44 = new System.Windows.Forms.Label();
+      this.button25 = new System.Windows.Forms.Button();
+      this.button28 = new System.Windows.Forms.Button();
       this.groupBox9.SuspendLayout();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -1048,6 +1050,126 @@
       this.tabPage1.Text = "Diagram Control";
       this.tabPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabPage1_Paint);
       // 
+      // label44
+      // 
+      this.label44.AutoSize = true;
+      this.label44.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label44.Location = new System.Drawing.Point(626, 217);
+      this.label44.Name = "label44";
+      this.label44.Size = new System.Drawing.Size(25, 16);
+      this.label44.TabIndex = 88;
+      this.label44.Text = "P1";
+      // 
+      // label43
+      // 
+      this.label43.AutoSize = true;
+      this.label43.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label43.Location = new System.Drawing.Point(313, 484);
+      this.label43.Name = "label43";
+      this.label43.Size = new System.Drawing.Size(36, 16);
+      this.label43.TabIndex = 87;
+      this.label43.Text = "MV2";
+      // 
+      // label42
+      // 
+      this.label42.AutoSize = true;
+      this.label42.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label42.Location = new System.Drawing.Point(142, 212);
+      this.label42.Name = "label42";
+      this.label42.Size = new System.Drawing.Size(36, 16);
+      this.label42.TabIndex = 86;
+      this.label42.Text = "MV1";
+      // 
+      // label41
+      // 
+      this.label41.AutoSize = true;
+      this.label41.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label41.Location = new System.Drawing.Point(371, 538);
+      this.label41.Name = "label41";
+      this.label41.Size = new System.Drawing.Size(45, 16);
+      this.label41.TabIndex = 85;
+      this.label41.Text = "OUT1";
+      // 
+      // label40
+      // 
+      this.label40.AutoSize = true;
+      this.label40.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label40.Location = new System.Drawing.Point(27, 476);
+      this.label40.Name = "label40";
+      this.label40.Size = new System.Drawing.Size(36, 16);
+      this.label40.TabIndex = 84;
+      this.label40.Text = "MV3";
+      // 
+      // label39
+      // 
+      this.label39.AutoSize = true;
+      this.label39.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label39.Location = new System.Drawing.Point(587, 86);
+      this.label39.Name = "label39";
+      this.label39.Size = new System.Drawing.Size(25, 16);
+      this.label39.TabIndex = 83;
+      this.label39.Text = "V7";
+      // 
+      // label38
+      // 
+      this.label38.AutoSize = true;
+      this.label38.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label38.Location = new System.Drawing.Point(676, 308);
+      this.label38.Name = "label38";
+      this.label38.Size = new System.Drawing.Size(25, 16);
+      this.label38.TabIndex = 82;
+      this.label38.Text = "V6";
+      // 
+      // label37
+      // 
+      this.label37.AutoSize = true;
+      this.label37.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label37.Location = new System.Drawing.Point(599, 308);
+      this.label37.Name = "label37";
+      this.label37.Size = new System.Drawing.Size(25, 16);
+      this.label37.TabIndex = 81;
+      this.label37.Text = "V5";
+      // 
+      // label36
+      // 
+      this.label36.AutoSize = true;
+      this.label36.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label36.Location = new System.Drawing.Point(525, 308);
+      this.label36.Name = "label36";
+      this.label36.Size = new System.Drawing.Size(25, 16);
+      this.label36.TabIndex = 80;
+      this.label36.Text = "V4";
+      // 
+      // label35
+      // 
+      this.label35.AutoSize = true;
+      this.label35.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label35.Location = new System.Drawing.Point(412, 296);
+      this.label35.Name = "label35";
+      this.label35.Size = new System.Drawing.Size(25, 16);
+      this.label35.TabIndex = 79;
+      this.label35.Text = "V2";
+      // 
+      // label34
+      // 
+      this.label34.AutoSize = true;
+      this.label34.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label34.Location = new System.Drawing.Point(208, 470);
+      this.label34.Name = "label34";
+      this.label34.Size = new System.Drawing.Size(25, 16);
+      this.label34.TabIndex = 78;
+      this.label34.Text = "V3";
+      // 
+      // label19
+      // 
+      this.label19.AutoSize = true;
+      this.label19.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label19.Location = new System.Drawing.Point(8, 310);
+      this.label19.Name = "label19";
+      this.label19.Size = new System.Drawing.Size(25, 16);
+      this.label19.TabIndex = 54;
+      this.label19.Text = "V1";
+      // 
       // label33
       // 
       this.label33.AutoSize = true;
@@ -1681,6 +1803,7 @@
       this.rectangleShape20.Name = "rectangleShape20";
       this.rectangleShape20.Size = new System.Drawing.Size(46, 45);
       this.rectangleShape20.Click += new System.EventHandler(this.rectangleShape8_Click);
+      this.rectangleShape20.MouseEnter += new System.EventHandler(this.rectangleShape20_MouseEnter);
       // 
       // rectangleShape16
       // 
@@ -1699,6 +1822,8 @@
       this.rectangleShape6.Name = "rectangleShape6";
       this.rectangleShape6.Size = new System.Drawing.Size(83, 60);
       this.rectangleShape6.Click += new System.EventHandler(this.rectangleShape6_Click);
+      this.rectangleShape6.MouseEnter += new System.EventHandler(this.rectangleShape6_MouseEnter);
+      this.rectangleShape6.MouseLeave += new System.EventHandler(this.rectangleShape6_MouseLeave);
       // 
       // rectangleShape15
       // 
@@ -1728,6 +1853,8 @@
       this.rectangleShape11.Name = "rectangleShape11";
       this.rectangleShape11.Size = new System.Drawing.Size(83, 60);
       this.rectangleShape11.Click += new System.EventHandler(this.rectangleShape11_Click);
+      this.rectangleShape11.MouseEnter += new System.EventHandler(this.rectangleShape11_MouseEnter);
+      this.rectangleShape11.MouseLeave += new System.EventHandler(this.rectangleShape11_MouseLeave);
       // 
       // lineShape8
       // 
@@ -1756,6 +1883,7 @@
       this.rectangleShape14.Name = "rectangleShape14";
       this.rectangleShape14.Size = new System.Drawing.Size(131, 77);
       this.rectangleShape14.Click += new System.EventHandler(this.rectangleShape14_Click);
+      this.rectangleShape14.MouseEnter += new System.EventHandler(this.rectangleShape14_MouseEnter);
       // 
       // lineShape6
       // 
@@ -1792,6 +1920,8 @@
       this.rectangleShape12.Name = "rectangleShape12";
       this.rectangleShape12.Size = new System.Drawing.Size(60, 83);
       this.rectangleShape12.Click += new System.EventHandler(this.rectangleShape12_Click);
+      this.rectangleShape12.MouseEnter += new System.EventHandler(this.rectangleShape12_MouseEnter);
+      this.rectangleShape12.MouseLeave += new System.EventHandler(this.rectangleShape12_MouseLeave);
       // 
       // lineShape4
       // 
@@ -1836,6 +1966,8 @@
       this.rectangleShape8.Name = "rectangleShape8";
       this.rectangleShape8.Size = new System.Drawing.Size(79, 71);
       this.rectangleShape8.Click += new System.EventHandler(this.rectangleShape8_Click);
+      this.rectangleShape8.MouseEnter += new System.EventHandler(this.rectangleShape8_MouseEnter);
+      this.rectangleShape8.MouseLeave += new System.EventHandler(this.rectangleShape8_MouseLeave);
       // 
       // rectangleShape7
       // 
@@ -1864,7 +1996,8 @@
       this.rectangleShape5.Name = "rectangleShape5";
       this.rectangleShape5.Size = new System.Drawing.Size(60, 83);
       this.rectangleShape5.Click += new System.EventHandler(this.rectangleShape5_Click);
-      this.rectangleShape5.MouseHover += new System.EventHandler(this.rectangleShape5_MouseHover);
+      this.rectangleShape5.MouseEnter += new System.EventHandler(this.rectangleShape5_MouseEnter);
+      this.rectangleShape5.MouseLeave += new System.EventHandler(this.rectangleShape5_MouseLeave);
       // 
       // rectangleShape4
       // 
@@ -1875,6 +2008,8 @@
       this.rectangleShape4.Name = "rectangleShape4";
       this.rectangleShape4.Size = new System.Drawing.Size(60, 83);
       this.rectangleShape4.Click += new System.EventHandler(this.rectangleShape4_Click);
+      this.rectangleShape4.MouseEnter += new System.EventHandler(this.rectangleShape4_MouseEnter);
+      this.rectangleShape4.MouseLeave += new System.EventHandler(this.rectangleShape4_MouseLeave);
       // 
       // rectangleShape2
       // 
@@ -1885,6 +2020,8 @@
       this.rectangleShape2.Name = "rectangleShape2";
       this.rectangleShape2.Size = new System.Drawing.Size(60, 83);
       this.rectangleShape2.Click += new System.EventHandler(this.rectangleShape2_Click);
+      this.rectangleShape2.MouseEnter += new System.EventHandler(this.rectangleShape2_MouseEnter);
+      this.rectangleShape2.MouseLeave += new System.EventHandler(this.rectangleShape2_MouseLeave);
       // 
       // lineShape3
       // 
@@ -1906,6 +2043,8 @@
       // tabPage2
       // 
       this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+      this.tabPage2.Controls.Add(this.button28);
+      this.tabPage2.Controls.Add(this.button25);
       this.tabPage2.Controls.Add(this.groupBox7);
       this.tabPage2.Controls.Add(this.groupBox6);
       this.tabPage2.Controls.Add(this.groupBox8);
@@ -1925,125 +2064,25 @@
       // 
       this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
       // 
-      // label19
+      // button25
       // 
-      this.label19.AutoSize = true;
-      this.label19.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label19.Location = new System.Drawing.Point(8, 310);
-      this.label19.Name = "label19";
-      this.label19.Size = new System.Drawing.Size(25, 16);
-      this.label19.TabIndex = 54;
-      this.label19.Text = "V1";
+      this.button25.Location = new System.Drawing.Point(296, 203);
+      this.button25.Name = "button25";
+      this.button25.Size = new System.Drawing.Size(347, 66);
+      this.button25.TabIndex = 41;
+      this.button25.Text = "open valve 6";
+      this.button25.UseVisualStyleBackColor = true;
+      this.button25.Click += new System.EventHandler(this.button25_Click);
       // 
-      // label34
+      // button28
       // 
-      this.label34.AutoSize = true;
-      this.label34.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label34.Location = new System.Drawing.Point(208, 470);
-      this.label34.Name = "label34";
-      this.label34.Size = new System.Drawing.Size(25, 16);
-      this.label34.TabIndex = 78;
-      this.label34.Text = "V3";
-      // 
-      // label35
-      // 
-      this.label35.AutoSize = true;
-      this.label35.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label35.Location = new System.Drawing.Point(412, 296);
-      this.label35.Name = "label35";
-      this.label35.Size = new System.Drawing.Size(25, 16);
-      this.label35.TabIndex = 79;
-      this.label35.Text = "V2";
-      // 
-      // label36
-      // 
-      this.label36.AutoSize = true;
-      this.label36.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label36.Location = new System.Drawing.Point(525, 308);
-      this.label36.Name = "label36";
-      this.label36.Size = new System.Drawing.Size(25, 16);
-      this.label36.TabIndex = 80;
-      this.label36.Text = "V4";
-      // 
-      // label37
-      // 
-      this.label37.AutoSize = true;
-      this.label37.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label37.Location = new System.Drawing.Point(599, 308);
-      this.label37.Name = "label37";
-      this.label37.Size = new System.Drawing.Size(25, 16);
-      this.label37.TabIndex = 81;
-      this.label37.Text = "V5";
-      // 
-      // label38
-      // 
-      this.label38.AutoSize = true;
-      this.label38.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label38.Location = new System.Drawing.Point(676, 308);
-      this.label38.Name = "label38";
-      this.label38.Size = new System.Drawing.Size(25, 16);
-      this.label38.TabIndex = 82;
-      this.label38.Text = "V6";
-      // 
-      // label39
-      // 
-      this.label39.AutoSize = true;
-      this.label39.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label39.Location = new System.Drawing.Point(587, 86);
-      this.label39.Name = "label39";
-      this.label39.Size = new System.Drawing.Size(25, 16);
-      this.label39.TabIndex = 83;
-      this.label39.Text = "V7";
-      // 
-      // label40
-      // 
-      this.label40.AutoSize = true;
-      this.label40.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label40.Location = new System.Drawing.Point(27, 476);
-      this.label40.Name = "label40";
-      this.label40.Size = new System.Drawing.Size(36, 16);
-      this.label40.TabIndex = 84;
-      this.label40.Text = "MV3";
-      // 
-      // label41
-      // 
-      this.label41.AutoSize = true;
-      this.label41.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label41.Location = new System.Drawing.Point(371, 538);
-      this.label41.Name = "label41";
-      this.label41.Size = new System.Drawing.Size(45, 16);
-      this.label41.TabIndex = 85;
-      this.label41.Text = "OUT1";
-      // 
-      // label42
-      // 
-      this.label42.AutoSize = true;
-      this.label42.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label42.Location = new System.Drawing.Point(142, 212);
-      this.label42.Name = "label42";
-      this.label42.Size = new System.Drawing.Size(36, 16);
-      this.label42.TabIndex = 86;
-      this.label42.Text = "MV1";
-      // 
-      // label43
-      // 
-      this.label43.AutoSize = true;
-      this.label43.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label43.Location = new System.Drawing.Point(313, 484);
-      this.label43.Name = "label43";
-      this.label43.Size = new System.Drawing.Size(36, 16);
-      this.label43.TabIndex = 87;
-      this.label43.Text = "MV2";
-      // 
-      // label44
-      // 
-      this.label44.AutoSize = true;
-      this.label44.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label44.Location = new System.Drawing.Point(626, 217);
-      this.label44.Name = "label44";
-      this.label44.Size = new System.Drawing.Size(25, 16);
-      this.label44.TabIndex = 88;
-      this.label44.Text = "P1";
+      this.button28.Location = new System.Drawing.Point(296, 282);
+      this.button28.Name = "button28";
+      this.button28.Size = new System.Drawing.Size(347, 63);
+      this.button28.TabIndex = 42;
+      this.button28.Text = "close valve 6";
+      this.button28.UseVisualStyleBackColor = true;
+      this.button28.Click += new System.EventHandler(this.button28_Click);
       // 
       // Manual
       // 
@@ -2251,5 +2290,7 @@
     private System.Windows.Forms.Label label42;
     private System.Windows.Forms.Label label43;
     private System.Windows.Forms.Label label44;
+    private System.Windows.Forms.Button button28;
+    private System.Windows.Forms.Button button25;
   }
 }
