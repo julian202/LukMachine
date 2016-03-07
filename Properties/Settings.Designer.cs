@@ -836,5 +836,17 @@ namespace LukMachine.Properties {
                 this["CollectionTemperature"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int StepCount {
+            get {
+                return ((int)(this["StepCount"]));
+            }
+            set {
+                this["StepCount"] = value;
+            }
+        }
     }
 }

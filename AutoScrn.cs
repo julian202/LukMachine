@@ -46,7 +46,9 @@ namespace LukMachine
           string[] splitString2 = splitString[1].Split(',');
           string X = splitString2[1];
           string Y = splitString2[0];
-          chart1.Series["Series1"].Points.AddXY(Y, X);
+          chart1.Series["Series1"].Points.AddXY(Y, X);        
+          labelTotalTime.Text = "Total time  =  " + (Convert.ToDouble(Y) / 60).ToString("0.00") + " mins";
+
           /*try
           {
             if (Convert.ToInt32(Convert.ToDouble(Y)) > 0)
@@ -66,14 +68,21 @@ namespace LukMachine
           dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
           System.Diagnostics.Debug.WriteLine("X: " + X.ToString() + " Y: " + Y.ToString());
         }
+        else if (message.Contains("display current step time"))
+        {
+          string[] msgSplit = message.Split('=');
+          string currentDuration = msgSplit[1];
+          labelDuration.Text = "Step time  =  " + currentDuration + " mins";
+        }
         else if (message.Contains("set label7 to targetTemp"))
         {
           //targetTemp = Properties.Settings.Default.selectedTemp;
+          /*
           string[] msgSplit = message.Split('=');
           double targetTemp = Convert.ToDouble(msgSplit[1]);
           int targetTempInCelsius = (Convert.ToInt32((targetTemp - 32) * 5 / 9));
-          label8.Text = "Target    = " + targetTemp.ToString() + " F / " + String.Format("{0:0}", targetTempInCelsius) + " C ";
-
+          label8.Text = "Temperature  = " + targetTemp.ToString() + " F / " + String.Format("{0:0}", targetTempInCelsius) + " C ";
+          */
         }
         else if (message.Contains("set label5 to currentTemp"))
         {
@@ -81,7 +90,7 @@ namespace LukMachine
           int myint = Convert.ToInt32(Convert.ToDouble(msgSplit[1]));
           //MessageBox.Show(myint.ToString());  
           int myintInCelsius = (Convert.ToInt32((myint - 32) * 5 / 9));
-          label6.Text = "Current  =  " + String.Format("{0:0}", myint) + " F / " + String.Format("{0:0}", myintInCelsius) + " C ";
+          label6.Text = "Temperature  =  " + String.Format("{0:0}", myint) + " F / " + String.Format("{0:0}", myintInCelsius) + " C ";
           //MessageBox.Show(label5.Text);
         }
         else if (message.Contains("disable stop button"))
@@ -92,21 +101,33 @@ namespace LukMachine
         {
           string[] msgSplit = message.Split('=');
           string pressure = msgSplit[1];
-          labelPressure.Text = "Current  =  " + String.Format("{0:0.0} PSI", Convert.ToDouble(pressure));
+          labelPressure.Text = "Pressure  =  " + String.Format("{0:0.0} PSI", Convert.ToDouble(pressure));
           string pumpstate = Properties.Settings.Default.MainPumpStatePercent.ToString();
           labelPumpState.Text = "Pump State  =  " + pumpstate + "%";
         }
         else if (message.Contains("display target pressure"))
         {
-          string[] msgSplit = message.Split('=');
-          string targetpressure = msgSplit[1];
-          labelTargetPressure.Text = "Target    =  " + String.Format("{0:0.0} PSI", Convert.ToDouble(targetpressure));
+          //string[] msgSplit = message.Split('=');
+          //string targetpressure = msgSplit[1];
+          //labelTargetPressure.Text = "Pressure    =  " + String.Format("{0:0.0} PSI", Convert.ToDouble(targetpressure));
+          /*
+          string pressures;
+          pressures = Properties.Settings.Default.CollectionPressure[0];
+          for (int i = 1; i < Properties.Settings.Default.CollectionPressure.Count; i++)
+          {
+            pressures = pressures + ", " + Properties.Settings.Default.CollectionPressure[i];
+          }
+          labelTargetPressure.Text = "Pressure  =  " + pressures;*/
+
         }
         else if (message.Contains("display duration"))
         {
-          string[] msgSplit = message.Split('=');
-          string duration = msgSplit[1];
-          labelDuration.Text = "Duration  =  " + String.Format("{0:0.0} mins", Convert.ToDouble(duration));
+          //string[] msgSplit = message.Split('=');
+          //string duration = msgSplit[1];
+
+          //labelDuration.Text = "Duration  =  " + String.Format("{0:0.0} mins", Convert.ToDouble(duration));
+
+
         }
         else if (message.Contains("hide panel1"))
         {
@@ -132,6 +153,16 @@ namespace LukMachine
 
           verticalProgressBar1.Value = Convert.ToInt32(ReservoirPercent);
           verticalProgressBar2.Value = Convert.ToInt32(CollectedPercent);
+        }
+        else if (message.Contains("display stepCount"))
+        {
+          string[] msgSplit = message.Split('=');
+          labelStepCurrent.Text = "Step  =  " + msgSplit[1];
+        }
+        else if (message.Contains("display duration"))
+        {
+          string[] msgSplit = message.Split('=');
+          labelDuration.Text = "Duration  =  " + msgSplit[1];
         }
         else if (message.Contains("end Test"))
         {
@@ -174,6 +205,34 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+      string pressures;
+      pressures = Properties.Settings.Default.CollectionPressure[0];
+      for (int i = 1; i < Properties.Settings.Default.CollectionPressure.Count; i++)
+      {
+        pressures = pressures + ", " + Properties.Settings.Default.CollectionPressure[i];
+      }
+      labelTargetPressure.Text = "Pressure  =  " + pressures + " (PSI)";
+      labelStepsTotal.Text = "Total Steps  =  " + Properties.Settings.Default.StepCount.ToString();
+      labelStepCurrent.Text = "Step  =  1";
+
+      string durations;
+      durations = Properties.Settings.Default.CollectionDuration[0];
+      for (int i = 1; i < Properties.Settings.Default.CollectionDuration.Count; i++)
+      {
+        durations = durations + ", " + Properties.Settings.Default.CollectionDuration[i];
+      }
+      labelDurations.Text = "Step duration  =  " + durations + " (mins)";
+
+      string temperature;
+      temperature = Properties.Settings.Default.CollectionTemperature[0];
+      for (int i = 1; i < Properties.Settings.Default.CollectionTemperature.Count; i++)
+      {
+        temperature = temperature + ", " + Properties.Settings.Default.CollectionTemperature[i];
+      }
+      label8.Text = "Temperature  =  " + temperature +" (C)";
+
+
+
       button4.Visible = false;
       button5.Visible = false;
       Text = "Auto test [" + Properties.Settings.Default.TestSampleID + "]";
@@ -181,7 +240,7 @@ namespace LukMachine
       {
         MessageBox.Show("Please verify that your sample is centered and that the clamping mechanism is safely securing the sample.");
       }
-      chart1.ChartAreas[0].AxisY.Title = "Collected Volume (mL)";
+      chart1.ChartAreas[0].AxisY.Title = "Flow (Cnts/min)";
       chart1.ChartAreas[0].AxisX.Title = "Time (seconds)";
       chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
       chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);

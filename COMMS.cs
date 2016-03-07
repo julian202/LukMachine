@@ -400,7 +400,7 @@ namespace LukMachine
       return invertedPercent;
     }
 
-    public static int CollectedLevelCount;
+    public static int CollectedLevelCount=0;
     public Int32 getCollectedLevelPercent()
     {
       int minCount = Properties.Settings.Default.MinCollectedCount;

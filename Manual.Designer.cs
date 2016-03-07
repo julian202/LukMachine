@@ -182,6 +182,11 @@
       this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
       this.button25 = new System.Windows.Forms.Button();
       this.button28 = new System.Windows.Forms.Button();
+      this.labelCollectedCount = new System.Windows.Forms.Label();
+      this.groupBox14 = new System.Windows.Forms.GroupBox();
+      this.label45 = new System.Windows.Forms.Label();
+      this.textBox8 = new System.Windows.Forms.TextBox();
+      this.trackBar5 = new System.Windows.Forms.TrackBar();
       this.groupBox9.SuspendLayout();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -206,6 +211,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
       this.groupBox11.SuspendLayout();
       this.tabPage2.SuspendLayout();
+      this.groupBox14.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).BeginInit();
       this.SuspendLayout();
       // 
       // timer1
@@ -1006,6 +1013,7 @@
       // tabPage1
       // 
       this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+      this.tabPage1.Controls.Add(this.labelCollectedCount);
       this.tabPage1.Controls.Add(this.label44);
       this.tabPage1.Controls.Add(this.label43);
       this.tabPage1.Controls.Add(this.label42);
@@ -2043,6 +2051,7 @@
       // tabPage2
       // 
       this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+      this.tabPage2.Controls.Add(this.groupBox14);
       this.tabPage2.Controls.Add(this.button28);
       this.tabPage2.Controls.Add(this.button25);
       this.tabPage2.Controls.Add(this.groupBox7);
@@ -2083,6 +2092,62 @@
       this.button28.Text = "close valve 6";
       this.button28.UseVisualStyleBackColor = true;
       this.button28.Click += new System.EventHandler(this.button28_Click);
+      // 
+      // labelCollectedCount
+      // 
+      this.labelCollectedCount.AutoSize = true;
+      this.labelCollectedCount.BackColor = System.Drawing.Color.Transparent;
+      this.labelCollectedCount.Location = new System.Drawing.Point(153, 171);
+      this.labelCollectedCount.Name = "labelCollectedCount";
+      this.labelCollectedCount.Size = new System.Drawing.Size(88, 25);
+      this.labelCollectedCount.TabIndex = 89;
+      this.labelCollectedCount.Text = "- counts";
+      // 
+      // groupBox14
+      // 
+      this.groupBox14.Controls.Add(this.label45);
+      this.groupBox14.Controls.Add(this.textBox8);
+      this.groupBox14.Controls.Add(this.trackBar5);
+      this.groupBox14.Location = new System.Drawing.Point(302, 367);
+      this.groupBox14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.groupBox14.Name = "groupBox14";
+      this.groupBox14.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.groupBox14.Size = new System.Drawing.Size(396, 121);
+      this.groupBox14.TabIndex = 60;
+      this.groupBox14.TabStop = false;
+      this.groupBox14.Text = "Output2 (0-10V out2)";
+      // 
+      // label45
+      // 
+      this.label45.AutoSize = true;
+      this.label45.Location = new System.Drawing.Point(326, 37);
+      this.label45.Name = "label45";
+      this.label45.Size = new System.Drawing.Size(32, 25);
+      this.label45.TabIndex = 11;
+      this.label45.Text = "%";
+      // 
+      // textBox8
+      // 
+      this.textBox8.Location = new System.Drawing.Point(271, 34);
+      this.textBox8.Name = "textBox8";
+      this.textBox8.Size = new System.Drawing.Size(49, 33);
+      this.textBox8.TabIndex = 10;
+      this.textBox8.Text = "0";
+      this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
+      // 
+      // trackBar5
+      // 
+      this.trackBar5.LargeChange = 100;
+      this.trackBar5.Location = new System.Drawing.Point(28, 37);
+      this.trackBar5.Margin = new System.Windows.Forms.Padding(4);
+      this.trackBar5.Maximum = 4000;
+      this.trackBar5.Name = "trackBar5";
+      this.trackBar5.Size = new System.Drawing.Size(236, 69);
+      this.trackBar5.SmallChange = 10;
+      this.trackBar5.TabIndex = 7;
+      this.trackBar5.TickStyle = System.Windows.Forms.TickStyle.None;
+      this.trackBar5.Scroll += new System.EventHandler(this.trackBar5_Scroll);
       // 
       // Manual
       // 
@@ -2135,6 +2200,9 @@
       this.groupBox11.PerformLayout();
       this.tabPage2.ResumeLayout(false);
       this.tabPage2.PerformLayout();
+      this.groupBox14.ResumeLayout(false);
+      this.groupBox14.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).EndInit();
       this.ResumeLayout(false);
 
         }
@@ -2292,5 +2360,10 @@
     private System.Windows.Forms.Label label44;
     private System.Windows.Forms.Button button28;
     private System.Windows.Forms.Button button25;
+    private System.Windows.Forms.Label labelCollectedCount;
+    private System.Windows.Forms.GroupBox groupBox14;
+    private System.Windows.Forms.Label label45;
+    private System.Windows.Forms.TextBox textBox8;
+    private System.Windows.Forms.TrackBar trackBar5;
   }
 }

@@ -216,6 +216,7 @@ namespace LukMachine
       int CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
       groupBoxCollected.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
       label28.Text = CollectedPercent.ToString() + "% Full";
+      labelCollectedCount.Text = COMMS.Instance.getCollectedLevelCount()+ " counts";
 
       label2.Text = "Penetrometer 1: " + COMMS.Instance.getReservoirLevelCount() + " (" + ReservoirPercent.ToString() + "%)"; //is COMMS.Instance.MotorValvePosition(1);
       label3.Text = "Penetrometer 2: " + COMMS.Instance.getCollectedLevelCount() + " (" + CollectedPercent.ToString() + "%)"; //is COMMS.Instance.MotorValvePosition(2);
@@ -1174,6 +1175,24 @@ namespace LukMachine
     private void button28_Click(object sender, EventArgs e)
     {
       Valves.CloseValve6();
+    }
+
+    private void trackBar5_Scroll(object sender, EventArgs e)
+    {
+      textBox8.Text = ((trackBar5.Value) * 100 / 4000).ToString();
+    }
+
+    private void textBox8_TextChanged(object sender, EventArgs e)
+    {
+      try
+      {
+        trackBar5.Value = Convert.ToInt32(textBox8.Text) * 4000 / 100;
+        COMMS.Instance.SetRegulator(2, trackBar5.Value);
+      }
+      catch
+      {
+        MessageBox.Show("invalid");
+      }
     }
   }
 }

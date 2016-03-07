@@ -90,6 +90,7 @@ namespace LukMachine
         MessageBox.Show("You must add values to the list");
         return;
       }
+
       if (radioButtonDiskChamber.Checked == false && radioButtonRingChamber.Checked == false)
       {
         MessageBox.Show("Please select the type of chamber!", "Note", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -119,6 +120,7 @@ namespace LukMachine
       }
 
       //Save selected values
+      Properties.Settings.Default.StepCount = dataGridView1.RowCount;
       Properties.Settings.Default.selectedTemp = selectedTemp;
       Properties.Settings.Default.TestSampleID = textBox1.Text;
       Properties.Settings.Default.TestLotNumber = textBox2.Text;

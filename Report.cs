@@ -129,7 +129,12 @@ namespace LukMachine
         string pressureRate = splitStuff[1];
         sampleInfoCSV += pressureRate + ",";
         */
-
+        RL = SR.ReadLine(); //Duration Units
+        RL = SR.ReadLine(); //Temperature Units
+        RL = SR.ReadLine(); //Steps
+        RL = SR.ReadLine(); //Pressures
+        RL = SR.ReadLine(); //Durations
+        RL = SR.ReadLine(); //Temperatures
         RL = SR.ReadLine(); //blank
         RL = SR.ReadLine(); //Data
         RL = SR.ReadLine(); //blank
@@ -150,9 +155,9 @@ namespace LukMachine
         {
           //read/split each line and convert to double type.
           RL = SR.ReadLine();
-          if (RL.Contains(','))
+          if (RL.Contains('\t'))
           {
-            string[] splitString = RL.Split(',');
+            string[] splitString = RL.Split('\t');
             try
             {
               double volume = Convert.ToDouble(splitString[0]);
@@ -319,7 +324,7 @@ namespace LukMachine
       chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
       chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
       chart1.ChartAreas[0].AxisX.LineDashStyle= System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDotDot;
-      chart1.ChartAreas[0].AxisY.Title = "Volume (mL)";
+      chart1.ChartAreas[0].AxisY.Title = "Flow (Cnts/min)";
       chart1.ChartAreas[0].AxisX.Title = "Time (seconds)";
 
     }

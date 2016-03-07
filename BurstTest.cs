@@ -40,10 +40,15 @@ namespace LukMachine
     bool overVolume = false;
     double currentPressure; double startTime = 0; double stoppedTime = 0; double startStoppedTime = 0; double endStoppedTime = 0;
     double currentTime = 0; double outputTime = 0; double outputPressure = 0; string counts = ""; double realCounts = 0;
+    double lastTime = 0; double timeDifferenceInMinutes;
     //double ground = Properties.Settings.Default.ground;
     //double twoVolt = Properties.Settings.Default.twoVolt;
     int ReservoirPercent;
     int CollectedPercent;
+    double CollectedCount;
+    double LastCollectedCount;
+    double CollectedDifferenceInCounts;
+    double Flow;
 
     //Set up data file
     StreamWriter SR;
@@ -202,8 +207,8 @@ namespace LukMachine
       ReadPressureAndSetLabel();
       SetTargetPressureLabel();
       SetDurationLabel();
- 
-        while (((currentPressure < (targetPressure - 0.1)) || (currentPressure > targetPressure + 0.1)) && !abort)
+
+      while (((currentPressure < (targetPressure - 0.1)) || (currentPressure > targetPressure + 0.1)) && !abort)
       {
         System.Diagnostics.Debug.WriteLine("currentPressure is " + currentPressure.ToString() + ",  targetPressure is " + targetPressure.ToString());
 
@@ -258,19 +263,20 @@ namespace LukMachine
 
     public void HeatMachineToTargetTemperature()
     {
-      Progress("set label7 to targetTemp="+targetTemp.ToString());
+      Progress("set label7 to targetTemp=" + targetTemp.ToString());
       try
       {
         //targetTemp = Properties.Settings.Default.selectedTemp;
 
 
         //set heaters to target temp:
-        COMMS.Instance.SetAthenaTemp(1, (Math.Round(((targetTemp) * 9 / 5 + 32))));
-        COMMS.Instance.SetAthenaTemp(2, (Math.Round(((targetTemp) * 9 / 5 + 32))));
-        COMMS.Instance.SetAthenaTemp(3, (Math.Round(((targetTemp) * 9 / 5 + 32))));
-        COMMS.Instance.SetAthenaTemp(4, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+        double targetTempinF = (Math.Round(((targetTemp) * 9 / 5 + 32)));
+        COMMS.Instance.SetAthenaTemp(1, targetTempinF);
+        COMMS.Instance.SetAthenaTemp(2, targetTempinF);
+        COMMS.Instance.SetAthenaTemp(3, targetTempinF);
+        COMMS.Instance.SetAthenaTemp(4, targetTempinF);
 
-        while ((currentTemp < targetTemp - 2) || (currentTemp > targetTemp + 2))
+        while ((currentTemp < targetTempinF - 1) || (currentTemp > targetTempinF + 1))
         {
           ReadTemperatureAndSetLabel();
           Thread.Sleep(2000);//wait before checking again
@@ -323,7 +329,7 @@ namespace LukMachine
       Progress("Done checking reservoir levels");
 
       //Check temperature levels
-      string nextTemperature= Properties.Settings.Default.CollectionTemperature[0];    
+      string nextTemperature = Properties.Settings.Default.CollectionTemperature[0];
       if (IsNumeric(nextTemperature))  //Properties.Settings.Default.useTemperature
       {
         targetTemp = Convert.ToDouble(nextTemperature);
@@ -337,6 +343,8 @@ namespace LukMachine
       stepCount = 0;
       targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
       currentDuration = Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]);
+
+      Progress("display current step time=" + (currentDuration).ToString("0.00"));
       GoToTargetPressure();
       Progress("Target pressure reached");
 
@@ -350,16 +358,17 @@ namespace LukMachine
       SR = new StreamWriter(dataFile);
       WriteHeader();
       SR.Close();
-      
+
 
       startTime = Convert.ToDouble(Environment.TickCount); //+ 500.0
       maxPressure *= pConversion;
       maxTestPressure *= pConversion;
 
       //Main loop
-      
+
       Progress("Now running");
       string collectedLevelCount;
+      bool firstRound = true;
       while (!abort && !overVolume)
       {
         //Read pressure
@@ -383,14 +392,25 @@ namespace LukMachine
         ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
         CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
         Progress("display volume levels =" + ReservoirPercent.ToString() + "=" + CollectedPercent.ToString());//fix this, dont read twice
+        CollectedCount = COMMS.CollectedLevelCount;
+        if (firstRound)
+        {
+          LastCollectedCount = CollectedCount;
+          firstRound = false;
+        }
+
+        CollectedDifferenceInCounts = -(CollectedCount - LastCollectedCount); //It has to be -ve because penetrometer is inverted (max counts is empty penetrometer)
 
         //read temperature
         ReadTemperatureAndSetLabel();
 
-
         //read current time
         currentTime = Convert.ToDouble(Environment.TickCount) - startTime - stoppedTime;
         outputTime = currentTime / 1000;
+        timeDifferenceInMinutes = ((currentTime - lastTime) / 1000) / 60;
+
+        //Calculate flow
+        Flow = CollectedDifferenceInCounts / timeDifferenceInMinutes; //this is flow in pent counts per minute
 
         //keep rough track of how many mL we have pumped.
         double mlsMoved = (pressureRate / 60.0) * outputTime;
@@ -398,27 +418,37 @@ namespace LukMachine
         //write data to file and report progress
         SR = new StreamWriter(dataFile, true);
         collectedLevelCount = COMMS.CollectedLevelCount.ToString();
-        SR.WriteLine(outputTime.ToString("0.00") + "," + collectedLevelCount + "," + currentTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
+        //SR.WriteLine(outputTime.ToString("0.00") + "," + collectedLevelCount + "," + currentTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
+        //SR.WriteLine(outputTime.ToString("0.00") + "\t" + Flow.ToString("0.000") + "\t" + currentTemp.ToString("0.0") + "\t" + currentPressure.ToString("0.000"));
+        SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), currentTemp.ToString("0.0"), currentPressure.ToString("0.000"));
+        Console.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), currentTemp.ToString("0.0"), currentPressure.ToString("0.000"));
+
         SR.Close();
-        Progress("Reading:" + outputTime.ToString("0.00") + "," + collectedLevelCount + "," + currentTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
+        //Progress("Reading:" + outputTime.ToString("0.00") + "," + collectedLevelCount + "," + currentTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
+        Progress("Reading:" + outputTime.ToString("0.00") + "," + Flow.ToString("0.000") + "," + currentTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
+        Progress("display stepCount=" + (stepCount+1).ToString());
         Thread.Sleep(500);// this is the main sleep of the thread between reading so that it doesn't go too fast.
         if (outputTime / 60 > currentDuration)
         {
+          Progress("display current step time=" + (currentDuration).ToString("0.00"));
           //save current time
           startStoppedTime = Convert.ToDouble(Environment.TickCount);
           Progress("Ended Period");
           //set presurre to target pressure
           Progress("Setting pressure to target pressure for next period. Please wait...");
           stepCount++;
+          Progress("display stepCount=" + (stepCount + 1).ToString());
           
+
           //end if stepCount is bigger than the number of steps (i.e. periods)
-          if (stepCount>= Properties.Settings.Default.CollectionPressure.Count)
+          if (stepCount >= Properties.Settings.Default.CollectionPressure.Count)
           {
             abort = true;
             Progress("end Test");
           }
           else
           {
+            Progress("display duration=" + Properties.Settings.Default.CollectionDuration[stepCount]);
             targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
             currentDuration = Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]);
             GoToTargetPressure();
@@ -441,7 +471,7 @@ namespace LukMachine
             currentTime = Convert.ToDouble(Environment.TickCount) - startTime - stoppedTime;
             currentDuration = (currentTime / 1000) / 60 + (currentDuration);
           }
-          
+
         }
 
         //Stop if over max pressure.
@@ -485,7 +515,9 @@ namespace LukMachine
           //COMMS.Instance.Pause(1); //wait 1 second for other thread to finish
         }
         //see if we need to pause, or abort.
-        //PauseTest();      
+        //PauseTest();     
+        lastTime = currentTime;
+        LastCollectedCount = CollectedCount; ;
       }
       if (abort)
       {
@@ -539,13 +571,35 @@ namespace LukMachine
       SR.WriteLine("");
       SR.WriteLine("Test Details:");
       SR.WriteLine("");
-      SR.WriteLine(DateTime.Now.ToString("dd/MM/yyyy H:mm"));
+      SR.WriteLine("Date= " + DateTime.Now.ToString("dd/MM/yyyy H:mm"));
       SR.WriteLine("Pressure Units=" + pUnits);
+      SR.WriteLine("Duration Units=" + "Seconds");
+      SR.WriteLine("Temperature Units=" + "Celsius");
+      SR.WriteLine("Steps=" + Properties.Settings.Default.StepCount);
+      SR.Write("Pressure=");
+      foreach (string item in Properties.Settings.Default.CollectionPressure)
+      {
+        SR.Write(item + ", ");
+      }
+      SR.WriteLine(""); //to end the line
+      SR.Write("Duration=");
+      foreach (string item in Properties.Settings.Default.CollectionDuration)
+      {
+        SR.Write(item + ", ");
+      }
+      SR.WriteLine("");//to end the line
+      SR.Write("Temperature=");
+      foreach (string item in Properties.Settings.Default.CollectionTemperature)
+      {
+        SR.Write(item + ", ");
+      }
+      SR.WriteLine("");//to end the line
       //SR.WriteLine("Pressure Rate(mL / min)=" + pressureRate.ToString());
       SR.WriteLine("");
       SR.WriteLine("Data:");
       SR.WriteLine("");
-      SR.WriteLine("Time, Collected Volume, Temperature, Pressure");
+      //SR.WriteLine("Time,\tFlow,\tTemperature,\tPressure");
+      SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", "Time", "Flow", "Temperature", "Pressure");
       SR.WriteLine("");
     }
   }

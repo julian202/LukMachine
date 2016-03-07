@@ -40,18 +40,18 @@
       this.button2 = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
-      this.label5 = new System.Windows.Forms.Label();
-      this.label4 = new System.Windows.Forms.Label();
-      this.label3 = new System.Windows.Forms.Label();
+      this.radioButton3 = new System.Windows.Forms.RadioButton();
+      this.radioButton2 = new System.Windows.Forms.RadioButton();
+      this.radioButton1 = new System.Windows.Forms.RadioButton();
       this.label2 = new System.Windows.Forms.Label();
       this.label1 = new System.Windows.Forms.Label();
       this.button4 = new System.Windows.Forms.Button();
+      this.label5 = new System.Windows.Forms.Label();
+      this.label4 = new System.Windows.Forms.Label();
+      this.label3 = new System.Windows.Forms.Label();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
       this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-      this.radioButton1 = new System.Windows.Forms.RadioButton();
-      this.radioButton2 = new System.Windows.Forms.RadioButton();
-      this.radioButton3 = new System.Windows.Forms.RadioButton();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
       this.groupBox1.SuspendLayout();
@@ -73,7 +73,7 @@
       this.chart1.Text = "chart1";
       title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       title1.Name = "Title1";
-      title1.Text = "Volume VS Time";
+      title1.Text = "Flow VS Time";
       this.chart1.Titles.Add(title1);
       // 
       // comboBox1
@@ -158,35 +158,42 @@
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Details";
       // 
-      // label5
+      // radioButton3
       // 
-      this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(569, 329);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(96, 24);
-      this.label5.TabIndex = 5;
-      this.label5.Text = "Burst Ratio:";
-      this.label5.Visible = false;
+      this.radioButton3.AutoSize = true;
+      this.radioButton3.Location = new System.Drawing.Point(14, 154);
+      this.radioButton3.Name = "radioButton3";
+      this.radioButton3.Size = new System.Drawing.Size(161, 28);
+      this.radioButton3.TabIndex = 5;
+      this.radioButton3.TabStop = true;
+      this.radioButton3.Text = "Flow vs Pressure";
+      this.radioButton3.UseVisualStyleBackColor = true;
+      this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
       // 
-      // label4
+      // radioButton2
       // 
-      this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(569, 301);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(114, 24);
-      this.label4.TabIndex = 4;
-      this.label4.Text = "Burst Volume:";
-      this.label4.Visible = false;
+      this.radioButton2.AutoSize = true;
+      this.radioButton2.Location = new System.Drawing.Point(15, 120);
+      this.radioButton2.Name = "radioButton2";
+      this.radioButton2.Size = new System.Drawing.Size(191, 28);
+      this.radioButton2.TabIndex = 4;
+      this.radioButton2.TabStop = true;
+      this.radioButton2.Text = "Flow vs Temperature";
+      this.radioButton2.UseVisualStyleBackColor = true;
+      this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
       // 
-      // label3
+      // radioButton1
       // 
-      this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(569, 271);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(122, 24);
-      this.label3.TabIndex = 3;
-      this.label3.Text = "Burst Pressure:";
-      this.label3.Visible = false;
+      this.radioButton1.AutoSize = true;
+      this.radioButton1.Checked = true;
+      this.radioButton1.Location = new System.Drawing.Point(15, 86);
+      this.radioButton1.Name = "radioButton1";
+      this.radioButton1.Size = new System.Drawing.Size(134, 28);
+      this.radioButton1.TabIndex = 3;
+      this.radioButton1.TabStop = true;
+      this.radioButton1.Text = "Flow vs Time";
+      this.radioButton1.UseVisualStyleBackColor = true;
+      this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
       // 
       // label2
       // 
@@ -218,6 +225,36 @@
       this.button4.UseVisualStyleBackColor = true;
       this.button4.Click += new System.EventHandler(this.button4_Click_1);
       // 
+      // label5
+      // 
+      this.label5.AutoSize = true;
+      this.label5.Location = new System.Drawing.Point(569, 329);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(96, 24);
+      this.label5.TabIndex = 5;
+      this.label5.Text = "Burst Ratio:";
+      this.label5.Visible = false;
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(569, 301);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(114, 24);
+      this.label4.TabIndex = 4;
+      this.label4.Text = "Burst Volume:";
+      this.label4.Visible = false;
+      // 
+      // label3
+      // 
+      this.label3.AutoSize = true;
+      this.label3.Location = new System.Drawing.Point(569, 271);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(122, 24);
+      this.label3.TabIndex = 3;
+      this.label3.Text = "Burst Pressure:";
+      this.label3.Visible = false;
+      // 
       // openFileDialog1
       // 
       this.openFileDialog1.Filter = "PMI Data Files|*.pmi";
@@ -228,43 +265,6 @@
       // 
       this.saveFileDialog1.DefaultExt = "xlsx";
       this.saveFileDialog1.Filter = "Excel Files|*xlsx";
-      // 
-      // radioButton1
-      // 
-      this.radioButton1.AutoSize = true;
-      this.radioButton1.Checked = true;
-      this.radioButton1.Location = new System.Drawing.Point(15, 86);
-      this.radioButton1.Name = "radioButton1";
-      this.radioButton1.Size = new System.Drawing.Size(134, 28);
-      this.radioButton1.TabIndex = 3;
-      this.radioButton1.TabStop = true;
-      this.radioButton1.Text = "Flow vs Time";
-      this.radioButton1.UseVisualStyleBackColor = true;
-      this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-      // 
-      // radioButton2
-      // 
-      this.radioButton2.AutoSize = true;
-      this.radioButton2.Location = new System.Drawing.Point(15, 120);
-      this.radioButton2.Name = "radioButton2";
-      this.radioButton2.Size = new System.Drawing.Size(191, 28);
-      this.radioButton2.TabIndex = 4;
-      this.radioButton2.TabStop = true;
-      this.radioButton2.Text = "Flow vs Temperature";
-      this.radioButton2.UseVisualStyleBackColor = true;
-      this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
-      // 
-      // radioButton3
-      // 
-      this.radioButton3.AutoSize = true;
-      this.radioButton3.Location = new System.Drawing.Point(14, 154);
-      this.radioButton3.Name = "radioButton3";
-      this.radioButton3.Size = new System.Drawing.Size(161, 28);
-      this.radioButton3.TabIndex = 5;
-      this.radioButton3.TabStop = true;
-      this.radioButton3.Text = "Flow vs Pressure";
-      this.radioButton3.UseVisualStyleBackColor = true;
-      this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
       // 
       // Report
       // 
