@@ -569,7 +569,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("62000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("60000")]
         public int MaxReservoirCount {
             get {
                 return ((int)(this["MaxReservoirCount"]));
@@ -581,7 +581,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("62000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("60000")]
         public int MaxCollectedCount {
             get {
                 return ((int)(this["MaxCollectedCount"]));
@@ -593,7 +593,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
         public int MinReservoirCount {
             get {
                 return ((int)(this["MinReservoirCount"]));
@@ -605,7 +605,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
         public int MinCollectedCount {
             get {
                 return ((int)(this["MinCollectedCount"]));

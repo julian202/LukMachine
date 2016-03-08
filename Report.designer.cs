@@ -216,7 +216,7 @@
       // button4
       // 
       this.button4.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.button4.Location = new System.Drawing.Point(14, 211);
+      this.button4.Location = new System.Drawing.Point(15, 200);
       this.button4.Name = "button4";
       this.button4.Size = new System.Drawing.Size(141, 60);
       this.button4.TabIndex = 0;

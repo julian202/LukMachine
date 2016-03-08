@@ -68,8 +68,6 @@ namespace LukMachine
           MessageBox.Show("A file with the same name is already open. This file will be skipped.", "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Error);
           continue;
         }
-
-
         StreamReader SR = new StreamReader(s);
         string RL = SR.ReadLine();
         if (RL != "Liquid Permeability Test")
@@ -453,7 +451,7 @@ namespace LukMachine
       //create excel worksheet for graph
       var gs = excel.Workbook.Worksheets.Add(splitStuff[0] + " graph");
       //output header stuff
-      ws.Cells[1, 1].Value = "Burst Pressure Analysis";
+      ws.Cells[1, 1].Value = "Liquid Permeability Test";
       ws.Cells[2, 1].Value = " ";
       ws.Cells[3, 1].Value = "Sample Info";
       ws.Cells[4, 1].Value = " ";
@@ -461,20 +459,21 @@ namespace LukMachine
       ws.Cells[5, 2].Value = splitStuff[0];
       ws.Cells[6, 1].Value = "Lot Number";
       ws.Cells[6, 2].Value = splitStuff[1];
+      /*
       ws.Cells[7, 1].Value = "Paper Sample";
       ws.Cells[7, 2].Value = splitStuff[2];
       ws.Cells[8, 1].Value = "Layers";
       ws.Cells[8, 2].Value = splitStuff[3];
       ws.Cells[9, 1].Value = "Grammage";
       ws.Cells[9, 2].Value = splitStuff[4];
-
+      */
       ws.Cells[10, 1].Value = "Date";
-      ws.Cells[10, 2].Value = splitStuff[5];
+      ws.Cells[10, 2].Value = splitStuff[2];
       ws.Cells[11, 1].Value = " ";
       ws.Cells[12, 1].Value = "Test Details";
       ws.Cells[13, 1].Value = " ";
       ws.Cells[14, 1].Value = "Pressure Units";
-      ws.Cells[14, 2].Value = splitStuff[6];
+      ws.Cells[14, 2].Value = splitStuff[3];
       ws.Cells[15, 1].Value = "Pressure Rate";
       ws.Cells[15, 2].Value = splitStuff[7];
       ws.Cells[16, 1].Value = " ";

@@ -86,13 +86,12 @@
       this.aGauge5 = new AGaugeApp.AGauge();
       this.groupBox6 = new System.Windows.Forms.GroupBox();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.groupBoxCollected = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.label8 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.labelCollectedCount = new System.Windows.Forms.Label();
       this.label44 = new System.Windows.Forms.Label();
       this.label43 = new System.Windows.Forms.Label();
       this.label42 = new System.Windows.Forms.Label();
@@ -142,12 +141,10 @@
       this.label29 = new System.Windows.Forms.Label();
       this.label28 = new System.Windows.Forms.Label();
       this.label27 = new System.Windows.Forms.Label();
-      this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
       this.label23 = new System.Windows.Forms.Label();
       this.label22 = new System.Windows.Forms.Label();
       this.label21 = new System.Windows.Forms.Label();
       this.label20 = new System.Windows.Forms.Label();
-      this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
       this.label18 = new System.Windows.Forms.Label();
       this.label9 = new System.Windows.Forms.Label();
       this.label17 = new System.Windows.Forms.Label();
@@ -179,14 +176,18 @@
       this.lineShape3 = new Microsoft.VisualBasic.PowerPacks.LineShape();
       this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.tabPage2 = new System.Windows.Forms.TabPage();
-      this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-      this.button25 = new System.Windows.Forms.Button();
-      this.button28 = new System.Windows.Forms.Button();
-      this.labelCollectedCount = new System.Windows.Forms.Label();
       this.groupBox14 = new System.Windows.Forms.GroupBox();
       this.label45 = new System.Windows.Forms.Label();
       this.textBox8 = new System.Windows.Forms.TextBox();
       this.trackBar5 = new System.Windows.Forms.TrackBar();
+      this.button28 = new System.Windows.Forms.Button();
+      this.button25 = new System.Windows.Forms.Button();
+      this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+      this.labelReservoirCounts = new System.Windows.Forms.Label();
+      this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.groupBox9.SuspendLayout();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -956,13 +957,6 @@
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir Volume";
       // 
-      // verticalProgressBar1
-      // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(63, 35);
-      this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
-      this.verticalProgressBar1.TabIndex = 43;
-      // 
       // groupBoxCollected
       // 
       this.groupBoxCollected.Controls.Add(this.verticalProgressBar2);
@@ -972,13 +966,6 @@
       this.groupBoxCollected.TabIndex = 41;
       this.groupBoxCollected.TabStop = false;
       this.groupBoxCollected.Text = "Collected Volume";
-      // 
-      // verticalProgressBar2
-      // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(70, 36);
-      this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
-      this.verticalProgressBar2.TabIndex = 44;
       // 
       // label8
       // 
@@ -1013,6 +1000,7 @@
       // tabPage1
       // 
       this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+      this.tabPage1.Controls.Add(this.labelReservoirCounts);
       this.tabPage1.Controls.Add(this.labelCollectedCount);
       this.tabPage1.Controls.Add(this.label44);
       this.tabPage1.Controls.Add(this.label43);
@@ -1057,6 +1045,16 @@
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "Diagram Control";
       this.tabPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabPage1_Paint);
+      // 
+      // labelCollectedCount
+      // 
+      this.labelCollectedCount.AutoSize = true;
+      this.labelCollectedCount.BackColor = System.Drawing.Color.Transparent;
+      this.labelCollectedCount.Location = new System.Drawing.Point(153, 171);
+      this.labelCollectedCount.Name = "labelCollectedCount";
+      this.labelCollectedCount.Size = new System.Drawing.Size(88, 25);
+      this.labelCollectedCount.TabIndex = 89;
+      this.labelCollectedCount.Text = "- counts";
       // 
       // label44
       // 
@@ -1646,7 +1644,7 @@
       // label29
       // 
       this.label29.AutoSize = true;
-      this.label29.Location = new System.Drawing.Point(366, 412);
+      this.label29.Location = new System.Drawing.Point(366, 393);
       this.label29.Name = "label29";
       this.label29.Size = new System.Drawing.Size(70, 25);
       this.label29.TabIndex = 56;
@@ -1665,19 +1663,11 @@
       // label27
       // 
       this.label27.AutoSize = true;
-      this.label27.Location = new System.Drawing.Point(366, 387);
+      this.label27.Location = new System.Drawing.Point(366, 368);
       this.label27.Name = "label27";
       this.label27.Size = new System.Drawing.Size(106, 25);
       this.label27.TabIndex = 54;
       this.label27.Text = "Reservoir";
-      // 
-      // verticalProgressBar4
-      // 
-      this.verticalProgressBar4.Location = new System.Drawing.Point(265, 291);
-      this.verticalProgressBar4.Name = "verticalProgressBar4";
-      this.verticalProgressBar4.Size = new System.Drawing.Size(84, 180);
-      this.verticalProgressBar4.TabIndex = 50;
-      this.verticalProgressBar4.Click += new System.EventHandler(this.verticalProgressBar4_Click);
       // 
       // label23
       // 
@@ -1719,14 +1709,6 @@
       this.label20.Size = new System.Drawing.Size(68, 25);
       this.label20.TabIndex = 46;
       this.label20.Text = "Outlet";
-      // 
-      // verticalProgressBar3
-      // 
-      this.verticalProgressBar3.Location = new System.Drawing.Point(47, 49);
-      this.verticalProgressBar3.Name = "verticalProgressBar3";
-      this.verticalProgressBar3.Size = new System.Drawing.Size(84, 180);
-      this.verticalProgressBar3.TabIndex = 45;
-      this.verticalProgressBar3.Click += new System.EventHandler(this.verticalProgressBar3_Click);
       // 
       // label18
       // 
@@ -2069,40 +2051,6 @@
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Other Controls";
       // 
-      // backgroundWorker1
-      // 
-      this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-      // 
-      // button25
-      // 
-      this.button25.Location = new System.Drawing.Point(296, 203);
-      this.button25.Name = "button25";
-      this.button25.Size = new System.Drawing.Size(347, 66);
-      this.button25.TabIndex = 41;
-      this.button25.Text = "open valve 6";
-      this.button25.UseVisualStyleBackColor = true;
-      this.button25.Click += new System.EventHandler(this.button25_Click);
-      // 
-      // button28
-      // 
-      this.button28.Location = new System.Drawing.Point(296, 282);
-      this.button28.Name = "button28";
-      this.button28.Size = new System.Drawing.Size(347, 63);
-      this.button28.TabIndex = 42;
-      this.button28.Text = "close valve 6";
-      this.button28.UseVisualStyleBackColor = true;
-      this.button28.Click += new System.EventHandler(this.button28_Click);
-      // 
-      // labelCollectedCount
-      // 
-      this.labelCollectedCount.AutoSize = true;
-      this.labelCollectedCount.BackColor = System.Drawing.Color.Transparent;
-      this.labelCollectedCount.Location = new System.Drawing.Point(153, 171);
-      this.labelCollectedCount.Name = "labelCollectedCount";
-      this.labelCollectedCount.Size = new System.Drawing.Size(88, 25);
-      this.labelCollectedCount.TabIndex = 89;
-      this.labelCollectedCount.Text = "- counts";
-      // 
       // groupBox14
       // 
       this.groupBox14.Controls.Add(this.label45);
@@ -2148,6 +2096,70 @@
       this.trackBar5.TabIndex = 7;
       this.trackBar5.TickStyle = System.Windows.Forms.TickStyle.None;
       this.trackBar5.Scroll += new System.EventHandler(this.trackBar5_Scroll);
+      // 
+      // button28
+      // 
+      this.button28.Location = new System.Drawing.Point(296, 282);
+      this.button28.Name = "button28";
+      this.button28.Size = new System.Drawing.Size(347, 63);
+      this.button28.TabIndex = 42;
+      this.button28.Text = "close valve 6";
+      this.button28.UseVisualStyleBackColor = true;
+      this.button28.Click += new System.EventHandler(this.button28_Click);
+      // 
+      // button25
+      // 
+      this.button25.Location = new System.Drawing.Point(296, 203);
+      this.button25.Name = "button25";
+      this.button25.Size = new System.Drawing.Size(347, 66);
+      this.button25.TabIndex = 41;
+      this.button25.Text = "open valve 6";
+      this.button25.UseVisualStyleBackColor = true;
+      this.button25.Click += new System.EventHandler(this.button25_Click);
+      // 
+      // backgroundWorker1
+      // 
+      this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+      // 
+      // labelReservoirCounts
+      // 
+      this.labelReservoirCounts.AutoSize = true;
+      this.labelReservoirCounts.BackColor = System.Drawing.Color.Transparent;
+      this.labelReservoirCounts.Location = new System.Drawing.Point(371, 420);
+      this.labelReservoirCounts.Name = "labelReservoirCounts";
+      this.labelReservoirCounts.Size = new System.Drawing.Size(88, 25);
+      this.labelReservoirCounts.TabIndex = 90;
+      this.labelReservoirCounts.Text = "- counts";
+      // 
+      // verticalProgressBar4
+      // 
+      this.verticalProgressBar4.Location = new System.Drawing.Point(265, 291);
+      this.verticalProgressBar4.Name = "verticalProgressBar4";
+      this.verticalProgressBar4.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar4.TabIndex = 50;
+      this.verticalProgressBar4.Click += new System.EventHandler(this.verticalProgressBar4_Click);
+      // 
+      // verticalProgressBar3
+      // 
+      this.verticalProgressBar3.Location = new System.Drawing.Point(47, 49);
+      this.verticalProgressBar3.Name = "verticalProgressBar3";
+      this.verticalProgressBar3.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar3.TabIndex = 45;
+      this.verticalProgressBar3.Click += new System.EventHandler(this.verticalProgressBar3_Click);
+      // 
+      // verticalProgressBar1
+      // 
+      this.verticalProgressBar1.Location = new System.Drawing.Point(63, 35);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
+      this.verticalProgressBar1.TabIndex = 43;
+      // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(70, 36);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
+      this.verticalProgressBar2.TabIndex = 44;
       // 
       // Manual
       // 
@@ -2365,5 +2377,6 @@
     private System.Windows.Forms.Label label45;
     private System.Windows.Forms.TextBox textBox8;
     private System.Windows.Forms.TrackBar trackBar5;
+    private System.Windows.Forms.Label labelReservoirCounts;
   }
 }

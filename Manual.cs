@@ -217,6 +217,8 @@ namespace LukMachine
       groupBoxCollected.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
       label28.Text = CollectedPercent.ToString() + "% Full";
       labelCollectedCount.Text = COMMS.Instance.getCollectedLevelCount()+ " counts";
+      labelReservoirCounts.Text = COMMS.Instance.getReservoirLevelCount() + " counts";
+
 
       label2.Text = "Penetrometer 1: " + COMMS.Instance.getReservoirLevelCount() + " (" + ReservoirPercent.ToString() + "%)"; //is COMMS.Instance.MotorValvePosition(1);
       label3.Text = "Penetrometer 2: " + COMMS.Instance.getCollectedLevelCount() + " (" + CollectedPercent.ToString() + "%)"; //is COMMS.Instance.MotorValvePosition(2);
@@ -229,10 +231,9 @@ namespace LukMachine
         verticalProgressBar3.Value = CollectedPercent;
         verticalProgressBar4.Value = ReservoirPercent;
       }
-      catch (Exception)
+      catch (Exception ex)
       {
-
-
+        //MessageBox.Show(ex.Message);
       }
 
       //update valve colors:
