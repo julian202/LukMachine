@@ -848,5 +848,17 @@ namespace LukMachine.Properties {
                 this["StepCount"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C")]
+        public string TempCorF {
+            get {
+                return ((string)(this["TempCorF"]));
+            }
+            set {
+                this["TempCorF"] = value;
+            }
+        }
     }
 }

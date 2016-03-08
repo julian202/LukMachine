@@ -105,8 +105,18 @@ namespace LukMachine
         RL = SR.ReadLine(); //Test Details
         RL = SR.ReadLine(); //blank
         RL = SR.ReadLine(); //Date
-        string date = RL;
-        sampleInfoCSV += date + ",";
+        splitStuff = RL.Split('=');
+        string date = splitStuff[1];
+        sampleInfoCSV += date + ",";       
+        RL = SR.ReadLine(); //Duration Units
+        splitStuff = RL.Split('=');
+        sampleInfoCSV += splitStuff[1] + ",";
+        RL = SR.ReadLine(); //Flow Units
+        splitStuff = RL.Split('=');
+        sampleInfoCSV += splitStuff[1] + ",";
+        RL = SR.ReadLine(); //Temperature Units
+        splitStuff = RL.Split('=');
+        sampleInfoCSV += splitStuff[1] + ",";
         RL = SR.ReadLine(); //Pressure Units
         splitStuff = RL.Split('=');
         string pressureUnits = splitStuff[1];
@@ -120,24 +130,27 @@ namespace LukMachine
         }
         lastPUnit = pressureUnits;
         sampleInfoCSV += pressureUnits + ",";
-
-        /*
-        RL = SR.ReadLine(); //Pressure Rate
-        splitStuff = RL.Split('=');
-        string pressureRate = splitStuff[1];
-        sampleInfoCSV += pressureRate + ",";
-        */
-        RL = SR.ReadLine(); //Duration Units
-        RL = SR.ReadLine(); //Temperature Units
         RL = SR.ReadLine(); //Steps
+        splitStuff = RL.Split('=');
+        sampleInfoCSV += splitStuff[1] + ",";
         RL = SR.ReadLine(); //Pressures
+        splitStuff = RL.Split('=');
+        sampleInfoCSV += splitStuff[1] + ",";
         RL = SR.ReadLine(); //Durations
+        splitStuff = RL.Split('=');
+        sampleInfoCSV += splitStuff[1] + ",";
         RL = SR.ReadLine(); //Temperatures
+        splitStuff = RL.Split('=');
+        sampleInfoCSV += splitStuff[1] + ",";
         RL = SR.ReadLine(); //blank
-        RL = SR.ReadLine(); //Data
+        RL = SR.ReadLine(); //Data:
         RL = SR.ReadLine(); //blank
-
-        RL = SR.ReadLine(); //Time, Volume
+        RL = SR.ReadLine(); //Time, Volume.
+        splitStuff = RL.Split('\t');
+        sampleInfoCSV += splitStuff[0] + ",";
+        sampleInfoCSV += splitStuff[1] + ",";
+        sampleInfoCSV += splitStuff[2] + ",";
+        sampleInfoCSV += splitStuff[3] + ",";
         RL = SR.ReadLine(); //blank
 
         //setup data table for current sample
@@ -181,6 +194,7 @@ namespace LukMachine
             }
           }
           //find burst pressure (if it exists, if not sample didn't burst.) 
+          /*
           if (RL.Contains("Burst Pressure="))
           {
             string[] getBurst = RL.Split('=');
@@ -191,9 +205,10 @@ namespace LukMachine
             string burstVolume = getVol[1];
             sampleInfoCSV += "," + fileName;
             sampleInfoCSV += "," + burstVolume;
-          }
+          }*/
         }
         //sampleInfoCSV += "," + fileName;
+        sampleInfoCSV += fileName;
         peep.Add(sampleInfoCSV);
         SR.Close();
       }
@@ -453,62 +468,51 @@ namespace LukMachine
       //output header stuff
       ws.Cells[1, 1].Value = "Liquid Permeability Test";
       ws.Cells[2, 1].Value = " ";
-      ws.Cells[3, 1].Value = "Sample Info";
+      ws.Cells[3, 1].Value = "Sample Info:";
       ws.Cells[4, 1].Value = " ";
       ws.Cells[5, 1].Value = "Sample ID";
       ws.Cells[5, 2].Value = splitStuff[0];
       ws.Cells[6, 1].Value = "Lot Number";
       ws.Cells[6, 2].Value = splitStuff[1];
-      /*
-      ws.Cells[7, 1].Value = "Paper Sample";
-      ws.Cells[7, 2].Value = splitStuff[2];
-      ws.Cells[8, 1].Value = "Layers";
-      ws.Cells[8, 2].Value = splitStuff[3];
-      ws.Cells[9, 1].Value = "Grammage";
-      ws.Cells[9, 2].Value = splitStuff[4];
-      */
+      ws.Cells[7, 1].Value = " ";
+      ws.Cells[8, 1].Value = "Test Details:";
+      ws.Cells[9, 1].Value = " ";
       ws.Cells[10, 1].Value = "Date";
       ws.Cells[10, 2].Value = splitStuff[2];
-      ws.Cells[11, 1].Value = " ";
-      ws.Cells[12, 1].Value = "Test Details";
-      ws.Cells[13, 1].Value = " ";
+      ws.Cells[11, 1].Value = "Time Units";
+      ws.Cells[11, 2].Value = splitStuff[3];
+      ws.Cells[12, 1].Value = "Flow Units";
+      ws.Cells[12, 2].Value = splitStuff[4];
+      ws.Cells[13, 1].Value = "Temperature Units";
+      ws.Cells[13, 2].Value = splitStuff[5];
       ws.Cells[14, 1].Value = "Pressure Units";
-      ws.Cells[14, 2].Value = splitStuff[3];
-      ws.Cells[15, 1].Value = "Pressure Rate";
+      ws.Cells[14, 2].Value = splitStuff[6];
+      ws.Cells[15, 1].Value = "Steps";
       ws.Cells[15, 2].Value = splitStuff[7];
-      ws.Cells[16, 1].Value = " ";
-      ws.Cells[17, 1].Value = "Burst Pressure";
-      ws.Cells[17, 2].Value = splitStuff[8];
-      ws.Cells[18, 1].Value = "Burst Distension";
-      double volume = Convert.ToDouble(splitStuff[10]);
-      ws.Cells[18, 2].Value = CalculateDistension(volume);
-      ws.Cells[19, 1].Value = "Burst Volume";
-      ws.Cells[19, 2].Value = volume;
-      ws.Cells[20, 1].Value = "Burst Ratio";
-      if (splitStuff[2] == "Y")
-      {
-        ws.Cells[20, 2].Value = GetBurstRatio(Convert.ToDouble(splitStuff[4]), Convert.ToDouble(splitStuff[7]));
-      }
-      else
-      {
-        ws.Cells[20, 2].Value = "N/A";
-      }
-      //need to add burst ratio and burst volume.
-      //shift every row + 3
+      ws.Cells[16, 1].Value = "Pressure";
+      ws.Cells[16, 2].Value = splitStuff[8];
+      ws.Cells[17, 1].Value = "Duration";
+      ws.Cells[17, 2].Value = splitStuff[9];
+      ws.Cells[18, 1].Value = "Temperature";
+      ws.Cells[18, 2].Value = splitStuff[10];
+      ws.Cells[19, 1].Value = " ";
+      ws.Cells[20, 1].Value = "Data:";
       ws.Cells[21, 1].Value = " ";
-      ws.Cells[22, 1].Value = "Test Data";
-      ws.Cells[23, 1].Value = " ";
-      ws.Cells[24, 1].Value = "Time(Seconds)";
-      ws.Cells[24, 2].Value = "Pressure(" + splitStuff[6] + ")";
-      ws.Cells[25, 1].Value = " ";
-      row = 26;
+      ws.Cells[22, 1].Value = splitStuff[11];
+      ws.Cells[22, 2].Value = splitStuff[12];
+      ws.Cells[22, 3].Value = splitStuff[13];
+      ws.Cells[22, 4].Value = splitStuff[14];
+      row = 23;
 
       //output test data
-      foreach (DataRow asdf in dataSet1.Tables[splitStuff[9]].Rows)
+      string dataname = splitStuff[15];
+      foreach (DataRow asdf in dataSet1.Tables[dataname].Rows)
       {
         row++;
         ws.Cells[row, 1].Value = Convert.ToDouble(asdf[0]);
         ws.Cells[row, 2].Value = Convert.ToDouble(asdf[1]);
+        ws.Cells[row, 3].Value = Convert.ToDouble(asdf[2]);
+        ws.Cells[row, 4].Value = Convert.ToDouble(asdf[3]);
       }
 
       //output graph
@@ -540,25 +544,38 @@ namespace LukMachine
       {
         if (Properties.Settings.Default.AutoDataFile)
         {
-          using (var file = File.Create(Properties.Settings.Default.ExportPath + @"\" + splitStuff[9] + ".xlsx"))
+          using (var file = File.Create(Properties.Settings.Default.ExportPath + @"\" + dataname + ".xlsx"))
             excel.SaveAs(file);
-          MessageBox.Show(Properties.Settings.Default.ExportPath + @"\" + splitStuff[9] + ".xlsx" + " has been saved.", "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Information);
+          MessageBox.Show(Properties.Settings.Default.ExportPath + @"\" + dataname + ".xlsx" + " has been saved.", "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         else
         {
-          saveFileDialog1.FileName = splitStuff[9];
+          saveFileDialog1.FileName = dataname;
           DialogResult saveFile = saveFileDialog1.ShowDialog();
           if (saveFile != DialogResult.Cancel)
           {
-            using (var file = File.Create(saveFileDialog1.FileName))
-              excel.SaveAs(file);
-            MessageBox.Show(saveFileDialog1.FileName + " has been saved.", "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            try
+            {
+
+            
+              using (var file = File.Create(saveFileDialog1.FileName))
+                excel.SaveAs(file);
+              MessageBox.Show(saveFileDialog1.FileName + " has been saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+              MessageBox.Show(ex.Message);
+              
+            }
+
+
           }
         }
       }
       if (multi == 1)
       {
-        using (var file = File.Create(path + @"\" + splitStuff[9] + ".xlsx"))
+        using (var file = File.Create(path + @"\" + dataname + ".xlsx"))
           excel.SaveAs(file);
       }
 

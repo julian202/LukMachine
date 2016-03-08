@@ -71,6 +71,20 @@ namespace LukMachine
     private void settings_Load(object sender, EventArgs e)
     {
 
+      if (Properties.Settings.Default.TempCorF == "C")
+      {
+        radioButton1.Checked = true;
+        radioButton2.Checked = false;
+      }
+      if (Properties.Settings.Default.TempCorF == "F")
+      {
+        radioButton1.Checked = false;
+        radioButton2.Checked = true;
+      }
+
+
+
+
       textBox1.Text = Properties.Settings.Default.LowPumpSetting;
       textBox2.Text = Properties.Settings.Default.MediumPumpSetting;
       textBox3.Text = Properties.Settings.Default.HighPumpSetting;
@@ -117,6 +131,24 @@ namespace LukMachine
     private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
     {
 
+    }
+
+    private void radioButton1_CheckedChanged(object sender, EventArgs e)
+    {
+      if (radioButton1.Checked)
+      {
+        Properties.Settings.Default.TempCorF = "C";
+        Properties.Settings.Default.Save();
+      }
+    }
+
+    private void radioButton2_CheckedChanged(object sender, EventArgs e)
+    {
+      if (radioButton2.Checked)
+      {
+        Properties.Settings.Default.TempCorF = "F";
+        Properties.Settings.Default.Save();
+      }
     }
   }
 }

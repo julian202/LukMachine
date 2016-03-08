@@ -420,13 +420,23 @@ namespace LukMachine
         collectedLevelCount = COMMS.CollectedLevelCount.ToString();
         //SR.WriteLine(outputTime.ToString("0.00") + "," + collectedLevelCount + "," + currentTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
         //SR.WriteLine(outputTime.ToString("0.00") + "\t" + Flow.ToString("0.000") + "\t" + currentTemp.ToString("0.0") + "\t" + currentPressure.ToString("0.000"));
-        SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), currentTemp.ToString("0.0"), currentPressure.ToString("0.000"));
-        Console.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), currentTemp.ToString("0.0"), currentPressure.ToString("0.000"));
+
+        double convertedTemp;
+        if (Properties.Settings.Default.TempCorF=="C")
+        {
+          convertedTemp =  Math.Round((currentTemp - 32) * 5 / 9);
+        }
+        else
+        {
+          convertedTemp = currentTemp;
+        }
+        SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
+        Console.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
 
         SR.Close();
-        //Progress("Reading:" + outputTime.ToString("0.00") + "," + collectedLevelCount + "," + currentTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
-        Progress("Reading:" + outputTime.ToString("0.00") + "," + Flow.ToString("0.000") + "," + currentTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
-        Progress("display stepCount=" + (stepCount+1).ToString());
+        //Progress("Reading:" + outputTime.ToString("0.00") + "," + collectedLevelCount + "," + convertedTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
+        Progress("Reading:" + outputTime.ToString("0.00") + "," + Flow.ToString("0.000") + "," + convertedTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
+        Progress("display stepCount=" + (stepCount + 1).ToString());
         Thread.Sleep(500);// this is the main sleep of the thread between reading so that it doesn't go too fast.
         if (outputTime / 60 > currentDuration)
         {
@@ -438,7 +448,7 @@ namespace LukMachine
           Progress("Setting pressure to target pressure for next period. Please wait...");
           stepCount++;
           Progress("display stepCount=" + (stepCount + 1).ToString());
-          
+
 
           //end if stepCount is bigger than the number of steps (i.e. periods)
           if (stepCount >= Properties.Settings.Default.CollectionPressure.Count)
@@ -572,27 +582,64 @@ namespace LukMachine
       SR.WriteLine("Test Details:");
       SR.WriteLine("");
       SR.WriteLine("Date= " + DateTime.Now.ToString("dd/MM/yyyy H:mm"));
+      SR.WriteLine("Time Units=" + "Seconds");
+      SR.WriteLine("Flow Units=" + "mL/min");
+      if (Properties.Settings.Default.TempCorF == "C")
+      {
+        SR.WriteLine("Temperature Units=" + "Celsius");
+      }
+      else
+      {
+        SR.WriteLine("Temperature Units=" + "Fahrenheit");
+      }    
       SR.WriteLine("Pressure Units=" + pUnits);
-      SR.WriteLine("Duration Units=" + "Seconds");
-      SR.WriteLine("Temperature Units=" + "Celsius");
       SR.WriteLine("Steps=" + Properties.Settings.Default.StepCount);
-      SR.Write("Pressure=");
+
+
+      /*SR.Write("Pressure=");
       foreach (string item in Properties.Settings.Default.CollectionPressure)
       {
-        SR.Write(item + ", ");
+        SR.Write(item + "; ");
+      }*/
+      string pressure;
+      pressure = Properties.Settings.Default.CollectionPressure[0];
+      for (int i = 1; i < Properties.Settings.Default.CollectionPressure.Count; i++)
+      {
+        pressure = pressure + "; " + Properties.Settings.Default.CollectionPressure[i];
       }
+      SR.Write("Pressure=" + pressure);
+
       SR.WriteLine(""); //to end the line
-      SR.Write("Duration=");
+
+      /*SR.Write("Duration=");
       foreach (string item in Properties.Settings.Default.CollectionDuration)
       {
-        SR.Write(item + ", ");
+        SR.Write(item + "; ");
+      }*/
+
+      string Duration;
+      Duration = Properties.Settings.Default.CollectionDuration[0];
+      for (int i = 1; i < Properties.Settings.Default.CollectionDuration.Count; i++)
+      {
+        Duration = Duration + "; " + Properties.Settings.Default.CollectionDuration[i];
       }
+      SR.Write("Time=" + Duration);
+
       SR.WriteLine("");//to end the line
-      SR.Write("Temperature=");
+
+      /*SR.Write("Temperature=");
       foreach (string item in Properties.Settings.Default.CollectionTemperature)
       {
-        SR.Write(item + ", ");
+        SR.Write(item + "; ");
+      }*/
+      string Temperature;
+      Temperature = Properties.Settings.Default.CollectionTemperature[0];
+      for (int i = 1; i < Properties.Settings.Default.CollectionTemperature.Count; i++)
+      {
+        Temperature = Temperature + "; " + Properties.Settings.Default.CollectionTemperature[i];
       }
+      SR.Write("Temperature=" + Temperature);
+
       SR.WriteLine("");//to end the line
       //SR.WriteLine("Pressure Rate(mL / min)=" + pressureRate.ToString());
       SR.WriteLine("");
