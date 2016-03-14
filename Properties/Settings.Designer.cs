@@ -209,7 +209,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("mySample1")]
         public string TestSampleID {
             get {
                 return ((string)(this["TestSampleID"]));
@@ -281,7 +281,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\data.pmi")]
         public string TestData {
             get {
                 return ((string)(this["TestData"]));
@@ -473,7 +473,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
         public int selectedTemp {
             get {
                 return ((int)(this["selectedTemp"]));
@@ -773,7 +773,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public string TextboxPressure {
             get {
                 return ((string)(this["TextboxPressure"]));
@@ -785,7 +785,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public string TextboxDuration {
             get {
                 return ((string)(this["TextboxDuration"]));
@@ -858,6 +858,18 @@ namespace LukMachine.Properties {
             }
             set {
                 this["TempCorF"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("650")]
+        public string MaxCapacityInML {
+            get {
+                return ((string)(this["MaxCapacityInML"]));
+            }
+            set {
+                this["MaxCapacityInML"] = value;
             }
         }
     }

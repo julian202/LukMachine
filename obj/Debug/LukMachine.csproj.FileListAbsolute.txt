@@ -38,3 +38,7 @@ C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Manua
 C:\Users\MSI-1\Desktop\History\Feb13 -C#-LukMachine\Backups from Github\LukMachine10- before adding continuous pressure check\LukMachine\bin\Debug\LukMachine.exe.config
 C:\Users\MSI-1\Desktop\History\Feb13 -C#-LukMachine\Backups from Github\LukMachine10- before adding continuous pressure check\LukMachine\obj\Debug\LukMachine.exe
 C:\Users\MSI-1\Desktop\History\Feb13 -C#-LukMachine\Backups from Github\LukMachine10- before adding continuous pressure check\LukMachine\obj\Debug\LukMachine.pdb
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\LukMachine.exe.manifest
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\LukMachine.application
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.exe.manifest
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.application

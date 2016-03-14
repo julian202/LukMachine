@@ -337,7 +337,7 @@ namespace LukMachine
       chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
       chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
       chart1.ChartAreas[0].AxisX.LineDashStyle= System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDotDot;
-      chart1.ChartAreas[0].AxisY.Title = "Flow (Cnts/min)";
+      chart1.ChartAreas[0].AxisY.Title = "Flow (mL/min)";
       chart1.ChartAreas[0].AxisX.Title = "Time (seconds)";
 
     }
@@ -844,13 +844,13 @@ namespace LukMachine
           }
           chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
           chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
-          chart1.ChartAreas[0].AxisY.Title = "Volume (mL)";
+          chart1.ChartAreas[0].AxisY.Title = "Flow (mL/min)";
           chart1.ChartAreas[0].AxisX.Title = "Temperature (C)";
 
           chart1.Titles.Clear();
           System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
           title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-          title1.Text = "Volume VS Temperature";
+          title1.Text = "Flow VS Temperature";
           chart1.Titles.Add(title1);
         }
         catch (Exception)
@@ -877,13 +877,13 @@ namespace LukMachine
           }
           chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
           chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
-          chart1.ChartAreas[0].AxisY.Title = "Volume (mL)";
+          chart1.ChartAreas[0].AxisY.Title = "Flow (mL/min)";
           chart1.ChartAreas[0].AxisX.Title = "Time (seconds)";
 
           chart1.Titles.Clear();
           System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
           title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-          title1.Text = "Volume VS Time";
+          title1.Text = "Flow VS Time";
           chart1.Titles.Add(title1);
         }
         catch (Exception)
@@ -911,13 +911,13 @@ namespace LukMachine
           }
           chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
           chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
-          chart1.ChartAreas[0].AxisY.Title = "Volume (mL)";
+          chart1.ChartAreas[0].AxisY.Title = "Flow (mL/min)";
           chart1.ChartAreas[0].AxisX.Title = "Pressure (PSI)";
 
           chart1.Titles.Clear();
           System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
           title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-          title1.Text = "Volume VS Pressure";
+          title1.Text = "Flow VS Pressure";
           chart1.Titles.Add(title1);
 
         }

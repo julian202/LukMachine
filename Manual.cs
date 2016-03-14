@@ -205,24 +205,24 @@ namespace LukMachine
         label22.Text = "Pump OFF";
         Pumps.StopPump1();
         RefillPumpOn = false;
-
       }
-
-      
+    
       //read penetrometers
       int ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
       groupBoxReservoir.Text = "Reservoir " + ReservoirPercent.ToString() + "% Full";
       label29.Text = ReservoirPercent.ToString() + "% Full";
+      mLReservoir.Text = (ReservoirPercent * Convert.ToInt32(Properties.Settings.Default.MaxCapacityInML)/100).ToString() + " mL";
+
       int CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
       groupBoxCollected.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
       label28.Text = CollectedPercent.ToString() + "% Full";
+      mlCollected.Text = (CollectedPercent * Convert.ToInt32(Properties.Settings.Default.MaxCapacityInML)/100).ToString() + " mL";
+
       labelCollectedCount.Text = COMMS.Instance.getCollectedLevelCount()+ " counts";
       labelReservoirCounts.Text = COMMS.Instance.getReservoirLevelCount() + " counts";
 
-
       label2.Text = "Penetrometer 1: " + COMMS.Instance.getReservoirLevelCount() + " (" + ReservoirPercent.ToString() + "%)"; //is COMMS.Instance.MotorValvePosition(1);
       label3.Text = "Penetrometer 2: " + COMMS.Instance.getCollectedLevelCount() + " (" + CollectedPercent.ToString() + "%)"; //is COMMS.Instance.MotorValvePosition(2);
-
 
       try
       {
@@ -1194,6 +1194,16 @@ namespace LukMachine
       {
         MessageBox.Show("invalid");
       }
+    }
+
+    private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void groupBox14_Enter(object sender, EventArgs e)
+    {
+
     }
   }
 }

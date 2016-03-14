@@ -148,7 +148,7 @@ namespace LukMachine
         }
         catch (Exception)
         {
-          MessageBox.Show("Timeout writing comport for " + toSend);
+          //MessageBox.Show("Timeout writing comport for " + toSend);
         }
 
         //get the first respose, which will be the echo command
@@ -178,7 +178,7 @@ namespace LukMachine
         }
         catch (Exception)
         {
-          MessageBox.Show("Timeout reading comport for " + toSend + " (first response)");
+          //MessageBox.Show("Timeout reading comport for " + toSend + " (first response)");
         }     
       }
       catch (TimeoutException kj)
@@ -253,7 +253,7 @@ namespace LukMachine
       }
       catch (TimeoutException kj)
       {
-        MessageBox.Show("Timeout reading comport for " + toSend + " (second response)");
+        //MessageBox.Show("Timeout reading comport for " + toSend + " (second response)");
         return null;
       }
       catch (IOException ex)
@@ -399,6 +399,10 @@ namespace LukMachine
       int invertedPercent = 100 - percent; //must invert because of how the penetrometers are set up.
       return invertedPercent;
     }
+
+
+
+
 
     public static int CollectedLevelCount=0;
     public Int32 getCollectedLevelPercent()

@@ -110,37 +110,37 @@ namespace LukMachine
     }
     public static void CloseValve4()
     {
-      COMMS.Instance.MoveValve(4, "O");
+      COMMS.Instance.MoveValve(4, "C");
       Properties.Settings.Default.Valve4State = false;
       Properties.Settings.Default.Save();
     }
     public static void OpenValve4()
     {
-      COMMS.Instance.MoveValve(4, "C");
+      COMMS.Instance.MoveValve(4, "O");
       Properties.Settings.Default.Valve4State = true;
       Properties.Settings.Default.Save();
     }
     public static void CloseValve5()
     {
-      COMMS.Instance.MoveValve(5, "O");
+      COMMS.Instance.MoveValve(5, "C");
       Properties.Settings.Default.Valve5State = false;
       Properties.Settings.Default.Save();
     }
     public static void OpenValve5()
     {
-      COMMS.Instance.MoveValve(5, "C");
+      COMMS.Instance.MoveValve(5, "O");
       Properties.Settings.Default.Valve5State = true;
       Properties.Settings.Default.Save();
     }
     public static void CloseValve6()
     {
-      COMMS.Instance.MoveValve(6, "O");
+      COMMS.Instance.MoveValve(6, "C");
       Properties.Settings.Default.Valve6State = false;
       Properties.Settings.Default.Save();
     }
     public static void OpenValve6()
     {
-      COMMS.Instance.MoveValve(6, "C");
+      COMMS.Instance.MoveValve(6, "O");
       Properties.Settings.Default.Valve6State = true;
       Properties.Settings.Default.Save();
     }

@@ -19,13 +19,9 @@ namespace LukMachine
 
     private void button2_Click(object sender, EventArgs e)
     {
-
       Properties.Settings.Default.LowPumpSetting = textBox1.Text;
       Properties.Settings.Default.MediumPumpSetting = textBox2.Text;
       Properties.Settings.Default.HighPumpSetting = textBox3.Text;
-
-
-
 
       System.Collections.Specialized.StringCollection pressures = new System.Collections.Specialized.StringCollection();
       System.Collections.Specialized.StringCollection fluids = new System.Collections.Specialized.StringCollection();

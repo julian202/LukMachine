@@ -54,7 +54,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="TestSampleID" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">mySample1</Value>
     </Setting>
     <Setting Name="TestLotNumber" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -72,7 +72,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="TestData" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">C:\data.pmi</Value>
     </Setting>
     <Setting Name="autoReport" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -120,7 +120,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="selectedTemp" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="useTemperature" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -195,10 +195,10 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="TextboxPressure" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="TextboxDuration" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="CollectionPressure" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
@@ -223,6 +223,9 @@
     </Setting>
     <Setting Name="TempCorF" Type="System.String" Scope="User">
       <Value Profile="(Default)">C</Value>
+    </Setting>
+    <Setting Name="MaxCapacityInML" Type="System.String" Scope="User">
+      <Value Profile="(Default)">650</Value>
     </Setting>
   </Settings>
 </SettingsFile>

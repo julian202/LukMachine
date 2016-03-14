@@ -181,6 +181,8 @@ namespace LukMachine
       else
       {
         Properties.Settings.Default.TestData = textBox6.Text;
+        string parent = Directory.GetParent(textBox6.Text).ToString();
+        Directory.CreateDirectory(parent);
         Properties.Settings.Default.Save();
 
       }
@@ -272,8 +274,22 @@ namespace LukMachine
 
       textBox1.Text = Properties.Settings.Default.TestSampleID;
       textBox2.Text = Properties.Settings.Default.TestLotNumber;
-      textBox6.Text = Properties.Settings.Default.TestData;
+
+      if (Properties.Settings.Default.TestData=="")
+      {
+        string path = System.IO.Path.Combine(Environment.GetFolderPath(
+    Environment.SpecialFolder.MyDoc‌​uments), "PMI", "data.pmi");
+        //MessageBox.Show(path);
+        textBox6.Text = path;
+      }
+      else
+      {
+        textBox6.Text = Properties.Settings.Default.TestData;
+      }
+
+
       textBoxTemperature.Text = Properties.Settings.Default.selectedTemp.ToString();
+
       //MessageBox.Show(Properties.Settings.Default.Chamber);
       //MessageBox.Show("radioButtonDisk.Checked "+ radioButtonDisk.Checked);
       //MessageBox.Show("radioButtonRing.Checked " + radioButtonRing.Checked);
@@ -591,5 +607,12 @@ namespace LukMachine
       }
     }
 
+    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+      string path = System.IO.Path.Combine(Environment.GetFolderPath(
+    Environment.SpecialFolder.MyDoc‌​uments), "PMI", "data.pmi");
+      //MessageBox.Show(path);
+      textBox6.Text = path;
+    }
   }
 }

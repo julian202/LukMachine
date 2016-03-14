@@ -49,6 +49,8 @@ namespace LukMachine
     double LastCollectedCount;
     double CollectedDifferenceInCounts;
     double Flow;
+    double FlowInMl;
+    bool mustNotCountFlowBecausePressureIsAdjusting;
 
     //Set up data file
     StreamWriter SR;
@@ -58,6 +60,7 @@ namespace LukMachine
     private double athena1Temp; //temp of tank
     private double athena2Temp; //temp of pipes
     private double chamberTemp;
+
 
     double p1Psi;
     double rawP1;
@@ -355,9 +358,18 @@ namespace LukMachine
 
       //Write data to file
       //InitializeTest();
-      SR = new StreamWriter(dataFile);
-      WriteHeader();
-      SR.Close();
+      try
+      {
+        SR = new StreamWriter(dataFile);
+        WriteHeader();
+        SR.Close();
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message + " Restart the application and select a different folder to save the data, or else run the application as an administrator");
+        Application.Exit();
+      }
+
 
 
       startTime = Convert.ToDouble(Environment.TickCount); //+ 500.0
@@ -399,7 +411,16 @@ namespace LukMachine
           firstRound = false;
         }
 
-        CollectedDifferenceInCounts = -(CollectedCount - LastCollectedCount); //It has to be -ve because penetrometer is inverted (max counts is empty penetrometer)
+
+        if (mustNotCountFlowBecausePressureIsAdjusting)
+        {
+          //do nothing  (this is so that the first time point after adjusting pressure doesnt count the flow accumulated during that period)
+          mustNotCountFlowBecausePressureIsAdjusting = false;
+        }
+        else
+        {
+          CollectedDifferenceInCounts = -(CollectedCount - LastCollectedCount); //It has to be -ve because penetrometer is inverted (max counts is empty penetrometer)
+        }
 
         //read temperature
         ReadTemperatureAndSetLabel();
@@ -411,20 +432,23 @@ namespace LukMachine
 
         //Calculate flow
         Flow = CollectedDifferenceInCounts / timeDifferenceInMinutes; //this is flow in pent counts per minute
+        Flow = Flow * Convert.ToDouble(Properties.Settings.Default.MaxCapacityInML) / 58000; //this converts flow to mL
 
         //keep rough track of how many mL we have pumped.
         double mlsMoved = (pressureRate / 60.0) * outputTime;
 
         //write data to file and report progress
+
         SR = new StreamWriter(dataFile, true);
+
         collectedLevelCount = COMMS.CollectedLevelCount.ToString();
         //SR.WriteLine(outputTime.ToString("0.00") + "," + collectedLevelCount + "," + currentTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
         //SR.WriteLine(outputTime.ToString("0.00") + "\t" + Flow.ToString("0.000") + "\t" + currentTemp.ToString("0.0") + "\t" + currentPressure.ToString("0.000"));
 
         double convertedTemp;
-        if (Properties.Settings.Default.TempCorF=="C")
+        if (Properties.Settings.Default.TempCorF == "C")
         {
-          convertedTemp =  Math.Round((currentTemp - 32) * 5 / 9);
+          convertedTemp = Math.Round((currentTemp - 32) * 5 / 9);
         }
         else
         {
@@ -480,6 +504,7 @@ namespace LukMachine
             //set time that next period should stop (by getting current time in minutes and adding the duration of the next period)
             currentTime = Convert.ToDouble(Environment.TickCount) - startTime - stoppedTime;
             currentDuration = (currentTime / 1000) / 60 + (currentDuration);
+            mustNotCountFlowBecausePressureIsAdjusting = true;
           }
 
         }
@@ -591,7 +616,7 @@ namespace LukMachine
       else
       {
         SR.WriteLine("Temperature Units=" + "Fahrenheit");
-      }    
+      }
       SR.WriteLine("Pressure Units=" + pUnits);
       SR.WriteLine("Steps=" + Properties.Settings.Default.StepCount);
 

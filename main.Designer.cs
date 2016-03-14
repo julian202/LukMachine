@@ -119,7 +119,7 @@
       this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
       this.Name = "main";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-      this.Text = "Porous Materials, Inc  [Luk]";
+      this.Text = "PMI Liquid Permeability [Luk]";
       this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.main_FormClosed);
       this.Load += new System.EventHandler(this.main_Load);
       this.ResumeLayout(false);

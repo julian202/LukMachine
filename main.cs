@@ -93,7 +93,16 @@ namespace LukMachine
 
     private void main_Load(object sender, EventArgs e)
     {
+      
       stopPumpCloseValves();
+      //this.Text = String.Format("PMI Liquid Permeability [Luk] Version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
+
+      if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+      {
+        this.Text = String.Format("PMI Liquid Permeability [Luk] Version {0}", System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString(4));
+      }
+
+
     }
 
     private void button2_Click(object sender, EventArgs e)

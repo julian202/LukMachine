@@ -83,6 +83,7 @@
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.pictureBox2 = new System.Windows.Forms.PictureBox();
       this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+      this.linkLabel1 = new System.Windows.Forms.LinkLabel();
       this.groupBox1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -115,6 +116,7 @@
       this.textBox6.Name = "textBox6";
       this.textBox6.Size = new System.Drawing.Size(319, 30);
       this.textBox6.TabIndex = 5;
+      this.textBox6.Text = "C:\\data.pmi";
       this.textBox6.Enter += new System.EventHandler(this.textBox6_Enter);
       // 
       // label1
@@ -140,9 +142,9 @@
       this.label6.AutoSize = true;
       this.label6.Location = new System.Drawing.Point(20, 107);
       this.label6.Name = "label6";
-      this.label6.Size = new System.Drawing.Size(95, 23);
+      this.label6.Size = new System.Drawing.Size(168, 23);
       this.label6.TabIndex = 11;
-      this.label6.Text = "Data File:";
+      this.label6.Text = "Save Data to File:";
       // 
       // label7
       // 
@@ -159,6 +161,7 @@
       // 
       // groupBox1
       // 
+      this.groupBox1.Controls.Add(this.linkLabel1);
       this.groupBox1.Controls.Add(this.groupBox2);
       this.groupBox1.Controls.Add(this.label14);
       this.groupBox1.Controls.Add(this.textBox4);
@@ -666,11 +669,22 @@
       this.saveFileDialog1.Title = "Select data file";
       this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
       // 
+      // linkLabel1
+      // 
+      this.linkLabel1.AutoSize = true;
+      this.linkLabel1.Location = new System.Drawing.Point(403, 136);
+      this.linkLabel1.Name = "linkLabel1";
+      this.linkLabel1.Size = new System.Drawing.Size(134, 23);
+      this.linkLabel1.TabIndex = 47;
+      this.linkLabel1.TabStop = true;
+      this.linkLabel1.Text = "Default Folder";
+      this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+      // 
       // Setup
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(583, 585);
+      this.ClientSize = new System.Drawing.Size(583, 622);
       this.Controls.Add(this.groupBox1);
       this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -748,5 +762,6 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn DurationColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn TemperatureColumn;
     private System.Windows.Forms.Button button6;
+    private System.Windows.Forms.LinkLabel linkLabel1;
   }
 }

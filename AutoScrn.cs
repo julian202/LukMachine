@@ -103,7 +103,7 @@ namespace LukMachine
           string pressure = msgSplit[1];
           labelPressure.Text = "Pressure  =  " + String.Format("{0:0.0} PSI", Convert.ToDouble(pressure));
           string pumpstate = Properties.Settings.Default.MainPumpStatePercent.ToString();
-          labelPumpState.Text = "Pump State  =  " + pumpstate + "%";
+          labelPumpState.Text = "Pump Power  =  " + pumpstate + "%";
         }
         else if (message.Contains("display target pressure"))
         {
@@ -232,7 +232,6 @@ namespace LukMachine
       label8.Text = "Temperature  =  " + temperature +" (C)";
 
 
-
       button4.Visible = false;
       button5.Visible = false;
       Text = "Auto test [" + Properties.Settings.Default.TestSampleID + "]";
@@ -240,7 +239,7 @@ namespace LukMachine
       {
         MessageBox.Show("Please verify that your sample is centered and that the clamping mechanism is safely securing the sample.");
       }
-      chart1.ChartAreas[0].AxisY.Title = "Flow (Cnts/min)";
+      chart1.ChartAreas[0].AxisY.Title = "Flow (mL/min)";
       chart1.ChartAreas[0].AxisX.Title = "Time (seconds)";
       chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
       chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
