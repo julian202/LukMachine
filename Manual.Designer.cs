@@ -32,11 +32,19 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Manual));
       this.timer1 = new System.Windows.Forms.Timer(this.components);
       this.groupBox9 = new System.Windows.Forms.GroupBox();
+      this.button17 = new System.Windows.Forms.Button();
+      this.button18 = new System.Windows.Forms.Button();
       this.comboBox2 = new System.Windows.Forms.ComboBox();
       this.timer2 = new System.Windows.Forms.Timer(this.components);
       this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.pictureBox3 = new System.Windows.Forms.PictureBox();
+      this.pictureBox2 = new System.Windows.Forms.PictureBox();
+      this.button1 = new System.Windows.Forms.Button();
+      this.button2 = new System.Windows.Forms.Button();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.label4 = new System.Windows.Forms.Label();
+      this.button3 = new System.Windows.Forms.Button();
+      this.button4 = new System.Windows.Forms.Button();
       this.trackBar1 = new System.Windows.Forms.TrackBar();
       this.groupBox3 = new System.Windows.Forms.GroupBox();
       this.button20 = new System.Windows.Forms.Button();
@@ -51,12 +59,20 @@
       this.groupBox4 = new System.Windows.Forms.GroupBox();
       this.textBox4 = new System.Windows.Forms.TextBox();
       this.label15 = new System.Windows.Forms.Label();
+      this.button13 = new System.Windows.Forms.Button();
+      this.button14 = new System.Windows.Forms.Button();
       this.textBox3 = new System.Windows.Forms.TextBox();
       this.label14 = new System.Windows.Forms.Label();
+      this.button11 = new System.Windows.Forms.Button();
+      this.button12 = new System.Windows.Forms.Button();
       this.textBox2 = new System.Windows.Forms.TextBox();
+      this.button9 = new System.Windows.Forms.Button();
+      this.button10 = new System.Windows.Forms.Button();
       this.textBox1 = new System.Windows.Forms.TextBox();
       this.label7 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
+      this.button7 = new System.Windows.Forms.Button();
+      this.button8 = new System.Windows.Forms.Button();
       this.groupBox7 = new System.Windows.Forms.GroupBox();
       this.label13 = new System.Windows.Forms.Label();
       this.label10 = new System.Windows.Forms.Label();
@@ -70,11 +86,19 @@
       this.aGauge5 = new AGaugeApp.AGauge();
       this.groupBox6 = new System.Windows.Forms.GroupBox();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.groupBoxCollected = new System.Windows.Forms.GroupBox();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.label8 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.label49 = new System.Windows.Forms.Label();
+      this.labelP2 = new System.Windows.Forms.Label();
+      this.labelP1 = new System.Windows.Forms.Label();
+      this.label48 = new System.Windows.Forms.Label();
+      this.label47 = new System.Windows.Forms.Label();
+      this.label46 = new System.Windows.Forms.Label();
       this.mLReservoir = new System.Windows.Forms.Label();
       this.mlCollected = new System.Windows.Forms.Label();
       this.labelReservoirCounts = new System.Windows.Forms.Label();
@@ -104,11 +128,11 @@
       this.checkBoxHeatSystem = new System.Windows.Forms.CheckBox();
       this.labelSetTemp = new System.Windows.Forms.Label();
       this.textBoxTemp = new System.Windows.Forms.TextBox();
-      this.button21 = new System.Windows.Forms.Button();
-      this.checkBox4 = new System.Windows.Forms.CheckBox();
-      this.checkBox3 = new System.Windows.Forms.CheckBox();
-      this.checkBox2 = new System.Windows.Forms.CheckBox();
       this.checkBox1 = new System.Windows.Forms.CheckBox();
+      this.checkBox2 = new System.Windows.Forms.CheckBox();
+      this.checkBox3 = new System.Windows.Forms.CheckBox();
+      this.checkBox4 = new System.Windows.Forms.CheckBox();
+      this.button21 = new System.Windows.Forms.Button();
       this.groupBox12 = new System.Windows.Forms.GroupBox();
       this.button22 = new System.Windows.Forms.Button();
       this.button24 = new System.Windows.Forms.Button();
@@ -128,15 +152,24 @@
       this.label29 = new System.Windows.Forms.Label();
       this.label28 = new System.Windows.Forms.Label();
       this.label27 = new System.Windows.Forms.Label();
+      this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
       this.label23 = new System.Windows.Forms.Label();
       this.label22 = new System.Windows.Forms.Label();
       this.label21 = new System.Windows.Forms.Label();
       this.label20 = new System.Windows.Forms.Label();
+      this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
       this.label18 = new System.Windows.Forms.Label();
       this.label9 = new System.Windows.Forms.Label();
       this.label17 = new System.Windows.Forms.Label();
       this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+      this.rectangleShape23 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape22 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape21 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.lineShape12 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+      this.lineShape11 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+      this.lineShape10 = new Microsoft.VisualBasic.PowerPacks.LineShape();
       this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+      this.rectangleShape20 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.rectangleShape16 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.rectangleShape6 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.rectangleShape15 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
@@ -169,40 +202,10 @@
       this.button28 = new System.Windows.Forms.Button();
       this.button25 = new System.Windows.Forms.Button();
       this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-      this.label46 = new System.Windows.Forms.Label();
-      this.lineShape10 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-      this.lineShape11 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-      this.lineShape12 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-      this.rectangleShape21 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-      this.rectangleShape20 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-      this.button17 = new System.Windows.Forms.Button();
-      this.button18 = new System.Windows.Forms.Button();
-      this.pictureBox3 = new System.Windows.Forms.PictureBox();
-      this.pictureBox2 = new System.Windows.Forms.PictureBox();
-      this.button1 = new System.Windows.Forms.Button();
-      this.button2 = new System.Windows.Forms.Button();
-      this.button13 = new System.Windows.Forms.Button();
-      this.button14 = new System.Windows.Forms.Button();
-      this.button11 = new System.Windows.Forms.Button();
-      this.button12 = new System.Windows.Forms.Button();
-      this.button9 = new System.Windows.Forms.Button();
-      this.button10 = new System.Windows.Forms.Button();
-      this.button7 = new System.Windows.Forms.Button();
-      this.button8 = new System.Windows.Forms.Button();
-      this.button3 = new System.Windows.Forms.Button();
-      this.button4 = new System.Windows.Forms.Button();
-      this.label47 = new System.Windows.Forms.Label();
-      this.label48 = new System.Windows.Forms.Label();
-      this.labelP1 = new System.Windows.Forms.Label();
-      this.labelP2 = new System.Windows.Forms.Label();
-      this.label49 = new System.Windows.Forms.Label();
-      this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
-      this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
-      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
-      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
-      this.rectangleShape22 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.groupBox9.SuspendLayout();
       this.groupBox1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
       this.groupBox2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
       this.groupBox3.SuspendLayout();
@@ -225,8 +228,6 @@
       this.tabPage2.SuspendLayout();
       this.groupBox14.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
       this.SuspendLayout();
       // 
       // timer1
@@ -248,6 +249,28 @@
       this.groupBox9.TabStop = false;
       this.groupBox9.Text = "Solenoid Valves";
       this.groupBox9.Visible = false;
+      // 
+      // button17
+      // 
+      this.button17.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
+      this.button17.Location = new System.Drawing.Point(102, 109);
+      this.button17.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button17.Name = "button17";
+      this.button17.Size = new System.Drawing.Size(81, 61);
+      this.button17.TabIndex = 6;
+      this.button17.UseVisualStyleBackColor = true;
+      this.button17.Click += new System.EventHandler(this.button17_Click);
+      // 
+      // button18
+      // 
+      this.button18.Image = global::LukMachine.Properties.Resources.redX3;
+      this.button18.Location = new System.Drawing.Point(13, 109);
+      this.button18.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button18.Name = "button18";
+      this.button18.Size = new System.Drawing.Size(81, 61);
+      this.button18.TabIndex = 5;
+      this.button18.UseVisualStyleBackColor = true;
+      this.button18.Click += new System.EventHandler(this.button18_Click);
       // 
       // comboBox2
       // 
@@ -289,6 +312,50 @@
       this.groupBox1.Text = "Chamber Select (3-Way Valve)";
       this.groupBox1.Visible = false;
       // 
+      // pictureBox3
+      // 
+      this.pictureBox3.Image = global::LukMachine.Properties.Resources.close;
+      this.pictureBox3.Location = new System.Drawing.Point(179, 152);
+      this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.pictureBox3.Name = "pictureBox3";
+      this.pictureBox3.Size = new System.Drawing.Size(81, 21);
+      this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.pictureBox3.TabIndex = 8;
+      this.pictureBox3.TabStop = false;
+      // 
+      // pictureBox2
+      // 
+      this.pictureBox2.Image = global::LukMachine.Properties.Resources.close;
+      this.pictureBox2.Location = new System.Drawing.Point(75, 152);
+      this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.pictureBox2.Name = "pictureBox2";
+      this.pictureBox2.Size = new System.Drawing.Size(81, 21);
+      this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.pictureBox2.TabIndex = 7;
+      this.pictureBox2.TabStop = false;
+      // 
+      // button1
+      // 
+      this.button1.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
+      this.button1.Location = new System.Drawing.Point(179, 81);
+      this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button1.Name = "button1";
+      this.button1.Size = new System.Drawing.Size(81, 61);
+      this.button1.TabIndex = 6;
+      this.button1.UseVisualStyleBackColor = true;
+      this.button1.Click += new System.EventHandler(this.button1_Click);
+      // 
+      // button2
+      // 
+      this.button2.Image = global::LukMachine.Properties.Resources._112_LeftArrowShort_Orange_32x32_72;
+      this.button2.Location = new System.Drawing.Point(75, 81);
+      this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button2.Name = "button2";
+      this.button2.Size = new System.Drawing.Size(81, 61);
+      this.button2.TabIndex = 5;
+      this.button2.UseVisualStyleBackColor = true;
+      this.button2.Click += new System.EventHandler(this.button2_Click);
+      // 
       // groupBox2
       // 
       this.groupBox2.Controls.Add(this.label4);
@@ -315,6 +382,28 @@
       this.label4.TabIndex = 8;
       this.label4.Text = "Counts:";
       this.label4.Visible = false;
+      // 
+      // button3
+      // 
+      this.button3.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
+      this.button3.Location = new System.Drawing.Point(178, 55);
+      this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button3.Name = "button3";
+      this.button3.Size = new System.Drawing.Size(81, 62);
+      this.button3.TabIndex = 6;
+      this.button3.UseVisualStyleBackColor = true;
+      this.button3.Click += new System.EventHandler(this.button3_Click);
+      // 
+      // button4
+      // 
+      this.button4.Image = global::LukMachine.Properties.Resources.redX3;
+      this.button4.Location = new System.Drawing.Point(90, 55);
+      this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button4.Name = "button4";
+      this.button4.Size = new System.Drawing.Size(81, 62);
+      this.button4.TabIndex = 5;
+      this.button4.UseVisualStyleBackColor = true;
+      this.button4.Click += new System.EventHandler(this.button4_Click);
       // 
       // trackBar1
       // 
@@ -492,6 +581,28 @@
       this.label15.TabIndex = 19;
       this.label15.Text = "Heater 4:";
       // 
+      // button13
+      // 
+      this.button13.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
+      this.button13.Location = new System.Drawing.Point(527, 102);
+      this.button13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button13.Name = "button13";
+      this.button13.Size = new System.Drawing.Size(56, 44);
+      this.button13.TabIndex = 18;
+      this.button13.UseVisualStyleBackColor = true;
+      this.button13.Click += new System.EventHandler(this.button13_Click);
+      // 
+      // button14
+      // 
+      this.button14.Image = global::LukMachine.Properties.Resources.redX3;
+      this.button14.Location = new System.Drawing.Point(464, 102);
+      this.button14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button14.Name = "button14";
+      this.button14.Size = new System.Drawing.Size(56, 44);
+      this.button14.TabIndex = 17;
+      this.button14.UseVisualStyleBackColor = true;
+      this.button14.Click += new System.EventHandler(this.button14_Click);
+      // 
       // textBox3
       // 
       this.textBox3.Location = new System.Drawing.Point(386, 33);
@@ -510,6 +621,28 @@
       this.label14.TabIndex = 15;
       this.label14.Text = "Heater 3:";
       // 
+      // button11
+      // 
+      this.button11.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
+      this.button11.Location = new System.Drawing.Point(527, 23);
+      this.button11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button11.Name = "button11";
+      this.button11.Size = new System.Drawing.Size(56, 44);
+      this.button11.TabIndex = 14;
+      this.button11.UseVisualStyleBackColor = true;
+      this.button11.Click += new System.EventHandler(this.button11_Click_1);
+      // 
+      // button12
+      // 
+      this.button12.Image = global::LukMachine.Properties.Resources.redX3;
+      this.button12.Location = new System.Drawing.Point(464, 23);
+      this.button12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button12.Name = "button12";
+      this.button12.Size = new System.Drawing.Size(56, 44);
+      this.button12.TabIndex = 13;
+      this.button12.UseVisualStyleBackColor = true;
+      this.button12.Click += new System.EventHandler(this.button12_Click);
+      // 
       // textBox2
       // 
       this.textBox2.Location = new System.Drawing.Point(100, 112);
@@ -517,6 +650,28 @@
       this.textBox2.Name = "textBox2";
       this.textBox2.Size = new System.Drawing.Size(69, 33);
       this.textBox2.TabIndex = 12;
+      // 
+      // button9
+      // 
+      this.button9.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
+      this.button9.Location = new System.Drawing.Point(241, 102);
+      this.button9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button9.Name = "button9";
+      this.button9.Size = new System.Drawing.Size(56, 44);
+      this.button9.TabIndex = 11;
+      this.button9.UseVisualStyleBackColor = true;
+      this.button9.Click += new System.EventHandler(this.button9_Click);
+      // 
+      // button10
+      // 
+      this.button10.Image = global::LukMachine.Properties.Resources.redX3;
+      this.button10.Location = new System.Drawing.Point(178, 102);
+      this.button10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button10.Name = "button10";
+      this.button10.Size = new System.Drawing.Size(56, 44);
+      this.button10.TabIndex = 10;
+      this.button10.UseVisualStyleBackColor = true;
+      this.button10.Click += new System.EventHandler(this.button10_Click);
       // 
       // textBox1
       // 
@@ -545,6 +700,28 @@
       this.label6.Size = new System.Drawing.Size(101, 25);
       this.label6.TabIndex = 7;
       this.label6.Text = "Heater 1:";
+      // 
+      // button7
+      // 
+      this.button7.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
+      this.button7.Location = new System.Drawing.Point(241, 23);
+      this.button7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button7.Name = "button7";
+      this.button7.Size = new System.Drawing.Size(56, 44);
+      this.button7.TabIndex = 6;
+      this.button7.UseVisualStyleBackColor = true;
+      this.button7.Click += new System.EventHandler(this.button7_Click);
+      // 
+      // button8
+      // 
+      this.button8.Image = global::LukMachine.Properties.Resources.redX3;
+      this.button8.Location = new System.Drawing.Point(178, 23);
+      this.button8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+      this.button8.Name = "button8";
+      this.button8.Size = new System.Drawing.Size(56, 44);
+      this.button8.TabIndex = 5;
+      this.button8.UseVisualStyleBackColor = true;
+      this.button8.Click += new System.EventHandler(this.button8_Click);
       // 
       // groupBox7
       // 
@@ -794,6 +971,13 @@
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir Volume";
       // 
+      // verticalProgressBar1
+      // 
+      this.verticalProgressBar1.Location = new System.Drawing.Point(63, 63);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
+      this.verticalProgressBar1.TabIndex = 43;
+      // 
       // groupBoxCollected
       // 
       this.groupBoxCollected.Controls.Add(this.verticalProgressBar2);
@@ -803,6 +987,13 @@
       this.groupBoxCollected.TabIndex = 41;
       this.groupBoxCollected.TabStop = false;
       this.groupBoxCollected.Text = "Collected Volume";
+      // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(70, 64);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
+      this.verticalProgressBar2.TabIndex = 44;
       // 
       // label8
       // 
@@ -887,6 +1078,67 @@
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "Diagram Control";
       this.tabPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabPage1_Paint);
+      // 
+      // label49
+      // 
+      this.label49.AutoSize = true;
+      this.label49.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label49.Location = new System.Drawing.Point(497, 5);
+      this.label49.Name = "label49";
+      this.label49.Size = new System.Drawing.Size(25, 16);
+      this.label49.TabIndex = 98;
+      this.label49.Text = "V8";
+      // 
+      // labelP2
+      // 
+      this.labelP2.AutoSize = true;
+      this.labelP2.BackColor = System.Drawing.Color.Orange;
+      this.labelP2.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelP2.Location = new System.Drawing.Point(283, 32);
+      this.labelP2.Name = "labelP2";
+      this.labelP2.Size = new System.Drawing.Size(29, 16);
+      this.labelP2.TabIndex = 97;
+      this.labelP2.Text = "PSI";
+      // 
+      // labelP1
+      // 
+      this.labelP1.AutoSize = true;
+      this.labelP1.BackColor = System.Drawing.Color.Orange;
+      this.labelP1.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelP1.Location = new System.Drawing.Point(574, 243);
+      this.labelP1.Name = "labelP1";
+      this.labelP1.Size = new System.Drawing.Size(29, 16);
+      this.labelP1.TabIndex = 96;
+      this.labelP1.Text = "PSI";
+      // 
+      // label48
+      // 
+      this.label48.AutoSize = true;
+      this.label48.Font = new System.Drawing.Font("Arial", 10F);
+      this.label48.Location = new System.Drawing.Point(83, 5);
+      this.label48.Name = "label48";
+      this.label48.Size = new System.Drawing.Size(184, 23);
+      this.label48.TabIndex = 95;
+      this.label48.Text = "Pressure Gauge P2";
+      // 
+      // label47
+      // 
+      this.label47.AutoSize = true;
+      this.label47.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label47.Location = new System.Drawing.Point(334, 11);
+      this.label47.Name = "label47";
+      this.label47.Size = new System.Drawing.Size(25, 16);
+      this.label47.TabIndex = 94;
+      this.label47.Text = "P2";
+      // 
+      // label46
+      // 
+      this.label46.AutoSize = true;
+      this.label46.Location = new System.Drawing.Point(8, 272);
+      this.label46.Name = "label46";
+      this.label46.Size = new System.Drawing.Size(68, 25);
+      this.label46.TabIndex = 93;
+      this.label46.Text = "Outlet";
       // 
       // mLReservoir
       // 
@@ -1284,41 +1536,17 @@
       this.textBoxTemp.TabIndex = 70;
       this.textBoxTemp.TextChanged += new System.EventHandler(this.textBoxTemp_TextChanged);
       // 
-      // button21
+      // checkBox1
       // 
-      this.button21.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button21.Location = new System.Drawing.Point(268, 559);
-      this.button21.Name = "button21";
-      this.button21.Size = new System.Drawing.Size(107, 125);
-      this.button21.TabIndex = 69;
-      this.button21.Text = "Pump Collected back to Reservoir ";
-      this.button21.UseVisualStyleBackColor = true;
-      this.button21.Visible = false;
-      this.button21.Click += new System.EventHandler(this.button21_Click_1);
-      // 
-      // checkBox4
-      // 
-      this.checkBox4.AutoSize = true;
-      this.checkBox4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBox4.Location = new System.Drawing.Point(15, 156);
-      this.checkBox4.Margin = new System.Windows.Forms.Padding(4);
-      this.checkBox4.Name = "checkBox4";
-      this.checkBox4.Size = new System.Drawing.Size(218, 27);
-      this.checkBox4.TabIndex = 68;
-      this.checkBox4.Text = "Reservoir Temp: N/A";
-      this.checkBox4.UseVisualStyleBackColor = true;
-      // 
-      // checkBox3
-      // 
-      this.checkBox3.AutoSize = true;
-      this.checkBox3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBox3.Location = new System.Drawing.Point(15, 184);
-      this.checkBox3.Margin = new System.Windows.Forms.Padding(4);
-      this.checkBox3.Name = "checkBox3";
-      this.checkBox3.Size = new System.Drawing.Size(173, 27);
-      this.checkBox3.TabIndex = 67;
-      this.checkBox3.Text = "Pipe Temp: N/A";
-      this.checkBox3.UseVisualStyleBackColor = true;
+      this.checkBox1.AutoSize = true;
+      this.checkBox1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.checkBox1.Location = new System.Drawing.Point(15, 100);
+      this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
+      this.checkBox1.Name = "checkBox1";
+      this.checkBox1.Size = new System.Drawing.Size(231, 27);
+      this.checkBox1.TabIndex = 65;
+      this.checkBox1.Text = "Chamber 1 Temp: N/A";
+      this.checkBox1.UseVisualStyleBackColor = true;
       // 
       // checkBox2
       // 
@@ -1332,17 +1560,41 @@
       this.checkBox2.Text = "Chamber 2 Temp: N/A";
       this.checkBox2.UseVisualStyleBackColor = true;
       // 
-      // checkBox1
+      // checkBox3
       // 
-      this.checkBox1.AutoSize = true;
-      this.checkBox1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBox1.Location = new System.Drawing.Point(15, 100);
-      this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
-      this.checkBox1.Name = "checkBox1";
-      this.checkBox1.Size = new System.Drawing.Size(231, 27);
-      this.checkBox1.TabIndex = 65;
-      this.checkBox1.Text = "Chamber 1 Temp: N/A";
-      this.checkBox1.UseVisualStyleBackColor = true;
+      this.checkBox3.AutoSize = true;
+      this.checkBox3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.checkBox3.Location = new System.Drawing.Point(15, 184);
+      this.checkBox3.Margin = new System.Windows.Forms.Padding(4);
+      this.checkBox3.Name = "checkBox3";
+      this.checkBox3.Size = new System.Drawing.Size(173, 27);
+      this.checkBox3.TabIndex = 67;
+      this.checkBox3.Text = "Pipe Temp: N/A";
+      this.checkBox3.UseVisualStyleBackColor = true;
+      // 
+      // checkBox4
+      // 
+      this.checkBox4.AutoSize = true;
+      this.checkBox4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.checkBox4.Location = new System.Drawing.Point(15, 156);
+      this.checkBox4.Margin = new System.Windows.Forms.Padding(4);
+      this.checkBox4.Name = "checkBox4";
+      this.checkBox4.Size = new System.Drawing.Size(218, 27);
+      this.checkBox4.TabIndex = 68;
+      this.checkBox4.Text = "Reservoir Temp: N/A";
+      this.checkBox4.UseVisualStyleBackColor = true;
+      // 
+      // button21
+      // 
+      this.button21.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.button21.Location = new System.Drawing.Point(268, 559);
+      this.button21.Name = "button21";
+      this.button21.Size = new System.Drawing.Size(107, 125);
+      this.button21.TabIndex = 69;
+      this.button21.Text = "Pump Collected back to Reservoir ";
+      this.button21.UseVisualStyleBackColor = true;
+      this.button21.Visible = false;
+      this.button21.Click += new System.EventHandler(this.button21_Click_1);
       // 
       // groupBox12
       // 
@@ -1547,6 +1799,14 @@
       this.label27.TabIndex = 54;
       this.label27.Text = "Reservoir";
       // 
+      // verticalProgressBar4
+      // 
+      this.verticalProgressBar4.Location = new System.Drawing.Point(265, 318);
+      this.verticalProgressBar4.Name = "verticalProgressBar4";
+      this.verticalProgressBar4.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar4.TabIndex = 50;
+      this.verticalProgressBar4.Click += new System.EventHandler(this.verticalProgressBar4_Click);
+      // 
       // label23
       // 
       this.label23.AutoSize = true;
@@ -1590,6 +1850,14 @@
       this.label20.TabIndex = 46;
       this.label20.Text = "Outlet";
       // 
+      // verticalProgressBar3
+      // 
+      this.verticalProgressBar3.Location = new System.Drawing.Point(90, 76);
+      this.verticalProgressBar3.Name = "verticalProgressBar3";
+      this.verticalProgressBar3.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar3.TabIndex = 45;
+      this.verticalProgressBar3.Click += new System.EventHandler(this.verticalProgressBar3_Click);
+      // 
       // label18
       // 
       this.label18.AutoSize = true;
@@ -1624,6 +1892,7 @@
       this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
       this.shapeContainer1.Name = "shapeContainer1";
       this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.rectangleShape23,
             this.rectangleShape22,
             this.rectangleShape21,
             this.lineShape12,
@@ -1659,6 +1928,65 @@
       this.shapeContainer1.TabIndex = 0;
       this.shapeContainer1.TabStop = false;
       // 
+      // rectangleShape23
+      // 
+      this.rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
+      this.rectangleShape23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+      this.rectangleShape23.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape23.BorderWidth = 3;
+      this.rectangleShape23.Location = new System.Drawing.Point(419, 15);
+      this.rectangleShape23.Name = "rectangleShape23";
+      this.rectangleShape23.Size = new System.Drawing.Size(46, 45);
+      this.rectangleShape23.Click += new System.EventHandler(this.rectangleShape22_Click);
+      this.rectangleShape23.MouseEnter += new System.EventHandler(this.rectangleShape20_MouseEnter);
+      // 
+      // rectangleShape22
+      // 
+      this.rectangleShape22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+      this.rectangleShape22.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape22.BorderWidth = 3;
+      this.rectangleShape22.Location = new System.Drawing.Point(402, 2);
+      this.rectangleShape22.Name = "rectangleShape22";
+      this.rectangleShape22.Size = new System.Drawing.Size(79, 71);
+      this.rectangleShape22.Click += new System.EventHandler(this.rectangleShape22_Click);
+      // 
+      // rectangleShape21
+      // 
+      this.rectangleShape21.BackColor = System.Drawing.Color.Orange;
+      this.rectangleShape21.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape21.BorderWidth = 3;
+      this.rectangleShape21.CornerRadius = 28;
+      this.rectangleShape21.Location = new System.Drawing.Point(267, 9);
+      this.rectangleShape21.Name = "rectangleShape21";
+      this.rectangleShape21.Size = new System.Drawing.Size(59, 57);
+      // 
+      // lineShape12
+      // 
+      this.lineShape12.BorderWidth = 3;
+      this.lineShape12.Name = "lineShape12";
+      this.lineShape12.X1 = 271;
+      this.lineShape12.X2 = 336;
+      this.lineShape12.Y1 = 258;
+      this.lineShape12.Y2 = 258;
+      // 
+      // lineShape11
+      // 
+      this.lineShape11.BorderWidth = 3;
+      this.lineShape11.Name = "lineShape11";
+      this.lineShape11.X1 = 336;
+      this.lineShape11.X2 = 336;
+      this.lineShape11.Y1 = 259;
+      this.lineShape11.Y2 = 186;
+      // 
+      // lineShape10
+      // 
+      this.lineShape10.BorderWidth = 3;
+      this.lineShape10.Name = "lineShape10";
+      this.lineShape10.X1 = 140;
+      this.lineShape10.X2 = 159;
+      this.lineShape10.Y1 = 327;
+      this.lineShape10.Y2 = 327;
+      // 
       // lineShape2
       // 
       this.lineShape2.BorderWidth = 3;
@@ -1667,6 +1995,18 @@
       this.lineShape2.X2 = 132;
       this.lineShape2.Y1 = 65;
       this.lineShape2.Y2 = 38;
+      // 
+      // rectangleShape20
+      // 
+      this.rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
+      this.rectangleShape20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+      this.rectangleShape20.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape20.BorderWidth = 3;
+      this.rectangleShape20.Location = new System.Drawing.Point(567, 152);
+      this.rectangleShape20.Name = "rectangleShape20";
+      this.rectangleShape20.Size = new System.Drawing.Size(46, 45);
+      this.rectangleShape20.Click += new System.EventHandler(this.rectangleShape8_Click);
+      this.rectangleShape20.MouseEnter += new System.EventHandler(this.rectangleShape20_MouseEnter);
       // 
       // rectangleShape16
       // 
@@ -1826,7 +2166,7 @@
       this.rectangleShape8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
       this.rectangleShape8.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
       this.rectangleShape8.BorderWidth = 3;
-      this.rectangleShape8.Location = new System.Drawing.Point(551, 138);
+      this.rectangleShape8.Location = new System.Drawing.Point(550, 138);
       this.rectangleShape8.Name = "rectangleShape8";
       this.rectangleShape8.Size = new System.Drawing.Size(79, 71);
       this.rectangleShape8.Click += new System.EventHandler(this.rectangleShape8_Click);
@@ -1999,334 +2339,6 @@
       // 
       this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
       // 
-      // label46
-      // 
-      this.label46.AutoSize = true;
-      this.label46.Location = new System.Drawing.Point(8, 272);
-      this.label46.Name = "label46";
-      this.label46.Size = new System.Drawing.Size(68, 25);
-      this.label46.TabIndex = 93;
-      this.label46.Text = "Outlet";
-      // 
-      // lineShape10
-      // 
-      this.lineShape10.BorderWidth = 3;
-      this.lineShape10.Name = "lineShape10";
-      this.lineShape10.X1 = 140;
-      this.lineShape10.X2 = 159;
-      this.lineShape10.Y1 = 327;
-      this.lineShape10.Y2 = 327;
-      // 
-      // lineShape11
-      // 
-      this.lineShape11.BorderWidth = 3;
-      this.lineShape11.Name = "lineShape11";
-      this.lineShape11.X1 = 336;
-      this.lineShape11.X2 = 336;
-      this.lineShape11.Y1 = 259;
-      this.lineShape11.Y2 = 186;
-      // 
-      // lineShape12
-      // 
-      this.lineShape12.BorderWidth = 3;
-      this.lineShape12.Name = "lineShape12";
-      this.lineShape12.X1 = 271;
-      this.lineShape12.X2 = 336;
-      this.lineShape12.Y1 = 258;
-      this.lineShape12.Y2 = 258;
-      // 
-      // rectangleShape21
-      // 
-      this.rectangleShape21.BackColor = System.Drawing.Color.Orange;
-      this.rectangleShape21.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-      this.rectangleShape21.BorderWidth = 3;
-      this.rectangleShape21.CornerRadius = 28;
-      this.rectangleShape21.Location = new System.Drawing.Point(267, 9);
-      this.rectangleShape21.Name = "rectangleShape21";
-      this.rectangleShape21.Size = new System.Drawing.Size(59, 57);
-      // 
-      // rectangleShape20
-      // 
-      this.rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.rectangleShape20.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-      this.rectangleShape20.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-      this.rectangleShape20.BorderWidth = 3;
-      this.rectangleShape20.Location = new System.Drawing.Point(568, 152);
-      this.rectangleShape20.Name = "rectangleShape20";
-      this.rectangleShape20.Size = new System.Drawing.Size(46, 45);
-      this.rectangleShape20.Click += new System.EventHandler(this.rectangleShape8_Click);
-      this.rectangleShape20.MouseEnter += new System.EventHandler(this.rectangleShape20_MouseEnter);
-      // 
-      // button17
-      // 
-      this.button17.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.button17.Location = new System.Drawing.Point(102, 109);
-      this.button17.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button17.Name = "button17";
-      this.button17.Size = new System.Drawing.Size(81, 61);
-      this.button17.TabIndex = 6;
-      this.button17.UseVisualStyleBackColor = true;
-      this.button17.Click += new System.EventHandler(this.button17_Click);
-      // 
-      // button18
-      // 
-      this.button18.Image = global::LukMachine.Properties.Resources.redX3;
-      this.button18.Location = new System.Drawing.Point(13, 109);
-      this.button18.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button18.Name = "button18";
-      this.button18.Size = new System.Drawing.Size(81, 61);
-      this.button18.TabIndex = 5;
-      this.button18.UseVisualStyleBackColor = true;
-      this.button18.Click += new System.EventHandler(this.button18_Click);
-      // 
-      // pictureBox3
-      // 
-      this.pictureBox3.Image = global::LukMachine.Properties.Resources.close;
-      this.pictureBox3.Location = new System.Drawing.Point(179, 152);
-      this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.pictureBox3.Name = "pictureBox3";
-      this.pictureBox3.Size = new System.Drawing.Size(81, 21);
-      this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.pictureBox3.TabIndex = 8;
-      this.pictureBox3.TabStop = false;
-      // 
-      // pictureBox2
-      // 
-      this.pictureBox2.Image = global::LukMachine.Properties.Resources.close;
-      this.pictureBox2.Location = new System.Drawing.Point(75, 152);
-      this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.pictureBox2.Name = "pictureBox2";
-      this.pictureBox2.Size = new System.Drawing.Size(81, 21);
-      this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.pictureBox2.TabIndex = 7;
-      this.pictureBox2.TabStop = false;
-      // 
-      // button1
-      // 
-      this.button1.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.button1.Location = new System.Drawing.Point(179, 81);
-      this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(81, 61);
-      this.button1.TabIndex = 6;
-      this.button1.UseVisualStyleBackColor = true;
-      this.button1.Click += new System.EventHandler(this.button1_Click);
-      // 
-      // button2
-      // 
-      this.button2.Image = global::LukMachine.Properties.Resources._112_LeftArrowShort_Orange_32x32_72;
-      this.button2.Location = new System.Drawing.Point(75, 81);
-      this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(81, 61);
-      this.button2.TabIndex = 5;
-      this.button2.UseVisualStyleBackColor = true;
-      this.button2.Click += new System.EventHandler(this.button2_Click);
-      // 
-      // button13
-      // 
-      this.button13.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.button13.Location = new System.Drawing.Point(527, 102);
-      this.button13.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button13.Name = "button13";
-      this.button13.Size = new System.Drawing.Size(56, 44);
-      this.button13.TabIndex = 18;
-      this.button13.UseVisualStyleBackColor = true;
-      this.button13.Click += new System.EventHandler(this.button13_Click);
-      // 
-      // button14
-      // 
-      this.button14.Image = global::LukMachine.Properties.Resources.redX3;
-      this.button14.Location = new System.Drawing.Point(464, 102);
-      this.button14.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button14.Name = "button14";
-      this.button14.Size = new System.Drawing.Size(56, 44);
-      this.button14.TabIndex = 17;
-      this.button14.UseVisualStyleBackColor = true;
-      this.button14.Click += new System.EventHandler(this.button14_Click);
-      // 
-      // button11
-      // 
-      this.button11.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.button11.Location = new System.Drawing.Point(527, 23);
-      this.button11.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button11.Name = "button11";
-      this.button11.Size = new System.Drawing.Size(56, 44);
-      this.button11.TabIndex = 14;
-      this.button11.UseVisualStyleBackColor = true;
-      this.button11.Click += new System.EventHandler(this.button11_Click_1);
-      // 
-      // button12
-      // 
-      this.button12.Image = global::LukMachine.Properties.Resources.redX3;
-      this.button12.Location = new System.Drawing.Point(464, 23);
-      this.button12.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button12.Name = "button12";
-      this.button12.Size = new System.Drawing.Size(56, 44);
-      this.button12.TabIndex = 13;
-      this.button12.UseVisualStyleBackColor = true;
-      this.button12.Click += new System.EventHandler(this.button12_Click);
-      // 
-      // button9
-      // 
-      this.button9.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.button9.Location = new System.Drawing.Point(241, 102);
-      this.button9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button9.Name = "button9";
-      this.button9.Size = new System.Drawing.Size(56, 44);
-      this.button9.TabIndex = 11;
-      this.button9.UseVisualStyleBackColor = true;
-      this.button9.Click += new System.EventHandler(this.button9_Click);
-      // 
-      // button10
-      // 
-      this.button10.Image = global::LukMachine.Properties.Resources.redX3;
-      this.button10.Location = new System.Drawing.Point(178, 102);
-      this.button10.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button10.Name = "button10";
-      this.button10.Size = new System.Drawing.Size(56, 44);
-      this.button10.TabIndex = 10;
-      this.button10.UseVisualStyleBackColor = true;
-      this.button10.Click += new System.EventHandler(this.button10_Click);
-      // 
-      // button7
-      // 
-      this.button7.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.button7.Location = new System.Drawing.Point(241, 23);
-      this.button7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button7.Name = "button7";
-      this.button7.Size = new System.Drawing.Size(56, 44);
-      this.button7.TabIndex = 6;
-      this.button7.UseVisualStyleBackColor = true;
-      this.button7.Click += new System.EventHandler(this.button7_Click);
-      // 
-      // button8
-      // 
-      this.button8.Image = global::LukMachine.Properties.Resources.redX3;
-      this.button8.Location = new System.Drawing.Point(178, 23);
-      this.button8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button8.Name = "button8";
-      this.button8.Size = new System.Drawing.Size(56, 44);
-      this.button8.TabIndex = 5;
-      this.button8.UseVisualStyleBackColor = true;
-      this.button8.Click += new System.EventHandler(this.button8_Click);
-      // 
-      // button3
-      // 
-      this.button3.Image = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-      this.button3.Location = new System.Drawing.Point(178, 55);
-      this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button3.Name = "button3";
-      this.button3.Size = new System.Drawing.Size(81, 62);
-      this.button3.TabIndex = 6;
-      this.button3.UseVisualStyleBackColor = true;
-      this.button3.Click += new System.EventHandler(this.button3_Click);
-      // 
-      // button4
-      // 
-      this.button4.Image = global::LukMachine.Properties.Resources.redX3;
-      this.button4.Location = new System.Drawing.Point(90, 55);
-      this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-      this.button4.Name = "button4";
-      this.button4.Size = new System.Drawing.Size(81, 62);
-      this.button4.TabIndex = 5;
-      this.button4.UseVisualStyleBackColor = true;
-      this.button4.Click += new System.EventHandler(this.button4_Click);
-      // 
-      // label47
-      // 
-      this.label47.AutoSize = true;
-      this.label47.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label47.Location = new System.Drawing.Point(334, 11);
-      this.label47.Name = "label47";
-      this.label47.Size = new System.Drawing.Size(25, 16);
-      this.label47.TabIndex = 94;
-      this.label47.Text = "P2";
-      // 
-      // label48
-      // 
-      this.label48.AutoSize = true;
-      this.label48.Font = new System.Drawing.Font("Arial", 10F);
-      this.label48.Location = new System.Drawing.Point(83, 5);
-      this.label48.Name = "label48";
-      this.label48.Size = new System.Drawing.Size(184, 23);
-      this.label48.TabIndex = 95;
-      this.label48.Text = "Pressure Gauge P2";
-      // 
-      // labelP1
-      // 
-      this.labelP1.AutoSize = true;
-      this.labelP1.BackColor = System.Drawing.Color.Orange;
-      this.labelP1.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelP1.Location = new System.Drawing.Point(574, 243);
-      this.labelP1.Name = "labelP1";
-      this.labelP1.Size = new System.Drawing.Size(29, 16);
-      this.labelP1.TabIndex = 96;
-      this.labelP1.Text = "PSI";
-      // 
-      // labelP2
-      // 
-      this.labelP2.AutoSize = true;
-      this.labelP2.BackColor = System.Drawing.Color.Orange;
-      this.labelP2.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelP2.Location = new System.Drawing.Point(283, 32);
-      this.labelP2.Name = "labelP2";
-      this.labelP2.Size = new System.Drawing.Size(29, 16);
-      this.labelP2.TabIndex = 97;
-      this.labelP2.Text = "PSI";
-      // 
-      // label49
-      // 
-      this.label49.AutoSize = true;
-      this.label49.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label49.Location = new System.Drawing.Point(497, 5);
-      this.label49.Name = "label49";
-      this.label49.Size = new System.Drawing.Size(25, 16);
-      this.label49.TabIndex = 98;
-      this.label49.Text = "V8";
-      // 
-      // verticalProgressBar4
-      // 
-      this.verticalProgressBar4.Location = new System.Drawing.Point(265, 318);
-      this.verticalProgressBar4.Name = "verticalProgressBar4";
-      this.verticalProgressBar4.Size = new System.Drawing.Size(84, 180);
-      this.verticalProgressBar4.TabIndex = 50;
-      this.verticalProgressBar4.Click += new System.EventHandler(this.verticalProgressBar4_Click);
-      // 
-      // verticalProgressBar3
-      // 
-      this.verticalProgressBar3.Location = new System.Drawing.Point(90, 76);
-      this.verticalProgressBar3.Name = "verticalProgressBar3";
-      this.verticalProgressBar3.Size = new System.Drawing.Size(84, 180);
-      this.verticalProgressBar3.TabIndex = 45;
-      this.verticalProgressBar3.Click += new System.EventHandler(this.verticalProgressBar3_Click);
-      // 
-      // verticalProgressBar1
-      // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(63, 63);
-      this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
-      this.verticalProgressBar1.TabIndex = 43;
-      // 
-      // verticalProgressBar2
-      // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(70, 64);
-      this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
-      this.verticalProgressBar2.TabIndex = 44;
-      // 
-      // rectangleShape22
-      // 
-      this.rectangleShape22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-      this.rectangleShape22.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-      this.rectangleShape22.BorderWidth = 3;
-      this.rectangleShape22.Location = new System.Drawing.Point(402, 2);
-      this.rectangleShape22.Name = "rectangleShape22";
-      this.rectangleShape22.Size = new System.Drawing.Size(79, 71);
-      this.rectangleShape22.Click += new System.EventHandler(this.rectangleShape8_Click);
-      this.rectangleShape22.MouseEnter += new System.EventHandler(this.rectangleShape8_MouseEnter);
-      this.rectangleShape22.MouseLeave += new System.EventHandler(this.rectangleShape8_MouseLeave);
-      // 
       // Manual
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
@@ -2345,6 +2357,8 @@
       this.Load += new System.EventHandler(this.Manual_Load);
       this.groupBox9.ResumeLayout(false);
       this.groupBox1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
       this.groupBox2.ResumeLayout(false);
       this.groupBox2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
@@ -2379,8 +2393,6 @@
       this.groupBox14.ResumeLayout(false);
       this.groupBox14.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
       this.ResumeLayout(false);
 
         }
@@ -2557,5 +2569,6 @@
     private System.Windows.Forms.Label label47;
     private System.Windows.Forms.Label label49;
     private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape22;
+    private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape23;
   }
 }

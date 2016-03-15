@@ -156,6 +156,18 @@ namespace LukMachine
       Properties.Settings.Default.Valve7State = true;
       Properties.Settings.Default.Save();
     }
+    public static void CloseValve8()
+    {
+      COMMS.Instance.MoveValve(8, "C");
+      Properties.Settings.Default.Valve8State = false;
+      Properties.Settings.Default.Save();
+    }
+    public static void OpenValve8()
+    {
+      COMMS.Instance.MoveValve(8, "O");
+      Properties.Settings.Default.Valve8State = true;
+      Properties.Settings.Default.Save();
+    }
 
 
     ///interchanging O with C

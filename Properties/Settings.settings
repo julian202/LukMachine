@@ -227,5 +227,8 @@
     <Setting Name="MaxCapacityInML" Type="System.String" Scope="User">
       <Value Profile="(Default)">650</Value>
     </Setting>
+    <Setting Name="Valve8State" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

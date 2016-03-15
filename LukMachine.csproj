@@ -320,6 +320,7 @@
     <None Include="Resources\112_LeftArrowShort_Green_32x32_72.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\112_UpLeftArrowShort_Green_32x32_72.png" />
     <Content Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>

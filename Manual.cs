@@ -42,6 +42,7 @@ namespace LukMachine
     private Thread myThread;
     public delegate void UpdateTextCallback(string text);
     bool Valve3wayToRight;
+    bool Valve3wayBToRight;
     double outputPressure = 0; string counts = ""; double realCounts = 0; double currentPressure;
     private double pConversion = Properties.Settings.Default.defaultPressureConversion;
     double p1Psi;
@@ -81,6 +82,17 @@ namespace LukMachine
       {
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
         Valve3wayToRight = false;
+      }
+
+      if (Properties.Settings.Default.Valve8State)
+      {
+        rectangleShape22.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
+        Valve3wayBToRight = true;
+      }
+      else
+      {
+        rectangleShape22.BackgroundImage = global::LukMachine.Properties.Resources._112_UpLeftArrowShort_Green_32x32_72;
+        Valve3wayBToRight = false;
       }
 
 
@@ -727,6 +739,7 @@ namespace LukMachine
 
     private void rectangleShape8_Click(object sender, EventArgs e)
     {
+      switch3wayValveB();
       if (Valve3wayToRight)
       {
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
@@ -742,6 +755,32 @@ namespace LukMachine
         Valve3wayToRight = true;
         Properties.Settings.Default.Valve7State = true;
         Valves.OpenValve7();
+        System.Diagnostics.Debug.WriteLine("set to right chamber");
+      }
+    }
+
+    private void rectangleShape22_Click(object sender, EventArgs e)
+    {
+      
+    }
+
+    private void switch3wayValveB()
+    {
+      if (Valve3wayBToRight)
+      {
+        rectangleShape22.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
+        Valve3wayBToRight = false;
+        Properties.Settings.Default.Valve8State = false;
+        Valves.CloseValve8();  //valve 8 is the 3 way valve
+        System.Diagnostics.Debug.WriteLine("set to left chamber");
+
+      }
+      else
+      {
+        rectangleShape22.BackgroundImage = global::LukMachine.Properties.Resources._112_UpLeftArrowShort_Green_32x32_72;
+        Valve3wayBToRight = true;
+        Properties.Settings.Default.Valve8State = true;
+        Valves.OpenValve8();
         System.Diagnostics.Debug.WriteLine("set to right chamber");
       }
     }

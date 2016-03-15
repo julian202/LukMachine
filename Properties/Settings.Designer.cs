@@ -872,5 +872,17 @@ namespace LukMachine.Properties {
                 this["MaxCapacityInML"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Valve8State {
+            get {
+                return ((bool)(this["Valve8State"]));
+            }
+            set {
+                this["Valve8State"] = value;
+            }
+        }
     }
 }
