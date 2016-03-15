@@ -411,15 +411,7 @@ namespace LukMachine
           firstRound = false;
         }
 
-        if (mustNotCountFlowBecausePressureIsAdjusting)
-        {
-          //do nothing  (this is so that the first time point after adjusting pressure doesnt count the flow accumulated during that period)
-          mustNotCountFlowBecausePressureIsAdjusting = false;
-        }
-        else
-        {
-          CollectedDifferenceInCounts = -(CollectedCount - LastCollectedCount); //It has to be -ve because penetrometer is inverted (max counts is empty penetrometer)
-        }
+        CollectedDifferenceInCounts = -(CollectedCount - LastCollectedCount); //It has to be -ve because penetrometer is inverted (max counts is empty penetrometer)
 
         //read temperature
         ReadTemperatureAndSetLabel();
@@ -429,9 +421,16 @@ namespace LukMachine
         outputTime = currentTime / 1000;
         timeDifferenceInMinutes = ((currentTime - lastTime) / 1000) / 60;
 
-        //Calculate flow
-        Flow = CollectedDifferenceInCounts / timeDifferenceInMinutes; //this is flow in pent counts per minute
-        Flow = Flow * Convert.ToDouble(Properties.Settings.Default.MaxCapacityInML) / 58000; //this converts flow to mL
+        
+        if (!mustNotCountFlowBecausePressureIsAdjusting)
+        {
+          //(this is so that the first time point after adjusting pressure doesnt count the flow accumulated during that period)
+          
+          //Calculate flow
+          Flow = CollectedDifferenceInCounts / timeDifferenceInMinutes; //this is flow in pent counts per minute
+          Flow = Flow * Convert.ToDouble(Properties.Settings.Default.MaxCapacityInML) / 58000; //this converts flow to mL       
+        }
+
 
         //keep rough track of how many mL we have pumped.
         double mlsMoved = (pressureRate / 60.0) * outputTime;
@@ -495,7 +494,6 @@ namespace LukMachine
               HeatMachineToTargetTemperature(); //this enters a while loop until the temperatue is right.
               Progress("Done Heating machine to target temperature");
             }
-
             Progress("Starting next Period");
             endStoppedTime = Convert.ToDouble(Environment.TickCount);
             stoppedTime = stoppedTime + (endStoppedTime - startStoppedTime);
@@ -505,9 +503,11 @@ namespace LukMachine
             mustNotCountFlowBecausePressureIsAdjusting = true;
           }
         }
-        
-
-
+        else  //if it is not the end of the period...
+        {
+          mustNotCountFlowBecausePressureIsAdjusting = false; 
+        }
+     
 
         //Stop if over max pressure.
         if (outputPressure > p1Max) //add to this if volume is empty or pent is full
