@@ -403,14 +403,13 @@ namespace LukMachine
         //read penetrometers
         ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
         CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
-        Progress("display volume levels =" + ReservoirPercent.ToString() + "=" + CollectedPercent.ToString());//fix this, dont read twice
+        Progress("display volume levels =" + ReservoirPercent.ToString() + "=" + CollectedPercent.ToString());
         CollectedCount = COMMS.CollectedLevelCount;
         if (firstRound)
         {
           LastCollectedCount = CollectedCount;
           firstRound = false;
         }
-
 
         if (mustNotCountFlowBecausePressureIsAdjusting)
         {

@@ -86,9 +86,7 @@
       this.aGauge5 = new AGaugeApp.AGauge();
       this.groupBox6 = new System.Windows.Forms.GroupBox();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.groupBoxCollected = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.label8 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
       this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -152,12 +150,10 @@
       this.label29 = new System.Windows.Forms.Label();
       this.label28 = new System.Windows.Forms.Label();
       this.label27 = new System.Windows.Forms.Label();
-      this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
       this.label23 = new System.Windows.Forms.Label();
       this.label22 = new System.Windows.Forms.Label();
       this.label21 = new System.Windows.Forms.Label();
       this.label20 = new System.Windows.Forms.Label();
-      this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
       this.label18 = new System.Windows.Forms.Label();
       this.label9 = new System.Windows.Forms.Label();
       this.label17 = new System.Windows.Forms.Label();
@@ -202,6 +198,10 @@
       this.button28 = new System.Windows.Forms.Button();
       this.button25 = new System.Windows.Forms.Button();
       this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+      this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.groupBox9.SuspendLayout();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -971,13 +971,6 @@
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir Volume";
       // 
-      // verticalProgressBar1
-      // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(63, 63);
-      this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
-      this.verticalProgressBar1.TabIndex = 43;
-      // 
       // groupBoxCollected
       // 
       this.groupBoxCollected.Controls.Add(this.verticalProgressBar2);
@@ -987,13 +980,6 @@
       this.groupBoxCollected.TabIndex = 41;
       this.groupBoxCollected.TabStop = false;
       this.groupBoxCollected.Text = "Collected Volume";
-      // 
-      // verticalProgressBar2
-      // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(70, 64);
-      this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
-      this.verticalProgressBar2.TabIndex = 44;
       // 
       // label8
       // 
@@ -1094,7 +1080,7 @@
       this.labelP2.AutoSize = true;
       this.labelP2.BackColor = System.Drawing.Color.Orange;
       this.labelP2.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelP2.Location = new System.Drawing.Point(283, 32);
+      this.labelP2.Location = new System.Drawing.Point(280, 32);
       this.labelP2.Name = "labelP2";
       this.labelP2.Size = new System.Drawing.Size(29, 16);
       this.labelP2.TabIndex = 97;
@@ -1105,7 +1091,7 @@
       this.labelP1.AutoSize = true;
       this.labelP1.BackColor = System.Drawing.Color.Orange;
       this.labelP1.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelP1.Location = new System.Drawing.Point(574, 243);
+      this.labelP1.Location = new System.Drawing.Point(571, 243);
       this.labelP1.Name = "labelP1";
       this.labelP1.Size = new System.Drawing.Size(29, 16);
       this.labelP1.TabIndex = 96;
@@ -1115,7 +1101,7 @@
       // 
       this.label48.AutoSize = true;
       this.label48.Font = new System.Drawing.Font("Arial", 10F);
-      this.label48.Location = new System.Drawing.Point(83, 5);
+      this.label48.Location = new System.Drawing.Point(83, 6);
       this.label48.Name = "label48";
       this.label48.Size = new System.Drawing.Size(184, 23);
       this.label48.TabIndex = 95;
@@ -1799,14 +1785,6 @@
       this.label27.TabIndex = 54;
       this.label27.Text = "Reservoir";
       // 
-      // verticalProgressBar4
-      // 
-      this.verticalProgressBar4.Location = new System.Drawing.Point(265, 318);
-      this.verticalProgressBar4.Name = "verticalProgressBar4";
-      this.verticalProgressBar4.Size = new System.Drawing.Size(84, 180);
-      this.verticalProgressBar4.TabIndex = 50;
-      this.verticalProgressBar4.Click += new System.EventHandler(this.verticalProgressBar4_Click);
-      // 
       // label23
       // 
       this.label23.AutoSize = true;
@@ -1849,14 +1827,6 @@
       this.label20.Size = new System.Drawing.Size(68, 25);
       this.label20.TabIndex = 46;
       this.label20.Text = "Outlet";
-      // 
-      // verticalProgressBar3
-      // 
-      this.verticalProgressBar3.Location = new System.Drawing.Point(90, 76);
-      this.verticalProgressBar3.Name = "verticalProgressBar3";
-      this.verticalProgressBar3.Size = new System.Drawing.Size(84, 180);
-      this.verticalProgressBar3.TabIndex = 45;
-      this.verticalProgressBar3.Click += new System.EventHandler(this.verticalProgressBar3_Click);
       // 
       // label18
       // 
@@ -2338,6 +2308,36 @@
       // backgroundWorker1
       // 
       this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+      // 
+      // verticalProgressBar4
+      // 
+      this.verticalProgressBar4.Location = new System.Drawing.Point(265, 318);
+      this.verticalProgressBar4.Name = "verticalProgressBar4";
+      this.verticalProgressBar4.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar4.TabIndex = 50;
+      this.verticalProgressBar4.Click += new System.EventHandler(this.verticalProgressBar4_Click);
+      // 
+      // verticalProgressBar3
+      // 
+      this.verticalProgressBar3.Location = new System.Drawing.Point(90, 76);
+      this.verticalProgressBar3.Name = "verticalProgressBar3";
+      this.verticalProgressBar3.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar3.TabIndex = 45;
+      this.verticalProgressBar3.Click += new System.EventHandler(this.verticalProgressBar3_Click);
+      // 
+      // verticalProgressBar1
+      // 
+      this.verticalProgressBar1.Location = new System.Drawing.Point(63, 63);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
+      this.verticalProgressBar1.TabIndex = 43;
+      // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(70, 64);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
+      this.verticalProgressBar2.TabIndex = 44;
       // 
       // Manual
       // 

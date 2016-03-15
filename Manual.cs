@@ -86,12 +86,12 @@ namespace LukMachine
 
       if (Properties.Settings.Default.Valve8State)
       {
-        rectangleShape22.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
+        rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
         Valve3wayBToRight = true;
       }
       else
       {
-        rectangleShape22.BackgroundImage = global::LukMachine.Properties.Resources._112_UpLeftArrowShort_Green_32x32_72;
+        rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_UpLeftArrowShort_Green_32x32_72;
         Valve3wayBToRight = false;
       }
 
@@ -739,7 +739,7 @@ namespace LukMachine
 
     private void rectangleShape8_Click(object sender, EventArgs e)
     {
-      switch3wayValveB();
+      //switch3wayValveB();
       if (Valve3wayToRight)
       {
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
@@ -761,14 +761,14 @@ namespace LukMachine
 
     private void rectangleShape22_Click(object sender, EventArgs e)
     {
-      
+      switch3wayValveB();
     }
 
     private void switch3wayValveB()
     {
       if (Valve3wayBToRight)
       {
-        rectangleShape22.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
+        rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
         Valve3wayBToRight = false;
         Properties.Settings.Default.Valve8State = false;
         Valves.CloseValve8();  //valve 8 is the 3 way valve
@@ -777,7 +777,7 @@ namespace LukMachine
       }
       else
       {
-        rectangleShape22.BackgroundImage = global::LukMachine.Properties.Resources._112_UpLeftArrowShort_Green_32x32_72;
+        rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_UpLeftArrowShort_Green_32x32_72;
         Valve3wayBToRight = true;
         Properties.Settings.Default.Valve8State = true;
         Valves.OpenValve8();
