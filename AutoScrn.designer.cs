@@ -60,9 +60,9 @@
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.button4 = new System.Windows.Forms.Button();
-      this.button5 = new System.Windows.Forms.Button();
       this.TimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.PressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.linkLabel1 = new System.Windows.Forms.LinkLabel();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
@@ -371,26 +371,15 @@
       // button4
       // 
       this.button4.AutoSize = true;
-      this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button4.Location = new System.Drawing.Point(298, 563);
+      this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.button4.ForeColor = System.Drawing.Color.Green;
+      this.button4.Location = new System.Drawing.Point(664, 528);
       this.button4.Name = "button4";
-      this.button4.Size = new System.Drawing.Size(192, 42);
+      this.button4.Size = new System.Drawing.Size(229, 86);
       this.button4.TabIndex = 23;
       this.button4.Text = "Open Report Window";
       this.button4.UseVisualStyleBackColor = true;
       this.button4.Click += new System.EventHandler(this.button4_Click);
-      // 
-      // button5
-      // 
-      this.button5.AutoSize = true;
-      this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button5.Location = new System.Drawing.Point(522, 563);
-      this.button5.Name = "button5";
-      this.button5.Size = new System.Drawing.Size(116, 42);
-      this.button5.TabIndex = 22;
-      this.button5.Text = "Open folder";
-      this.button5.UseVisualStyleBackColor = true;
-      this.button5.Click += new System.EventHandler(this.button5_Click);
       // 
       // TimeColumn
       // 
@@ -404,14 +393,26 @@
       this.PressureColumn.Name = "PressureColumn";
       this.PressureColumn.ReadOnly = true;
       // 
+      // linkLabel1
+      // 
+      this.linkLabel1.AutoSize = true;
+      this.linkLabel1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.linkLabel1.Location = new System.Drawing.Point(528, 525);
+      this.linkLabel1.Name = "linkLabel1";
+      this.linkLabel1.Size = new System.Drawing.Size(95, 18);
+      this.linkLabel1.TabIndex = 24;
+      this.linkLabel1.TabStop = true;
+      this.linkLabel1.Text = "Open Folder";
+      this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+      // 
       // AutoScrn
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.ClientSize = new System.Drawing.Size(905, 629);
+      this.Controls.Add(this.linkLabel1);
       this.Controls.Add(this.button4);
-      this.Controls.Add(this.button5);
       this.Controls.Add(this.labelDuration);
       this.Controls.Add(this.groupBoxReservoir);
       this.Controls.Add(this.groupBoxCollectedVolume);
@@ -473,13 +474,13 @@
     private System.Windows.Forms.Label labelPumpState;
     private System.Windows.Forms.Label labelDuration;
     private System.Windows.Forms.Button button4;
-    private System.Windows.Forms.Button button5;
     private System.Windows.Forms.Label labelDurations;
     private System.Windows.Forms.Label labelStepsTotal;
     private System.Windows.Forms.Label labelStepCurrent;
     private System.Windows.Forms.Label labelTotalTime;
     private System.Windows.Forms.DataGridViewTextBoxColumn TimeColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn PressureColumn;
+    private System.Windows.Forms.LinkLabel linkLabel1;
     // private System.Windows.Controls.ProgressBar progbar;
 
 

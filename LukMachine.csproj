@@ -111,6 +111,12 @@
     <Compile Include="DataSavedForm.Designer.cs">
       <DependentUpon>DataSavedForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DischargingCollectedVolume.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DischargingCollectedVolume.Designer.cs">
+      <DependentUpon>DischargingCollectedVolume.cs</DependentUpon>
+    </Compile>
     <Compile Include="export.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DataSavedForm.resx">
       <DependentUpon>DataSavedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DischargingCollectedVolume.resx">
+      <DependentUpon>DischargingCollectedVolume.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="export.resx">
       <DependentUpon>export.cs</DependentUpon>

@@ -97,6 +97,8 @@ namespace LukMachine
         {
           button2.Enabled = false;
         }
+        
+   
         else if (message.Contains("display pressure"))
         {
           string[] msgSplit = message.Split('=');
@@ -233,7 +235,7 @@ namespace LukMachine
 
 
       button4.Visible = false;
-      button5.Visible = false;
+      //button5.Visible = false;
       Text = "Auto test [" + Properties.Settings.Default.TestSampleID + "]";
       if (Properties.Settings.Default.promptSafety)
       {
@@ -309,7 +311,7 @@ namespace LukMachine
       listBox1.Items.Add("Data saved to " + Properties.Settings.Default.TestData);
       listBox1.Items.Add("Test ended successfully");
       button4.Visible = true;
-      button5.Visible = true;
+      //button5.Visible = true;
       listBox1.TopIndex = listBox1.Items.Count - 1;
       //System.Windows.Forms.MessageBox.Show("Data saved to " + Properties.Settings.Default.TestData);
       //DataSavedForm Form = new DataSavedForm();
@@ -346,6 +348,11 @@ namespace LukMachine
     }
 
     private void button5_Click(object sender, EventArgs e)
+    {
+      System.Diagnostics.Process.Start("explorer.exe", System.IO.Directory.GetParent(Properties.Settings.Default.TestData).ToString());
+    }
+
+    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
       System.Diagnostics.Process.Start("explorer.exe", System.IO.Directory.GetParent(Properties.Settings.Default.TestData).ToString());
     }

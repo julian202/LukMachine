@@ -497,7 +497,6 @@ namespace LukMachine
               Progress("Done Heating machine to target temperature");
             }
 
-
             Progress("Starting next Period");
             endStoppedTime = Convert.ToDouble(Environment.TickCount);
             stoppedTime = stoppedTime + (endStoppedTime - startStoppedTime);
@@ -506,8 +505,10 @@ namespace LukMachine
             currentDuration = (currentTime / 1000) / 60 + (currentDuration);
             mustNotCountFlowBecausePressureIsAdjusting = true;
           }
-
         }
+        
+
+
 
         //Stop if over max pressure.
         if (outputPressure > p1Max) //add to this if volume is empty or pent is full
@@ -528,10 +529,16 @@ namespace LukMachine
           MessageBox.Show("Machine has reached it's maximum pressure. The test has been stopped. Data saved to " + Properties.Settings.Default.TestData);
           //COMMS.Instance.Pause(1); //wait 1 second for other thread to finish      
         }
-
+        //Open discharge valve when collected volume gets to 100%
         //Stop if over max volume.
-        if (CollectedPercent >= Properties.Settings.Default.MaxPent3PercentFull)
+        if (CollectedPercent > Properties.Settings.Default.MaxPent3PercentFull)
         {
+          Valves.OpenValve1();
+          DischargingCollectedVolume form = new DischargingCollectedVolume();
+          form.ShowDialog();
+          Valves.CloseValve1();
+
+          /*
           System.Diagnostics.Debug.WriteLine("volumeReading is " + COMMS.CollectedLevelCount);
           System.Diagnostics.Debug.WriteLine("MaxPent3Reading is " + Properties.Settings.Default.MaxPent3PercentFull);
           abort = true;
@@ -548,6 +555,7 @@ namespace LukMachine
           SR.Close();
           System.Windows.Forms.MessageBox.Show("Machine has reached it's maximum volume range. The test has been stopped. Data saved to " + Properties.Settings.Default.TestData);
           //COMMS.Instance.Pause(1); //wait 1 second for other thread to finish
+          */
         }
         //see if we need to pause, or abort.
         //PauseTest();     

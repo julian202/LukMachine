@@ -1035,7 +1035,16 @@ namespace LukMachine
 
     private void readPressureAndDisplayIt()
     {
-      //read pressure gauge, convert to PSI (will need to * by conversion factor and set units label later)
+      //read pressure gauge 2
+      counts = COMMS.Instance.ReadPressureGauge(2);
+      realCounts = Convert.ToDouble(counts);
+      currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //twoVolt is 60000
+      outputPressure = currentPressure * pConversion;
+      p1Psi = outputPressure;
+      rawP1 = realCounts;
+      labelP2.Text = p1Psi.ToString("#0.0") +" PSI";
+
+      //read pressure gauge 1, convert to PSI (will need to * by conversion factor and set units label later)
       counts = COMMS.Instance.ReadPressureGauge(1);
       realCounts = Convert.ToDouble(counts);
       currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //twoVolt is 60000
@@ -1054,6 +1063,7 @@ namespace LukMachine
       //label1.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
       //label30.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
       groupBox13.Text = "Current Pressure: " + p1Psi.ToString("#0.000") + " PSI (" + rawP1.ToString() + " cts)";
+      labelP1.Text = p1Psi.ToString("#0.0") + " PSI";
 
     }
 
