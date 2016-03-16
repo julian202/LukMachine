@@ -156,6 +156,22 @@ namespace LukMachine
       Properties.Settings.Default.Valve7State = true;
       Properties.Settings.Default.Save();
     }
+    public static void Valve7toRight()
+    {
+      COMMS.Instance.MoveValve(7, "O");
+      System.Threading.Thread.Sleep(500);
+      COMMS.Instance.MoveValve(7, "C");
+      Properties.Settings.Default.Valve7State = true;
+      Properties.Settings.Default.Save();
+    }
+    public static void Valve7toLeft()
+    {
+      COMMS.Instance.MoveValve(7, "O");
+      System.Threading.Thread.Sleep(500);
+      COMMS.Instance.MoveValve(7, "C");
+      Properties.Settings.Default.Valve7State = false;
+      Properties.Settings.Default.Save();
+    }
     public static void CloseValve8()
     {
       COMMS.Instance.MoveValve(8, "C");
@@ -168,6 +184,23 @@ namespace LukMachine
       Properties.Settings.Default.Valve8State = true;
       Properties.Settings.Default.Save();
     }
+    public static void Valve8toRight()
+    {
+      COMMS.Instance.MoveValve(8, "O");
+      System.Threading.Thread.Sleep(500);
+      COMMS.Instance.MoveValve(8, "C");
+      Properties.Settings.Default.Valve8State = true;
+      Properties.Settings.Default.Save();
+    }
+    public static void Valve8toLeft()
+    {
+      COMMS.Instance.MoveValve(8, "O");
+      System.Threading.Thread.Sleep(500);
+      COMMS.Instance.MoveValve(8, "C");
+      Properties.Settings.Default.Valve8State = false;
+      Properties.Settings.Default.Save();
+    }
+
 
 
     ///interchanging O with C

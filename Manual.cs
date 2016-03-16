@@ -745,7 +745,8 @@ namespace LukMachine
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
         Valve3wayToRight = false;
         Properties.Settings.Default.Valve7State = false;
-        Valves.CloseValve7();  //valve 7 is the 3 way valve
+        //Valves.CloseValve7();  //valve 7 is the 3 way valve
+        Valves.Valve7toLeft();
         System.Diagnostics.Debug.WriteLine("set to left chamber");
 
       }
@@ -754,7 +755,8 @@ namespace LukMachine
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
         Valve3wayToRight = true;
         Properties.Settings.Default.Valve7State = true;
-        Valves.OpenValve7();
+        //Valves.OpenValve7();
+        Valves.Valve7toRight();
         System.Diagnostics.Debug.WriteLine("set to right chamber");
       }
     }
@@ -771,25 +773,38 @@ namespace LukMachine
         rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
         Valve3wayBToRight = false;
         Properties.Settings.Default.Valve8State = false;
-        Valves.CloseValve8();  //valve 8 is the 3 way valve
+        //Valves.CloseValve8();  //valve 8 is the 3 way valve
+        Valves.Valve8toLeft();
         System.Diagnostics.Debug.WriteLine("set to left chamber");
-
       }
       else
       {
         rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_UpLeftArrowShort_Green_32x32_72;
         Valve3wayBToRight = true;
         Properties.Settings.Default.Valve8State = true;
-        Valves.OpenValve8();
+        //Valves.OpenValve8();
+        Valves.Valve8toRight();
         System.Diagnostics.Debug.WriteLine("set to right chamber");
       }
     }
 
     private void rectangleShape15_Click(object sender, EventArgs e)
     {
+      clickedMainPump();
+    }
+    private void clickedMainPump()
+    {
+
+      if (textBox6.Text == "0")
+      {
+        textBox6.Text = "100";
+      }
+      else
+      {
+        textBox6.Text = "0";
+      }
 
     }
-
     private void rectangleShape14_Click(object sender, EventArgs e)
     {
       clickedPump1();
@@ -816,7 +831,6 @@ namespace LukMachine
       }
     }
 
-
     private void button23_Click(object sender, EventArgs e)
     {
 
@@ -824,12 +838,24 @@ namespace LukMachine
 
     private void button27_Click(object sender, EventArgs e)
     {
+      runPumpAtMax();
+    }
+
+    private void runPumpAtMax()
+    {
       trackBar3.Value = trackBar3.Maximum;
       textBox6.Text = ((trackBar3.Value) * 100 / 4000).ToString();
       startPump2 = true;
     }
 
+
+
     private void button26_Click(object sender, EventArgs e)
+    {
+      stopMainPump();
+    }
+
+    private void stopMainPump()
     {
       trackBar3.Value = 0;
       textBox6.Text = ((trackBar3.Value) * 100 / 4000).ToString();
@@ -1253,6 +1279,16 @@ namespace LukMachine
     private void groupBox14_Enter(object sender, EventArgs e)
     {
 
+    }
+
+    private void label23_Click(object sender, EventArgs e)
+    {
+      clickedMainPump();
+    }
+
+    private void label17_Click(object sender, EventArgs e)
+    {
+      clickedMainPump();
     }
   }
 }

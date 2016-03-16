@@ -1080,7 +1080,7 @@
       this.labelP2.AutoSize = true;
       this.labelP2.BackColor = System.Drawing.Color.Orange;
       this.labelP2.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelP2.Location = new System.Drawing.Point(280, 32);
+      this.labelP2.Location = new System.Drawing.Point(279, 33);
       this.labelP2.Name = "labelP2";
       this.labelP2.Size = new System.Drawing.Size(29, 16);
       this.labelP2.TabIndex = 97;
@@ -1150,7 +1150,7 @@
       // 
       this.labelReservoirCounts.AutoSize = true;
       this.labelReservoirCounts.BackColor = System.Drawing.Color.Transparent;
-      this.labelReservoirCounts.Location = new System.Drawing.Point(369, 446);
+      this.labelReservoirCounts.Location = new System.Drawing.Point(369, 445);
       this.labelReservoirCounts.Name = "labelReservoirCounts";
       this.labelReservoirCounts.Size = new System.Drawing.Size(88, 25);
       this.labelReservoirCounts.TabIndex = 90;
@@ -1160,7 +1160,7 @@
       // 
       this.labelCollectedCount.AutoSize = true;
       this.labelCollectedCount.BackColor = System.Drawing.Color.Transparent;
-      this.labelCollectedCount.Location = new System.Drawing.Point(189, 166);
+      this.labelCollectedCount.Location = new System.Drawing.Point(189, 165);
       this.labelCollectedCount.Name = "labelCollectedCount";
       this.labelCollectedCount.Size = new System.Drawing.Size(88, 25);
       this.labelCollectedCount.TabIndex = 89;
@@ -1190,7 +1190,7 @@
       // 
       this.label42.AutoSize = true;
       this.label42.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label42.Location = new System.Drawing.Point(40, 141);
+      this.label42.Location = new System.Drawing.Point(121, 270);
       this.label42.Name = "label42";
       this.label42.Size = new System.Drawing.Size(36, 16);
       this.label42.TabIndex = 86;
@@ -1794,6 +1794,7 @@
       this.label23.Size = new System.Drawing.Size(59, 25);
       this.label23.TabIndex = 49;
       this.label23.Text = "Main";
+      this.label23.Click += new System.EventHandler(this.label23_Click);
       // 
       // label22
       // 
@@ -1855,6 +1856,7 @@
       this.label17.Size = new System.Drawing.Size(106, 25);
       this.label17.TabIndex = 2;
       this.label17.Text = "Pump 0%";
+      this.label17.Click += new System.EventHandler(this.label17_Click);
       // 
       // shapeContainer1
       // 

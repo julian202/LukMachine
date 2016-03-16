@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LukMachine.exe" size="1944472">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LukMachine.exe" size="1944984">
       <assemblyIdentity name="LukMachine" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Pf9hy4vYTk6wrOADOuRi+eTIKlOFIeT1JaEVtQcFeiU=</dsig:DigestValue>
+        <dsig:DigestValue>US8ZHfZeGVLxRXDAZSvpwLVQF9jMfzQccqfd4FsWJG0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
