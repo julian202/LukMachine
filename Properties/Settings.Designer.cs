@@ -884,5 +884,17 @@ namespace LukMachine.Properties {
                 this["Valve8State"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkbLeftChecked {
+            get {
+                return ((bool)(this["checkbLeftChecked"]));
+            }
+            set {
+                this["checkbLeftChecked"] = value;
+            }
+        }
     }
 }

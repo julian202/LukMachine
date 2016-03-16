@@ -22,7 +22,8 @@ namespace LukMachine
     }
     public static void SetPump2(int percent)
     {
-      COMMS.Instance.SetRegulator(1, percent * 4000 / 100);
+      int num= percent * 4000 / 100;
+      COMMS.Instance.SetRegulator(1, num);
       Properties.Settings.Default.MainPumpStatePercent = percent;
       Properties.Settings.Default.Save();
     }

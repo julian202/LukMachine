@@ -156,10 +156,12 @@ namespace LukMachine
       Properties.Settings.Default.Valve7State = true;
       Properties.Settings.Default.Save();
     }
+
+    static int sleeptime = 1000;
     public static void Valve7toRight()
     {
       COMMS.Instance.MoveValve(7, "O");
-      System.Threading.Thread.Sleep(500);
+      System.Threading.Thread.Sleep(sleeptime);
       COMMS.Instance.MoveValve(7, "C");
       Properties.Settings.Default.Valve7State = true;
       Properties.Settings.Default.Save();
@@ -167,7 +169,7 @@ namespace LukMachine
     public static void Valve7toLeft()
     {
       COMMS.Instance.MoveValve(7, "O");
-      System.Threading.Thread.Sleep(500);
+      System.Threading.Thread.Sleep(sleeptime);
       COMMS.Instance.MoveValve(7, "C");
       Properties.Settings.Default.Valve7State = false;
       Properties.Settings.Default.Save();
@@ -186,17 +188,17 @@ namespace LukMachine
     }
     public static void Valve8toRight()
     {
-      COMMS.Instance.MoveValve(8, "O");
-      System.Threading.Thread.Sleep(500);
       COMMS.Instance.MoveValve(8, "C");
+      System.Threading.Thread.Sleep(sleeptime);
+      COMMS.Instance.MoveValve(8, "O");
       Properties.Settings.Default.Valve8State = true;
       Properties.Settings.Default.Save();
     }
     public static void Valve8toLeft()
     {
-      COMMS.Instance.MoveValve(8, "O");
-      System.Threading.Thread.Sleep(500);
       COMMS.Instance.MoveValve(8, "C");
+      System.Threading.Thread.Sleep(sleeptime);
+      COMMS.Instance.MoveValve(8, "O");
       Properties.Settings.Default.Valve8State = false;
       Properties.Settings.Default.Save();
     }

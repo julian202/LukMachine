@@ -18,8 +18,8 @@ namespace LukMachine
       InitializeComponent();
     }
 
-    private double ground = Properties.Settings.Default.ground;
-    private double twoVolt = Properties.Settings.Default.twoVolt;
+    private double ground;
+    private double twoVolt;
     private bool openValve;
     private bool openValve7;
     private bool closeValve;
@@ -50,9 +50,25 @@ namespace LukMachine
     bool MainPumpOn;
     bool RefillPumpOn;
     int targetPressure = 0;
-
+    bool firstSetOfChamberCheckbox;
     private void Manual_Load(object sender, EventArgs e)
     {
+      ground = Properties.Settings.Default.ground;
+      twoVolt = Properties.Settings.Default.twoVolt;
+
+      firstSetOfChamberCheckbox = true;
+      if (Properties.Settings.Default.checkbLeftChecked)
+      {
+        checkBoxLeftChamber.Checked = true;
+        checkBoxRightChamber.Checked = false;
+      }
+      else
+      {
+        checkBoxLeftChamber.Checked = false;
+        checkBoxRightChamber.Checked = true;
+
+      }
+      firstSetOfChamberCheckbox = false;
 
       if (Properties.Settings.Default.RefillPumpState)
       {
@@ -73,25 +89,30 @@ namespace LukMachine
 
       updateValveColors();
       //updateValveColors doesn't do valve 7 just becuase it flickers so do it here now:
-      if (Properties.Settings.Default.Valve7State)
+      if (Properties.Settings.Default.Valve7State==false)
       {
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-        Valve3wayToRight = true;
+        //checkBoxLeftChamber.Checked = true;
+        //checkBoxRightChamber.Checked = false;
+        Valve3wayToRight = false;
+
       }
       else
       {
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
-        Valve3wayToRight = false;
+        //checkBoxLeftChamber.Checked = false;
+        //checkBoxRightChamber.Checked = true;
+        Valve3wayToRight = true;
       }
 
       if (Properties.Settings.Default.Valve8State)
       {
-        rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
+        rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_UpLeftArrowShort_Green_32x32_72;
         Valve3wayBToRight = true;
       }
       else
       {
-        rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_UpLeftArrowShort_Green_32x32_72;
+        rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
         Valve3wayBToRight = false;
       }
 
@@ -737,12 +758,12 @@ namespace LukMachine
 
     }
 
-    private void rectangleShape8_Click(object sender, EventArgs e)
+    private void run3wayValve7()
     {
       //switch3wayValveB();
       if (Valve3wayToRight)
       {
-        rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
+        rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
         Valve3wayToRight = false;
         Properties.Settings.Default.Valve7State = false;
         //Valves.CloseValve7();  //valve 7 is the 3 way valve
@@ -752,18 +773,24 @@ namespace LukMachine
       }
       else
       {
-        rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
+        rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
         Valve3wayToRight = true;
         Properties.Settings.Default.Valve7State = true;
         //Valves.OpenValve7();
         Valves.Valve7toRight();
         System.Diagnostics.Debug.WriteLine("set to right chamber");
       }
+
+    }
+
+    private void rectangleShape8_Click(object sender, EventArgs e)
+    {
+      //run3wayValve7();
     }
 
     private void rectangleShape22_Click(object sender, EventArgs e)
     {
-      switch3wayValveB();
+      //switch3wayValveB();
     }
 
     private void switch3wayValveB()
@@ -1046,7 +1073,7 @@ namespace LukMachine
         Properties.Settings.Default.TargetPressure = "0";
         MessageBox.Show("Please enter an integer number for target pressure ");
       }
-
+      /*
       if (targetPressure >= 0 && targetPressure < 33)
       {
         Valves.OpenValve4();
@@ -1064,7 +1091,7 @@ namespace LukMachine
         Valves.CloseValve4();
         Valves.CloseValve5();
         Valves.OpenValve6();
-      }
+      }*/
 
 
     }
@@ -1103,7 +1130,8 @@ namespace LukMachine
       //read pressure gauge 2
       counts = COMMS.Instance.ReadPressureGauge(2);
       realCounts = Convert.ToDouble(counts);
-      currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //twoVolt is 60000
+      currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //ground is 2000 
+      //p1Max is 100 //twoVolt is 60000
       outputPressure = currentPressure * pConversion;
       p1Psi = outputPressure;
       rawP1 = realCounts;
@@ -1112,7 +1140,7 @@ namespace LukMachine
       //read pressure gauge 1, convert to PSI (will need to * by conversion factor and set units label later)
       counts = COMMS.Instance.ReadPressureGauge(1);
       realCounts = Convert.ToDouble(counts);
-      currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //twoVolt is 60000
+      currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //ground is 2000 //p1Max is 100  //twoVolt is 60000
       outputPressure = currentPressure * pConversion;
       p1Psi = outputPressure;
       rawP1 = realCounts;
@@ -1289,6 +1317,65 @@ namespace LukMachine
     private void label17_Click(object sender, EventArgs e)
     {
       clickedMainPump();
+    }
+
+    private void button29_Click(object sender, EventArgs e)
+    {
+      Valves.OpenValve8();
+    }
+
+    private void button30_Click(object sender, EventArgs e)
+    {
+      Valves.CloseValve8();
+    }
+
+    private void button32_Click(object sender, EventArgs e)
+    {
+      Valves.OpenValve7();
+    }
+
+    private void button31_Click(object sender, EventArgs e)
+    {
+      Valves.CloseValve7();
+    }
+
+    private void checkBoxRightChamber_CheckedChanged(object sender, EventArgs e)
+    {
+      if (checkBoxRightChamber.Checked && !firstSetOfChamberCheckbox)
+      {
+        checkBoxLeftChamber.Checked = false;
+        run3wayValve7();
+        switch3wayValveB();
+        Properties.Settings.Default.checkbLeftChecked = false;
+        firstSetOfChamberCheckbox = false;
+      }
+      else
+      {
+        //checkBoxLeftChamber.Checked = true;
+      }
+    }
+
+    private void checkBoxLeftChamber_CheckedChanged(object sender, EventArgs e)
+    {
+      if (checkBoxLeftChamber.Checked && !firstSetOfChamberCheckbox)
+      {
+        checkBoxRightChamber.Checked = false;
+        run3wayValve7();
+        switch3wayValveB();
+        Properties.Settings.Default.checkbLeftChecked = true;
+        firstSetOfChamberCheckbox = false;
+
+
+      }
+      else
+      {
+        //checkBoxRightChamber.Checked = true;
+      }
+    }
+
+    private void rectangleShape7_Click(object sender, EventArgs e)
+    {
+
     }
   }
 }

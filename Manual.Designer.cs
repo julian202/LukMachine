@@ -198,6 +198,12 @@
       this.button28 = new System.Windows.Forms.Button();
       this.button25 = new System.Windows.Forms.Button();
       this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+      this.button29 = new System.Windows.Forms.Button();
+      this.button30 = new System.Windows.Forms.Button();
+      this.button31 = new System.Windows.Forms.Button();
+      this.button32 = new System.Windows.Forms.Button();
+      this.checkBoxRightChamber = new System.Windows.Forms.CheckBox();
+      this.checkBoxLeftChamber = new System.Windows.Forms.CheckBox();
       this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
@@ -1015,6 +1021,10 @@
       // tabPage1
       // 
       this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+      this.tabPage1.Controls.Add(this.checkBoxLeftChamber);
+      this.tabPage1.Controls.Add(this.checkBoxRightChamber);
+      this.tabPage1.Controls.Add(this.button30);
+      this.tabPage1.Controls.Add(this.button29);
       this.tabPage1.Controls.Add(this.label49);
       this.tabPage1.Controls.Add(this.labelP2);
       this.tabPage1.Controls.Add(this.labelP1);
@@ -1298,6 +1308,8 @@
       // 
       // groupBox5
       // 
+      this.groupBox5.Controls.Add(this.button31);
+      this.groupBox5.Controls.Add(this.button32);
       this.groupBox5.Controls.Add(this.checkBoxTargetPressure);
       this.groupBox5.Controls.Add(this.button23);
       this.groupBox5.Controls.Add(this.label32);
@@ -1832,7 +1844,7 @@
       // label18
       // 
       this.label18.AutoSize = true;
-      this.label18.Location = new System.Drawing.Point(670, 118);
+      this.label18.Location = new System.Drawing.Point(670, 107);
       this.label18.Name = "label18";
       this.label18.Size = new System.Drawing.Size(118, 25);
       this.label18.TabIndex = 4;
@@ -1841,7 +1853,7 @@
       // label9
       // 
       this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(392, 118);
+      this.label9.Location = new System.Drawing.Point(395, 107);
       this.label9.Name = "label9";
       this.label9.Size = new System.Drawing.Size(118, 25);
       this.label9.TabIndex = 3;
@@ -2152,6 +2164,7 @@
       this.rectangleShape7.Location = new System.Drawing.Point(445, 38);
       this.rectangleShape7.Name = "rectangleShape7";
       this.rectangleShape7.Size = new System.Drawing.Size(290, 143);
+      this.rectangleShape7.Click += new System.EventHandler(this.rectangleShape7_Click);
       // 
       // rectangleShape1
       // 
@@ -2310,6 +2323,72 @@
       // backgroundWorker1
       // 
       this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+      // 
+      // button29
+      // 
+      this.button29.Location = new System.Drawing.Point(528, -12);
+      this.button29.Name = "button29";
+      this.button29.Size = new System.Drawing.Size(116, 41);
+      this.button29.TabIndex = 99;
+      this.button29.Text = "button29";
+      this.button29.UseVisualStyleBackColor = true;
+      this.button29.Visible = false;
+      this.button29.Click += new System.EventHandler(this.button29_Click);
+      // 
+      // button30
+      // 
+      this.button30.Location = new System.Drawing.Point(528, 35);
+      this.button30.Name = "button30";
+      this.button30.Size = new System.Drawing.Size(116, 41);
+      this.button30.TabIndex = 100;
+      this.button30.Text = "button30";
+      this.button30.UseVisualStyleBackColor = true;
+      this.button30.Visible = false;
+      this.button30.Click += new System.EventHandler(this.button30_Click);
+      // 
+      // button31
+      // 
+      this.button31.Location = new System.Drawing.Point(-51, -15);
+      this.button31.Name = "button31";
+      this.button31.Size = new System.Drawing.Size(116, 41);
+      this.button31.TabIndex = 102;
+      this.button31.Text = "button31";
+      this.button31.UseVisualStyleBackColor = true;
+      this.button31.Visible = false;
+      this.button31.Click += new System.EventHandler(this.button31_Click);
+      // 
+      // button32
+      // 
+      this.button32.Location = new System.Drawing.Point(-51, -62);
+      this.button32.Name = "button32";
+      this.button32.Size = new System.Drawing.Size(116, 41);
+      this.button32.TabIndex = 101;
+      this.button32.Text = "button32";
+      this.button32.UseVisualStyleBackColor = true;
+      this.button32.Visible = false;
+      this.button32.Click += new System.EventHandler(this.button32_Click);
+      // 
+      // checkBoxRightChamber
+      // 
+      this.checkBoxRightChamber.AutoSize = true;
+      this.checkBoxRightChamber.Location = new System.Drawing.Point(717, 135);
+      this.checkBoxRightChamber.Name = "checkBoxRightChamber";
+      this.checkBoxRightChamber.Size = new System.Drawing.Size(22, 21);
+      this.checkBoxRightChamber.TabIndex = 101;
+      this.checkBoxRightChamber.UseVisualStyleBackColor = true;
+      this.checkBoxRightChamber.CheckedChanged += new System.EventHandler(this.checkBoxRightChamber_CheckedChanged);
+      // 
+      // checkBoxLeftChamber
+      // 
+      this.checkBoxLeftChamber.AutoSize = true;
+      this.checkBoxLeftChamber.Checked = true;
+      this.checkBoxLeftChamber.CheckState = System.Windows.Forms.CheckState.Checked;
+      this.checkBoxLeftChamber.Location = new System.Drawing.Point(436, 135);
+      this.checkBoxLeftChamber.Name = "checkBoxLeftChamber";
+      this.checkBoxLeftChamber.Size = new System.Drawing.Size(22, 21);
+      this.checkBoxLeftChamber.TabIndex = 102;
+      this.checkBoxLeftChamber.UseVisualStyleBackColor = true;
+      this.checkBoxLeftChamber.CheckedChanged += new System.EventHandler(this.checkBoxLeftChamber_CheckedChanged);
       // 
       // verticalProgressBar4
       // 
@@ -2572,5 +2651,11 @@
     private System.Windows.Forms.Label label49;
     private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape22;
     private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape23;
+    private System.Windows.Forms.Button button30;
+    private System.Windows.Forms.Button button29;
+    private System.Windows.Forms.Button button31;
+    private System.Windows.Forms.Button button32;
+    private System.Windows.Forms.CheckBox checkBoxLeftChamber;
+    private System.Windows.Forms.CheckBox checkBoxRightChamber;
   }
 }
