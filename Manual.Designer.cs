@@ -1084,6 +1084,7 @@
       this.label49.Size = new System.Drawing.Size(25, 16);
       this.label49.TabIndex = 98;
       this.label49.Text = "V8";
+      this.label49.Visible = false;
       // 
       // labelP2
       // 
@@ -1236,6 +1237,7 @@
       this.label39.Size = new System.Drawing.Size(25, 16);
       this.label39.TabIndex = 83;
       this.label39.Text = "V7";
+      this.label39.Visible = false;
       // 
       // label38
       // 
@@ -1844,7 +1846,7 @@
       // label18
       // 
       this.label18.AutoSize = true;
-      this.label18.Location = new System.Drawing.Point(670, 107);
+      this.label18.Location = new System.Drawing.Point(670, 95);
       this.label18.Name = "label18";
       this.label18.Size = new System.Drawing.Size(118, 25);
       this.label18.TabIndex = 4;
@@ -1853,7 +1855,7 @@
       // label9
       // 
       this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(395, 107);
+      this.label9.Location = new System.Drawing.Point(395, 95);
       this.label9.Name = "label9";
       this.label9.Size = new System.Drawing.Size(118, 25);
       this.label9.TabIndex = 3;
@@ -1921,6 +1923,7 @@
       this.rectangleShape23.Location = new System.Drawing.Point(419, 15);
       this.rectangleShape23.Name = "rectangleShape23";
       this.rectangleShape23.Size = new System.Drawing.Size(46, 45);
+      this.rectangleShape23.Visible = false;
       this.rectangleShape23.Click += new System.EventHandler(this.rectangleShape22_Click);
       this.rectangleShape23.MouseEnter += new System.EventHandler(this.rectangleShape20_MouseEnter);
       // 
@@ -1932,6 +1935,7 @@
       this.rectangleShape22.Location = new System.Drawing.Point(402, 2);
       this.rectangleShape22.Name = "rectangleShape22";
       this.rectangleShape22.Size = new System.Drawing.Size(79, 71);
+      this.rectangleShape22.Visible = false;
       this.rectangleShape22.Click += new System.EventHandler(this.rectangleShape22_Click);
       // 
       // rectangleShape21
@@ -1989,6 +1993,7 @@
       this.rectangleShape20.Location = new System.Drawing.Point(567, 152);
       this.rectangleShape20.Name = "rectangleShape20";
       this.rectangleShape20.Size = new System.Drawing.Size(46, 45);
+      this.rectangleShape20.Visible = false;
       this.rectangleShape20.Click += new System.EventHandler(this.rectangleShape8_Click);
       this.rectangleShape20.MouseEnter += new System.EventHandler(this.rectangleShape20_MouseEnter);
       // 
@@ -2133,7 +2138,7 @@
       // 
       this.rectangleShape10.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
       this.rectangleShape10.BorderWidth = 3;
-      this.rectangleShape10.Location = new System.Drawing.Point(656, 85);
+      this.rectangleShape10.Location = new System.Drawing.Point(656, 75);
       this.rectangleShape10.Name = "rectangleShape10";
       this.rectangleShape10.Size = new System.Drawing.Size(149, 80);
       // 
@@ -2141,7 +2146,7 @@
       // 
       this.rectangleShape9.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
       this.rectangleShape9.BorderWidth = 3;
-      this.rectangleShape9.Location = new System.Drawing.Point(379, 84);
+      this.rectangleShape9.Location = new System.Drawing.Point(379, 74);
       this.rectangleShape9.Name = "rectangleShape9";
       this.rectangleShape9.Size = new System.Drawing.Size(149, 80);
       // 
@@ -2153,6 +2158,7 @@
       this.rectangleShape8.Location = new System.Drawing.Point(550, 138);
       this.rectangleShape8.Name = "rectangleShape8";
       this.rectangleShape8.Size = new System.Drawing.Size(79, 71);
+      this.rectangleShape8.Visible = false;
       this.rectangleShape8.Click += new System.EventHandler(this.rectangleShape8_Click);
       this.rectangleShape8.MouseEnter += new System.EventHandler(this.rectangleShape8_MouseEnter);
       this.rectangleShape8.MouseLeave += new System.EventHandler(this.rectangleShape8_MouseLeave);
@@ -2371,7 +2377,7 @@
       // checkBoxRightChamber
       // 
       this.checkBoxRightChamber.AutoSize = true;
-      this.checkBoxRightChamber.Location = new System.Drawing.Point(717, 135);
+      this.checkBoxRightChamber.Location = new System.Drawing.Point(717, 123);
       this.checkBoxRightChamber.Name = "checkBoxRightChamber";
       this.checkBoxRightChamber.Size = new System.Drawing.Size(22, 21);
       this.checkBoxRightChamber.TabIndex = 101;
@@ -2383,7 +2389,7 @@
       this.checkBoxLeftChamber.AutoSize = true;
       this.checkBoxLeftChamber.Checked = true;
       this.checkBoxLeftChamber.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.checkBoxLeftChamber.Location = new System.Drawing.Point(436, 135);
+      this.checkBoxLeftChamber.Location = new System.Drawing.Point(436, 123);
       this.checkBoxLeftChamber.Name = "checkBoxLeftChamber";
       this.checkBoxLeftChamber.Size = new System.Drawing.Size(22, 21);
       this.checkBoxLeftChamber.TabIndex = 102;
