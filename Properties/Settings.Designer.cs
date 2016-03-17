@@ -896,5 +896,29 @@ namespace LukMachine.Properties {
                 this["checkbLeftChecked"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int RefCount2V {
+            get {
+                return ((int)(this["RefCount2V"]));
+            }
+            set {
+                this["RefCount2V"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int RefCount10V {
+            get {
+                return ((int)(this["RefCount10V"]));
+            }
+            set {
+                this["RefCount10V"] = value;
+            }
+        }
     }
 }

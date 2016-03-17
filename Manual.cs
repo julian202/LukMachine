@@ -46,13 +46,29 @@ namespace LukMachine
     double outputPressure = 0; string counts = ""; double realCounts = 0; double currentPressure;
     private double pConversion = Properties.Settings.Default.defaultPressureConversion;
     double p1Psi;
+    double p2Psi;
     double rawP1;
     bool MainPumpOn;
     bool RefillPumpOn;
     int targetPressure = 0;
     bool firstSetOfChamberCheckbox;
+    double startTime;
+    int currentVolume;
+    double elapsedTime;
+    int counter;
     private void Manual_Load(object sender, EventArgs e)
     {
+      startTime = Convert.ToDouble(Environment.TickCount);
+
+      Properties.Settings.Default.ground= COMMS.Instance.getGround();
+      Properties.Settings.Default.RefCount2V = COMMS.Instance.get2v();
+      labelGround.Text = "Ground = " + Properties.Settings.Default.ground;
+      label2V.Text = "2V = " + Properties.Settings.Default.RefCount2V;
+      int Ref0V = Convert.ToInt32(Properties.Settings.Default.ground);
+      int Ref2V = Properties.Settings.Default.RefCount2V;
+      Properties.Settings.Default.RefCount10V = Ref0V + Convert.ToInt32((Ref2V - Ref0V) * 4.75);// or 5;  4.75 is 9.5/2 becuase 9.5V is the voltage when it is empty
+      label10V.Text = "10V = " + Properties.Settings.Default.RefCount10V;
+      textBoxFlow.Select();
       ground = Properties.Settings.Default.ground;
       twoVolt = Properties.Settings.Default.twoVolt;
 
@@ -199,6 +215,16 @@ namespace LukMachine
     private void timer1_Tick(object sender, EventArgs e)
     {
       //updateValveColors();  //gets values from properties
+      elapsedTime = (Convert.ToDouble(Environment.TickCount)-startTime)/1000;
+      labelTime.Text = "Time (s): "+ elapsedTime.ToString("#0");
+
+      counter++;
+      if (counter>5)
+      {
+        counter = 0;
+      }
+
+
 
       if (startRefill)
       {
@@ -250,6 +276,7 @@ namespace LukMachine
       groupBoxCollected.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
       label28.Text = CollectedPercent.ToString() + "% Full";
       mlCollected.Text = (CollectedPercent * Convert.ToInt32(Properties.Settings.Default.MaxCapacityInML)/100).ToString() + " mL";
+      currentVolume = Convert.ToInt32(mlCollected.Text);
 
       labelCollectedCount.Text = COMMS.Instance.getCollectedLevelCount()+ " counts";
       labelReservoirCounts.Text = COMMS.Instance.getReservoirLevelCount() + " counts";
@@ -278,17 +305,17 @@ namespace LukMachine
       if (checkBox1.Checked)
       {
         temp = COMMS.Instance.ReadAthenaTemp(1);
-        checkBox1.Text = "Chamber 1 Temp: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        checkBox1.Text = "Chamber 1: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
       }
       if (checkBox2.Checked)
       {
         temp = COMMS.Instance.ReadAthenaTemp(2);
-        checkBox2.Text = "Chamber 2 Temp: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        checkBox2.Text = "Chamber 2: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
       }
       if (checkBox3.Checked)
       {
         temp = COMMS.Instance.ReadAthenaTemp(3);
-        checkBox3.Text = "Reservoir 1 Temp: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        checkBox3.Text = "Reservoir 1: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
       }
       if (checkBox4.Checked)
       {
@@ -713,6 +740,7 @@ namespace LukMachine
 
     private void rectangleShape11_Click(object sender, EventArgs e)
     {
+      /*
       if (rectangleShape11.BackColor == Color.Green)
       {
         Valves.CloseValve2();
@@ -721,7 +749,7 @@ namespace LukMachine
       {
         Valves.OpenValve2();
       }
-      changeColor(sender);
+      changeColor(sender);*/
     }
 
     private void rectangleShape6_Click(object sender, EventArgs e)
@@ -785,12 +813,12 @@ namespace LukMachine
 
     private void rectangleShape8_Click(object sender, EventArgs e)
     {
-      //run3wayValve7();
+      run3wayValve7();
     }
 
     private void rectangleShape22_Click(object sender, EventArgs e)
     {
-      //switch3wayValveB();
+      switch3wayValveB();
     }
 
     private void switch3wayValveB()
@@ -912,6 +940,7 @@ namespace LukMachine
     {
       try
       {
+        textBoxFlow.Text = (Convert.ToInt32(textBox6.Text) * 10).ToString();
         trackBar3.Value = Convert.ToInt32(textBox6.Text) * 4000 / 100;
         startPump2 = true;
         label17.Text = "Pump " + textBox6.Text + "%";
@@ -922,7 +951,7 @@ namespace LukMachine
       }
       catch
       {
-        MessageBox.Show("invalid");
+        //MessageBox.Show("invalid");
       }
     }
 
@@ -931,14 +960,7 @@ namespace LukMachine
       labelSetTemp.Text = "deg C (" + (Math.Round((Convert.ToDouble(textBoxTemp.Text) * 9 / 5 + 32))).ToString() + " F)";
     }
 
-    private void button22_Click(object sender, EventArgs e)
-    {
-      //settings button
-      settings setScrn = new settings();
-      Hide();
-      setScrn.ShowDialog();
-      Show();
-    }
+  
 
     private void button21_Click_1(object sender, EventArgs e)
     {
@@ -1135,7 +1157,8 @@ namespace LukMachine
       outputPressure = currentPressure * pConversion;
       p1Psi = outputPressure;
       rawP1 = realCounts;
-      labelP2.Text = p1Psi.ToString("#0.0") +" PSI";
+      p2Psi = p1Psi;
+      labelP2.Text = p2Psi.ToString("#0.0") +" PSI";
 
       //read pressure gauge 1, convert to PSI (will need to * by conversion factor and set units label later)
       counts = COMMS.Instance.ReadPressureGauge(1);
@@ -1157,6 +1180,7 @@ namespace LukMachine
       //label30.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
       groupBox13.Text = "Current Pressure: " + p1Psi.ToString("#0.000") + " PSI (" + rawP1.ToString() + " cts)";
       labelP1.Text = p1Psi.ToString("#0.0") + " PSI";
+      labelPressureDifference.Text= "Pressure Difference (P1-P2) = "+ (p1Psi- p2Psi).ToString("#0.0") + " PSI";
 
     }
 
@@ -1183,8 +1207,12 @@ namespace LukMachine
       Pen pen = new Pen(Color.Gray, 7);
       pen.StartCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
       pen.EndCap = System.Drawing.Drawing2D.LineCap.NoAnchor;
-      e.Graphics.DrawLine(pen, 640, 520, 710, 520);
-      e.Graphics.DrawLine(pen, 650, 240, 715, 265);
+      e.Graphics.DrawLine(pen, 590, 550, 680, 550);
+      e.Graphics.DrawLine(pen, 620, 260, 725, 285);
+      pen = new Pen(Color.Black, 9);
+      pen.StartCap = System.Drawing.Drawing2D.LineCap.NoAnchor;
+      pen.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
+      e.Graphics.DrawLine(pen, 400, 600, 540, 600);
     }
 
     private void rectangleShape12_MouseEnter(object sender, EventArgs e)
@@ -1376,6 +1404,63 @@ namespace LukMachine
     private void rectangleShape7_Click(object sender, EventArgs e)
     {
 
+    }
+
+    private void textBoxFlow_TextChanged(object sender, EventArgs e)
+    {
+      textBox6.Text= (Convert.ToInt32(textBoxFlow.Text) / 10).ToString();
+    }
+
+    private void checkBoxShowArrows_CheckedChanged(object sender, EventArgs e)
+    {
+      if (checkBoxShowArrows.Checked)
+      {
+        rectangleShape23.Visible = true;
+        rectangleShape20.Visible = true;
+      }
+      else
+      {
+        rectangleShape23.Visible = false;
+        rectangleShape20.Visible = false;
+      }
+    }
+
+    private void button22_Click(object sender, EventArgs e)
+    {
+      COMMS.Instance.MoveValve(7, "O");
+      System.Threading.Thread.Sleep(1000);
+      COMMS.Instance.MoveValve(7, "C");
+    }
+
+    private void button33_Click(object sender, EventArgs e)
+    {
+      COMMS.Instance.MoveValve(8, "C");
+      System.Threading.Thread.Sleep(1000);
+      COMMS.Instance.MoveValve(8, "O");
+    }
+
+    private void button34_Click(object sender, EventArgs e)
+    {
+      if (rectangleShape11.BackColor == Color.Green)
+      {
+        Valves.CloseValve2();
+      }
+      else
+      {
+        Valves.OpenValve2();
+      }
+      changeColor(sender);
+    }
+
+    private void label25_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void buttonReset_Click(object sender, EventArgs e)
+    {
+      startTime = Convert.ToDouble(Environment.TickCount);
+      labelTime.Text = "Time (s): 0";
     }
   }
 }

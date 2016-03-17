@@ -392,8 +392,11 @@ namespace LukMachine
     public static int ReservoirLevelCount;
     public Int32 getReservoirLevelPercent()
     {
-      int minCount = Properties.Settings.Default.MinReservoirCount;
-      int maxCount = Properties.Settings.Default.MaxReservoirCount;
+      //int minCount = Properties.Settings.Default.MinReservoirCount;
+      int minCount = Convert.ToInt32(Properties.Settings.Default.ground);
+      //int maxCount = Properties.Settings.Default.MaxReservoirCount;
+      int maxCount = Properties.Settings.Default.RefCount10V;
+
       ReservoirLevelCount = Convert.ToInt32(getReservoirLevelCount());
       int percent = 100 * (ReservoirLevelCount - minCount) / (maxCount - minCount);
       int invertedPercent = 100 - percent; //must invert because of how the penetrometers are set up.
@@ -403,10 +406,13 @@ namespace LukMachine
 
 
     public static int CollectedLevelCount=0;
-    public Int32 getCollectedLevelPercent()
+    public Int32 getCollectedLevelPercent() 
     {
-      int minCount = Properties.Settings.Default.MinCollectedCount;
-      int maxCount = Properties.Settings.Default.MaxCollectedCount;
+      //int minCount = Properties.Settings.Default.MinCollectedCount;
+      int minCount = Convert.ToInt32( Properties.Settings.Default.ground);
+      //int maxCount = Properties.Settings.Default.MaxCollectedCount;
+      int maxCount = Properties.Settings.Default.RefCount10V;
+
       CollectedLevelCount = Convert.ToInt32(getCollectedLevelCount());
       int percent= 100 * (CollectedLevelCount - minCount) / (maxCount - minCount);
       int invertedPercent = 100 - percent; //must invert because of how the penetrometers are set up.

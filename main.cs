@@ -93,7 +93,8 @@ namespace LukMachine
 
     private void main_Load(object sender, EventArgs e)
     {
-      
+      Properties.Settings.Default.ground = COMMS.Instance.getGround();
+      button2.Select();
       stopPumpCloseValves();
       //this.Text = String.Format("PMI Liquid Permeability [Luk] Version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
 
