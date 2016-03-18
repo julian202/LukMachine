@@ -144,11 +144,15 @@ namespace LukMachine
         //for troubleshooting
         try
         {
+          System.Diagnostics.Debug.WriteLine("Sending Serial = " + toSend);
           _serialPort.Write(toSend);
+          System.Diagnostics.Debug.WriteLine("Sent Serial = " + toSend);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
           //MessageBox.Show("Timeout writing comport for " + toSend);
+          System.Diagnostics.Debug.WriteLine("/////////////////////////ERROR-//////////////////////////");
+          System.Diagnostics.Debug.WriteLine(ex.Message);
         }
 
         //get the first respose, which will be the echo command
@@ -170,36 +174,47 @@ namespace LukMachine
           count++;        
         }*/
 
-        System.Diagnostics.Debug.WriteLine("Sent Serial = " + toSend);
         try
         {
+          System.Diagnostics.Debug.WriteLine("Waiting to Receive...");
           received = _serialPort.ReadTo(newLine);
           System.Diagnostics.Debug.WriteLine("Received = " + received);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
           //MessageBox.Show("Timeout reading comport for " + toSend + " (first response)");
+          System.Diagnostics.Debug.WriteLine("/////////////////////////ERROR-Exception//////////////////////////");
+          System.Diagnostics.Debug.WriteLine(ex.Message);
         }     
       }
-      catch (TimeoutException kj)
+      catch (TimeoutException ex)
       {
         //return;
+        System.Diagnostics.Debug.WriteLine("/////////////////////////ERROR-TimeoutException//////////////////////////");
+        System.Diagnostics.Debug.WriteLine(ex.Message);
+
       }
-      catch (IndexOutOfRangeException kj)
+      catch (IndexOutOfRangeException ex)
       {
+
+        System.Diagnostics.Debug.WriteLine("/////////////////////////ERROR-IndexOutOfRangeException//////////////////////////");
+        System.Diagnostics.Debug.WriteLine(ex.Message);
+
         //MessageBox.Show("ERROR READING COMPORT");
         ClosePort();
         OpenPort("Demo");
-        DialogResult stuff = MessageBox.Show("USB not connected or machine has restarted, please restart the application. Error: " + kj.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        DialogResult stuff = MessageBox.Show("USB not connected or machine has restarted, please restart the application. Error: " + ex.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
         //return;
       }
-      catch (InvalidOperationException qT)
+      catch (InvalidOperationException ex)
       {
+        System.Diagnostics.Debug.WriteLine("/////////////////////////ERROR-InvalidOperationException//////////////////////////");
+        System.Diagnostics.Debug.WriteLine(ex.Message);
         //ERROR HERE
         if (!dialogIsShowing)
         {
           dialogIsShowing = true;
-          DialogResult stuff = MessageBox.Show("USB not connected or machine has restarted, please restart the application. Error: " + qT.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+          DialogResult stuff = MessageBox.Show("USB not connected or machine has restarted, please restart the application. Error: " + ex.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
           dialogIsShowing = false;
         }
         ClosePort();
@@ -208,6 +223,8 @@ namespace LukMachine
       }
       catch (IOException ex)
       {
+        System.Diagnostics.Debug.WriteLine("/////////////////////////ERROR-IOException//////////////////////////");
+        System.Diagnostics.Debug.WriteLine(ex.Message);
         DialogResult stuff = MessageBox.Show("Error: " + ex.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
         ClosePort();
         OpenPort("Demo");
@@ -246,14 +263,16 @@ namespace LukMachine
       //next response should be the value we need
       try
       {
-        System.Diagnostics.Debug.WriteLine("ReadingECHO: Sent " + toSend);
+        System.Diagnostics.Debug.WriteLine("Waiting to Receive Echo..");
         received = _serialPort.ReadTo(newLine);
-        System.Diagnostics.Debug.WriteLine("Received " + received);
+        System.Diagnostics.Debug.WriteLine("Received Echo= " + received);
         return received;
       }
       catch (TimeoutException kj)
       {
         //MessageBox.Show("Timeout reading comport for " + toSend + " (second response)");
+        System.Diagnostics.Debug.WriteLine("/////////////////////////ERROR-TimeoutException//////////////////////////");
+        System.Diagnostics.Debug.WriteLine("Timeout reading comport for " + toSend + " (second response)");
         return null;
       }
       catch (IOException ex)
@@ -264,6 +283,7 @@ namespace LukMachine
       }
       catch (InvalidOperationException ex)
       {
+        System.Diagnostics.Debug.WriteLine("/////////////////////////ERROR-InvalidOperationException//////////////////////////");
         System.Diagnostics.Debug.WriteLine(ex.Message);
         return null;
       }
@@ -431,7 +451,7 @@ namespace LukMachine
     {
       char valveChannel = 'Z';
       string response;
-      System.Diagnostics.Debug.Write("Valve Number: " + valveNum.ToString() + Environment.NewLine);
+      //System.Diagnostics.Debug.Write("Valve Number: " + valveNum.ToString() + Environment.NewLine);
       if (valveNum == 1 || valveNum == 2 || valveNum == 3 || valveNum == 4)
       {
         switch (valveNum)
@@ -492,7 +512,7 @@ namespace LukMachine
 
       char valveChannel = 'Z';
       string response;
-      System.Diagnostics.Debug.Write("Valve Number: " + valveNum.ToString() + Environment.NewLine);
+      //System.Diagnostics.Debug.Write("Valve Number: " + valveNum.ToString() + Environment.NewLine);
       if (valveNum == 1 || valveNum == 2 || valveNum == 3 || valveNum == 4)
       {
         switch (valveNum)
@@ -520,7 +540,7 @@ namespace LukMachine
     {
       char valveChannel = 'Z';
       string response;
-      System.Diagnostics.Debug.Write("Valve Number: " + valveNum.ToString() + Environment.NewLine);
+      //System.Diagnostics.Debug.Write("Valve Number: " + valveNum.ToString() + Environment.NewLine);
       if (valveNum == 1 || valveNum == 2 || valveNum == 3 || valveNum == 4)
       {
         switch (valveNum)

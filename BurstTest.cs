@@ -517,7 +517,7 @@ namespace LukMachine
           //stop main pump
           Pumps.SetPump2(0);
           //open relief pressure valve
-          Valves.OpenValve2();
+          //Valves.OpenValve2();
           Progress("disable stop button");
           Progress("Machine has reached it's maximum pressure range! The test will be aborted.");
           Progress("Data saved to " + Properties.Settings.Default.TestData);

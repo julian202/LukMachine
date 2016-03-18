@@ -51,7 +51,7 @@ namespace LukMachine
     bool MainPumpOn;
     bool RefillPumpOn;
     int targetPressure = 0;
-    double targetPressureDiff=0;
+    double targetPressureDiff = 0;
     bool firstSetOfChamberCheckbox;
     int startTime;
     int currentVolume;
@@ -80,7 +80,7 @@ namespace LukMachine
     {
       pressureThreshold = Convert.ToDouble(textBoxPSIdiff.Text);
       stableSecs = Convert.ToInt32(textBoxStableSecs.Text);
-      PressureList = new double[stableSecs+1];
+      PressureList = new double[stableSecs + 1];
       startTime = Environment.TickCount;
 
       Properties.Settings.Default.ground = COMMS.Instance.getGround();
@@ -239,7 +239,7 @@ namespace LukMachine
     private void timer1_Tick(object sender, EventArgs e)
     {
       //updateValveColors();  //gets values from properties
-
+      readPressureAndAdjustPumpIfNecessary();
       //set Label pressure difference (do it here because the pressure is in a faster timer tick)
       labelPressureDifference.Text = "Pressure Difference (P1-P2) = " + pressureDifference.ToString("#0.0") + " PSI";
       shiftArrayToRight();
@@ -535,6 +535,7 @@ namespace LukMachine
     private void Manual_FormClosing(object sender, FormClosingEventArgs e)
     {
       timer1.Enabled = false;
+      timer2.Enabled = false;
     }
 
     private void button18_Click(object sender, EventArgs e)
@@ -808,16 +809,18 @@ namespace LukMachine
 
     private void rectangleShape11_Click(object sender, EventArgs e)
     {
-      /*
-      if (rectangleShape11.BackColor == Color.Green)
+      if (checkBoxAllowValve2.Checked)
       {
-        Valves.CloseValve2();
+        if (rectangleShape11.BackColor == Color.Green)
+        {
+          Valves.CloseValve2();
+        }
+        else
+        {
+          Valves.OpenValve2();
+        }
+        changeColor(sender);
       }
-      else
-      {
-        Valves.OpenValve2();
-      }
-      changeColor(sender);*/
     }
 
     private void rectangleShape6_Click(object sender, EventArgs e)
@@ -1190,8 +1193,7 @@ namespace LukMachine
     {
 
     }
-
-    private void timer2_Tick(object sender, EventArgs e)
+    private void readPressureAndAdjustPumpIfNecessary()
     {
       readPressureAndDisplayIt(); //this also sets the currentPressure.
       if (checkBoxTargetPressure.Checked)
@@ -1222,6 +1224,11 @@ namespace LukMachine
         }
         label17.Text = "Pump " + Properties.Settings.Default.MainPumpStatePercent + "%";
       }
+
+    }
+    private void timer2_Tick(object sender, EventArgs e)
+    {
+      //readPressureAndAdjustPumpIfNecessary();  //this is now called from timer1
     }
 
     private void readPressureAndDisplayIt()
@@ -1246,7 +1253,7 @@ namespace LukMachine
       catch (Exception)
       {
       }
-      
+
       currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //ground is 2000 //p1Max is 100  //twoVolt is 60000
       outputPressure = currentPressure * pConversion;
       p1Psi = outputPressure;
@@ -1535,18 +1542,7 @@ namespace LukMachine
       COMMS.Instance.MoveValve(8, "O");
     }
 
-    private void button34_Click(object sender, EventArgs e)
-    {
-      if (rectangleShape11.BackColor == Color.Green)
-      {
-        Valves.CloseValve2();
-      }
-      else
-      {
-        Valves.OpenValve2();
-      }
-      changeColor(sender);
-    }
+
 
     private void label25_Click(object sender, EventArgs e)
     {
@@ -1573,7 +1569,7 @@ namespace LukMachine
     {
       try
       {
-        Array.Resize(ref PressureList, 1+Convert.ToInt32(textBoxStableSecs.Text));
+        Array.Resize(ref PressureList, 1 + Convert.ToInt32(textBoxStableSecs.Text));
       }
       catch (Exception)
       {
@@ -1598,7 +1594,7 @@ namespace LukMachine
 
     private void button23_Click_2(object sender, EventArgs e)
     {
-          
+
     }
 
     private void textBox7_TextChanged_1(object sender, EventArgs e)
@@ -1621,7 +1617,7 @@ namespace LukMachine
     {
       try
       {
-        targetPressureDiff = Convert.ToDouble(textBoxPDiff.Text); 
+        targetPressureDiff = Convert.ToDouble(textBoxPDiff.Text);
       }
       catch (Exception)
       {
