@@ -212,20 +212,18 @@ namespace LukMachine
       }     
     }
 
+    bool firstTick = true;
+    int ReservoirPercent;
+    int CollectedPercent;
+    int originalVolume;
+    int myInterval=60;
+    int volumeDifference;
+    int collectedVolume;
+    double temp;
     private void timer1_Tick(object sender, EventArgs e)
     {
       //updateValveColors();  //gets values from properties
-      elapsedTime = (Convert.ToDouble(Environment.TickCount)-startTime)/1000;
-      labelTime.Text = "Time (s): "+ elapsedTime.ToString("#0");
-
-      counter++;
-      if (counter>5)
-      {
-        counter = 0;
-      }
-
-
-
+      
       if (startRefill)
       {
         /*
@@ -267,16 +265,36 @@ namespace LukMachine
       }
     
       //read penetrometers
-      int ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+      ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
       groupBoxReservoir.Text = "Reservoir " + ReservoirPercent.ToString() + "% Full";
       label29.Text = ReservoirPercent.ToString() + "% Full";
       mLReservoir.Text = (ReservoirPercent * Convert.ToInt32(Properties.Settings.Default.MaxCapacityInML)/100).ToString() + " mL";
 
-      int CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
+      CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
       groupBoxCollected.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
       label28.Text = CollectedPercent.ToString() + "% Full";
-      mlCollected.Text = (CollectedPercent * Convert.ToInt32(Properties.Settings.Default.MaxCapacityInML)/100).ToString() + " mL";
-      currentVolume = Convert.ToInt32(mlCollected.Text);
+      collectedVolume = CollectedPercent * Convert.ToInt32(Properties.Settings.Default.MaxCapacityInML) / 100;
+      mlCollected.Text = (collectedVolume).ToString() + " mL";
+      currentVolume = collectedVolume;
+
+
+      
+      if (firstTick)
+      {
+        originalVolume = currentVolume;
+        firstTick = false;
+      }
+      elapsedTime = (Convert.ToDouble(Environment.TickCount) - startTime) / 1000;
+      labelTime.Text = "Time (s): " + elapsedTime.ToString("#0");
+      counter++;         
+      if (counter > myInterval)
+      {
+        counter = 0;      
+        volumeDifference = currentVolume - originalVolume;
+        labelFlowPerMin.Text = volumeDifference.ToString() + " mL/inteval";
+        originalVolume = currentVolume;
+      }
+
 
       labelCollectedCount.Text = COMMS.Instance.getCollectedLevelCount()+ " counts";
       labelReservoirCounts.Text = COMMS.Instance.getReservoirLevelCount() + " counts";
@@ -301,7 +319,6 @@ namespace LukMachine
 
 
       //maybe read temperatures...
-      double temp;
       if (checkBox1.Checked)
       {
         temp = COMMS.Instance.ReadAthenaTemp(1);
@@ -1461,6 +1478,11 @@ namespace LukMachine
     {
       startTime = Convert.ToDouble(Environment.TickCount);
       labelTime.Text = "Time (s): 0";
+    }
+
+    private void textBox9_TextChanged(object sender, EventArgs e)
+    {
+      myInterval =Convert.ToInt32(textBox9.Text);
     }
   }
 }
