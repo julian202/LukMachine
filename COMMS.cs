@@ -404,7 +404,6 @@ namespace LukMachine
     }
 
 
-
     public static int CollectedLevelCount=0;
     public Int32 getCollectedLevelPercent() 
     {

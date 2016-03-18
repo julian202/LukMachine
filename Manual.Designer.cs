@@ -91,6 +91,14 @@
       this.label5 = new System.Windows.Forms.Label();
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.label61 = new System.Windows.Forms.Label();
+      this.label59 = new System.Windows.Forms.Label();
+      this.label60 = new System.Windows.Forms.Label();
+      this.textBoxPSIdiff = new System.Windows.Forms.TextBox();
+      this.label58 = new System.Windows.Forms.Label();
+      this.labelStable = new System.Windows.Forms.Label();
+      this.label56 = new System.Windows.Forms.Label();
+      this.textBoxStableSecs = new System.Windows.Forms.TextBox();
       this.label55 = new System.Windows.Forms.Label();
       this.label53 = new System.Windows.Forms.Label();
       this.textBox9 = new System.Windows.Forms.TextBox();
@@ -138,9 +146,7 @@
       this.label19 = new System.Windows.Forms.Label();
       this.label33 = new System.Windows.Forms.Label();
       this.groupBox13 = new System.Windows.Forms.GroupBox();
-      this.groupBox5 = new System.Windows.Forms.GroupBox();
       this.checkBoxTargetPressure = new System.Windows.Forms.CheckBox();
-      this.label32 = new System.Windows.Forms.Label();
       this.button23 = new System.Windows.Forms.Button();
       this.label30 = new System.Windows.Forms.Label();
       this.textBox7 = new System.Windows.Forms.TextBox();
@@ -222,14 +228,10 @@
       this.button28 = new System.Windows.Forms.Button();
       this.button25 = new System.Windows.Forms.Button();
       this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-      this.label56 = new System.Windows.Forms.Label();
-      this.textBoxStableSecs = new System.Windows.Forms.TextBox();
-      this.labelStable = new System.Windows.Forms.Label();
-      this.label58 = new System.Windows.Forms.Label();
-      this.label59 = new System.Windows.Forms.Label();
-      this.label60 = new System.Windows.Forms.Label();
-      this.textBoxPSIdiff = new System.Windows.Forms.TextBox();
-      this.label61 = new System.Windows.Forms.Label();
+      this.label62 = new System.Windows.Forms.Label();
+      this.textBoxPDiff = new System.Windows.Forms.TextBox();
+      this.radioButtonP1 = new System.Windows.Forms.RadioButton();
+      this.radioButtonP1P2 = new System.Windows.Forms.RadioButton();
       this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
@@ -253,7 +255,6 @@
       this.tabPage1.SuspendLayout();
       this.groupBox11.SuspendLayout();
       this.groupBox13.SuspendLayout();
-      this.groupBox5.SuspendLayout();
       this.groupBox10.SuspendLayout();
       this.groupBox12.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
@@ -1047,6 +1048,7 @@
       // tabPage1
       // 
       this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+      this.tabPage1.Controls.Add(this.button23);
       this.tabPage1.Controls.Add(this.label61);
       this.tabPage1.Controls.Add(this.label59);
       this.tabPage1.Controls.Add(this.label60);
@@ -1118,6 +1120,92 @@
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "Diagram Control";
       this.tabPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabPage1_Paint);
+      // 
+      // label61
+      // 
+      this.label61.AutoSize = true;
+      this.label61.Location = new System.Drawing.Point(17, 472);
+      this.label61.Name = "label61";
+      this.label61.Size = new System.Drawing.Size(155, 25);
+      this.label61.TabIndex = 120;
+      this.label61.Text = "Pressure Array";
+      this.label61.Visible = false;
+      // 
+      // label59
+      // 
+      this.label59.AutoSize = true;
+      this.label59.Location = new System.Drawing.Point(958, 8);
+      this.label59.MaximumSize = new System.Drawing.Size(150, 0);
+      this.label59.Name = "label59";
+      this.label59.Size = new System.Drawing.Size(148, 25);
+      this.label59.TabIndex = 119;
+      this.label59.Text = "with threshold:";
+      this.label59.Click += new System.EventHandler(this.label59_Click);
+      // 
+      // label60
+      // 
+      this.label60.AutoSize = true;
+      this.label60.Location = new System.Drawing.Point(1128, 8);
+      this.label60.MaximumSize = new System.Drawing.Size(150, 0);
+      this.label60.Name = "label60";
+      this.label60.Size = new System.Drawing.Size(85, 25);
+      this.label60.TabIndex = 118;
+      this.label60.Text = "PSI diff";
+      // 
+      // textBoxPSIdiff
+      // 
+      this.textBoxPSIdiff.BackColor = System.Drawing.SystemColors.Control;
+      this.textBoxPSIdiff.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.textBoxPSIdiff.Location = new System.Drawing.Point(1082, 7);
+      this.textBoxPSIdiff.Name = "textBoxPSIdiff";
+      this.textBoxPSIdiff.Size = new System.Drawing.Size(41, 30);
+      this.textBoxPSIdiff.TabIndex = 117;
+      this.textBoxPSIdiff.Text = "0.1";
+      this.textBoxPSIdiff.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBoxPSIdiff.TextChanged += new System.EventHandler(this.textBoxPSIdiff_TextChanged);
+      // 
+      // label58
+      // 
+      this.label58.AutoSize = true;
+      this.label58.Location = new System.Drawing.Point(791, 8);
+      this.label58.MaximumSize = new System.Drawing.Size(150, 0);
+      this.label58.Name = "label58";
+      this.label58.Size = new System.Drawing.Size(67, 25);
+      this.label58.TabIndex = 116;
+      this.label58.Text = "in last";
+      this.label58.Click += new System.EventHandler(this.label58_Click);
+      // 
+      // labelStable
+      // 
+      this.labelStable.AutoSize = true;
+      this.labelStable.Location = new System.Drawing.Point(715, 8);
+      this.labelStable.MaximumSize = new System.Drawing.Size(150, 0);
+      this.labelStable.Name = "labelStable";
+      this.labelStable.Size = new System.Drawing.Size(73, 25);
+      this.labelStable.TabIndex = 115;
+      this.labelStable.Text = "Stable";
+      // 
+      // label56
+      // 
+      this.label56.AutoSize = true;
+      this.label56.Location = new System.Drawing.Point(900, 8);
+      this.label56.MaximumSize = new System.Drawing.Size(150, 0);
+      this.label56.Name = "label56";
+      this.label56.Size = new System.Drawing.Size(61, 25);
+      this.label56.TabIndex = 114;
+      this.label56.Text = "Secs";
+      // 
+      // textBoxStableSecs
+      // 
+      this.textBoxStableSecs.BackColor = System.Drawing.SystemColors.Control;
+      this.textBoxStableSecs.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.textBoxStableSecs.Location = new System.Drawing.Point(854, 6);
+      this.textBoxStableSecs.Name = "textBoxStableSecs";
+      this.textBoxStableSecs.Size = new System.Drawing.Size(41, 30);
+      this.textBoxStableSecs.TabIndex = 113;
+      this.textBoxStableSecs.Text = "5";
+      this.textBoxStableSecs.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBoxStableSecs.TextChanged += new System.EventHandler(this.textBoxStableSecs_TextChanged);
       // 
       // label55
       // 
@@ -1300,10 +1388,9 @@
       // 
       this.labelPressureDifference.AutoSize = true;
       this.labelPressureDifference.BackColor = System.Drawing.Color.Transparent;
-      this.labelPressureDifference.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.labelPressureDifference.Location = new System.Drawing.Point(437, 6);
+      this.labelPressureDifference.Location = new System.Drawing.Point(439, 8);
       this.labelPressureDifference.Name = "labelPressureDifference";
-      this.labelPressureDifference.Size = new System.Drawing.Size(206, 27);
+      this.labelPressureDifference.Size = new System.Drawing.Size(204, 25);
       this.labelPressureDifference.TabIndex = 103;
       this.labelPressureDifference.Text = "Pressure Difference";
       // 
@@ -1441,7 +1528,7 @@
       this.mlCollected.AutoSize = true;
       this.mlCollected.BackColor = System.Drawing.Color.Transparent;
       this.mlCollected.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.mlCollected.Location = new System.Drawing.Point(19, 125);
+      this.mlCollected.Location = new System.Drawing.Point(10, 125);
       this.mlCollected.Name = "mlCollected";
       this.mlCollected.Size = new System.Drawing.Size(44, 27);
       this.mlCollected.TabIndex = 91;
@@ -1601,61 +1688,48 @@
       // 
       // groupBox13
       // 
-      this.groupBox13.Controls.Add(this.groupBox5);
+      this.groupBox13.Controls.Add(this.radioButtonP1P2);
+      this.groupBox13.Controls.Add(this.radioButtonP1);
+      this.groupBox13.Controls.Add(this.label62);
+      this.groupBox13.Controls.Add(this.textBoxPDiff);
+      this.groupBox13.Controls.Add(this.checkBoxTargetPressure);
       this.groupBox13.Controls.Add(this.aGauge1);
+      this.groupBox13.Controls.Add(this.label30);
+      this.groupBox13.Controls.Add(this.textBox7);
       this.groupBox13.Location = new System.Drawing.Point(695, 259);
       this.groupBox13.Name = "groupBox13";
-      this.groupBox13.Size = new System.Drawing.Size(396, 215);
+      this.groupBox13.Size = new System.Drawing.Size(396, 220);
       this.groupBox13.TabIndex = 74;
       this.groupBox13.TabStop = false;
       this.groupBox13.Text = "Current Pressure (PSI)  Gauge P1";
       // 
-      // groupBox5
-      // 
-      this.groupBox5.Controls.Add(this.checkBoxTargetPressure);
-      this.groupBox5.Controls.Add(this.label32);
-      this.groupBox5.Controls.Add(this.button23);
-      this.groupBox5.Controls.Add(this.label30);
-      this.groupBox5.Controls.Add(this.textBox7);
-      this.groupBox5.Location = new System.Drawing.Point(7, 148);
-      this.groupBox5.Name = "groupBox5";
-      this.groupBox5.Size = new System.Drawing.Size(381, 58);
-      this.groupBox5.TabIndex = 103;
-      this.groupBox5.TabStop = false;
-      // 
       // checkBoxTargetPressure
       // 
       this.checkBoxTargetPressure.AutoSize = true;
-      this.checkBoxTargetPressure.Location = new System.Drawing.Point(11, 27);
+      this.checkBoxTargetPressure.Location = new System.Drawing.Point(35, 167);
       this.checkBoxTargetPressure.Name = "checkBoxTargetPressure";
-      this.checkBoxTargetPressure.Size = new System.Drawing.Size(22, 21);
+      this.checkBoxTargetPressure.Size = new System.Drawing.Size(99, 29);
       this.checkBoxTargetPressure.TabIndex = 81;
+      this.checkBoxTargetPressure.Text = "Go to:";
       this.checkBoxTargetPressure.UseVisualStyleBackColor = true;
-      // 
-      // label32
-      // 
-      this.label32.AutoSize = true;
-      this.label32.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label32.Location = new System.Drawing.Point(35, 24);
-      this.label32.Name = "label32";
-      this.label32.Size = new System.Drawing.Size(171, 25);
-      this.label32.TabIndex = 80;
-      this.label32.Text = "Target Pressure:";
+      this.checkBoxTargetPressure.CheckedChanged += new System.EventHandler(this.checkBoxTargetPressure_CheckedChanged);
       // 
       // button23
       // 
-      this.button23.Location = new System.Drawing.Point(309, 19);
+      this.button23.Location = new System.Drawing.Point(1120, 424);
       this.button23.Name = "button23";
       this.button23.Size = new System.Drawing.Size(61, 32);
       this.button23.TabIndex = 77;
       this.button23.Text = "Go";
       this.button23.UseVisualStyleBackColor = true;
+      this.button23.Visible = false;
+      this.button23.Click += new System.EventHandler(this.button23_Click_2);
       // 
       // label30
       // 
       this.label30.AutoSize = true;
       this.label30.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label30.Location = new System.Drawing.Point(263, 25);
+      this.label30.Location = new System.Drawing.Point(302, 156);
       this.label30.Name = "label30";
       this.label30.Size = new System.Drawing.Size(42, 23);
       this.label30.TabIndex = 79;
@@ -1664,10 +1738,13 @@
       // textBox7
       // 
       this.textBox7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBox7.Location = new System.Drawing.Point(207, 22);
+      this.textBox7.Location = new System.Drawing.Point(246, 153);
       this.textBox7.Name = "textBox7";
       this.textBox7.Size = new System.Drawing.Size(53, 30);
       this.textBox7.TabIndex = 78;
+      this.textBox7.Text = "0";
+      this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged_1);
       // 
       // aGauge1
       // 
@@ -1698,7 +1775,7 @@
         ""};
       this.aGauge1.CapText = "";
       this.aGauge1.Center = new System.Drawing.Point(140, 170);
-      this.aGauge1.Location = new System.Drawing.Point(25, 30);
+      this.aGauge1.Location = new System.Drawing.Point(35, 30);
       this.aGauge1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
       this.aGauge1.MaxValue = 60000F;
       this.aGauge1.MinValue = 0F;
@@ -1903,16 +1980,16 @@
       this.groupBox12.Size = new System.Drawing.Size(447, 140);
       this.groupBox12.TabIndex = 59;
       this.groupBox12.TabStop = false;
-      this.groupBox12.Text = "Main Pump (Pump 2, 0-10V out1)";
+      this.groupBox12.Text = "Manual Control of Pump";
       // 
       // label51
       // 
       this.label51.AutoSize = true;
       this.label51.Location = new System.Drawing.Point(16, 42);
       this.label51.Name = "label51";
-      this.label51.Size = new System.Drawing.Size(148, 25);
+      this.label51.Size = new System.Drawing.Size(198, 25);
       this.label51.TabIndex = 16;
-      this.label51.Text = "Set Flow Rate";
+      this.label51.Text = "Set Free Flow Rate";
       // 
       // label50
       // 
@@ -2631,90 +2708,48 @@
       // 
       this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
       // 
-      // label56
+      // label62
       // 
-      this.label56.AutoSize = true;
-      this.label56.Location = new System.Drawing.Point(900, 10);
-      this.label56.MaximumSize = new System.Drawing.Size(150, 0);
-      this.label56.Name = "label56";
-      this.label56.Size = new System.Drawing.Size(61, 25);
-      this.label56.TabIndex = 114;
-      this.label56.Text = "Secs";
+      this.label62.AutoSize = true;
+      this.label62.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label62.Location = new System.Drawing.Point(302, 188);
+      this.label62.Name = "label62";
+      this.label62.Size = new System.Drawing.Size(42, 23);
+      this.label62.TabIndex = 83;
+      this.label62.Text = "PSI";
       // 
-      // textBoxStableSecs
+      // textBoxPDiff
       // 
-      this.textBoxStableSecs.BackColor = System.Drawing.SystemColors.Control;
-      this.textBoxStableSecs.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBoxStableSecs.Location = new System.Drawing.Point(854, 6);
-      this.textBoxStableSecs.Name = "textBoxStableSecs";
-      this.textBoxStableSecs.Size = new System.Drawing.Size(41, 30);
-      this.textBoxStableSecs.TabIndex = 113;
-      this.textBoxStableSecs.Text = "5";
-      this.textBoxStableSecs.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.textBoxStableSecs.TextChanged += new System.EventHandler(this.textBoxStableSecs_TextChanged);
+      this.textBoxPDiff.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.textBoxPDiff.Location = new System.Drawing.Point(246, 185);
+      this.textBoxPDiff.Name = "textBoxPDiff";
+      this.textBoxPDiff.Size = new System.Drawing.Size(53, 30);
+      this.textBoxPDiff.TabIndex = 82;
+      this.textBoxPDiff.Text = "0";
+      this.textBoxPDiff.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBoxPDiff.TextChanged += new System.EventHandler(this.textBoxPDiff_TextChanged);
       // 
-      // labelStable
+      // radioButtonP1
       // 
-      this.labelStable.AutoSize = true;
-      this.labelStable.Location = new System.Drawing.Point(713, 8);
-      this.labelStable.MaximumSize = new System.Drawing.Size(150, 0);
-      this.labelStable.Name = "labelStable";
-      this.labelStable.Size = new System.Drawing.Size(73, 25);
-      this.labelStable.TabIndex = 115;
-      this.labelStable.Text = "Stable";
+      this.radioButtonP1.AutoSize = true;
+      this.radioButtonP1.Location = new System.Drawing.Point(142, 153);
+      this.radioButtonP1.Name = "radioButtonP1";
+      this.radioButtonP1.Size = new System.Drawing.Size(70, 29);
+      this.radioButtonP1.TabIndex = 85;
+      this.radioButtonP1.TabStop = true;
+      this.radioButtonP1.Text = "P1:";
+      this.radioButtonP1.UseVisualStyleBackColor = true;
       // 
-      // label58
+      // radioButtonP1P2
       // 
-      this.label58.AutoSize = true;
-      this.label58.Location = new System.Drawing.Point(789, 8);
-      this.label58.MaximumSize = new System.Drawing.Size(150, 0);
-      this.label58.Name = "label58";
-      this.label58.Size = new System.Drawing.Size(67, 25);
-      this.label58.TabIndex = 116;
-      this.label58.Text = "in last";
-      this.label58.Click += new System.EventHandler(this.label58_Click);
-      // 
-      // label59
-      // 
-      this.label59.AutoSize = true;
-      this.label59.Location = new System.Drawing.Point(958, 10);
-      this.label59.MaximumSize = new System.Drawing.Size(150, 0);
-      this.label59.Name = "label59";
-      this.label59.Size = new System.Drawing.Size(148, 25);
-      this.label59.TabIndex = 119;
-      this.label59.Text = "with threshold:";
-      this.label59.Click += new System.EventHandler(this.label59_Click);
-      // 
-      // label60
-      // 
-      this.label60.AutoSize = true;
-      this.label60.Location = new System.Drawing.Point(1126, 11);
-      this.label60.MaximumSize = new System.Drawing.Size(150, 0);
-      this.label60.Name = "label60";
-      this.label60.Size = new System.Drawing.Size(85, 25);
-      this.label60.TabIndex = 118;
-      this.label60.Text = "PSI diff";
-      // 
-      // textBoxPSIdiff
-      // 
-      this.textBoxPSIdiff.BackColor = System.Drawing.SystemColors.Control;
-      this.textBoxPSIdiff.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBoxPSIdiff.Location = new System.Drawing.Point(1082, 7);
-      this.textBoxPSIdiff.Name = "textBoxPSIdiff";
-      this.textBoxPSIdiff.Size = new System.Drawing.Size(41, 30);
-      this.textBoxPSIdiff.TabIndex = 117;
-      this.textBoxPSIdiff.Text = "0.1";
-      this.textBoxPSIdiff.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.textBoxPSIdiff.TextChanged += new System.EventHandler(this.textBoxPSIdiff_TextChanged);
-      // 
-      // label61
-      // 
-      this.label61.AutoSize = true;
-      this.label61.Location = new System.Drawing.Point(17, 472);
-      this.label61.Name = "label61";
-      this.label61.Size = new System.Drawing.Size(155, 25);
-      this.label61.TabIndex = 120;
-      this.label61.Text = "Pressure Array";
+      this.radioButtonP1P2.AutoSize = true;
+      this.radioButtonP1P2.Location = new System.Drawing.Point(142, 185);
+      this.radioButtonP1P2.Name = "radioButtonP1P2";
+      this.radioButtonP1P2.Size = new System.Drawing.Size(104, 29);
+      this.radioButtonP1P2.TabIndex = 86;
+      this.radioButtonP1P2.TabStop = true;
+      this.radioButtonP1P2.Text = "P1-P2:";
+      this.radioButtonP1P2.UseVisualStyleBackColor = true;
       // 
       // verticalProgressBar4
       // 
@@ -2788,8 +2823,7 @@
       this.groupBox11.ResumeLayout(false);
       this.groupBox11.PerformLayout();
       this.groupBox13.ResumeLayout(false);
-      this.groupBox5.ResumeLayout(false);
-      this.groupBox5.PerformLayout();
+      this.groupBox13.PerformLayout();
       this.groupBox10.ResumeLayout(false);
       this.groupBox10.PerformLayout();
       this.groupBox12.ResumeLayout(false);
@@ -2980,10 +3014,8 @@
     private System.Windows.Forms.Label label51;
     private System.Windows.Forms.CheckBox checkBoxTargetPressure;
     private System.Windows.Forms.Button button23;
-    private System.Windows.Forms.Label label32;
     private System.Windows.Forms.TextBox textBox7;
     private System.Windows.Forms.Label label30;
-    private System.Windows.Forms.GroupBox groupBox5;
     private System.Windows.Forms.Label label2V;
     private System.Windows.Forms.Label labelGround;
     private System.Windows.Forms.CheckBox checkBoxShowArrows;
@@ -3009,5 +3041,9 @@
     private System.Windows.Forms.TextBox textBoxPSIdiff;
     private System.Windows.Forms.Label label58;
     private System.Windows.Forms.Label label61;
+    private System.Windows.Forms.Label label62;
+    private System.Windows.Forms.TextBox textBoxPDiff;
+    private System.Windows.Forms.RadioButton radioButtonP1P2;
+    private System.Windows.Forms.RadioButton radioButtonP1;
   }
 }

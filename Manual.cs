@@ -51,6 +51,7 @@ namespace LukMachine
     bool MainPumpOn;
     bool RefillPumpOn;
     int targetPressure = 0;
+    double targetPressureDiff=0;
     bool firstSetOfChamberCheckbox;
     int startTime;
     int currentVolume;
@@ -1196,21 +1197,30 @@ namespace LukMachine
       if (checkBoxTargetPressure.Checked)
       {
         //MessageBox.Show("d");
-        if (targetPressure > currentPressure)
-        {
-          Pumps.IncreaseMainPump(1);
-        }
-        else if (targetPressure < currentPressure)
-        {
-          Pumps.DecreaseMainPump(1);
-        }
-        else
-        {
 
+        if (radioButtonP1.Checked)
+        {
+          if (targetPressure > currentPressure)
+          {
+            Pumps.IncreaseMainPump(1);
+          }
+          else if (targetPressure < currentPressure)
+          {
+            Pumps.DecreaseMainPump(1);
+          }
+        }
+        else if (radioButtonP1P2.Checked)
+        {
+          if (targetPressureDiff > pressureDifference)
+          {
+            Pumps.IncreaseMainPump(1);
+          }
+          else if (targetPressureDiff < pressureDifference)
+          {
+            Pumps.DecreaseMainPump(1);
+          }
         }
         label17.Text = "Pump " + Properties.Settings.Default.MainPumpStatePercent + "%";
-
-
       }
     }
 
@@ -1229,7 +1239,14 @@ namespace LukMachine
 
       //read pressure gauge 1, convert to PSI (will need to * by conversion factor and set units label later)
       counts = COMMS.Instance.ReadPressureGauge(1);
-      realCounts = Convert.ToDouble(counts);
+      try
+      {
+        realCounts = Convert.ToDouble(counts);
+      }
+      catch (Exception)
+      {
+      }
+      
       currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //ground is 2000 //p1Max is 100  //twoVolt is 60000
       outputPressure = currentPressure * pConversion;
       p1Psi = outputPressure;
@@ -1573,6 +1590,38 @@ namespace LukMachine
       try
       {
         pressureThreshold = Convert.ToDouble(textBoxPSIdiff.Text);
+      }
+      catch (Exception)
+      {
+      }
+    }
+
+    private void button23_Click_2(object sender, EventArgs e)
+    {
+          
+    }
+
+    private void textBox7_TextChanged_1(object sender, EventArgs e)
+    {
+      try
+      {
+        targetPressure = Convert.ToInt32(textBox7.Text);
+      }
+      catch (Exception)
+      {
+      }
+    }
+
+    private void checkBoxTargetPressure_CheckedChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void textBoxPDiff_TextChanged(object sender, EventArgs e)
+    {
+      try
+      {
+        targetPressureDiff = Convert.ToDouble(textBoxPDiff.Text); 
       }
       catch (Exception)
       {
