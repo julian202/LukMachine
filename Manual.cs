@@ -56,12 +56,33 @@ namespace LukMachine
     int currentVolume;
     int elapsedTime;
     int counter;
-    bool doneFirstInterval=false;
+    bool doneFirstInterval = false;
+    int stableSecs;
+
+    bool firstTick = true;
+    int ReservoirPercent;
+    int CollectedPercent;
+    int originalVolume;
+    int myInterval = 60;
+    int volumeDifference;
+    int collectedVolume;
+    double temp;
+    double secs;
+    double mins;
+    double[] PressureList;  // 6 is 5+1, you have to show 5 in manual form.
+    double pressureDifference;
+    int aCount = 0;
+    bool samePressures;
+    double pressureThreshold;
+
     private void Manual_Load(object sender, EventArgs e)
     {
+      pressureThreshold = Convert.ToDouble(textBoxPSIdiff.Text);
+      stableSecs = Convert.ToInt32(textBoxStableSecs.Text);
+      PressureList = new double[stableSecs+1];
       startTime = Environment.TickCount;
 
-      Properties.Settings.Default.ground= COMMS.Instance.getGround();
+      Properties.Settings.Default.ground = COMMS.Instance.getGround();
       Properties.Settings.Default.RefCount2V = COMMS.Instance.get2v();
       labelGround.Text = "Ground = " + Properties.Settings.Default.ground;
       label2V.Text = "2V = " + Properties.Settings.Default.RefCount2V;
@@ -106,7 +127,7 @@ namespace LukMachine
 
       updateValveColors();
       //updateValveColors doesn't do valve 7 just becuase it flickers so do it here now:
-      if (Properties.Settings.Default.Valve7State==false)
+      if (Properties.Settings.Default.Valve7State == false)
       {
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
         //checkBoxLeftChamber.Checked = true;
@@ -210,23 +231,41 @@ namespace LukMachine
       else
       {
         rectangleShape5.BackColor = Color.Brown;
-      }     
+      }
     }
 
-    bool firstTick = true;
-    int ReservoirPercent;
-    int CollectedPercent;
-    int originalVolume;
-    int myInterval=60;
-    int volumeDifference;
-    int collectedVolume;
-    double temp;
-    double secs;
-    double mins;
+
     private void timer1_Tick(object sender, EventArgs e)
     {
       //updateValveColors();  //gets values from properties
-      
+
+      //set Label pressure difference (do it here because the pressure is in a faster timer tick)
+      labelPressureDifference.Text = "Pressure Difference (P1-P2) = " + pressureDifference.ToString("#0.0") + " PSI";
+      shiftArrayToRight();
+      aCount++;
+      PressureList[0] = pressureDifference;
+
+      samePressures = true;
+      for (int i = 0; i < PressureList.Length - 1; i++)
+      {
+        if ((PressureList[i] <= (PressureList[i + 1] - pressureThreshold)) || (PressureList[i] >= (PressureList[i + 1] + pressureThreshold)))
+        {
+          samePressures = false;
+        }
+      }
+      if (samePressures)
+      {
+        labelStable.Text = "Stable";
+        labelStable.BackColor = Color.Green;
+      }
+      else
+      {
+        labelStable.Text = "Not Stable";
+        labelStable.BackColor = Color.Red;
+      }
+      labelStable.Refresh();
+
+
       if (startRefill)
       {
         /*
@@ -234,7 +273,7 @@ namespace LukMachine
         {
           form.ShowDialog();
         }*/
-        button21.Text= "Pumping... Please wait...";
+        button21.Text = "Pumping... Please wait...";
         button21.Enabled = false;
         //turn refill pump on:
         rectangleShape14.BackColor = Color.Bisque;
@@ -266,12 +305,12 @@ namespace LukMachine
         Pumps.StopPump1();
         RefillPumpOn = false;
       }
-    
+
       //read penetrometers
       ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
       groupBoxReservoir.Text = "Reservoir " + ReservoirPercent.ToString() + "% Full";
       label29.Text = ReservoirPercent.ToString() + "% Full";
-      mLReservoir.Text = (ReservoirPercent * Convert.ToInt32(Properties.Settings.Default.MaxCapacityInML)/100).ToString() + " mL";
+      mLReservoir.Text = (ReservoirPercent * Convert.ToInt32(Properties.Settings.Default.MaxCapacityInML) / 100).ToString() + " mL";
 
       CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
       groupBoxCollected.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
@@ -280,8 +319,6 @@ namespace LukMachine
       mlCollected.Text = (collectedVolume).ToString() + " mL";
       currentVolume = collectedVolume;
 
-
-      
       if (firstTick)
       {
         originalVolume = currentVolume;
@@ -289,16 +326,16 @@ namespace LukMachine
       }
 
       //display elapsed time
-      elapsedTime = (Environment.TickCount - startTime)/1000;
+      elapsedTime = (Environment.TickCount - startTime) / 1000;
       secs = Convert.ToDouble(elapsedTime) / 60;
-      mins = Math.Floor(Convert.ToDouble(elapsedTime)/ 60);
-      labelTime.Text = "Time: " + mins.ToString("00") +":"+ ((secs - mins) * 60).ToString("00");
+      mins = Math.Floor(Convert.ToDouble(elapsedTime) / 60);
+      labelTime.Text = "Time: " + mins.ToString("00") + ":" + ((secs - mins) * 60).ToString("00");
 
-      counter++;         
+      counter++;
       if (counter > myInterval)
       {
         doneFirstInterval = true;
-        counter = 0;      
+        counter = 0;
         volumeDifference = currentVolume - originalVolume;
         labelFlowPerMin.Text = volumeDifference.ToString() + " mL/interval";
         originalVolume = currentVolume;
@@ -309,7 +346,7 @@ namespace LukMachine
         labelFlowPerMin.Text = volumeDifference.ToString() + " mL/interval";
       }
 
-      labelCollectedCount.Text = COMMS.Instance.getCollectedLevelCount()+ " counts";
+      labelCollectedCount.Text = COMMS.Instance.getCollectedLevelCount() + " counts";
       labelReservoirCounts.Text = COMMS.Instance.getReservoirLevelCount() + " counts";
 
       label2.Text = "Penetrometer 1: " + COMMS.Instance.getReservoirLevelCount() + " (" + ReservoirPercent.ToString() + "%)"; //is COMMS.Instance.MotorValvePosition(1);
@@ -737,7 +774,7 @@ namespace LukMachine
       else
       {
         Valves.OpenValve4();
-       
+
       }
       changeColor(sender);
     }
@@ -787,7 +824,7 @@ namespace LukMachine
       if (rectangleShape6.BackColor == Color.Green)
       {
         Valves.CloseValve3();
-       
+
       }
       else
       {
@@ -801,7 +838,7 @@ namespace LukMachine
       if (rectangleShape12.BackColor == Color.Green)
       {
         Valves.CloseValve1();
-    
+
       }
       else
       {
@@ -990,7 +1027,7 @@ namespace LukMachine
       labelSetTemp.Text = "deg C (" + (Math.Round((Convert.ToDouble(textBoxTemp.Text) * 9 / 5 + 32))).ToString() + " F)";
     }
 
-  
+
 
     private void button21_Click_1(object sender, EventArgs e)
     {
@@ -1034,7 +1071,7 @@ namespace LukMachine
         if (textBoxTemp.Text == "")
         {
           //MessageBox.Show("Please enter a temperature");
-          textBoxTemp.Text = "20";       
+          textBoxTemp.Text = "20";
         }
         heat();
       }
@@ -1157,7 +1194,7 @@ namespace LukMachine
     {
       readPressureAndDisplayIt(); //this also sets the currentPressure.
       if (checkBoxTargetPressure.Checked)
-      {     
+      {
         //MessageBox.Show("d");
         if (targetPressure > currentPressure)
         {
@@ -1171,7 +1208,7 @@ namespace LukMachine
         {
 
         }
-        label17.Text = "Pump "+ Properties.Settings.Default.MainPumpStatePercent+"%";
+        label17.Text = "Pump " + Properties.Settings.Default.MainPumpStatePercent + "%";
 
 
       }
@@ -1188,7 +1225,7 @@ namespace LukMachine
       p1Psi = outputPressure;
       rawP1 = realCounts;
       p2Psi = p1Psi;
-      labelP2.Text = p2Psi.ToString("#0.0") +" PSI";
+      labelP2.Text = p2Psi.ToString("#0.0") + " PSI";
 
       //read pressure gauge 1, convert to PSI (will need to * by conversion factor and set units label later)
       counts = COMMS.Instance.ReadPressureGauge(1);
@@ -1210,7 +1247,19 @@ namespace LukMachine
       //label30.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
       groupBox13.Text = "Current Pressure: " + p1Psi.ToString("#0.000") + " PSI (" + rawP1.ToString() + " cts)";
       labelP1.Text = p1Psi.ToString("#0.0") + " PSI";
-      labelPressureDifference.Text= "Pressure Difference (P1-P2) = "+ (p1Psi- p2Psi).ToString("#0.0") + " PSI";
+      pressureDifference = (p1Psi - p2Psi);
+
+    }
+
+    private void shiftArrayToRight()
+    {
+      for (int i = PressureList.Length - 1; i >= 1; i--)
+        PressureList[i] = PressureList[i - 1];
+
+      string text = "";
+      for (int i = 0; i < PressureList.Length; i++)
+        text = text + "-" + PressureList[i];
+      label61.Text = text;
 
     }
 
@@ -1438,7 +1487,7 @@ namespace LukMachine
 
     private void textBoxFlow_TextChanged(object sender, EventArgs e)
     {
-      textBox6.Text= (Convert.ToInt32(textBoxFlow.Text) / 10).ToString();
+      textBox6.Text = (Convert.ToInt32(textBoxFlow.Text) / 10).ToString();
     }
 
     private void checkBoxShowArrows_CheckedChanged(object sender, EventArgs e)
@@ -1495,7 +1544,39 @@ namespace LukMachine
 
     private void textBox9_TextChanged(object sender, EventArgs e)
     {
-      myInterval =Convert.ToInt32(textBox9.Text);
+      myInterval = Convert.ToInt32(textBox9.Text);
+    }
+
+    private void label58_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void textBoxStableSecs_TextChanged(object sender, EventArgs e)
+    {
+      try
+      {
+        Array.Resize(ref PressureList, 1+Convert.ToInt32(textBoxStableSecs.Text));
+      }
+      catch (Exception)
+      {
+      }
+    }
+
+    private void label59_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void textBoxPSIdiff_TextChanged(object sender, EventArgs e)
+    {
+      try
+      {
+        pressureThreshold = Convert.ToDouble(textBoxPSIdiff.Text);
+      }
+      catch (Exception)
+      {
+      }
     }
   }
 }
