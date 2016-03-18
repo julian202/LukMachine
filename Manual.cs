@@ -52,13 +52,14 @@ namespace LukMachine
     bool RefillPumpOn;
     int targetPressure = 0;
     bool firstSetOfChamberCheckbox;
-    double startTime;
+    int startTime;
     int currentVolume;
-    double elapsedTime;
+    int elapsedTime;
     int counter;
+    bool doneFirstInterval=false;
     private void Manual_Load(object sender, EventArgs e)
     {
-      startTime = Convert.ToDouble(Environment.TickCount);
+      startTime = Environment.TickCount;
 
       Properties.Settings.Default.ground= COMMS.Instance.getGround();
       Properties.Settings.Default.RefCount2V = COMMS.Instance.get2v();
@@ -220,6 +221,8 @@ namespace LukMachine
     int volumeDifference;
     int collectedVolume;
     double temp;
+    double secs;
+    double mins;
     private void timer1_Tick(object sender, EventArgs e)
     {
       //updateValveColors();  //gets values from properties
@@ -284,17 +287,27 @@ namespace LukMachine
         originalVolume = currentVolume;
         firstTick = false;
       }
-      elapsedTime = (Convert.ToDouble(Environment.TickCount) - startTime) / 1000;
-      labelTime.Text = "Time (s): " + elapsedTime.ToString("#0");
+
+      //display elapsed time
+      elapsedTime = (Environment.TickCount - startTime)/1000;
+      secs = Convert.ToDouble(elapsedTime) / 60;
+      mins = Math.Floor(Convert.ToDouble(elapsedTime)/ 60);
+      labelTime.Text = "Time: " + mins.ToString("00") +":"+ ((secs - mins) * 60).ToString("00");
+
       counter++;         
       if (counter > myInterval)
       {
+        doneFirstInterval = true;
         counter = 0;      
         volumeDifference = currentVolume - originalVolume;
-        labelFlowPerMin.Text = volumeDifference.ToString() + " mL/inteval";
+        labelFlowPerMin.Text = volumeDifference.ToString() + " mL/interval";
         originalVolume = currentVolume;
       }
-
+      if (!doneFirstInterval)
+      {
+        volumeDifference = currentVolume - originalVolume;
+        labelFlowPerMin.Text = volumeDifference.ToString() + " mL/interval";
+      }
 
       labelCollectedCount.Text = COMMS.Instance.getCollectedLevelCount()+ " counts";
       labelReservoirCounts.Text = COMMS.Instance.getReservoirLevelCount() + " counts";
@@ -1476,7 +1489,7 @@ namespace LukMachine
 
     private void buttonReset_Click(object sender, EventArgs e)
     {
-      startTime = Convert.ToDouble(Environment.TickCount);
+      startTime = Environment.TickCount;
       labelTime.Text = "Time (s): 0";
     }
 

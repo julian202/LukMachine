@@ -91,6 +91,9 @@
       this.label5 = new System.Windows.Forms.Label();
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.label55 = new System.Windows.Forms.Label();
+      this.label53 = new System.Windows.Forms.Label();
+      this.textBox9 = new System.Windows.Forms.TextBox();
       this.buttonReset = new System.Windows.Forms.Button();
       this.labelTime = new System.Windows.Forms.Label();
       this.label52 = new System.Windows.Forms.Label();
@@ -219,9 +222,6 @@
       this.button28 = new System.Windows.Forms.Button();
       this.button25 = new System.Windows.Forms.Button();
       this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-      this.textBox9 = new System.Windows.Forms.TextBox();
-      this.label53 = new System.Windows.Forms.Label();
-      this.label55 = new System.Windows.Forms.Label();
       this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
@@ -1103,6 +1103,36 @@
       this.tabPage1.Text = "Diagram Control";
       this.tabPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabPage1_Paint);
       // 
+      // label55
+      // 
+      this.label55.AutoSize = true;
+      this.label55.Location = new System.Drawing.Point(53, 189);
+      this.label55.MaximumSize = new System.Drawing.Size(150, 0);
+      this.label55.Name = "label55";
+      this.label55.Size = new System.Drawing.Size(61, 25);
+      this.label55.TabIndex = 112;
+      this.label55.Text = "Secs";
+      // 
+      // label53
+      // 
+      this.label53.AutoSize = true;
+      this.label53.Location = new System.Drawing.Point(0, 160);
+      this.label53.MaximumSize = new System.Drawing.Size(150, 0);
+      this.label53.Name = "label53";
+      this.label53.Size = new System.Drawing.Size(87, 25);
+      this.label53.TabIndex = 111;
+      this.label53.Text = "Interval:";
+      // 
+      // textBox9
+      // 
+      this.textBox9.BackColor = System.Drawing.SystemColors.Control;
+      this.textBox9.Location = new System.Drawing.Point(6, 184);
+      this.textBox9.Name = "textBox9";
+      this.textBox9.Size = new System.Drawing.Size(47, 33);
+      this.textBox9.TabIndex = 110;
+      this.textBox9.Text = "60";
+      this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
+      // 
       // buttonReset
       // 
       this.buttonReset.Location = new System.Drawing.Point(4, 29);
@@ -1119,26 +1149,26 @@
       this.labelTime.Location = new System.Drawing.Point(3, 6);
       this.labelTime.MaximumSize = new System.Drawing.Size(150, 0);
       this.labelTime.Name = "labelTime";
-      this.labelTime.Size = new System.Drawing.Size(97, 25);
+      this.labelTime.Size = new System.Drawing.Size(126, 25);
       this.labelTime.TabIndex = 108;
-      this.labelTime.Text = "Time (s):";
+      this.labelTime.Text = "Time: 00:00";
       // 
       // label52
       // 
       this.label52.AutoSize = true;
-      this.label52.Location = new System.Drawing.Point(3, 191);
+      this.label52.Location = new System.Drawing.Point(-1, 245);
       this.label52.MaximumSize = new System.Drawing.Size(150, 0);
       this.label52.Name = "label52";
-      this.label52.Size = new System.Drawing.Size(108, 25);
+      this.label52.Size = new System.Drawing.Size(147, 25);
       this.label52.TabIndex = 107;
-      this.label52.Text = "Collected:";
+      this.label52.Text = "in last interval:";
       // 
       // labelFlowPerMin
       // 
       this.labelFlowPerMin.AutoSize = true;
       this.labelFlowPerMin.BackColor = System.Drawing.Color.Transparent;
       this.labelFlowPerMin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.labelFlowPerMin.Location = new System.Drawing.Point(9, 216);
+      this.labelFlowPerMin.Location = new System.Drawing.Point(5, 270);
       this.labelFlowPerMin.Name = "labelFlowPerMin";
       this.labelFlowPerMin.Size = new System.Drawing.Size(131, 27);
       this.labelFlowPerMin.TabIndex = 106;
@@ -1147,12 +1177,12 @@
       // label54
       // 
       this.label54.AutoSize = true;
-      this.label54.Location = new System.Drawing.Point(3, 169);
+      this.label54.Location = new System.Drawing.Point(-1, 223);
       this.label54.MaximumSize = new System.Drawing.Size(150, 0);
       this.label54.Name = "label54";
-      this.label54.Size = new System.Drawing.Size(128, 25);
+      this.label54.Size = new System.Drawing.Size(102, 25);
       this.label54.TabIndex = 105;
-      this.label54.Text = "Last Interval";
+      this.label54.Text = "Collected";
       // 
       // label48
       // 
@@ -1443,7 +1473,7 @@
       // 
       this.label42.AutoSize = true;
       this.label42.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label42.Location = new System.Drawing.Point(113, 272);
+      this.label42.Location = new System.Drawing.Point(163, 272);
       this.label42.Name = "label42";
       this.label42.Size = new System.Drawing.Size(36, 16);
       this.label42.TabIndex = 86;
@@ -1972,9 +2002,9 @@
       this.label27.AutoSize = true;
       this.label27.Location = new System.Drawing.Point(138, 388);
       this.label27.Name = "label27";
-      this.label27.Size = new System.Drawing.Size(106, 25);
+      this.label27.Size = new System.Drawing.Size(112, 25);
       this.label27.TabIndex = 54;
-      this.label27.Text = "Reservoir";
+      this.label27.Text = "Reservoir:";
       // 
       // label23
       // 
@@ -2581,35 +2611,6 @@
       // backgroundWorker1
       // 
       this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-      // 
-      // textBox9
-      // 
-      this.textBox9.Location = new System.Drawing.Point(9, 280);
-      this.textBox9.Name = "textBox9";
-      this.textBox9.Size = new System.Drawing.Size(47, 33);
-      this.textBox9.TabIndex = 110;
-      this.textBox9.Text = "60";
-      this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
-      // 
-      // label53
-      // 
-      this.label53.AutoSize = true;
-      this.label53.Location = new System.Drawing.Point(3, 253);
-      this.label53.MaximumSize = new System.Drawing.Size(150, 0);
-      this.label53.Name = "label53";
-      this.label53.Size = new System.Drawing.Size(87, 25);
-      this.label53.TabIndex = 111;
-      this.label53.Text = "Interval:";
-      // 
-      // label55
-      // 
-      this.label55.AutoSize = true;
-      this.label55.Location = new System.Drawing.Point(56, 285);
-      this.label55.MaximumSize = new System.Drawing.Size(150, 0);
-      this.label55.Name = "label55";
-      this.label55.Size = new System.Drawing.Size(61, 25);
-      this.label55.TabIndex = 112;
-      this.label55.Text = "Secs";
       // 
       // verticalProgressBar4
       // 
