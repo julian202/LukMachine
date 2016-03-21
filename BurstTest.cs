@@ -230,6 +230,39 @@ namespace LukMachine
       }
     }
 
+    public void EmptyCollectedVolume() //refill reservoir with the liquid from the collected volume
+    {
+      int CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
+      int ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+      //MessageBox.Show("ReservoirPercent "+ ReservoirPercent+ " CollectedPercent "+ CollectedPercent);
+      Progress("display volume levels =" + ReservoirPercent.ToString() + "=" + CollectedPercent.ToString());//fix this, dont read twice
+
+      int maxPercentFull = Properties.Settings.Default.maxEmptyCollectedPercentFull;
+      if (CollectedPercent > maxPercentFull)
+      {
+        Progress("Emptying collected volume...");
+        Valves.OpenValve1();
+      }
+      while (CollectedPercent > maxPercentFull)
+      {
+        Thread.Sleep(300);
+        CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
+        Progress("display volume levels =" + ReservoirPercent.ToString() + "=" + CollectedPercent.ToString());//fix this, dont read twice
+      }
+    }
+    public void FillReservoir() //refill reservoir with the liquid from the collected volume
+    {
+      if (ReservoirPercent < 80)
+      {
+        Progress("Reservoir is not full. Please add more to reservoir.");
+        while (ReservoirPercent < 80)
+        {
+          Thread.Sleep(300);
+        }     
+      }
+
+    }
+
     public void PumpCollectedVolumeToReservoir() //refill reservoir with the liquid from the collected volume
     {
       //Progress("Read volume levels");
@@ -322,13 +355,17 @@ namespace LukMachine
     ////////////////////////////////////////////////////////////////////////////////////////////
     //RunBurstTest()////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////
 
     public void RunBurstTest()
     {
       //Check reservoir levels
       Progress("Checking reservoir levels...");
-      PumpCollectedVolumeToReservoir();
-      Thread.Sleep(1000);
+      //PumpCollectedVolumeToReservoir();
+      EmptyCollectedVolume();
+      FillReservoir();
+      Thread.Sleep(500);
       Progress("Done checking reservoir levels");
 
       //Check temperature levels

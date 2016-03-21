@@ -90,7 +90,6 @@ namespace LukMachine
         MessageBox.Show("You must add values to the list");
         return;
       }
-
       if (radioButtonDiskChamber.Checked == false && radioButtonRingChamber.Checked == false)
       {
         MessageBox.Show("Please select the type of chamber!", "Note", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -208,20 +207,46 @@ namespace LukMachine
         Properties.Settings.Default.Chamber = "Ring";
         Properties.Settings.Default.Save();
 
-        Valves.OpenValve7();//right chamber
+        //Valves.OpenValve7();//right chamber
+
+        //set right chamber
+        if (Properties.Settings.Default.Valve7State == true)        
+        {
+          Valves.Valve7toRight();
+          System.Diagnostics.Debug.WriteLine("moving to right chamber");
+        }
+        else
+        {
+          System.Diagnostics.Debug.WriteLine("machine is already set to right chamber");
+        }       
       }
       else if (radioButtonDiskChamber.Checked)
       {
         Properties.Settings.Default.Chamber = "Disk";
         Properties.Settings.Default.Save();
 
-        Valves.CloseValve7();//left chamber
+        //Valves.CloseValve7();//left chamber
+        //set right chamber
+        if (Properties.Settings.Default.Valve7State == false)
+        {
+          Valves.Valve7toLeft();
+          System.Diagnostics.Debug.WriteLine("moving to left chamber");
+        }
+        else
+        {
+          System.Diagnostics.Debug.WriteLine("machine is already set to left chamber");
+        }
       }
       if (Properties.Settings.Default.COMM != "Demo")
       {
         //COMMS.Instance.Pause(1); //wait 1 second just to not start all the valves at the same time.
       }
+
       //Open manifold valves
+      Valves.OpenValve4();
+      Valves.CloseValve5();
+      Valves.CloseValve6();
+      /*
       if (Properties.Settings.Default.SelectedFlowRate == "Low")
       {
         Valves.OpenValve4();
@@ -239,15 +264,13 @@ namespace LukMachine
         Valves.CloseValve4();
         Valves.CloseValve5();
         Valves.OpenValve6();
-      }
-
+      }*/
 
       if (Properties.Settings.Default.COMM != "Demo")
       {
         //COMMS.Instance.Pause(7); //wait 7 seconds for valves to finish moving
         //waitForm.Hide();
       }
-
 
       Properties.Settings.Default.Save();
       this.DialogResult = DialogResult.OK;
@@ -258,6 +281,15 @@ namespace LukMachine
 
     private void Setup_Load(object sender, EventArgs e)
     {
+      //stop main pump
+      Pumps.SetPump2(0);
+      //close drain valve
+      Valves.CloseValve3();
+      //close relief pressure valve
+      Valves.CloseValve2();
+      //close pent valve so that it wont drain
+      Valves.CloseValve1();
+
       textBoxPressure.Text = Properties.Settings.Default.TextboxPressure;
       textBoxDuration.Text = Properties.Settings.Default.TextboxDuration;
 

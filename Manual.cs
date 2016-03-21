@@ -64,7 +64,7 @@ namespace LukMachine
     int ReservoirPercent;
     int CollectedPercent;
     int originalVolume;
-    int myInterval = 60;
+    int myInterval;
     int volumeDifference;
     int collectedVolume;
     double temp;
@@ -78,6 +78,7 @@ namespace LukMachine
 
     private void Manual_Load(object sender, EventArgs e)
     {
+      myInterval = Convert.ToInt32(textBox9.Text);
       pressureThreshold = Convert.ToDouble(textBoxPSIdiff.Text);
       stableSecs = Convert.ToInt32(textBoxStableSecs.Text);
       PressureList = new double[stableSecs + 1];
@@ -338,13 +339,13 @@ namespace LukMachine
         doneFirstInterval = true;
         counter = 0;
         volumeDifference = currentVolume - originalVolume;
-        labelFlowPerMin.Text = volumeDifference.ToString() + " mL/interval";
+        labelFlowPerMin.Text = (volumeDifference * 6).ToString() + " mL/min";
         originalVolume = currentVolume;
       }
       if (!doneFirstInterval)
       {
         volumeDifference = currentVolume - originalVolume;
-        labelFlowPerMin.Text = volumeDifference.ToString() + " mL/interval";
+        labelFlowPerMin.Text = (volumeDifference * 6).ToString() + " mL/min";
       }
 
       labelCollectedCount.Text = COMMS.Instance.getCollectedLevelCount() + " counts";
@@ -365,25 +366,28 @@ namespace LukMachine
         //MessageBox.Show(ex.Message);
       }
 
+      if (checkBoxStopPumpIfReservoirEmpty.Checked)
+      {
+        if (ReservoirPercent <= 1)
+        {
+          stopMainPump();
+        }
+        //MessageBox.Show("Pump has been stopped because reservoir is emtpy");
+      }
+
       //update valve colors:
       updateValveColors();  //gets values from properties
 
 
       //maybe read temperatures...
-      if (checkBox1.Checked)
+      if (checkBoxReadTemps.Checked)
       {
         temp = COMMS.Instance.ReadAthenaTemp(1);
-        checkBox1.Text = "Chamber 1: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
-      }
-      if (checkBox2.Checked)
-      {
+        labelChamber1Temp.Text = "Chamber 1: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
         temp = COMMS.Instance.ReadAthenaTemp(2);
-        checkBox2.Text = "Chamber 2: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
-      }
-      if (checkBox3.Checked)
-      {
+        labelChamber2Temp.Text = "Chamber 2: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
         temp = COMMS.Instance.ReadAthenaTemp(3);
-        checkBox3.Text = "Reservoir 1: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        labelReservoirTemp.Text = "Reservoir: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
       }
       if (checkBox4.Checked)
       {
@@ -856,7 +860,7 @@ namespace LukMachine
     {
 
     }
-
+    //COMMS.run3wayValve7();
     private void run3wayValve7()
     {
       //switch3wayValveB();
@@ -1029,6 +1033,7 @@ namespace LukMachine
     private void textBoxTemp_TextChanged(object sender, EventArgs e)
     {
       labelSetTemp.Text = "deg C (" + (Math.Round((Convert.ToDouble(textBoxTemp.Text) * 9 / 5 + 32))).ToString() + " F)";
+      heat();
     }
 
 
@@ -1066,7 +1071,7 @@ namespace LukMachine
       {
         textBoxTemp.Text = "20";
         textBoxTemp.Enabled = false;
-        heat();
+        heatAlltoRoomTemp();
 
       }
       else
@@ -1094,16 +1099,22 @@ namespace LukMachine
         //ReadAllTemperatures();
         //targetTemp = Properties.Settings.Default.selectedTemp; 
 
-
         //while ((currentTemp < targetTemp - 2) || (currentTemp > targetTemp + 2))
         // {
         //ReadAllTemperatures();
         //set heaters:
         targetTemp = Convert.ToDouble(textBoxTemp.Text);
-        COMMS.Instance.SetAthenaTemp(1, (Math.Round(((targetTemp) * 9 / 5 + 32))));
-        COMMS.Instance.SetAthenaTemp(2, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+
+        if (checkBoxLeftChamber.Checked == true)
+        {
+          COMMS.Instance.SetAthenaTemp(1, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+        }
+        if (checkBoxRightChamber.Checked == true)
+        {
+          COMMS.Instance.SetAthenaTemp(2, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+        }
         COMMS.Instance.SetAthenaTemp(3, (Math.Round(((targetTemp) * 9 / 5 + 32))));
-        COMMS.Instance.SetAthenaTemp(4, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+        //COMMS.Instance.SetAthenaTemp(4, (Math.Round(((targetTemp) * 9 / 5 + 32))));
 
         //Thread.Sleep(2000);//wait before checking again
         //Console.WriteLine("athena1Temp " + athena1Temp);
@@ -1112,7 +1123,22 @@ namespace LukMachine
       }
       catch (Exception ex)
       {
-        MessageBox.Show("Problem reading temperature from Athena ");
+        MessageBox.Show("Problem setting temperature on Athena: " + ex.Message);
+      }
+    }
+
+    private void heatAlltoRoomTemp()
+    {
+      try
+      {
+        targetTemp = Convert.ToDouble(textBoxTemp.Text);
+        COMMS.Instance.SetAthenaTemp(1, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+        COMMS.Instance.SetAthenaTemp(2, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+        COMMS.Instance.SetAthenaTemp(3, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show("Problem setting temperature on Athena: " + ex.Message);
       }
     }
 
@@ -1622,6 +1648,21 @@ namespace LukMachine
       catch (Exception)
       {
       }
+    }
+
+    private void button34_Click(object sender, EventArgs e)
+    {
+      if (Properties.Settings.Default.checkbLeftChecked)
+      {
+        Properties.Settings.Default.checkbLeftChecked = false;
+        Properties.Settings.Default.Save();
+      }
+      else
+      {
+        Properties.Settings.Default.checkbLeftChecked = true;
+        Properties.Settings.Default.Save();
+      }
+      MessageBox.Show("The Chambers checkboxes have been reversed. You must restart the application. ");
     }
   }
 }

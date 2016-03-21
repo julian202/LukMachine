@@ -44,7 +44,7 @@ namespace LukMachine
     public bool continueExport = false;
 
     // SEND, SEND/RECEIVE, OPEN PORT, CLOSE PORT, LIST PORTS.
-    #region COMM Controls
+    #region COMM Controlsz
 
     public Boolean OpenPort(String portNum)
     {

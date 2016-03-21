@@ -64,6 +64,23 @@ namespace LukMachine
       Close();
     }
 
+    private void loadPortList()
+    {
+      //add a selection for demo mode
+      comboBox1.Items.Add("Demo");
+      foreach (string port in COMMS.Instance.GetAvailablePorts())
+      {
+        //iterate through available ports and add them for selection.
+        comboBox1.Items.Add(port);
+        //if we have found our last selected port, set it as the selected item.
+        if (port == Properties.Settings.Default.COMM)
+        {
+          comboBox1.SelectedIndex = comboBox1.FindStringExact(port);
+        }
+      }
+
+    }
+
     private void settings_Load(object sender, EventArgs e)
     {
 
@@ -86,18 +103,11 @@ namespace LukMachine
       textBox3.Text = Properties.Settings.Default.HighPumpSetting;
 
       label6.Text = "Software Version: " + COMMS.Instance.version;
-      //add a selection for demo mode
-      comboBox1.Items.Add("Demo");
-      foreach (string port in COMMS.Instance.GetAvailablePorts())
-      {
-        //iterate through available ports and add them for selection.
-        comboBox1.Items.Add(port);
-        //if we have found our last selected port, set it as the selected item.
-        if (port == Properties.Settings.Default.COMM)
-        {
-          comboBox1.SelectedIndex = comboBox1.FindStringExact(port);
-        }
-      }
+
+
+      loadPortList();
+      
+
 
       //load settings for pressure units
       foreach (string s in Properties.Settings.Default.pressureUnits)
@@ -145,6 +155,12 @@ namespace LukMachine
         Properties.Settings.Default.TempCorF = "F";
         Properties.Settings.Default.Save();
       }
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+      comboBox1.Items.Clear();
+      loadPortList();
     }
   }
 }

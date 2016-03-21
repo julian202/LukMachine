@@ -174,7 +174,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Valve4State" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="Valve5State" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -183,7 +183,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Valve7State" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="RefillPumpState" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -228,10 +228,10 @@
       <Value Profile="(Default)">650</Value>
     </Setting>
     <Setting Name="Valve8State" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="checkbLeftChecked" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="RefCount2V" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>

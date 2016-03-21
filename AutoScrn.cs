@@ -38,6 +38,9 @@ namespace LukMachine
       else
       {
         // Running on the same thread which created the control
+
+        // CONTROLS FOR DEVICES IN PMI MACHINES
+        #region Reading Messages
         if (message.Contains("Reading:"))
         {
           // split the reading string into usable doubles
@@ -96,9 +99,7 @@ namespace LukMachine
         else if (message.Contains("disable stop button"))
         {
           button2.Enabled = false;
-        }
-        
-   
+        }  
         else if (message.Contains("display pressure"))
         {
           string[] msgSplit = message.Split('=');
@@ -120,7 +121,6 @@ namespace LukMachine
             pressures = pressures + ", " + Properties.Settings.Default.CollectionPressure[i];
           }
           labelTargetPressure.Text = "Pressure  =  " + pressures;*/
-
         }
         else if (message.Contains("display duration"))
         {
@@ -128,8 +128,6 @@ namespace LukMachine
           //string duration = msgSplit[1];
 
           //labelDuration.Text = "Duration  =  " + String.Format("{0:0.0} mins", Convert.ToDouble(duration));
-
-
         }
         else if (message.Contains("hide panel1"))
         {
@@ -170,9 +168,6 @@ namespace LukMachine
         {
           endTest();
         }
-
-
-
         else if (message.Contains("B="))
         {
           //do some stuff, maybe open the repOrt with a capital NOW.
@@ -202,6 +197,7 @@ namespace LukMachine
           listBox1.Items.Add(message);
           listBox1.TopIndex = listBox1.Items.Count - 1;
         }
+        #endregion
       }
     }
 
