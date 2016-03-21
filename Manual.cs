@@ -382,11 +382,11 @@ namespace LukMachine
       //maybe read temperatures...
       if (checkBoxReadTemps.Checked)
       {
-        temp = COMMS.Instance.ReadAthenaTemp(1);
-        labelChamber1Temp.Text = "Chamber 1: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
         temp = COMMS.Instance.ReadAthenaTemp(2);
-        labelChamber2Temp.Text = "Chamber 2: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        labelChamber1Temp.Text = "Chamber 1: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
         temp = COMMS.Instance.ReadAthenaTemp(3);
+        labelChamber2Temp.Text = "Chamber 2: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        temp = COMMS.Instance.ReadAthenaTemp(1);
         labelReservoirTemp.Text = "Reservoir: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
       }
       if (checkBox4.Checked)
@@ -1032,8 +1032,19 @@ namespace LukMachine
 
     private void textBoxTemp_TextChanged(object sender, EventArgs e)
     {
-      labelSetTemp.Text = "deg C (" + (Math.Round((Convert.ToDouble(textBoxTemp.Text) * 9 / 5 + 32))).ToString() + " F)";
-      heat();
+      if (textBoxTemp.Text!="")
+      {
+        try
+        {
+          labelSetTemp.Text = "deg C (" + (Math.Round((Convert.ToDouble(textBoxTemp.Text) * 9 / 5 + 32))).ToString() + " F)";
+        }
+        catch (Exception)
+        {
+        }
+        heat();
+      }
+      
+     
     }
 
 
@@ -1107,13 +1118,13 @@ namespace LukMachine
 
         if (checkBoxLeftChamber.Checked == true)
         {
-          COMMS.Instance.SetAthenaTemp(1, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+          COMMS.Instance.SetAthenaTemp(2, (Math.Round(((targetTemp) * 9 / 5 + 32))));
         }
         if (checkBoxRightChamber.Checked == true)
         {
-          COMMS.Instance.SetAthenaTemp(2, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+          COMMS.Instance.SetAthenaTemp(3, (Math.Round(((targetTemp) * 9 / 5 + 32))));
         }
-        COMMS.Instance.SetAthenaTemp(3, (Math.Round(((targetTemp) * 9 / 5 + 32))));
+        COMMS.Instance.SetAthenaTemp(1, (Math.Round(((targetTemp) * 9 / 5 + 32))));
         //COMMS.Instance.SetAthenaTemp(4, (Math.Round(((targetTemp) * 9 / 5 + 32))));
 
         //Thread.Sleep(2000);//wait before checking again
@@ -1537,7 +1548,7 @@ namespace LukMachine
 
     private void textBoxFlow_TextChanged(object sender, EventArgs e)
     {
-      textBox6.Text = (Convert.ToInt32(textBoxFlow.Text) / 10).ToString();
+      
     }
 
     private void checkBoxShowArrows_CheckedChanged(object sender, EventArgs e)
@@ -1663,6 +1674,16 @@ namespace LukMachine
         Properties.Settings.Default.Save();
       }
       MessageBox.Show("The Chambers checkboxes have been reversed. You must restart the application. ");
+    }
+
+    private void button35_Click(object sender, EventArgs e)
+    {
+      textBox6.Text = (Convert.ToInt32(textBoxFlow.Text) / 10).ToString();
+    }
+
+    private void checkBoxReadTemps_CheckedChanged(object sender, EventArgs e)
+    {
+
     }
   }
 }

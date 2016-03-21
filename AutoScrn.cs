@@ -21,7 +21,7 @@ namespace LukMachine
     private double athena1Temp; //temp of tank
     private double athena2Temp; //temp of pipes
     private double chamberTemp;
-
+    int collectedVolume;
     public AutoScrn()
     {
       InitializeComponent();
@@ -146,13 +146,34 @@ namespace LukMachine
           string CollectedPercent = msgSplit[2];
           //MessageBox.Show("ReservoirPercent = " + ReservoirPercent+ " CollectedPercent = " + CollectedPercent);
           //int ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
-          groupBoxReservoir.Text = "Reservoir " + ReservoirPercent.ToString() + "% Full";
+          //groupBoxReservoir.Text = "Reservoir " + ReservoirPercent.ToString() + "% Full";
           //int CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
-          groupBoxCollectedVolume.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
+          // groupBoxCollectedVolume.Text = "Collected Volume " + CollectedPercent.ToString() + "% Full";
+
+          groupBoxReservoir.Text = "Reservoir " + (Convert.ToInt32(ReservoirPercent) * Convert.ToInt32(Properties.Settings.Default.MaxCapacityInML) / 100).ToString() + " mL";
+
+          collectedVolume = Convert.ToInt32(CollectedPercent) * Convert.ToInt32(Properties.Settings.Default.MaxCapacityInML) / 100;
+          //mlCollected.Text = (collectedVolume).ToString() + " mL";
+          groupBoxCollectedVolume.Text = "Collected Volume " + collectedVolume.ToString() + " mL";
           //MessageBox.Show("ReservoirPercent = " + ReservoirPercent + " CollectedPercent = " + CollectedPercent);
 
-          verticalProgressBar1.Value = Convert.ToInt32(ReservoirPercent);
-          verticalProgressBar2.Value = Convert.ToInt32(CollectedPercent);
+          try
+          {
+            verticalProgressBar1.Value = Convert.ToInt32(ReservoirPercent);
+          }
+          catch (Exception)
+          {
+
+            verticalProgressBar1.Value = 0;
+          }
+          try
+          {
+            verticalProgressBar2.Value = Convert.ToInt32(CollectedPercent);
+          }
+          catch (Exception)
+          {
+            verticalProgressBar2.Value = 0;
+          }
         }
         else if (message.Contains("display stepCount"))
         {

@@ -36,6 +36,8 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoScrn));
       this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
       this.dataGridView1 = new System.Windows.Forms.DataGridView();
+      this.TimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.PressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.button3 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
@@ -60,8 +62,6 @@
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.button4 = new System.Windows.Forms.Button();
-      this.TimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.PressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.linkLabel1 = new System.Windows.Forms.LinkLabel();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -127,6 +127,18 @@
       this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
       this.dataGridView1.Size = new System.Drawing.Size(231, 308);
       this.dataGridView1.TabIndex = 1;
+      // 
+      // TimeColumn
+      // 
+      this.TimeColumn.HeaderText = "Time(sec)";
+      this.TimeColumn.Name = "TimeColumn";
+      this.TimeColumn.ReadOnly = true;
+      // 
+      // PressureColumn
+      // 
+      this.PressureColumn.HeaderText = "Flow(mL/min)";
+      this.PressureColumn.Name = "PressureColumn";
+      this.PressureColumn.ReadOnly = true;
       // 
       // button3
       // 
@@ -380,18 +392,6 @@
       this.button4.Text = "Open Report Window";
       this.button4.UseVisualStyleBackColor = true;
       this.button4.Click += new System.EventHandler(this.button4_Click);
-      // 
-      // TimeColumn
-      // 
-      this.TimeColumn.HeaderText = "Time(sec)";
-      this.TimeColumn.Name = "TimeColumn";
-      this.TimeColumn.ReadOnly = true;
-      // 
-      // PressureColumn
-      // 
-      this.PressureColumn.HeaderText = "Flow(mL/min)";
-      this.PressureColumn.Name = "PressureColumn";
-      this.PressureColumn.ReadOnly = true;
       // 
       // linkLabel1
       // 

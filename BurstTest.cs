@@ -210,13 +210,18 @@ namespace LukMachine
       ReadPressureAndSetLabel();
       SetTargetPressureLabel();
       SetDurationLabel();
-
+      pressureAdjustLoop();
+      //repeat so that it goes down if it overshot:
+      pressureAdjustLoop();
+    }
+    public void pressureAdjustLoop()
+    {
       while (((currentPressure < (targetPressure - 0.1)) || (currentPressure > targetPressure + 0.1)) && !abort)
       {
         System.Diagnostics.Debug.WriteLine("currentPressure is " + currentPressure.ToString() + ",  targetPressure is " + targetPressure.ToString());
 
         ReadPressureAndSetLabel();
-        Thread.Sleep(500);//wait before checking again
+        Thread.Sleep(6000);//wait before checking again
                           //Console.WriteLine("athena1Temp " + athena1Temp);
                           //Console.WriteLine("chamberTemp " + chamberTemp);
         if (targetPressure > currentPressure)
@@ -230,10 +235,11 @@ namespace LukMachine
       }
     }
 
+
     public void EmptyCollectedVolume() //refill reservoir with the liquid from the collected volume
     {
-      int CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
-      int ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+      CollectedPercent = COMMS.Instance.getCollectedLevelPercent();
+      ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
       //MessageBox.Show("ReservoirPercent "+ ReservoirPercent+ " CollectedPercent "+ CollectedPercent);
       Progress("display volume levels =" + ReservoirPercent.ToString() + "=" + CollectedPercent.ToString());//fix this, dont read twice
 
@@ -254,11 +260,15 @@ namespace LukMachine
     {
       if (ReservoirPercent < 80)
       {
-        Progress("Reservoir is not full. Please add more to reservoir.");
+        Progress("Reservoir is not full. Please add more volume to reservoir.");
         while (ReservoirPercent < 80)
         {
           Thread.Sleep(300);
-        }     
+          System.Diagnostics.Debug.WriteLine("waiting for volume to fill... ");
+          ReservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+          Progress("display volume levels =" + ReservoirPercent.ToString() + "=" + CollectedPercent.ToString());//fix this, dont read twice
+
+        }
       }
 
     }
@@ -379,11 +389,13 @@ namespace LukMachine
       }
 
       //set presurre to target pressure
+      
       Progress("Setting pressure to target pressure. Please wait...");
       stepCount = 0;
       targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
       currentDuration = Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]);
-
+      //start pump at one third of targetPressure (as an initial estimate):
+      Pumps.IncreaseMainPump(Convert.ToInt32(targetPressure/3));
       Progress("display current step time=" + (currentDuration).ToString("0.00"));
       GoToTargetPressure();
       Progress("Target pressure reached");
