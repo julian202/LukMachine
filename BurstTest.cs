@@ -207,23 +207,25 @@ namespace LukMachine
 
     public void GoToTargetPressure()
     {
+      Progress("panel label setting pressure");
       ReadPressureAndSetLabel();
       SetTargetPressureLabel();
       SetDurationLabel();
       pressureAdjustLoop();
       //repeat so that it goes down if it overshot:
+      Thread.Sleep(1000);
       pressureAdjustLoop();
     }
     public void pressureAdjustLoop()
     {
-      while (((currentPressure < (targetPressure - 0.1)) || (currentPressure > targetPressure + 0.1)) && !abort)
+      while ((((currentPressure < (targetPressure - 0.1)) || (currentPressure > targetPressure + 0.1)) && !abort)&& !COMMS.skipPressure)
       {
         System.Diagnostics.Debug.WriteLine("currentPressure is " + currentPressure.ToString() + ",  targetPressure is " + targetPressure.ToString());
 
         ReadPressureAndSetLabel();
         Thread.Sleep(6000);//wait before checking again
-                          //Console.WriteLine("athena1Temp " + athena1Temp);
-                          //Console.WriteLine("chamberTemp " + chamberTemp);
+                           //Console.WriteLine("athena1Temp " + athena1Temp);
+                           //Console.WriteLine("chamberTemp " + chamberTemp);
         if (targetPressure > currentPressure)
         {
           Pumps.IncreaseMainPump(1);
@@ -314,21 +316,20 @@ namespace LukMachine
       {
         //targetTemp = Properties.Settings.Default.selectedTemp;
 
-
         //set heaters to target temp:
         double targetTempinF = (Math.Round(((targetTemp) * 9 / 5 + 32)));
         COMMS.Instance.SetAthenaTemp(1, targetTempinF);
         COMMS.Instance.SetAthenaTemp(2, targetTempinF);
         COMMS.Instance.SetAthenaTemp(3, targetTempinF);
-        COMMS.Instance.SetAthenaTemp(4, targetTempinF);
+        //COMMS.Instance.SetAthenaTemp(4, targetTempinF);
 
-        while ((currentTemp < targetTempinF - 1) || (currentTemp > targetTempinF + 1))
+        while (((currentTemp < targetTempinF - 1) || (currentTemp > targetTempinF + 1)) && !COMMS.skipTemp)
         {
           ReadTemperatureAndSetLabel();
-          Thread.Sleep(2000);//wait before checking again
+          Thread.Sleep(1500);//wait before checking again
           //Console.WriteLine("athena1Temp " + athena1Temp);
           //Console.WriteLine("chamberTemp " + chamberTemp);
-        }
+        }       
       }
       catch (Exception ex)
       {
@@ -384,19 +385,21 @@ namespace LukMachine
       {
         targetTemp = Convert.ToDouble(nextTemperature);
         Progress("Heating machine to target temperature. Please wait...");
+        COMMS.skipTemp = false; //this is used by the button in the panel that skips waiting for temperature
         HeatMachineToTargetTemperature(); //this enters a while loop until the temperatue is right.
         Progress("Done Heating machine to target temperature");
       }
 
       //set presurre to target pressure
-      
+
       Progress("Setting pressure to target pressure. Please wait...");
       stepCount = 0;
       targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
       currentDuration = Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]);
       //start pump at one third of targetPressure (as an initial estimate):
-      Pumps.IncreaseMainPump(Convert.ToInt32(targetPressure/3));
+      Pumps.IncreaseMainPump(Convert.ToInt32(targetPressure / 3));
       Progress("display current step time=" + (currentDuration).ToString("0.00"));
+      
       GoToTargetPressure();
       Progress("Target pressure reached");
 
@@ -432,6 +435,7 @@ namespace LukMachine
       bool firstRound = true;
       while (!abort && !overVolume)
       {
+        Progress("hide panel 1");
         //Read pressure
         ReadPressureAndSetLabel();
 
@@ -470,11 +474,11 @@ namespace LukMachine
         outputTime = currentTime / 1000;
         timeDifferenceInMinutes = ((currentTime - lastTime) / 1000) / 60;
 
-        
+
         if (!mustNotCountFlowBecausePressureIsAdjusting)
         {
           //(this is so that the first time point after adjusting pressure doesnt count the flow accumulated during that period)
-          
+
           //Calculate flow
           Flow = CollectedDifferenceInCounts / timeDifferenceInMinutes; //this is flow in pent counts per minute
           Flow = Flow * Convert.ToDouble(Properties.Settings.Default.MaxCapacityInML) / 58000; //this converts flow to mL       
@@ -518,7 +522,15 @@ namespace LukMachine
           //set presurre to target pressure
           Progress("Setting pressure to target pressure for next period. Please wait...");
           stepCount++;
-          Progress("display stepCount=" + (stepCount + 1).ToString());
+          if (stepCount >= Properties.Settings.Default.CollectionPressure.Count)
+          {
+            Progress("display stepCount=" + " End");
+          }
+          else
+          {
+            Progress("display stepCount=" + (stepCount + 1).ToString());
+          }
+
 
 
           //end if stepCount is bigger than the number of steps (i.e. periods)
@@ -554,9 +566,9 @@ namespace LukMachine
         }
         else  //if it is not the end of the period...
         {
-          mustNotCountFlowBecausePressureIsAdjusting = false; 
+          mustNotCountFlowBecausePressureIsAdjusting = false;
         }
-     
+
 
         //Stop if over max pressure.
         if (outputPressure > p1Max) //add to this if volume is empty or pent is full

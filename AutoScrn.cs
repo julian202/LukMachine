@@ -49,7 +49,7 @@ namespace LukMachine
           string[] splitString2 = splitString[1].Split(',');
           string X = splitString2[1];
           string Y = splitString2[0];
-          chart1.Series["Series1"].Points.AddXY(Y, X);        
+          chart1.Series["Series1"].Points.AddXY(Y, X);
           labelTotalTime.Text = "Total time  =  " + (Convert.ToDouble(Y) / 60).ToString("0.00") + " mins";
 
           /*try
@@ -79,6 +79,12 @@ namespace LukMachine
         }
         else if (message.Contains("set label7 to targetTemp"))
         {
+
+          label4.Text = "Please wait...  Setting Temperature";
+          panel1.Visible = true;
+          buttonSkipSettingTemp.Visible = true;
+
+
           //targetTemp = Properties.Settings.Default.selectedTemp;
           /*
           string[] msgSplit = message.Split('=');
@@ -87,6 +93,20 @@ namespace LukMachine
           label8.Text = "Temperature  = " + targetTemp.ToString() + " F / " + String.Format("{0:0}", targetTempInCelsius) + " C ";
           */
         }
+        else if (message.Contains("panel label setting pressure"))
+        {
+          panel1.Visible = true;
+          label4.Text = "Please wait...  Setting Pressure";
+          buttonSkipSettingTemp.Visible = false;
+          buttonSkipPressure.Visible = true;
+        }
+        else if (message.Contains("hide panel 1"))
+        {
+          panel1.Visible = false;
+        }
+
+          
+
         else if (message.Contains("set label5 to currentTemp"))
         {
           string[] msgSplit = message.Split('=');
@@ -132,6 +152,7 @@ namespace LukMachine
         else if (message.Contains("hide panel1"))
         {
           panel1.Visible = false;
+          buttonSkipPressure.Visible = false;
         }
         else if (message.Contains("disable stop button"))
         {
@@ -224,6 +245,8 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+      buttonSkipSettingTemp.Visible = false;
+      buttonSkipPressure.Visible = false;
       string pressures;
       pressures = Properties.Settings.Default.CollectionPressure[0];
       for (int i = 1; i < Properties.Settings.Default.CollectionPressure.Count; i++)
@@ -326,7 +349,7 @@ namespace LukMachine
       //this sleep added to try to fix program hanging on next line (.Join):
       Thread.Sleep(2000);
       listBox1.Items.Add("Data saved to " + Properties.Settings.Default.TestData);
-      listBox1.Items.Add("Test ended successfully");
+      //listBox1.Items.Add("Test ended successfully");
       button4.Visible = true;
       //button5.Visible = true;
       listBox1.TopIndex = listBox1.Items.Count - 1;
@@ -372,6 +395,16 @@ namespace LukMachine
     private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
       System.Diagnostics.Process.Start("explorer.exe", System.IO.Directory.GetParent(Properties.Settings.Default.TestData).ToString());
+    }
+
+    private void buttonSkipSettingTemp_Click(object sender, EventArgs e)
+    {
+      COMMS.skipTemp = true;
+    }
+
+    private void buttonSkipPressure_Click(object sender, EventArgs e)
+    {
+      COMMS.skipPressure = true;
     }
   }
 }

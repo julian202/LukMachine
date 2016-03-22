@@ -63,6 +63,8 @@
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.button4 = new System.Windows.Forms.Button();
       this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+      this.buttonSkipSettingTemp = new System.Windows.Forms.Button();
+      this.buttonSkipPressure = new System.Windows.Forms.Button();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
@@ -201,6 +203,8 @@
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.buttonSkipPressure);
+      this.panel1.Controls.Add(this.buttonSkipSettingTemp);
       this.panel1.Controls.Add(this.label4);
       this.panel1.Location = new System.Drawing.Point(30, 272);
       this.panel1.Name = "panel1";
@@ -405,6 +409,28 @@
       this.linkLabel1.Text = "Open Folder";
       this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
       // 
+      // buttonSkipSettingTemp
+      // 
+      this.buttonSkipSettingTemp.Location = new System.Drawing.Point(162, 121);
+      this.buttonSkipSettingTemp.Name = "buttonSkipSettingTemp";
+      this.buttonSkipSettingTemp.Size = new System.Drawing.Size(282, 36);
+      this.buttonSkipSettingTemp.TabIndex = 1;
+      this.buttonSkipSettingTemp.Text = "Skip Setting Temperature";
+      this.buttonSkipSettingTemp.UseVisualStyleBackColor = true;
+      this.buttonSkipSettingTemp.Visible = false;
+      this.buttonSkipSettingTemp.Click += new System.EventHandler(this.buttonSkipSettingTemp_Click);
+      // 
+      // buttonSkipPressure
+      // 
+      this.buttonSkipPressure.Location = new System.Drawing.Point(177, 121);
+      this.buttonSkipPressure.Name = "buttonSkipPressure";
+      this.buttonSkipPressure.Size = new System.Drawing.Size(282, 36);
+      this.buttonSkipPressure.TabIndex = 2;
+      this.buttonSkipPressure.Text = "Skip Setting Pressure";
+      this.buttonSkipPressure.UseVisualStyleBackColor = true;
+      this.buttonSkipPressure.Visible = false;
+      this.buttonSkipPressure.Click += new System.EventHandler(this.buttonSkipPressure_Click);
+      // 
       // AutoScrn
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
@@ -481,6 +507,8 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn TimeColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn PressureColumn;
     private System.Windows.Forms.LinkLabel linkLabel1;
+    private System.Windows.Forms.Button buttonSkipSettingTemp;
+    private System.Windows.Forms.Button buttonSkipPressure;
     // private System.Windows.Controls.ProgressBar progbar;
 
 

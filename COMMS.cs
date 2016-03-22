@@ -42,6 +42,8 @@ namespace LukMachine
     string[] valvePosition = new string[24]; // to remember valve position
     public string inputReturn = null;
     public bool continueExport = false;
+    public static bool skipTemp=false;
+    public static bool skipPressure = false;
 
     // SEND, SEND/RECEIVE, OPEN PORT, CLOSE PORT, LIST PORTS.
     #region COMM Controlsz

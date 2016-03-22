@@ -923,10 +923,18 @@ namespace LukMachine
         }
         catch (Exception)
         {
-
-        }
-        
+        }       
       }
+    }
+
+    private void buttonCalculate_Click(object sender, EventArgs e)
+    {    
+      double perm;
+      double area = 3.14159 * (Convert.ToDouble(textBoxDiameter.Text)* Convert.ToDouble(textBoxDiameter.Text))/4;
+      perm = 14.7 * Convert.ToDouble(textBoxFlow.Text) / (60*area* Convert.ToDouble(textBoxPressure.Text));
+      labelPermeability.Text = "= "+perm.ToString("#.0000000");
+      /*double i = 10 / 5 / 2;
+      MessageBox.Show(i.ToString());*/
     }
   }
 }
