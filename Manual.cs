@@ -41,8 +41,8 @@ namespace LukMachine
     private bool changedFluidSpeed;
     private Thread myThread;
     public delegate void UpdateTextCallback(string text);
-    bool Valve3wayToRight;
-    bool Valve3wayBToRight;
+    //bool Valve3wayToRight;//now its in COMMS
+    //bool Valve3wayBToRight;//now its in COMMS
     double outputPressure = 0; string counts = ""; double realCounts = 0; double currentPressure;
     private double pConversion = Properties.Settings.Default.defaultPressureConversion;
     double p1Psi;
@@ -78,19 +78,17 @@ namespace LukMachine
 
     private void Manual_Load(object sender, EventArgs e)
     {
+      timerHeater.Enabled = true;
       myInterval = Convert.ToInt32(textBox9.Text);
       pressureThreshold = Convert.ToDouble(textBoxPSIdiff.Text);
       stableSecs = Convert.ToInt32(textBoxStableSecs.Text);
       PressureList = new double[stableSecs + 1];
       startTime = Environment.TickCount;
 
-      Properties.Settings.Default.ground = COMMS.Instance.getGround();
-      Properties.Settings.Default.RefCount2V = COMMS.Instance.get2v();
+      COMMS.calculateVoltageReferences();
+      
       labelGround.Text = "Ground = " + Properties.Settings.Default.ground;
       label2V.Text = "2V = " + Properties.Settings.Default.RefCount2V;
-      int Ref0V = Convert.ToInt32(Properties.Settings.Default.ground);
-      int Ref2V = Properties.Settings.Default.RefCount2V;
-      Properties.Settings.Default.RefCount10V = Ref0V + Convert.ToInt32((Ref2V - Ref0V) * 4.75);// or 5;  4.75 is 9.5/2 becuase 9.5V is the voltage when it is empty
       label10V.Text = "10V = " + Properties.Settings.Default.RefCount10V;
       textBoxFlow.Select();
       ground = Properties.Settings.Default.ground;
@@ -134,7 +132,7 @@ namespace LukMachine
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
         //checkBoxLeftChamber.Checked = true;
         //checkBoxRightChamber.Checked = false;
-        Valve3wayToRight = false;
+        COMMS.Valve3wayToRight = false;
 
       }
       else
@@ -142,18 +140,18 @@ namespace LukMachine
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
         //checkBoxLeftChamber.Checked = false;
         //checkBoxRightChamber.Checked = true;
-        Valve3wayToRight = true;
+        COMMS.Valve3wayToRight = true;
       }
 
       if (Properties.Settings.Default.Valve8State)
       {
         rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_UpLeftArrowShort_Green_32x32_72;
-        Valve3wayBToRight = true;
+        COMMS.Valve3wayBToRight = true;
       }
       else
       {
         rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
-        Valve3wayBToRight = false;
+        COMMS.Valve3wayBToRight = false;
       }
 
 
@@ -356,15 +354,67 @@ namespace LukMachine
 
       try
       {
-        verticalProgressBar1.Value = ReservoirPercent;
+        verticalProgressBar1.Value = ReservoirPercent;       
+      }
+      catch (Exception ex)
+      {
+        if (ReservoirPercent>=100)
+        {
+          verticalProgressBar1.Value = 100;
+        }
+        else
+        {
+          verticalProgressBar1.Value = 0;
+        }
+        
+      }
+      try
+      {
         verticalProgressBar2.Value = CollectedPercent;
+      }
+      catch (Exception ex)
+      {
+        if (CollectedPercent >= 100)
+        {
+          verticalProgressBar2.Value = 100;
+        }
+        else
+        {
+          verticalProgressBar2.Value = 0;
+        }
+      }
+      try
+      {
         verticalProgressBar3.Value = CollectedPercent;
+      }
+      catch (Exception ex)
+      {
+        if (CollectedPercent >= 100)
+        {
+          verticalProgressBar3.Value = 100;
+        }
+        else
+        {
+          verticalProgressBar3.Value = 0;
+        }
+      }
+      try
+      {
         verticalProgressBar4.Value = ReservoirPercent;
       }
       catch (Exception ex)
       {
-        //MessageBox.Show(ex.Message);
+        if (ReservoirPercent >= 100)
+        {
+          verticalProgressBar4.Value = 100;
+        }
+        else
+        {
+          verticalProgressBar4.Value = 0;
+        }
       }
+
+
 
       if (checkBoxStopPumpIfReservoirEmpty.Checked)
       {
@@ -540,6 +590,7 @@ namespace LukMachine
     {
       timer1.Enabled = false;
       timer2.Enabled = false;
+      timerHeater.Enabled = false;
     }
 
     private void button18_Click(object sender, EventArgs e)
@@ -864,10 +915,10 @@ namespace LukMachine
     private void run3wayValve7()
     {
       //switch3wayValveB();
-      if (Valve3wayToRight)
+      if (COMMS.Valve3wayToRight)
       {
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_RightArrowShort_Green_32x32_72;
-        Valve3wayToRight = false;
+        COMMS.Valve3wayToRight = false;
         Properties.Settings.Default.Valve7State = false;
         //Valves.CloseValve7();  //valve 7 is the 3 way valve
         Valves.Valve7toLeft();
@@ -877,7 +928,7 @@ namespace LukMachine
       else
       {
         rectangleShape20.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
-        Valve3wayToRight = true;
+        COMMS.Valve3wayToRight = true;
         Properties.Settings.Default.Valve7State = true;
         //Valves.OpenValve7();
         Valves.Valve7toRight();
@@ -898,10 +949,10 @@ namespace LukMachine
 
     private void switch3wayValveB()
     {
-      if (Valve3wayBToRight)
+      if (COMMS.Valve3wayBToRight)
       {
         rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_LeftArrowShort_Green_32x32_72;
-        Valve3wayBToRight = false;
+        COMMS.Valve3wayBToRight = false;
         Properties.Settings.Default.Valve8State = false;
         //Valves.CloseValve8();  //valve 8 is the 3 way valve
         Valves.Valve8toLeft();
@@ -910,7 +961,7 @@ namespace LukMachine
       else
       {
         rectangleShape23.BackgroundImage = global::LukMachine.Properties.Resources._112_UpLeftArrowShort_Green_32x32_72;
-        Valve3wayBToRight = true;
+        COMMS.Valve3wayBToRight = true;
         Properties.Settings.Default.Valve8State = true;
         //Valves.OpenValve8();
         Valves.Valve8toRight();
@@ -1042,11 +1093,8 @@ namespace LukMachine
         {
         }
         heat();
-      }
-      
-     
+      }    
     }
-
 
 
     private void button21_Click_1(object sender, EventArgs e)
@@ -1302,7 +1350,7 @@ namespace LukMachine
       aGauge1.Value = (float)p1Psi;
       if (p1Psi < 0)
       {
-        p1Psi = 0;
+        //p1Psi = 0;
       }
       //label1.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
       //label30.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
@@ -1684,6 +1732,27 @@ namespace LukMachine
     private void checkBoxReadTemps_CheckedChanged(object sender, EventArgs e)
     {
 
+    }
+
+    private void timerHeater_Tick(object sender, EventArgs e)
+    {
+      if (checkBoxHeatSystem.Checked == false)
+      {
+        textBoxTemp.Text = "20";
+        textBoxTemp.Enabled = false;
+        heatAlltoRoomTemp();
+
+      }
+      else
+      {
+        textBoxTemp.Enabled = true;
+        if (textBoxTemp.Text == "")
+        {
+          //MessageBox.Show("Please enter a temperature");
+          textBoxTemp.Text = "20";
+        }
+        heat();
+      }
     }
   }
 }

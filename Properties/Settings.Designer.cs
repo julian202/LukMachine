@@ -281,7 +281,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\data.pmi")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string TestData {
             get {
                 return ((string)(this["TestData"]));
@@ -545,7 +545,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2001")]
         public double ground {
             get {
                 return ((double)(this["ground"]));
@@ -617,7 +617,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public int maxEmptyCollectedPercentFull {
             get {
                 return ((int)(this["maxEmptyCollectedPercentFull"]));
@@ -863,7 +863,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("650")]
+        [global::System.Configuration.DefaultSettingValueAttribute("576")]
         public string MaxCapacityInML {
             get {
                 return ((string)(this["MaxCapacityInML"]));
@@ -918,6 +918,78 @@ namespace LukMachine.Properties {
             }
             set {
                 this["RefCount10V"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SampleDiameter {
+            get {
+                return ((string)(this["SampleDiameter"]));
+            }
+            set {
+                this["SampleDiameter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SampleThickness {
+            get {
+                return ((string)(this["SampleThickness"]));
+            }
+            set {
+                this["SampleThickness"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Oil")]
+        public string LiquidType {
+            get {
+                return ((string)(this["LiquidType"]));
+            }
+            set {
+                this["LiquidType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Type here viscosity")]
+        public string OilViscosity {
+            get {
+                return ((string)(this["OilViscosity"]));
+            }
+            set {
+                this["OilViscosity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-Type here viscosity")]
+        public string WaterViscosity {
+            get {
+                return ((string)(this["WaterViscosity"]));
+            }
+            set {
+                this["WaterViscosity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CurrentViscosity {
+            get {
+                return ((string)(this["CurrentViscosity"]));
+            }
+            set {
+                this["CurrentViscosity"] = value;
             }
         }
     }

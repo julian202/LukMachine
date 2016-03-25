@@ -81,11 +81,51 @@ namespace LukMachine
       }*/
     }
 
+    private void switch3wayValveB()
+    {
+      if (COMMS.Valve3wayBToRight)
+      {
+        COMMS.Valve3wayBToRight = false;
+        Properties.Settings.Default.Valve8State = false;
+        //Valves.CloseValve8();  //valve 8 is the 3 way valve
+        Valves.Valve8toLeft();
+        System.Diagnostics.Debug.WriteLine("set to left chamber");
+      }
+      else
+      {
+        COMMS.Valve3wayBToRight = true;
+        Properties.Settings.Default.Valve8State = true;
+        //Valves.OpenValve8();
+        Valves.Valve8toRight();
+        System.Diagnostics.Debug.WriteLine("set to right chamber");
+      }
+    }
+
+
+    private void run3wayValve7()
+    {
+      if (COMMS.Valve3wayToRight)
+      {
+        COMMS.Valve3wayToRight = false;
+        Properties.Settings.Default.Valve7State = false;
+        //Valves.CloseValve7();  //valve 7 is the 3 way valve
+        Valves.Valve7toLeft();
+        System.Diagnostics.Debug.WriteLine("set to left chamber");
+      }
+      else
+      {
+        COMMS.Valve3wayToRight = true;
+        Properties.Settings.Default.Valve7State = true;
+        //Valves.OpenValve7();
+        Valves.Valve7toRight();
+        System.Diagnostics.Debug.WriteLine("set to right chamber");
+      }
+    }
 
     private void button2_Click(object sender, EventArgs e)
     {
       //parse Inputs For Errors:
-      if (dataGridView1.RowCount==0)
+      if (dataGridView1.RowCount == 0)
       {
         MessageBox.Show("You must add values to the list");
         return;
@@ -123,6 +163,51 @@ namespace LukMachine
       Properties.Settings.Default.selectedTemp = selectedTemp;
       Properties.Settings.Default.TestSampleID = textBox1.Text;
       Properties.Settings.Default.TestLotNumber = textBox2.Text;
+      Properties.Settings.Default.SampleDiameter=textBoxDiameter.Text;
+      Properties.Settings.Default.SampleThickness=textBoxThickness.Text;
+      if (radioButtonOil.Checked)
+      {
+        Properties.Settings.Default.LiquidType = "Oil";
+        Properties.Settings.Default.OilViscosity = textBoxViscosity.Text;
+        Properties.Settings.Default.Save();
+      }
+      if (radioButtonWater.Checked)
+      {
+        Properties.Settings.Default.LiquidType = "Water";
+        Properties.Settings.Default.WaterViscosity = textBoxViscosity.Text;
+        Properties.Settings.Default.Save();
+      }
+      try
+      {
+        Properties.Settings.Default.CurrentViscosity = textBoxViscosity.Text;
+        Properties.Settings.Default.Save();
+        double viscosity = Convert.ToDouble(textBoxViscosity.Text);
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Viscosity must be a number");
+        return;
+      }
+
+      try
+      {
+        double Diameter = Convert.ToDouble(textBoxDiameter.Text);
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Diameter must be a valid number");
+        return;
+      }
+      try
+      {
+        double Thickness = Convert.ToDouble(textBoxThickness.Text);
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Thickness must be a valid number");
+        return;
+      }
+
       if (radioButtonHigh.Checked)
       {
         Properties.Settings.Default.SelectedFlowRate = "High";
@@ -207,18 +292,15 @@ namespace LukMachine
         Properties.Settings.Default.Chamber = "Ring";
         Properties.Settings.Default.Save();
 
-        //Valves.OpenValve7();//right chamber
+        //set right chamber 
 
-        //set right chamber
-        if (Properties.Settings.Default.Valve7State == true)        
+        if (Properties.Settings.Default.checkbLeftChecked)
         {
-          Valves.Valve7toRight();
-          System.Diagnostics.Debug.WriteLine("moving to right chamber");
+          run3wayValve7();
+          switch3wayValveB();
+          Properties.Settings.Default.checkbLeftChecked = false;
         }
-        else
-        {
-          System.Diagnostics.Debug.WriteLine("machine is already set to right chamber");
-        }       
+
       }
       else if (radioButtonDiskChamber.Checked)
       {
@@ -227,14 +309,11 @@ namespace LukMachine
 
         //Valves.CloseValve7();//left chamber
         //set right chamber
-        if (Properties.Settings.Default.Valve7State == false)
+        if (Properties.Settings.Default.checkbLeftChecked==false)
         {
-          Valves.Valve7toLeft();
-          System.Diagnostics.Debug.WriteLine("moving to left chamber");
-        }
-        else
-        {
-          System.Diagnostics.Debug.WriteLine("machine is already set to left chamber");
+          run3wayValve7();
+          switch3wayValveB();
+          Properties.Settings.Default.checkbLeftChecked = true;
         }
       }
       if (Properties.Settings.Default.COMM != "Demo")
@@ -281,6 +360,7 @@ namespace LukMachine
 
     private void Setup_Load(object sender, EventArgs e)
     {
+      loadPreviousValues();
       //stop main pump
       Pumps.SetPump2(0);
       //close drain valve
@@ -292,6 +372,22 @@ namespace LukMachine
 
       textBoxPressure.Text = Properties.Settings.Default.TextboxPressure;
       textBoxDuration.Text = Properties.Settings.Default.TextboxDuration;
+      textBoxDiameter.Text = Properties.Settings.Default.SampleDiameter;
+      textBoxThickness.Text = Properties.Settings.Default.SampleThickness;
+
+      if (Properties.Settings.Default.LiquidType == "Oil")
+      {
+        radioButtonOil.Checked = true;
+        radioButtonWater.Checked = false;
+        textBoxViscosity.Text=Properties.Settings.Default.OilViscosity;
+      }
+      if (Properties.Settings.Default.LiquidType == "Water")
+      {
+        radioButtonOil.Checked = false;
+        radioButtonWater.Checked = true;
+        textBoxViscosity.Text = Properties.Settings.Default.WaterViscosity;
+      }
+
 
       if (Properties.Settings.Default.useTemperature)
       {
@@ -307,7 +403,7 @@ namespace LukMachine
       textBox1.Text = Properties.Settings.Default.TestSampleID;
       textBox2.Text = Properties.Settings.Default.TestLotNumber;
 
-      if (Properties.Settings.Default.TestData=="")
+      if (Properties.Settings.Default.TestData == "")
       {
         string path = System.IO.Path.Combine(Environment.GetFolderPath(
     Environment.SpecialFolder.MyDoc‌​uments), "PMI", "data.pmi");
@@ -632,8 +728,12 @@ namespace LukMachine
 
     private void button6_Click(object sender, EventArgs e)
     {
+      loadPreviousValues();
+    }
+    private void loadPreviousValues()
+    {
       dataGridView1.Rows.Clear();
-      for (int row = 0; row < Properties.Settings.Default.CollectionPressure.Count ; row++)
+      for (int row = 0; row < Properties.Settings.Default.CollectionPressure.Count; row++)
       {
         dataGridView1.Rows.Add(Properties.Settings.Default.CollectionPressure[row], Properties.Settings.Default.CollectionDuration[row], Properties.Settings.Default.CollectionTemperature[row]);
       }
@@ -645,6 +745,27 @@ namespace LukMachine
     Environment.SpecialFolder.MyDoc‌​uments), "PMI", "data.pmi");
       //MessageBox.Show(path);
       textBox6.Text = path;
+    }
+
+    private void textBoxViscosity_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void radioButtonOil_CheckedChanged(object sender, EventArgs e)
+    {
+      if (radioButtonOil.Checked)
+      {
+        textBoxViscosity.Text = Properties.Settings.Default.OilViscosity;
+      }
+    }
+
+    private void radioButtonWater_CheckedChanged(object sender, EventArgs e)
+    {
+      if (radioButtonWater.Checked)
+      {
+        textBoxViscosity.Text = Properties.Settings.Default.WaterViscosity;
+      }
     }
   }
 }

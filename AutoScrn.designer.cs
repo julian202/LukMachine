@@ -65,6 +65,7 @@
       this.linkLabel1 = new System.Windows.Forms.LinkLabel();
       this.buttonSkipSettingTemp = new System.Windows.Forms.Button();
       this.buttonSkipPressure = new System.Windows.Forms.Button();
+      this.labelChamber = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
@@ -214,7 +215,7 @@
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(41, 81);
+      this.label4.Location = new System.Drawing.Point(41, 61);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(527, 23);
       this.label4.TabIndex = 0;
@@ -234,7 +235,7 @@
       // 
       this.label8.AutoSize = true;
       this.label8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label8.Location = new System.Drawing.Point(17, 145);
+      this.label8.Location = new System.Drawing.Point(24, 93);
       this.label8.Name = "label8";
       this.label8.Size = new System.Drawing.Size(201, 21);
       this.label8.TabIndex = 14;
@@ -242,6 +243,7 @@
       // 
       // groupBox1
       // 
+      this.groupBox1.Controls.Add(this.labelChamber);
       this.groupBox1.Controls.Add(this.labelDurations);
       this.groupBox1.Controls.Add(this.labelStepsTotal);
       this.groupBox1.Controls.Add(this.label8);
@@ -257,7 +259,7 @@
       // 
       this.labelDurations.AutoSize = true;
       this.labelDurations.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelDurations.Location = new System.Drawing.Point(17, 111);
+      this.labelDurations.Location = new System.Drawing.Point(24, 63);
       this.labelDurations.Name = "labelDurations";
       this.labelDurations.Size = new System.Drawing.Size(99, 21);
       this.labelDurations.TabIndex = 21;
@@ -267,7 +269,7 @@
       // 
       this.labelStepsTotal.AutoSize = true;
       this.labelStepsTotal.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelStepsTotal.Location = new System.Drawing.Point(17, 43);
+      this.labelStepsTotal.Location = new System.Drawing.Point(24, 33);
       this.labelStepsTotal.Name = "labelStepsTotal";
       this.labelStepsTotal.Size = new System.Drawing.Size(121, 21);
       this.labelStepsTotal.TabIndex = 17;
@@ -277,7 +279,7 @@
       // 
       this.labelTargetPressure.AutoSize = true;
       this.labelTargetPressure.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelTargetPressure.Location = new System.Drawing.Point(17, 77);
+      this.labelTargetPressure.Location = new System.Drawing.Point(24, 123);
       this.labelTargetPressure.Name = "labelTargetPressure";
       this.labelTargetPressure.Size = new System.Drawing.Size(177, 21);
       this.labelTargetPressure.TabIndex = 17;
@@ -301,7 +303,7 @@
       // 
       this.labelTotalTime.AutoSize = true;
       this.labelTotalTime.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelTotalTime.Location = new System.Drawing.Point(20, 123);
+      this.labelTotalTime.Location = new System.Drawing.Point(20, 63);
       this.labelTotalTime.Name = "labelTotalTime";
       this.labelTotalTime.Size = new System.Drawing.Size(103, 21);
       this.labelTotalTime.TabIndex = 21;
@@ -331,7 +333,7 @@
       // 
       this.labelPressure.AutoSize = true;
       this.labelPressure.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelPressure.Location = new System.Drawing.Point(20, 63);
+      this.labelPressure.Location = new System.Drawing.Point(20, 123);
       this.labelPressure.Name = "labelPressure";
       this.labelPressure.Size = new System.Drawing.Size(98, 21);
       this.labelPressure.TabIndex = 15;
@@ -389,7 +391,7 @@
       this.button4.AutoSize = true;
       this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.button4.ForeColor = System.Drawing.Color.Green;
-      this.button4.Location = new System.Drawing.Point(664, 528);
+      this.button4.Location = new System.Drawing.Point(665, 528);
       this.button4.Name = "button4";
       this.button4.Size = new System.Drawing.Size(229, 86);
       this.button4.TabIndex = 23;
@@ -411,7 +413,7 @@
       // 
       // buttonSkipSettingTemp
       // 
-      this.buttonSkipSettingTemp.Location = new System.Drawing.Point(162, 121);
+      this.buttonSkipSettingTemp.Location = new System.Drawing.Point(171, 121);
       this.buttonSkipSettingTemp.Name = "buttonSkipSettingTemp";
       this.buttonSkipSettingTemp.Size = new System.Drawing.Size(282, 36);
       this.buttonSkipSettingTemp.TabIndex = 1;
@@ -422,7 +424,7 @@
       // 
       // buttonSkipPressure
       // 
-      this.buttonSkipPressure.Location = new System.Drawing.Point(177, 121);
+      this.buttonSkipPressure.Location = new System.Drawing.Point(171, 118);
       this.buttonSkipPressure.Name = "buttonSkipPressure";
       this.buttonSkipPressure.Size = new System.Drawing.Size(282, 36);
       this.buttonSkipPressure.TabIndex = 2;
@@ -430,6 +432,16 @@
       this.buttonSkipPressure.UseVisualStyleBackColor = true;
       this.buttonSkipPressure.Visible = false;
       this.buttonSkipPressure.Click += new System.EventHandler(this.buttonSkipPressure_Click);
+      // 
+      // labelChamber
+      // 
+      this.labelChamber.AutoSize = true;
+      this.labelChamber.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelChamber.Location = new System.Drawing.Point(24, 153);
+      this.labelChamber.Name = "labelChamber";
+      this.labelChamber.Size = new System.Drawing.Size(104, 21);
+      this.labelChamber.TabIndex = 22;
+      this.labelChamber.Text = "Chamber  =";
       // 
       // AutoScrn
       // 
@@ -509,6 +521,7 @@
     private System.Windows.Forms.LinkLabel linkLabel1;
     private System.Windows.Forms.Button buttonSkipSettingTemp;
     private System.Windows.Forms.Button buttonSkipPressure;
+    private System.Windows.Forms.Label labelChamber;
     // private System.Windows.Controls.ProgressBar progbar;
 
 

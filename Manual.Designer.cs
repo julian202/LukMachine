@@ -243,6 +243,7 @@
       this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
+      this.timerHeater = new System.Windows.Forms.Timer(this.components);
       this.groupBox9.SuspendLayout();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -1953,6 +1954,7 @@
       this.textBoxTemp.Name = "textBoxTemp";
       this.textBoxTemp.Size = new System.Drawing.Size(47, 30);
       this.textBoxTemp.TabIndex = 70;
+      this.textBoxTemp.Text = "20";
       this.textBoxTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       this.textBoxTemp.TextChanged += new System.EventHandler(this.textBoxTemp_TextChanged);
       // 
@@ -2887,6 +2889,11 @@
       this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
       this.verticalProgressBar2.TabIndex = 44;
       // 
+      // timerHeater
+      // 
+      this.timerHeater.Interval = 4000;
+      this.timerHeater.Tick += new System.EventHandler(this.timerHeater_Tick);
+      // 
       // Manual
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
@@ -3158,5 +3165,6 @@
     private System.Windows.Forms.CheckBox checkBoxStopPumpIfReservoirEmpty;
     private System.Windows.Forms.Button button35;
     private System.Windows.Forms.Label label32;
+    private System.Windows.Forms.Timer timerHeater;
   }
 }

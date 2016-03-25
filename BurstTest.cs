@@ -33,6 +33,7 @@ namespace LukMachine
     private double pressureRate = Properties.Settings.Default.TestRate;
     private double dropPressure = Convert.ToDouble(Properties.Settings.Default.TestDetection);
     private string dataFile = Properties.Settings.Default.TestData;
+    private string dataFilePathForCapRep;
     private int twoVolt = COMMS.Instance.get2v();
     private int ground = COMMS.Instance.getGround();
     private bool pumpRunning = false;
@@ -54,6 +55,7 @@ namespace LukMachine
 
     //Set up data file
     StreamWriter SR;
+    StreamWriter SR2;
 
     private double currentTemp;
     private double targetTemp;
@@ -184,7 +186,7 @@ namespace LukMachine
       //read pressure gauge, convert to PSI (will need to * by conversion factor and set units label later)
       counts = COMMS.Instance.ReadPressureGauge(1);
       realCounts = Convert.ToDouble(counts);
-      currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / twoVolt;  //twoVolt is 60000
+      currentPressure = (realCounts - ground) * Properties.Settings.Default.p1Max / 60000;  //twoVolt is 60000
       outputPressure = currentPressure * pConversion;
       p1Psi = outputPressure;
       rawP1 = realCounts;
@@ -223,17 +225,35 @@ namespace LukMachine
         System.Diagnostics.Debug.WriteLine("currentPressure is " + currentPressure.ToString() + ",  targetPressure is " + targetPressure.ToString());
 
         ReadPressureAndSetLabel();
-        Thread.Sleep(6000);//wait before checking again
-                           //Console.WriteLine("athena1Temp " + athena1Temp);
-                           //Console.WriteLine("chamberTemp " + chamberTemp);
-        if (targetPressure > currentPressure)
+        Thread.Sleep(7000);//wait before checking again
+        if (currentPressure<targetPressure)
         {
           Pumps.IncreaseMainPump(1);
         }
-        else if (targetPressure < currentPressure)
+        else if (currentPressure > targetPressure )
+        {
+          //Pumps.DecreaseMainPump(1);
+          Pumps.SetPump2(0);
+        }
+        //change at faster speed if we are far from target
+        if (currentPressure < (targetPressure-10))
+        {
+          Pumps.IncreaseMainPump(1);
+        }
+        else if (currentPressure > (targetPressure + 10))
         {
           Pumps.DecreaseMainPump(1);
         }
+        //change at faster speed if we are far from target
+        if (currentPressure < (targetPressure - 40))
+        {
+          Pumps.IncreaseMainPump(1);
+        }
+        else if (currentPressure > (targetPressure + 40))
+        {
+          Pumps.DecreaseMainPump(1);
+        }
+
       }
     }
 
@@ -342,7 +362,7 @@ namespace LukMachine
       //read tank temperature
       athena1Temp = COMMS.Instance.ReadAthenaTemp(1);
       //read pipes temperature
-      athena2Temp = COMMS.Instance.ReadAthenaTemp(2);
+      //athena2Temp = COMMS.Instance.ReadAthenaTemp(2);
       //read selected chamber temperature
       if (Properties.Settings.Default.Chamber == "Ring")
       {
@@ -350,10 +370,10 @@ namespace LukMachine
       }
       else if (Properties.Settings.Default.Chamber == "Disk")
       {
-        chamberTemp = COMMS.Instance.ReadAthenaTemp(4);
+        chamberTemp = COMMS.Instance.ReadAthenaTemp(2);
       }
       //get average temp and display it
-      currentTemp = (athena1Temp + athena2Temp + chamberTemp) / 3;
+      currentTemp = (athena1Temp + chamberTemp) / 2;
       Progress("set label5 to currentTemp=" + currentTemp.ToString());
     }
     public bool IsNumeric(string input)
@@ -397,7 +417,12 @@ namespace LukMachine
       targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
       currentDuration = Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]);
       //start pump at one third of targetPressure (as an initial estimate):
-      Pumps.IncreaseMainPump(Convert.ToInt32(targetPressure / 3));
+      /*int initialPressure = Convert.ToInt32(targetPressure / 4);
+      if (initialPressure<10)
+      {
+        initialPressure = 3;
+      }
+      Pumps.IncreaseMainPump(initialPressure);*/
       Progress("display current step time=" + (currentDuration).ToString("0.00"));
       
       GoToTargetPressure();
@@ -412,9 +437,13 @@ namespace LukMachine
       //InitializeTest();
       try
       {
-        SR = new StreamWriter(dataFile);
+        SR = new StreamWriter(dataFile);       
+        dataFilePathForCapRep = dataFile.Substring(0, dataFile.Length - 4)+"-forCapRep.txt";
+        SR2 = new StreamWriter(dataFilePathForCapRep);
         WriteHeader();
+        WriteHeaderForCapRep();
         SR.Close();
+        SR2.Close();
       }
       catch (Exception ex)
       {
@@ -433,6 +462,7 @@ namespace LukMachine
       Progress("Now running");
       string collectedLevelCount;
       bool firstRound = true;
+      //Main loop
       while (!abort && !overVolume)
       {
         Progress("hide panel 1");
@@ -491,11 +521,10 @@ namespace LukMachine
         //write data to file and report progress
 
         SR = new StreamWriter(dataFile, true);
-
+        SR2 = new StreamWriter(dataFilePathForCapRep, true);
         collectedLevelCount = COMMS.CollectedLevelCount.ToString();
         //SR.WriteLine(outputTime.ToString("0.00") + "," + collectedLevelCount + "," + currentTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
         //SR.WriteLine(outputTime.ToString("0.00") + "\t" + Flow.ToString("0.000") + "\t" + currentTemp.ToString("0.0") + "\t" + currentPressure.ToString("0.000"));
-
         double convertedTemp;
         if (Properties.Settings.Default.TempCorF == "C")
         {
@@ -506,13 +535,14 @@ namespace LukMachine
           convertedTemp = currentTemp;
         }
         SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
-        Console.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
-
+        //Console.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
+        SR2.WriteLine("{0,10}\t{1,10}", Flow.ToString("0.00"), currentPressure.ToString("0.000"));
         SR.Close();
+        SR2.Close();
         //Progress("Reading:" + outputTime.ToString("0.00") + "," + collectedLevelCount + "," + convertedTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
         Progress("Reading:" + outputTime.ToString("0.00") + "," + Flow.ToString("0.000") + "," + convertedTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
         Progress("display stepCount=" + (stepCount + 1).ToString());
-        Thread.Sleep(500);// this is the main sleep of the thread between reading so that it doesn't go too fast.
+        Thread.Sleep(10000);// this is the main sleep of the thread between reading so that it doesn't go too fast.
         if (outputTime / 60 > currentDuration)
         {
           Progress("display current step time=" + (currentDuration).ToString("0.00"));
@@ -628,6 +658,12 @@ namespace LukMachine
         System.Diagnostics.Debug.WriteLine("Test aborted successfully becuase this message is sent from BurstTest thread");
       }
       //SR.Close();
+
+      /*
+      SR2 = new StreamWriter(dataFilePathForCapRep, true);
+      SR2.WriteLine("0,0");
+      SR2.Close();*/
+
       Progress("Test Ended");
     }
 
@@ -643,7 +679,26 @@ namespace LukMachine
         Progress(outputTime.ToString());
       }
     }
-
+    public void WriteHeaderForCapRep()
+    {
+      SR2.WriteLine("EXTENDED");
+      SR2.WriteLine(" 6");
+      SR2.WriteLine("Operator=EWS");
+      SR2.WriteLine("Lot Number=11121");
+      SR2.WriteLine("Hardware Serial Number=09182012-2092");
+      SR2.WriteLine("Type of Test=Liquid Perm - Elevated");
+      SR2.WriteLine("Lohm Table=lohmtable.cal");
+      SR2.WriteLine("Piston Compression Pressure = 90");
+      SR2.WriteLine("12-17-2015");
+      SR2.WriteLine("UBC");
+      SR2.WriteLine("LP");
+      SR2.WriteLine(Properties.Settings.Default.CurrentViscosity);
+      SR2.WriteLine("0");
+      SR2.WriteLine("UBC A2"); 
+      SR2.WriteLine(Properties.Settings.Default.SampleDiameter);
+      SR2.WriteLine(Properties.Settings.Default.SampleThickness);
+      SR2.WriteLine("0"); //atmosphereric pressure (0 for our gauges).
+    }
     public void WriteHeader()
     {
       string paper = null;

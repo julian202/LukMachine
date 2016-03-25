@@ -107,7 +107,7 @@ namespace LukMachine
         RL = SR.ReadLine(); //Date
         splitStuff = RL.Split('=');
         string date = splitStuff[1];
-        sampleInfoCSV += date + ",";       
+        sampleInfoCSV += date + ",";
         RL = SR.ReadLine(); //Duration Units
         splitStuff = RL.Split('=');
         sampleInfoCSV += splitStuff[1] + ",";
@@ -267,7 +267,7 @@ namespace LukMachine
           //set chart type
           chart1.Series[s].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
           chart1.Series[comboBox1.Text].BorderWidth = 2;
-      
+
           //loop through the data table named for the sample id and add it to the series.
           foreach (DataRow asdf in dataSet1.Tables[s].Rows)
           {
@@ -336,7 +336,7 @@ namespace LukMachine
 
       chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
       chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
-      chart1.ChartAreas[0].AxisX.LineDashStyle= System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDotDot;
+      chart1.ChartAreas[0].AxisX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDotDot;
       chart1.ChartAreas[0].AxisY.Title = "Flow (mL/min)";
       chart1.ChartAreas[0].AxisX.Title = "Time (seconds)";
 
@@ -558,7 +558,7 @@ namespace LukMachine
             try
             {
 
-            
+
               using (var file = File.Create(saveFileDialog1.FileName))
                 excel.SaveAs(file);
               MessageBox.Show(saveFileDialog1.FileName + " has been saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -566,7 +566,7 @@ namespace LukMachine
             catch (Exception ex)
             {
               MessageBox.Show(ex.Message);
-              
+
             }
 
 
@@ -855,9 +855,9 @@ namespace LukMachine
         }
         catch (Exception)
         {
-         
+
         }
-        
+
       }
     }
 
@@ -890,7 +890,7 @@ namespace LukMachine
         {
 
         }
-        
+
       }
     }
 
@@ -923,16 +923,21 @@ namespace LukMachine
         }
         catch (Exception)
         {
-        }       
+        }
       }
     }
 
     private void buttonCalculate_Click(object sender, EventArgs e)
-    {    
+    {
       double perm;
-      double area = 3.14159 * (Convert.ToDouble(textBoxDiameter.Text)* Convert.ToDouble(textBoxDiameter.Text))/4;
-      perm = 14.7 * Convert.ToDouble(textBoxFlow.Text) / (60*area* Convert.ToDouble(textBoxPressure.Text));
-      labelPermeability.Text = "= "+perm.ToString("#.0000000");
+      double flow = Convert.ToDouble(textBoxFlow.Text);
+      double thickness = Convert.ToDouble(textBoxThickness.Text);
+      double k1 = flow * thickness * 14.7;
+      labelk1.Text = k1.ToString();   
+      double area = 3.1415926 * (Convert.ToDouble(textBoxDiameter.Text) * Convert.ToDouble(textBoxDiameter.Text)) / 4;    
+      //perm = k1  / (60 * area * Convert.ToDouble(textBoxPressure.Text));
+      perm = k1 / (area * Convert.ToDouble(textBoxPressure.Text));
+      labelPermeability.Text = "= " + perm.ToString("#.0000000");
       /*double i = 10 / 5 / 2;
       MessageBox.Show(i.ToString());*/
     }

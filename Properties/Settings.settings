@@ -72,7 +72,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="TestData" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\data.pmi</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="autoReport" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -138,7 +138,7 @@
       <Value Profile="(Default)">60000</Value>
     </Setting>
     <Setting Name="ground" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">2000</Value>
+      <Value Profile="(Default)">2001</Value>
     </Setting>
     <Setting Name="MaxPent3PercentFull" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">99</Value>
@@ -156,7 +156,7 @@
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="maxEmptyCollectedPercentFull" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">5</Value>
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="flowRate" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -225,7 +225,7 @@
       <Value Profile="(Default)">C</Value>
     </Setting>
     <Setting Name="MaxCapacityInML" Type="System.String" Scope="User">
-      <Value Profile="(Default)">650</Value>
+      <Value Profile="(Default)">576</Value>
     </Setting>
     <Setting Name="Valve8State" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -238,6 +238,24 @@
     </Setting>
     <Setting Name="RefCount10V" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="SampleDiameter" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SampleThickness" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LiquidType" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Oil</Value>
+    </Setting>
+    <Setting Name="OilViscosity" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Type here viscosity</Value>
+    </Setting>
+    <Setting Name="WaterViscosity" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-Type here viscosity</Value>
+    </Setting>
+    <Setting Name="CurrentViscosity" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

@@ -96,7 +96,7 @@ namespace LukMachine
         else if (message.Contains("panel label setting pressure"))
         {
           panel1.Visible = true;
-          label4.Text = "Please wait...  Setting Pressure";
+          label4.Text = "Please wait...  Setting Pressure (adjusting pump power)";
           buttonSkipSettingTemp.Visible = false;
           buttonSkipPressure.Visible = true;
         }
@@ -104,7 +104,11 @@ namespace LukMachine
         {
           panel1.Visible = false;
         }
-
+        else if (message.Contains("Reservoir is not full"))
+        {
+          label4.Text = "Reservoir is not full. Please add more volume to reservoir.";
+        }
+        
           
 
         else if (message.Contains("set label5 to currentTemp"))
@@ -113,7 +117,7 @@ namespace LukMachine
           int myint = Convert.ToInt32(Convert.ToDouble(msgSplit[1]));
           //MessageBox.Show(myint.ToString());  
           int myintInCelsius = (Convert.ToInt32((myint - 32) * 5 / 9));
-          label6.Text = "Temperature  =  " + String.Format("{0:0}", myint) + " F / " + String.Format("{0:0}", myintInCelsius) + " C ";
+          label6.Text = "Temperature  =  " + String.Format("{0:0}", myintInCelsius) + " C / " + String.Format("{0:0}", myint) + " F" ;
           //MessageBox.Show(label5.Text);
         }
         else if (message.Contains("disable stop button"))
@@ -124,7 +128,7 @@ namespace LukMachine
         {
           string[] msgSplit = message.Split('=');
           string pressure = msgSplit[1];
-          labelPressure.Text = "Pressure  =  " + String.Format("{0:0.0} PSI", Convert.ToDouble(pressure));
+          labelPressure.Text = "Diff Pressure  =  " + String.Format("{0:0.0} PSI", Convert.ToDouble(pressure));
           string pumpstate = Properties.Settings.Default.MainPumpStatePercent.ToString();
           labelPumpState.Text = "Pump Power  =  " + pumpstate + "%";
         }
@@ -185,7 +189,14 @@ namespace LukMachine
           catch (Exception)
           {
 
-            verticalProgressBar1.Value = 0;
+            if (Convert.ToInt32(ReservoirPercent) >= 100)
+            {
+              verticalProgressBar1.Value = 100;
+            }
+            else
+            {
+              verticalProgressBar1.Value = 0;
+            }
           }
           try
           {
@@ -193,8 +204,17 @@ namespace LukMachine
           }
           catch (Exception)
           {
-            verticalProgressBar2.Value = 0;
+            if (Convert.ToInt32(ReservoirPercent) >= 100)
+            {
+              verticalProgressBar2.Value = 100;
+            }
+            else
+            {
+              verticalProgressBar2.Value = 0;
+            }
           }
+
+
         }
         else if (message.Contains("display stepCount"))
         {
@@ -245,6 +265,17 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+
+      COMMS.calculateVoltageReferences();   
+
+      if (Properties.Settings.Default.Chamber == "Ring")
+      {
+        labelChamber.Text = "Chamber = Ring";
+      }
+      else
+      {
+        labelChamber.Text = "Chamber = Disk";
+      }
       buttonSkipSettingTemp.Visible = false;
       buttonSkipPressure.Visible = false;
       string pressures;
@@ -368,7 +399,7 @@ namespace LukMachine
 
       //open relief pressure valve
       //Progress("Relieving pressure...");
-      Valves.OpenValve2();
+      //Valves.OpenValve2();
     }
 
     private void button3_Click(object sender, EventArgs e)
