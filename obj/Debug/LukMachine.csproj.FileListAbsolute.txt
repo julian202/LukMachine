@@ -11,33 +11,33 @@ c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMach
 c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.exe
 c:\users\andyw\onedrive\documents\visual studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.pdb
 C:\Users\AndyW\OneDrive\Documents\Visual Studio 2015\Projects\LukMachine\LukMachine\obj\Debug\LukMachine.settings.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\LukMachine.exe.config
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.exe
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.pdb
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\LukMachine.exe
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\LukMachine.pdb
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.main.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Manual.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Properties.Resources.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.settings.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.csproj.GenerateResource.Cache
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.AutoScrn.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Setup.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.BurstDialog2.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.export.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Report.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Temperature.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Wait.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.DataSavedForm.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\Microsoft.VisualBasic.PowerPacks.dll
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\Microsoft.VisualBasic.PowerPacks.xml
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.ManualWait.resources
 C:\Users\MSI-1\Desktop\History\Feb13 -C#-LukMachine\Backups from Github\LukMachine10- before adding continuous pressure check\LukMachine\bin\Debug\LukMachine.exe.config
 C:\Users\MSI-1\Desktop\History\Feb13 -C#-LukMachine\Backups from Github\LukMachine10- before adding continuous pressure check\LukMachine\obj\Debug\LukMachine.exe
 C:\Users\MSI-1\Desktop\History\Feb13 -C#-LukMachine\Backups from Github\LukMachine10- before adding continuous pressure check\LukMachine\obj\Debug\LukMachine.pdb
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\LukMachine.exe.config
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\LukMachine.exe.manifest
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\LukMachine.application
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\LukMachine.exe
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\LukMachine.pdb
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\Microsoft.VisualBasic.PowerPacks.dll
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\bin\Debug\Microsoft.VisualBasic.PowerPacks.xml
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.AutoScrn.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.BurstDialog2.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.DataSavedForm.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.DischargingCollectedVolume.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.export.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.main.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Manual.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.ManualWait.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Properties.Resources.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Report.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.settings.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Setup.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Temperature.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.Wait.resources
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.csproj.GenerateResource.Cache
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.TrustInfo.xml
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.exe.manifest
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.application
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.DischargingCollectedVolume.resources
-C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.TrustInfo.xml
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.exe
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.pdb
