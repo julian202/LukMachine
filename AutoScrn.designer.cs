@@ -44,10 +44,13 @@
       this.label1 = new System.Windows.Forms.Label();
       this.listBox1 = new System.Windows.Forms.ListBox();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.buttonSkipPressure = new System.Windows.Forms.Button();
+      this.buttonSkipSettingTemp = new System.Windows.Forms.Button();
       this.label4 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
       this.label8 = new System.Windows.Forms.Label();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.labelChamber = new System.Windows.Forms.Label();
       this.labelDurations = new System.Windows.Forms.Label();
       this.labelStepsTotal = new System.Windows.Forms.Label();
       this.labelTargetPressure = new System.Windows.Forms.Label();
@@ -61,11 +64,10 @@
       this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
-      this.button4 = new System.Windows.Forms.Button();
-      this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-      this.buttonSkipSettingTemp = new System.Windows.Forms.Button();
-      this.buttonSkipPressure = new System.Windows.Forms.Button();
-      this.labelChamber = new System.Windows.Forms.Label();
+      this.buttonReport = new System.Windows.Forms.Button();
+      this.linkLabelOpenFolder = new System.Windows.Forms.LinkLabel();
+      this.backgroundWorkerMainLoop = new System.ComponentModel.BackgroundWorker();
+      this.backgroundWorkerReadAndDisplay = new System.ComponentModel.BackgroundWorker();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
@@ -155,7 +157,6 @@
       this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
       this.button3.UseVisualStyleBackColor = true;
       this.button3.Visible = false;
-      this.button3.Click += new System.EventHandler(this.button3_Click);
       // 
       // button2
       // 
@@ -168,7 +169,6 @@
       this.button2.Text = "Stop Test";
       this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
       this.button2.UseVisualStyleBackColor = true;
-      this.button2.Click += new System.EventHandler(this.button2_Click);
       // 
       // button1
       // 
@@ -181,7 +181,6 @@
       this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
       this.button1.UseVisualStyleBackColor = true;
       this.button1.Visible = false;
-      this.button1.Click += new System.EventHandler(this.button1_Click);
       // 
       // label1
       // 
@@ -211,6 +210,28 @@
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(614, 178);
       this.panel1.TabIndex = 13;
+      // 
+      // buttonSkipPressure
+      // 
+      this.buttonSkipPressure.Location = new System.Drawing.Point(171, 118);
+      this.buttonSkipPressure.Name = "buttonSkipPressure";
+      this.buttonSkipPressure.Size = new System.Drawing.Size(282, 36);
+      this.buttonSkipPressure.TabIndex = 2;
+      this.buttonSkipPressure.Text = "Skip Setting Pressure";
+      this.buttonSkipPressure.UseVisualStyleBackColor = true;
+      this.buttonSkipPressure.Visible = false;
+      this.buttonSkipPressure.Click += new System.EventHandler(this.buttonSkipPressure_Click);
+      // 
+      // buttonSkipSettingTemp
+      // 
+      this.buttonSkipSettingTemp.Location = new System.Drawing.Point(171, 121);
+      this.buttonSkipSettingTemp.Name = "buttonSkipSettingTemp";
+      this.buttonSkipSettingTemp.Size = new System.Drawing.Size(282, 36);
+      this.buttonSkipSettingTemp.TabIndex = 1;
+      this.buttonSkipSettingTemp.Text = "Skip Setting Temperature";
+      this.buttonSkipSettingTemp.UseVisualStyleBackColor = true;
+      this.buttonSkipSettingTemp.Visible = false;
+      this.buttonSkipSettingTemp.Click += new System.EventHandler(this.buttonSkipSettingTemp_Click);
       // 
       // label4
       // 
@@ -254,6 +275,16 @@
       this.groupBox1.TabIndex = 18;
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = "Programmed Parameters";
+      // 
+      // labelChamber
+      // 
+      this.labelChamber.AutoSize = true;
+      this.labelChamber.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelChamber.Location = new System.Drawing.Point(24, 153);
+      this.labelChamber.Name = "labelChamber";
+      this.labelChamber.Size = new System.Drawing.Size(104, 21);
+      this.labelChamber.TabIndex = 22;
+      this.labelChamber.Text = "Chamber  =";
       // 
       // labelDurations
       // 
@@ -386,62 +417,34 @@
       this.verticalProgressBar1.TabIndex = 9;
       this.verticalProgressBar1.Value = 50;
       // 
-      // button4
+      // buttonReport
       // 
-      this.button4.AutoSize = true;
-      this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button4.ForeColor = System.Drawing.Color.Green;
-      this.button4.Location = new System.Drawing.Point(665, 528);
-      this.button4.Name = "button4";
-      this.button4.Size = new System.Drawing.Size(229, 86);
-      this.button4.TabIndex = 23;
-      this.button4.Text = "Open Report Window";
-      this.button4.UseVisualStyleBackColor = true;
-      this.button4.Click += new System.EventHandler(this.button4_Click);
+      this.buttonReport.AutoSize = true;
+      this.buttonReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.buttonReport.ForeColor = System.Drawing.Color.Green;
+      this.buttonReport.Location = new System.Drawing.Point(666, 528);
+      this.buttonReport.Name = "buttonReport";
+      this.buttonReport.Size = new System.Drawing.Size(229, 86);
+      this.buttonReport.TabIndex = 25;
+      this.buttonReport.Text = "Open Report Window";
+      this.buttonReport.UseVisualStyleBackColor = true;
+      this.buttonReport.Click += new System.EventHandler(this.buttonReport_Click);
       // 
-      // linkLabel1
+      // linkLabelOpenFolder
       // 
-      this.linkLabel1.AutoSize = true;
-      this.linkLabel1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.linkLabel1.Location = new System.Drawing.Point(528, 525);
-      this.linkLabel1.Name = "linkLabel1";
-      this.linkLabel1.Size = new System.Drawing.Size(95, 18);
-      this.linkLabel1.TabIndex = 24;
-      this.linkLabel1.TabStop = true;
-      this.linkLabel1.Text = "Open Folder";
-      this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+      this.linkLabelOpenFolder.AutoSize = true;
+      this.linkLabelOpenFolder.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.linkLabelOpenFolder.Location = new System.Drawing.Point(533, 528);
+      this.linkLabelOpenFolder.Name = "linkLabelOpenFolder";
+      this.linkLabelOpenFolder.Size = new System.Drawing.Size(95, 18);
+      this.linkLabelOpenFolder.TabIndex = 26;
+      this.linkLabelOpenFolder.TabStop = true;
+      this.linkLabelOpenFolder.Text = "Open Folder";
+      this.linkLabelOpenFolder.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelOpenFolder_LinkClicked);
       // 
-      // buttonSkipSettingTemp
+      // backgroundWorkerMainLoop
       // 
-      this.buttonSkipSettingTemp.Location = new System.Drawing.Point(171, 121);
-      this.buttonSkipSettingTemp.Name = "buttonSkipSettingTemp";
-      this.buttonSkipSettingTemp.Size = new System.Drawing.Size(282, 36);
-      this.buttonSkipSettingTemp.TabIndex = 1;
-      this.buttonSkipSettingTemp.Text = "Skip Setting Temperature";
-      this.buttonSkipSettingTemp.UseVisualStyleBackColor = true;
-      this.buttonSkipSettingTemp.Visible = false;
-      this.buttonSkipSettingTemp.Click += new System.EventHandler(this.buttonSkipSettingTemp_Click);
-      // 
-      // buttonSkipPressure
-      // 
-      this.buttonSkipPressure.Location = new System.Drawing.Point(171, 118);
-      this.buttonSkipPressure.Name = "buttonSkipPressure";
-      this.buttonSkipPressure.Size = new System.Drawing.Size(282, 36);
-      this.buttonSkipPressure.TabIndex = 2;
-      this.buttonSkipPressure.Text = "Skip Setting Pressure";
-      this.buttonSkipPressure.UseVisualStyleBackColor = true;
-      this.buttonSkipPressure.Visible = false;
-      this.buttonSkipPressure.Click += new System.EventHandler(this.buttonSkipPressure_Click);
-      // 
-      // labelChamber
-      // 
-      this.labelChamber.AutoSize = true;
-      this.labelChamber.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelChamber.Location = new System.Drawing.Point(24, 153);
-      this.labelChamber.Name = "labelChamber";
-      this.labelChamber.Size = new System.Drawing.Size(104, 21);
-      this.labelChamber.TabIndex = 22;
-      this.labelChamber.Text = "Chamber  =";
+      this.backgroundWorkerMainLoop.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerMainLoop_DoWork);
       // 
       // AutoScrn
       // 
@@ -449,8 +452,8 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.ClientSize = new System.Drawing.Size(905, 629);
-      this.Controls.Add(this.linkLabel1);
-      this.Controls.Add(this.button4);
+      this.Controls.Add(this.linkLabelOpenFolder);
+      this.Controls.Add(this.buttonReport);
       this.Controls.Add(this.labelDuration);
       this.Controls.Add(this.groupBoxReservoir);
       this.Controls.Add(this.groupBoxCollectedVolume);
@@ -471,7 +474,7 @@
       this.MinimumSize = new System.Drawing.Size(923, 468);
       this.Name = "AutoScrn";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-      this.Text = "Form1";
+      this.Text = "Auto test";
       this.Load += new System.EventHandler(this.AutoScrn_Load);
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -511,17 +514,19 @@
     private System.Windows.Forms.Label labelTargetPressure;
     private System.Windows.Forms.Label labelPumpState;
     private System.Windows.Forms.Label labelDuration;
-    private System.Windows.Forms.Button button4;
     private System.Windows.Forms.Label labelDurations;
     private System.Windows.Forms.Label labelStepsTotal;
     private System.Windows.Forms.Label labelStepCurrent;
     private System.Windows.Forms.Label labelTotalTime;
     private System.Windows.Forms.DataGridViewTextBoxColumn TimeColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn PressureColumn;
-    private System.Windows.Forms.LinkLabel linkLabel1;
     private System.Windows.Forms.Button buttonSkipSettingTemp;
     private System.Windows.Forms.Button buttonSkipPressure;
     private System.Windows.Forms.Label labelChamber;
+    private System.Windows.Forms.Button buttonReport;
+    private System.Windows.Forms.LinkLabel linkLabelOpenFolder;
+    private System.ComponentModel.BackgroundWorker backgroundWorkerMainLoop;
+    private System.ComponentModel.BackgroundWorker backgroundWorkerReadAndDisplay;
     // private System.Windows.Controls.ProgressBar progbar;
 
 
