@@ -24,6 +24,10 @@ namespace LukMachine
     int stepCount;
     bool perssureHasBeenReached = false;
     bool temperatureHasBeenReached = false;
+    double pressureCounts;
+    double currentPressure;
+    private int twoVolt = COMMS.Instance.get2v();
+    private int ground = COMMS.Instance.getGround();
 
     public AutoScrn()
     {
@@ -55,7 +59,7 @@ namespace LukMachine
         stepCount = 0;
         targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
         targetTemperature = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
-
+        waitToReachTargetPressure();
 
         lastStep = true;
       }
@@ -93,7 +97,15 @@ namespace LukMachine
         }
       }
     }
+    private void waitToReachTargetPressure()
+    {
+      while (true)
+      {
 
+
+
+      }
+    }
     private void emptyCollectedVolume() //refill reservoir with the liquid from the collected volume
     {
       backgroundWorkerMainLoop.ReportProgress(0, "Checking reservoir levels...");
@@ -227,8 +239,14 @@ namespace LukMachine
     {
       while (true)
       {
+        //read reservoirs
         collectedPercent = COMMS.Instance.getCollectedLevelPercent();
         reservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+
+        //read pressure gauge, convert to PSI (will need to * by conversion factor and set units label later)
+        pressureCounts = Convert.ToDouble(COMMS.Instance.ReadPressureGauge(1));
+        currentPressure = (pressureCounts - ground) * Properties.Settings.Default.p1Max / 60000;  //twoVolt is 60000
+
         backgroundWorkerReadAndDisplay.ReportProgress(0);
         Thread.Sleep(500);
         if ((backgroundWorkerReadAndDisplay.CancellationPending == true))
@@ -244,6 +262,7 @@ namespace LukMachine
     private void backgroundWorkerReadAndDisplay_ProgressChanged(object sender, ProgressChangedEventArgs e)
     {    
       displayVolumeLevels();
+      labelPressure.Text = "Pressure  =  " + String.Format("{0:0.0} PSI", currentPressure);
     }
   }
 }
