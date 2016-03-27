@@ -20,7 +20,6 @@ namespace LukMachine
     double targetPressure = 0;
     double targetTemperature;
     double targetTemp;
-    bool lastStep = false;
     int stepCount;
     bool pressureHasBeenReached = false;
     bool temperatureHasBeenReached = false;
@@ -60,15 +59,15 @@ namespace LukMachine
     {
       emptyCollectedVolume();
       fillReservoir();
-      while (!lastStep)
+
+      for (int i = 0; i < Properties.Settings.Default.CollectionPressure.Count; i++)
       {
-        stepCount = 0;
-        targetTemperature = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
-
+        stepCount = i;
+        targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
+        //MessageBox.Show("targetPressure is " + targetPressure.ToString());
         goToTargetPressure();
-
-        lastStep = true;
       }
+      backgroundWorkerMainLoop.ReportProgress(0, "Finished");
     }
 
     private void backgroundWorkerMainLoop_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -141,6 +140,7 @@ namespace LukMachine
       }
       if (collectedPercent > maxPercentFull)
       {
+        MessageBox.Show("collectedPercent="+ collectedPercent+ " maxPercentFull="+ maxPercentFull);
         MessageBox.Show("The collected penetrometer contains liquid. The collected volume will now be flushed.");
         backgroundWorkerMainLoop.ReportProgress(0, "Emptying collected volume...");
 
@@ -150,6 +150,8 @@ namespace LukMachine
       backgroundWorkerMainLoop.ReportProgress(0, "displaySkipButton()");
       while ((collectedPercent > maxPercentFull) && !skip)
       {
+        MessageBox.Show("collectedPercent=" + collectedPercent + " maxPercentFull=" + maxPercentFull);
+
         Thread.Sleep(300);
         //collectedPercent = COMMS.Instance.getCollectedLevelPercent();
         //backgroundWorkerMainLoop.ReportProgress(0, "displayVolumeLevels()");
@@ -270,15 +272,41 @@ namespace LukMachine
         currentPressure = (pressureCounts - ground) * Properties.Settings.Default.p1Max / 60000;  //twoVolt is 60000
 
         //adjust pump for target pressure
-        if ((currentPressure < targetPressure - 0.2) && (currentPressure < lastPressure + 0.1)) //dont't increase speed if pressure is already increasing
+        if ((currentPressure < targetPressure - 0.2)&& (currentPressure > targetPressure - 10)) //if pressure is between these two numbers
         {
-          Pumps.IncreaseMainPump(0.1);
+          if (currentPressure < (lastPressure + 0.1)) //this is the target increase of pressure per step
+          {
+            Pumps.IncreaseMainPump(0.1);
+          }
+          else //decrease pump if it is going too fast
+          {
+            Pumps.DecreaseMainPump(0.1);
+          }
         }
-        else if ((currentPressure < targetPressure - 10) && (currentPressure < lastPressure + 0.3)) //dont't increase speed if pressure is already increasing fast
+        if ((currentPressure <= targetPressure - 10) && (currentPressure > targetPressure - 20)) //if pressure is between these two numbers
         {
-          Pumps.IncreaseMainPump(0.3);
+          if (currentPressure < (lastPressure + 0.2)) //this is the target increase of pressure per step
+          {
+            Pumps.IncreaseMainPump(0.2);
+          }
+          else //decrease pump if it is going too fast
+          {
+            Pumps.DecreaseMainPump(0.2);
+          }
         }
-        else if (currentPressure > targetPressure)
+        if ((currentPressure <= targetPressure - 20)) //if pressure is between these two numbers
+        {
+          if (currentPressure < (lastPressure + 0.5)) //this is the target increase of pressure per step
+          {
+            Pumps.IncreaseMainPump(0.3);
+          }
+          else //decrease pump if it is going too fast
+          {
+            Pumps.DecreaseMainPump(0.3);
+          }
+        }
+
+        if (currentPressure > targetPressure)
         {
           Pumps.SetPump2(0);
         }
@@ -305,8 +333,16 @@ namespace LukMachine
     {
       displayVolumeLevels();
       labelPressure.Text = "Pressure  =  " + String.Format("{0:0.0} PSI", currentPressure);
-      pumpstate = Properties.Settings.Default.MainPumpStatePercent.ToString();
+      labelTargetPressure.Text = "Pressure  =  " + targetPressure + " (PSI)";
+      pumpstate = Properties.Settings.Default.MainPumpStatePercent.ToString("#0.0");
       labelPumpState.Text = "Pump Power  =  " + pumpstate + "%";
+      labelStepsTotal.Text = "Total Steps  =  " + Properties.Settings.Default.NumberOfSteps.ToString();
+
+      labelStepCurrent.Text = "Step  =  " + (stepCount + 1);
+      if ((stepCount + 1) > Properties.Settings.Default.CollectionPressure.Count)
+      {
+        labelStepCurrent.Text = "Step  =  End";
+      }
     }
   }
 }
