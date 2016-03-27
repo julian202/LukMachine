@@ -14,7 +14,7 @@ namespace LukMachine
   public partial class AutoScrn : Form
   {
     int reservoirPercent;
-    int collectedPercent=-1;
+    int collectedPercent = -1;
     int collectedVolume;
     bool skip = false;
     double targetPressure = 0;
@@ -22,12 +22,14 @@ namespace LukMachine
     double targetTemp;
     bool lastStep = false;
     int stepCount;
-    bool perssureHasBeenReached = false;
+    bool pressureHasBeenReached = false;
     bool temperatureHasBeenReached = false;
     double pressureCounts;
     double currentPressure;
+    double lastPressure;
     private int twoVolt = COMMS.Instance.get2v();
     private int ground = COMMS.Instance.getGround();
+    string pumpstate;
 
     public AutoScrn()
     {
@@ -50,16 +52,20 @@ namespace LukMachine
       }
     }
 
+    //-----------------------------------------------------------------------------------------------
+    //-------------Main Loop----------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------
+
     private void backgroundWorkerMainLoop_DoWork(object sender, DoWorkEventArgs e)
-    {    
+    {
       emptyCollectedVolume();
       fillReservoir();
       while (!lastStep)
       {
         stepCount = 0;
-        targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
         targetTemperature = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
-        waitToReachTargetPressure();
+
+        goToTargetPressure();
 
         lastStep = true;
       }
@@ -85,7 +91,7 @@ namespace LukMachine
           {
             hideSkipButton();
           }
-          
+
 
 
         }
@@ -97,34 +103,47 @@ namespace LukMachine
         }
       }
     }
-    private void waitToReachTargetPressure()
+    private void goToTargetPressure()
     {
-      while (true)
+      backgroundWorkerMainLoop.ReportProgress(0, "Setting pressure to target pressure. Please wait...");
+      targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
+      pressureHasBeenReached = false;
+      skip = false;
+      backgroundWorkerMainLoop.ReportProgress(0, "displaySkipButton()");
+      while (!pressureHasBeenReached && !skip)
       {
-
-
-
+        Thread.Sleep(100);//waits until pressure has been set.                 
       }
+      //repeat
+      Thread.Sleep(700);
+      pressureHasBeenReached = false;
+      while (!pressureHasBeenReached && !skip)
+      {
+        Thread.Sleep(100);//waits until pressure has been set.                 
+      }
+      backgroundWorkerMainLoop.ReportProgress(0, "Target pressure reached");
+      backgroundWorkerMainLoop.ReportProgress(0, "hideSkipButton()");
+
     }
     private void emptyCollectedVolume() //refill reservoir with the liquid from the collected volume
     {
       backgroundWorkerMainLoop.ReportProgress(0, "Checking reservoir levels...");
-      
+
       //MessageBox.Show("ReservoirPercent "+ ReservoirPercent+ " CollectedPercent "+ CollectedPercent);
       //progress("display volume levels =" + reservoirPercent.ToString() + "=" + collectedPercent.ToString());//fix this, dont read twice     
 
       //displayVolumeLevels();
       //backgroundWorkerMainLoop.ReportProgress(0, "displayVolumeLevels()");
       int maxPercentFull = Properties.Settings.Default.maxEmptyCollectedPercentFull;
-      while (collectedPercent==-1) //-1 is the default value of collectedPercent.
+      while (collectedPercent == -1) //-1 is the default value of collectedPercent.
       {
         Thread.Sleep(100);//waits until collectedPercent has been set.
       }
       if (collectedPercent > maxPercentFull)
       {
         MessageBox.Show("The collected penetrometer contains liquid. The collected volume will now be flushed.");
-        backgroundWorkerMainLoop.ReportProgress(0,"Emptying collected volume...");
-       
+        backgroundWorkerMainLoop.ReportProgress(0, "Emptying collected volume...");
+
         Valves.OpenValve1();
       }
       skip = false;
@@ -146,7 +165,7 @@ namespace LukMachine
     {
       buttonSkip.Visible = false;
     }
-    
+
     public void displayVolumeLevels()
     {
       groupBoxReservoir.Text = "Reservoir " + (Convert.ToInt32(reservoirPercent) * Convert.ToInt32(Properties.Settings.Default.MaxCapacityInML) / 100).ToString() + " mL";
@@ -191,10 +210,10 @@ namespace LukMachine
     {
       if (reservoirPercent < 80)
       {
-        backgroundWorkerMainLoop.ReportProgress(0,"Reservoir is not full. Please add more volume to reservoir.");
+        backgroundWorkerMainLoop.ReportProgress(0, "Reservoir is not full. Please add more volume to reservoir.");
         skip = false;
         backgroundWorkerMainLoop.ReportProgress(0, "displaySkipButton()");
-        while ((reservoirPercent < 80)&& !skip)
+        while ((reservoirPercent < 80) && !skip)
         {
           Thread.Sleep(300);
           //reservoirPercent = COMMS.Instance.getReservoirLevelPercent();
@@ -243,26 +262,51 @@ namespace LukMachine
         collectedPercent = COMMS.Instance.getCollectedLevelPercent();
         reservoirPercent = COMMS.Instance.getReservoirLevelPercent();
 
+        //save current pressure (this will be used in pressure adjust loop)
+        lastPressure = currentPressure;
+
         //read pressure gauge, convert to PSI (will need to * by conversion factor and set units label later)
         pressureCounts = Convert.ToDouble(COMMS.Instance.ReadPressureGauge(1));
         currentPressure = (pressureCounts - ground) * Properties.Settings.Default.p1Max / 60000;  //twoVolt is 60000
 
+        //adjust pump for target pressure
+        if ((currentPressure < targetPressure - 0.2) && (currentPressure < lastPressure + 0.1)) //dont't increase speed if pressure is already increasing
+        {
+          Pumps.IncreaseMainPump(0.1);
+        }
+        else if ((currentPressure < targetPressure - 10) && (currentPressure < lastPressure + 0.3)) //dont't increase speed if pressure is already increasing fast
+        {
+          Pumps.IncreaseMainPump(0.3);
+        }
+        else if (currentPressure > targetPressure)
+        {
+          Pumps.SetPump2(0);
+        }
+        if ((currentPressure > (targetPressure - 0.1)) && (currentPressure < targetPressure + 0.1))
+        {
+          pressureHasBeenReached = true;
+        }
+
+        //update UI
         backgroundWorkerReadAndDisplay.ReportProgress(0);
+
         Thread.Sleep(500);
+
+        //cancel 
         if ((backgroundWorkerReadAndDisplay.CancellationPending == true))
         {
           e.Cancel = true;
           break;
         }
       }
-
-      
     }
 
     private void backgroundWorkerReadAndDisplay_ProgressChanged(object sender, ProgressChangedEventArgs e)
-    {    
+    {
       displayVolumeLevels();
       labelPressure.Text = "Pressure  =  " + String.Format("{0:0.0} PSI", currentPressure);
+      pumpstate = Properties.Settings.Default.MainPumpStatePercent.ToString();
+      labelPumpState.Text = "Pump Power  =  " + pumpstate + "%";
     }
   }
 }
