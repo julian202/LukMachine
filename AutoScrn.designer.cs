@@ -46,7 +46,7 @@
       this.panel1 = new System.Windows.Forms.Panel();
       this.buttonSkipPressure = new System.Windows.Forms.Button();
       this.buttonSkipSettingTemp = new System.Windows.Forms.Button();
-      this.label4 = new System.Windows.Forms.Label();
+      this.labelPanel = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
       this.label8 = new System.Windows.Forms.Label();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -61,13 +61,14 @@
       this.labelPressure = new System.Windows.Forms.Label();
       this.labelDuration = new System.Windows.Forms.Label();
       this.groupBoxCollectedVolume = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.buttonReport = new System.Windows.Forms.Button();
       this.linkLabelOpenFolder = new System.Windows.Forms.LinkLabel();
       this.backgroundWorkerMainLoop = new System.ComponentModel.BackgroundWorker();
       this.backgroundWorkerReadAndDisplay = new System.ComponentModel.BackgroundWorker();
+      this.buttonSkip = new System.Windows.Forms.Button();
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
@@ -203,9 +204,10 @@
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.buttonSkip);
       this.panel1.Controls.Add(this.buttonSkipPressure);
       this.panel1.Controls.Add(this.buttonSkipSettingTemp);
-      this.panel1.Controls.Add(this.label4);
+      this.panel1.Controls.Add(this.labelPanel);
       this.panel1.Location = new System.Drawing.Point(30, 272);
       this.panel1.Name = "panel1";
       this.panel1.Size = new System.Drawing.Size(614, 178);
@@ -213,7 +215,7 @@
       // 
       // buttonSkipPressure
       // 
-      this.buttonSkipPressure.Location = new System.Drawing.Point(171, 118);
+      this.buttonSkipPressure.Location = new System.Drawing.Point(300, 22);
       this.buttonSkipPressure.Name = "buttonSkipPressure";
       this.buttonSkipPressure.Size = new System.Drawing.Size(282, 36);
       this.buttonSkipPressure.TabIndex = 2;
@@ -224,7 +226,7 @@
       // 
       // buttonSkipSettingTemp
       // 
-      this.buttonSkipSettingTemp.Location = new System.Drawing.Point(171, 121);
+      this.buttonSkipSettingTemp.Location = new System.Drawing.Point(45, 38);
       this.buttonSkipSettingTemp.Name = "buttonSkipSettingTemp";
       this.buttonSkipSettingTemp.Size = new System.Drawing.Size(282, 36);
       this.buttonSkipSettingTemp.TabIndex = 1;
@@ -233,14 +235,14 @@
       this.buttonSkipSettingTemp.Visible = false;
       this.buttonSkipSettingTemp.Click += new System.EventHandler(this.buttonSkipSettingTemp_Click);
       // 
-      // label4
+      // labelPanel
       // 
-      this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(41, 61);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(527, 23);
-      this.label4.TabIndex = 0;
-      this.label4.Text = "Please wait...  (setting reservoirs / temperature / pressure)";
+      this.labelPanel.AutoSize = true;
+      this.labelPanel.Location = new System.Drawing.Point(41, 61);
+      this.labelPanel.Name = "labelPanel";
+      this.labelPanel.Size = new System.Drawing.Size(527, 23);
+      this.labelPanel.TabIndex = 0;
+      this.labelPanel.Text = "Please wait...  (setting reservoirs / temperature / pressure)";
       // 
       // label6
       // 
@@ -391,14 +393,6 @@
       this.groupBoxCollectedVolume.TabStop = false;
       this.groupBoxCollectedVolume.Text = "Collected Volume";
       // 
-      // verticalProgressBar2
-      // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(65, 42);
-      this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar2.TabIndex = 10;
-      this.verticalProgressBar2.Value = 50;
-      // 
       // groupBoxReservoir
       // 
       this.groupBoxReservoir.Controls.Add(this.verticalProgressBar1);
@@ -408,14 +402,6 @@
       this.groupBoxReservoir.TabIndex = 21;
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir";
-      // 
-      // verticalProgressBar1
-      // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(68, 42);
-      this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar1.TabIndex = 9;
-      this.verticalProgressBar1.Value = 50;
       // 
       // buttonReport
       // 
@@ -445,6 +431,33 @@
       // backgroundWorkerMainLoop
       // 
       this.backgroundWorkerMainLoop.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerMainLoop_DoWork);
+      this.backgroundWorkerMainLoop.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerMainLoop_ProgressChanged);
+      // 
+      // buttonSkip
+      // 
+      this.buttonSkip.Location = new System.Drawing.Point(252, 124);
+      this.buttonSkip.Name = "buttonSkip";
+      this.buttonSkip.Size = new System.Drawing.Size(143, 36);
+      this.buttonSkip.TabIndex = 3;
+      this.buttonSkip.Text = "Skip";
+      this.buttonSkip.UseVisualStyleBackColor = true;
+      this.buttonSkip.Click += new System.EventHandler(this.buttonSkip_Click);
+      // 
+      // verticalProgressBar1
+      // 
+      this.verticalProgressBar1.Location = new System.Drawing.Point(68, 42);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar1.TabIndex = 9;
+      this.verticalProgressBar1.Value = 50;
+      // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(65, 42);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar2.TabIndex = 10;
+      this.verticalProgressBar2.Value = 50;
       // 
       // AutoScrn
       // 
@@ -502,7 +515,7 @@
     private System.Windows.Forms.ListBox listBox1;
     private VerticalProgressBar verticalProgressBar1;
     private VerticalProgressBar verticalProgressBar2;
-    private System.Windows.Forms.Label label4;
+    private System.Windows.Forms.Label labelPanel;
     public System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.Label label8;
@@ -527,6 +540,7 @@
     private System.Windows.Forms.LinkLabel linkLabelOpenFolder;
     private System.ComponentModel.BackgroundWorker backgroundWorkerMainLoop;
     private System.ComponentModel.BackgroundWorker backgroundWorkerReadAndDisplay;
+    private System.Windows.Forms.Button buttonSkip;
     // private System.Windows.Controls.ProgressBar progbar;
 
 

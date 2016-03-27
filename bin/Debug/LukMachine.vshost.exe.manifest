@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LukMachine.exe" size="1969560">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LukMachine.exe" size="1971608">
       <assemblyIdentity name="LukMachine" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Dknnx2kL1jTsQd4DcBa7kfSLu0MzHS+TjYa0h+L4SzE=</dsig:DigestValue>
+        <dsig:DigestValue>LtIMehbMUYuqlEn+ujBVoR8xPC7tw8XKBRwbE/5uh9Q=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -95,7 +95,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>8Cs+qLneyqDNDEcx5yuh7PtXq49e9xfvDGl7QtkW0eI=</dsig:DigestValue>
+      <dsig:DigestValue>ltIejoC9zg3MKeyY/M1s8L2kyUvZCIN/qN8tgBieGAU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="TextFile1.txt" size="121">

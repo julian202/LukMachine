@@ -156,7 +156,7 @@
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="maxEmptyCollectedPercentFull" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">10</Value>
+      <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="flowRate" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
