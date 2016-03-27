@@ -14,14 +14,24 @@ namespace LukMachine
   public partial class AutoScrn : Form
   {
     int reservoirPercent;
-    int collectedPercent;
+    int collectedPercent=-1;
     int collectedVolume;
     bool skip = false;
+    double targetPressure = 0;
+    double targetTemperature;
+    double targetTemp;
+    bool lastStep = false;
+    int stepCount;
+    bool perssureHasBeenReached = false;
+    bool temperatureHasBeenReached = false;
+
     public AutoScrn()
     {
       InitializeComponent();
       backgroundWorkerMainLoop.WorkerReportsProgress = true;
       backgroundWorkerMainLoop.WorkerSupportsCancellation = true;
+      backgroundWorkerReadAndDisplay.WorkerReportsProgress = true;
+      backgroundWorkerReadAndDisplay.WorkerSupportsCancellation = true;
     }
 
     private void AutoScrn_Load(object sender, EventArgs e)
@@ -30,12 +40,25 @@ namespace LukMachine
       {
         backgroundWorkerMainLoop.RunWorkerAsync();
       }
+      if (backgroundWorkerReadAndDisplay.IsBusy != true)
+      {
+        backgroundWorkerReadAndDisplay.RunWorkerAsync();
+      }
     }
 
     private void backgroundWorkerMainLoop_DoWork(object sender, DoWorkEventArgs e)
     {    
       emptyCollectedVolume();
       fillReservoir();
+      while (!lastStep)
+      {
+        stepCount = 0;
+        targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
+        targetTemperature = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
+
+
+        lastStep = true;
+      }
     }
 
     private void backgroundWorkerMainLoop_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -45,15 +68,22 @@ namespace LukMachine
         string mystring = e.UserState as string;
         if (mystring.Substring(mystring.Length - 2, 2) == "()") // if it is a function then run the funtion
         {
+          /*
           if (mystring == "displayVolumeLevels()")
           {
             displayVolumeLevels();
-          }
+          }*/
           if (mystring == "displaySkipButton()")
           {
             displaySkipButton();
           }
+          if (mystring == "hideSkipButton()")
+          {
+            hideSkipButton();
+          }
           
+
+
         }
         else //if it is not a function then just add the string to the listbox 1
         {
@@ -67,14 +97,17 @@ namespace LukMachine
     private void emptyCollectedVolume() //refill reservoir with the liquid from the collected volume
     {
       backgroundWorkerMainLoop.ReportProgress(0, "Checking reservoir levels...");
-      collectedPercent = COMMS.Instance.getCollectedLevelPercent();
-      reservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+      
       //MessageBox.Show("ReservoirPercent "+ ReservoirPercent+ " CollectedPercent "+ CollectedPercent);
       //progress("display volume levels =" + reservoirPercent.ToString() + "=" + collectedPercent.ToString());//fix this, dont read twice     
 
       //displayVolumeLevels();
-      backgroundWorkerMainLoop.ReportProgress(0, "displayVolumeLevels()");
+      //backgroundWorkerMainLoop.ReportProgress(0, "displayVolumeLevels()");
       int maxPercentFull = Properties.Settings.Default.maxEmptyCollectedPercentFull;
+      while (collectedPercent==-1) //-1 is the default value of collectedPercent.
+      {
+        Thread.Sleep(100);//waits until collectedPercent has been set.
+      }
       if (collectedPercent > maxPercentFull)
       {
         MessageBox.Show("The collected penetrometer contains liquid. The collected volume will now be flushed.");
@@ -87,15 +120,21 @@ namespace LukMachine
       while ((collectedPercent > maxPercentFull) && !skip)
       {
         Thread.Sleep(300);
-        collectedPercent = COMMS.Instance.getCollectedLevelPercent();
-        backgroundWorkerMainLoop.ReportProgress(0, "displayVolumeLevels()");
+        //collectedPercent = COMMS.Instance.getCollectedLevelPercent();
+        //backgroundWorkerMainLoop.ReportProgress(0, "displayVolumeLevels()");
         //backgroundWorkerMainLoop.ReportProgress(0,"display volume levels =" + reservoirPercent.ToString() + "=" + collectedPercent.ToString());//fix this, dont read twice
       }
+      backgroundWorkerMainLoop.ReportProgress(0, "hideSkipButton()");
     }
     private void displaySkipButton()
     {
       buttonSkip.Visible = true;
     }
+    private void hideSkipButton()
+    {
+      buttonSkip.Visible = false;
+    }
+    
     public void displayVolumeLevels()
     {
       groupBoxReservoir.Text = "Reservoir " + (Convert.ToInt32(reservoirPercent) * Convert.ToInt32(Properties.Settings.Default.MaxCapacityInML) / 100).ToString() + " mL";
@@ -146,9 +185,10 @@ namespace LukMachine
         while ((reservoirPercent < 80)&& !skip)
         {
           Thread.Sleep(300);
-          reservoirPercent = COMMS.Instance.getReservoirLevelPercent();
-          backgroundWorkerMainLoop.ReportProgress(0, "displayVolumeLevels()");
-        }       
+          //reservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+          //backgroundWorkerMainLoop.ReportProgress(0, "displayVolumeLevels()");
+        }
+        backgroundWorkerMainLoop.ReportProgress(0, "hideSkipButton()");
       }
       backgroundWorkerMainLoop.ReportProgress(0, "Done checking reservoir levels");
     }
@@ -181,6 +221,29 @@ namespace LukMachine
     {
       skip = true;
       buttonSkip.Visible = false;
+    }
+
+    private void backgroundWorkerReadAndDisplay_DoWork(object sender, DoWorkEventArgs e)
+    {
+      while (true)
+      {
+        collectedPercent = COMMS.Instance.getCollectedLevelPercent();
+        reservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+        backgroundWorkerReadAndDisplay.ReportProgress(0);
+        Thread.Sleep(500);
+        if ((backgroundWorkerReadAndDisplay.CancellationPending == true))
+        {
+          e.Cancel = true;
+          break;
+        }
+      }
+
+      
+    }
+
+    private void backgroundWorkerReadAndDisplay_ProgressChanged(object sender, ProgressChangedEventArgs e)
+    {    
+      displayVolumeLevels();
     }
   }
 }

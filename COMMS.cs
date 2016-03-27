@@ -418,8 +418,16 @@ namespace LukMachine
       int minCount = Convert.ToInt32(Properties.Settings.Default.ground);
       //int maxCount = Properties.Settings.Default.MaxReservoirCount;
       int maxCount = Properties.Settings.Default.RefCount10V;
-
-      ReservoirLevelCount = Convert.ToInt32(getReservoirLevelCount());
+      string cnt = getReservoirLevelCount();
+      try
+      {      
+        ReservoirLevelCount = Convert.ToInt32(cnt);
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Couldn't get getReservoirLevelCount() was in incorrect format. getReservoirLevelCount()= "+ cnt);
+      }
+      
       int percent = 100 * (ReservoirLevelCount - minCount) / (maxCount - minCount);
       int invertedPercent = 100 - percent; //must invert because of how the penetrometers are set up.
       return invertedPercent;
