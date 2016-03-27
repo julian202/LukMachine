@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,8 @@ namespace LukMachine
     private int twoVolt = COMMS.Instance.get2v();
     private int ground = COMMS.Instance.getGround();
     string pumpstate;
+    bool stepTimeReached = false;
+    Stopwatch stopwatch = new Stopwatch();
 
     public AutoScrn()
     {
@@ -66,6 +69,7 @@ namespace LukMachine
         targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
         //MessageBox.Show("targetPressure is " + targetPressure.ToString());
         goToTargetPressure();
+        startTimeWriteToFileAndGraph();
       }
       backgroundWorkerMainLoop.ReportProgress(0, "Finished");
     }
@@ -90,9 +94,6 @@ namespace LukMachine
           {
             hideSkipButton();
           }
-
-
-
         }
         else //if it is not a function then just add the string to the listbox 1
         {
@@ -102,6 +103,23 @@ namespace LukMachine
         }
       }
     }
+    private void startTimeWriteToFileAndGraph()
+    {
+      backgroundWorkerMainLoop.ReportProgress(0, "Running step "+ (stepCount+1));
+      stopwatch.Start();
+      stepTimeReached = false;
+      while (!stepTimeReached)
+      {
+
+        Thread.Sleep(2000);
+        stepTimeReached = true;
+      }
+      stopwatch.Stop();
+
+      MessageBox.Show(((stopwatch.ElapsedMilliseconds)/1000).ToString());
+      //time.f "Time elapsed: {0:hh\\:mm\\:ss}", stopwatch.Elapsed
+    }
+
     private void goToTargetPressure()
     {
       backgroundWorkerMainLoop.ReportProgress(0, "Setting pressure to target pressure. Please wait...");
