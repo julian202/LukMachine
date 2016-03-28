@@ -695,6 +695,10 @@ namespace LukMachine
       DataGridViewRowCollection drc = dataGridView1.Rows;
       foreach (DataGridViewRow item in drc)
       {
+        if (item.Cells[1].Value.ToString()=="0")
+        {
+          MessageBox.Show("Please delete the row with 0 duration");
+        }
         Properties.Settings.Default.CollectionPressure.Add(item.Cells[0].Value.ToString());
         Properties.Settings.Default.CollectionDuration.Add(item.Cells[1].Value.ToString());
         Properties.Settings.Default.CollectionTemperature.Add(item.Cells[2].Value.ToString());
