@@ -32,6 +32,11 @@ namespace LukMachine
     string pumpstate;
     bool stepTimeReached = false;
     Stopwatch stopwatch = new Stopwatch();
+    Stopwatch stopwatchStep = new Stopwatch();
+    TimeSpan timeSpanTotal;
+    TimeSpan timeSpanStep;
+    double stepTimeInMinutes;
+    bool testFinished = false;
 
     public AutoScrn()
     {
@@ -44,6 +49,7 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+      buttonReport.Visible = false;
       if (backgroundWorkerMainLoop.IsBusy != true)
       {
         backgroundWorkerMainLoop.RunWorkerAsync();
@@ -71,7 +77,7 @@ namespace LukMachine
         goToTargetPressure();
         startTimeWriteToFileAndGraph();
       }
-      backgroundWorkerMainLoop.ReportProgress(0, "Finished");
+      backgroundWorkerMainLoop.ReportProgress(0, "finished()");
     }
 
     private void backgroundWorkerMainLoop_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -86,13 +92,22 @@ namespace LukMachine
           {
             displayVolumeLevels();
           }*/
-          if (mystring == "displaySkipButton()")
+          
+          if (mystring == "addDataPointToTableAndGraph()")
+          {
+            addDataPointToTableAndGraph();
+          }
+          else if (mystring == "displaySkipButton()")
           {
             displaySkipButton();
           }
-          if (mystring == "hideSkipButton()")
+          else if (mystring == "hideSkipButton()")
           {
             hideSkipButton();
+          }
+          else if (mystring == "finished()")
+          {
+            finished();
           }
         }
         else //if it is not a function then just add the string to the listbox 1
@@ -103,20 +118,35 @@ namespace LukMachine
         }
       }
     }
+    private void addDataPointToTableAndGraph()
+    {
+
+    }
+
+    private void finished()
+    {
+      testFinished = true;
+      buttonReport.Visible = true;
+      listBox1.Items.Add("Finished");
+      listBox1.TopIndex = listBox1.Items.Count - 1;
+      labelPanel.Text = "Finished";
+    }
     private void startTimeWriteToFileAndGraph()
     {
-      backgroundWorkerMainLoop.ReportProgress(0, "Running step "+ (stepCount+1));
+      backgroundWorkerMainLoop.ReportProgress(0, "Running step " + (stepCount + 1));
       stopwatch.Start();
+      stopwatchStep.Restart();
       stepTimeReached = false;
       while (!stepTimeReached)
       {
 
         Thread.Sleep(2000);
-        stepTimeReached = true;
+        backgroundWorkerMainLoop.ReportProgress(0, "addDataPointToTableAndGraph()");
       }
       stopwatch.Stop();
+      stopwatchStep.Stop();
 
-      MessageBox.Show(((stopwatch.ElapsedMilliseconds)/1000).ToString());
+      //MessageBox.Show(((stopwatch.ElapsedMilliseconds)/1000).ToString());
       //time.f "Time elapsed: {0:hh\\:mm\\:ss}", stopwatch.Elapsed
     }
 
@@ -158,7 +188,7 @@ namespace LukMachine
       }
       if (collectedPercent > maxPercentFull)
       {
-        MessageBox.Show("collectedPercent="+ collectedPercent+ " maxPercentFull="+ maxPercentFull);
+        MessageBox.Show("collectedPercent=" + collectedPercent + " maxPercentFull=" + maxPercentFull);
         MessageBox.Show("The collected penetrometer contains liquid. The collected volume will now be flushed.");
         backgroundWorkerMainLoop.ReportProgress(0, "Emptying collected volume...");
 
@@ -290,7 +320,7 @@ namespace LukMachine
         currentPressure = (pressureCounts - ground) * Properties.Settings.Default.p1Max / 60000;  //twoVolt is 60000
 
         //adjust pump for target pressure
-        if ((currentPressure < targetPressure - 0.2)&& (currentPressure > targetPressure - 10)) //if pressure is between these two numbers
+        if ((currentPressure < targetPressure - 0.2) && (currentPressure > targetPressure - 10)) //if pressure is between these two numbers
         {
           if (currentPressure < (lastPressure + 0.1)) //this is the target increase of pressure per step
           {
@@ -355,12 +385,33 @@ namespace LukMachine
       pumpstate = Properties.Settings.Default.MainPumpStatePercent.ToString("#0.0");
       labelPumpState.Text = "Pump Power  =  " + pumpstate + "%";
       labelStepsTotal.Text = "Total Steps  =  " + Properties.Settings.Default.NumberOfSteps.ToString();
-
-      labelStepCurrent.Text = "Step  =  " + (stepCount + 1);
-      if ((stepCount + 1) > Properties.Settings.Default.CollectionPressure.Count)
+      if (testFinished)
       {
         labelStepCurrent.Text = "Step  =  End";
       }
+      else
+      {
+        labelStepCurrent.Text = "Step  =  " + (stepCount + 1);
+      }
+
+      timeSpanTotal = stopwatch.Elapsed;
+      timeSpanStep = stopwatchStep.Elapsed;
+      labelTotalTime.Text = "Total time = " + String.Format("{0:00}:{1:00}", timeSpanTotal.Minutes, timeSpanTotal.Seconds); ;
+      labelStepTime.Text = "Step time = " + String.Format("{0:00}:{1:00}", timeSpanStep.Minutes, timeSpanStep.Seconds);
+      stepTimeInMinutes = Convert.ToDouble(timeSpanStep.Minutes) + Convert.ToDouble(timeSpanStep.Seconds) / 60;
+      if (stepTimeInMinutes >= Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]))
+      {
+        stepTimeReached = true;
+      }
+    }
+
+    private void button2_Click(object sender, EventArgs e)
+    {
+      stopwatchStep.Stop();
+      stopwatch.Stop();
+      Pumps.SetPump2(0);
+      backgroundWorkerMainLoop.CancelAsync();
+      button2.Enabled = false;
     }
   }
 }
