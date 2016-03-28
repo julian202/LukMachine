@@ -434,9 +434,9 @@ namespace LukMachine
       {
         temp = COMMS.Instance.ReadAthenaTemp(2);
         labelChamber1Temp.Text = "Chamber 1: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
-        temp = COMMS.Instance.ReadAthenaTemp(3);
-        labelChamber2Temp.Text = "Chamber 2: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
         temp = COMMS.Instance.ReadAthenaTemp(1);
+        labelChamber2Temp.Text = "Chamber 2: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        temp = COMMS.Instance.ReadAthenaTemp(3);
         labelReservoirTemp.Text = "Reservoir: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
       }
       if (checkBox4.Checked)

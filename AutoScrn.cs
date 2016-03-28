@@ -93,6 +93,7 @@ namespace LukMachine
       {
         backgroundWorkerReadAndDisplay.RunWorkerAsync();
       }
+      timerForStopWatch.Start();
       chart1.ChartAreas[0].AxisY.Title = "Flow (mL/min)";
       chart1.ChartAreas[0].AxisX.Title = "Time (mins)";
       chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
@@ -617,18 +618,7 @@ namespace LukMachine
       else
       {
         labelStepCurrent.Text = "Step  =  " + (stepCount + 1);
-      }
-
-      timeSpanTotal = stopwatch.Elapsed;
-      timeSpanStep = stopwatchStep.Elapsed;
-      totalTime = String.Format("{0:00}:{1:00}", timeSpanTotal.Minutes, timeSpanTotal.Seconds);
-      labelTotalTime.Text = "Total time = " + totalTime;
-      labelStepTime.Text = "Step time = " + String.Format("{0:00}:{1:00}", timeSpanStep.Minutes, timeSpanStep.Seconds);
-      stepTimeInMinutes = Convert.ToDouble(timeSpanStep.Minutes) + Convert.ToDouble(timeSpanStep.Seconds) / 60;
-      if (stepTimeInMinutes >= Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]))
-      {
-        stepTimeReached = true;
-      }
+      }    
     }
 
     private void button2_Click(object sender, EventArgs e)
@@ -640,6 +630,7 @@ namespace LukMachine
       Pumps.SetPump2(0);
       backgroundWorkerMainLoop.CancelAsync();
       button2.Enabled = false;
+      timerForStopWatch.Stop();
     }
 
     private void AutoScrn_FormClosing(object sender, FormClosingEventArgs e)
@@ -651,6 +642,21 @@ namespace LukMachine
       Pumps.SetPump2(0);
       backgroundWorkerMainLoop.CancelAsync();
       backgroundWorkerReadAndDisplay.CancelAsync();
+      timerForStopWatch.Stop();
+    }
+
+    private void timerForStopWatch_Tick(object sender, EventArgs e)
+    {
+      timeSpanTotal = stopwatch.Elapsed;
+      timeSpanStep = stopwatchStep.Elapsed;
+      totalTime = String.Format("{0:00}:{1:00}", timeSpanTotal.Minutes, timeSpanTotal.Seconds);
+      labelTotalTime.Text = "Total time = " + totalTime;
+      labelStepTime.Text = "Step time = " + String.Format("{0:00}:{1:00}", timeSpanStep.Minutes, timeSpanStep.Seconds);
+      stepTimeInMinutes = Convert.ToDouble(timeSpanStep.Minutes) + Convert.ToDouble(timeSpanStep.Seconds) / 60;
+      if (stepTimeInMinutes >= Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]))
+      {
+        stepTimeReached = true;
+      }
     }
   }
 }
