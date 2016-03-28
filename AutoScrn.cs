@@ -216,6 +216,17 @@ namespace LukMachine
       dataGridView1.Rows.Add(totalTime, flow.ToString("#0.00"));
       dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
       chart1.Series["Series1"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), flow.ToString("#0.00"));
+      chart1.Series["SeriesPressure"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentPressure.ToString("#0.00"));
+      if (checkBoxShowPressureGraph.Checked)
+      {
+        chart1.Series["SeriesPressure"].Enabled = true;
+      }
+      else
+      {
+        chart1.Series["SeriesPressure"].Enabled = false;
+      }
+      
+
       lastCollectedCount = collectedCount;
       lastTotalTimeInMinutes = totalTimeInMinutes;
       SR = new StreamWriter(dataFile, true);
