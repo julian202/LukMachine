@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishUrlHistory>ftp://ftp.pmiapp.com/development/deploy/luk/|ftp://Development:PMIteam1%40ftp.pmiapp.com/development/deploy/luk/|ftp://user:pass%40ftp.pmiapp.com/development/deploy/luk/|ftp://ftp.pmiapp.com/development/deploy/luk/ ftp://user:pass%40gomain.com/|ftp://ftp.pmiapp.com/development/PMI Liquid Permeability %28Luk%29/</PublishUrlHistory>
+    <InstallUrlHistory>http://www.pmiapp.com/development/deploy/luk/</InstallUrlHistory>
+    <SupportUrlHistory />
+    <UpdateUrlHistory>http://www.pmiapp.com/development/deploy/luk/|http://www.pmiapp.com/developmebnt/deploy/luk/</UpdateUrlHistory>
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory />
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+</Project>
