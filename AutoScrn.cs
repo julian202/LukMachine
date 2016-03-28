@@ -24,6 +24,7 @@ namespace LukMachine
     private double reservoirTemp;
     double targetTemperatureInF;
     double currentTemperature;
+    double currentTemperatureInC;
     int stepCount;
     bool pressureHasBeenReached = false;
     bool temperatureHasBeenReached = false;
@@ -61,6 +62,8 @@ namespace LukMachine
     bool nowSettingTemp = false;
     private double chamberTemp;
     double pumpPowerAtEndOfLastStep=0;
+    bool emptyingCollected = false;
+    bool dontCountFirstDataPointAfterEmtpying = false;
 
     public AutoScrn()
     {
@@ -198,8 +201,13 @@ namespace LukMachine
         firstDataPoint = false;
       }
       else
-      {
+      {      
         collectedDifferenceInCounts = collectedCount - lastCollectedCount;
+        if (dontCountFirstDataPointAfterEmtpying)
+        {
+          collectedDifferenceInCounts = 0;
+          dontCountFirstDataPointAfterEmtpying = false;
+        }
         totalTimeInMinutes = Convert.ToDouble(timeSpanTotal.Minutes) + Convert.ToDouble(timeSpanTotal.Seconds) / 60;
         timeDifferenceInMinutes = lastTotalTimeInMinutes - totalTimeInMinutes;
         if (timeDifferenceInMinutes == 0)
@@ -232,7 +240,7 @@ namespace LukMachine
       lastTotalTimeInMinutes = totalTimeInMinutes;
       SR = new StreamWriter(dataFile, true);
       SR2 = new StreamWriter(dataFilePathForCapRep, true);
-      SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", totalTimeInMinutes.ToString("#0.00"), flow.ToString("#0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
+      SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", totalTimeInMinutes.ToString("#0.00"), flow.ToString("#0.00"), currentTemperatureInC.ToString("0.0"), currentPressure.ToString("0.000"));
       //Console.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
       SR2.WriteLine("{0,10}\t{1,10}", flow.ToString("0.00"), currentPressure.ToString("0.000"));
       SR.Close();
@@ -269,6 +277,26 @@ namespace LukMachine
       while (!stepTimeReached)
       {
         backgroundWorkerMainLoop.ReportProgress(0, "addDataPointToTableAndGraph()");
+
+        if (collectedPercent>95)
+        {
+          backgroundWorkerMainLoop.ReportProgress(0, "Collected volume is full. Flushing... (Please make sure you add more volume to the reservoir!)");
+          backgroundWorkerMainLoop.ReportProgress(0, "displayPanel1()");
+          emptyingCollected = true;
+          stopwatch.Stop();
+          stopwatchStep.Stop();
+        }
+        while (emptyingCollected) //wait for collected volume to drain
+        {
+          Thread.Sleep(200);
+        }
+        if (!stopwatchStep.IsRunning)
+        {
+          dontCountFirstDataPointAfterEmtpying = true; 
+          backgroundWorkerMainLoop.ReportProgress(0, "hidePanel1()");
+          stopwatch.Start();
+          stopwatchStep.Start();
+        }
         Thread.Sleep(1000 * Properties.Settings.Default.intervalBetweenTimePoints);
       }
       stopwatch.Stop();
@@ -475,6 +503,16 @@ namespace LukMachine
         reservoirPercent = COMMS.Instance.getReservoirLevelPercent();
         collectedCount = COMMS.CollectedLevelCount; //this is to have a more accurate (double intead of int) number to calcultate flow. (notice it's not a funct).
 
+        if (emptyingCollected)
+        {
+          Valves.OpenValve1();
+          if (collectedPercent< Properties.Settings.Default.maxEmptyCollectedPercentFull)
+          {
+            Valves.CloseValve1();
+            emptyingCollected = false;
+          }
+        }
+
         //save current pressure (this will be used in pressure adjust loop)
         lastPressure = currentPressure;
 
@@ -561,7 +599,7 @@ namespace LukMachine
           COMMS.Instance.SetAthenaTemp(2, targetTempinF);
           COMMS.Instance.SetAthenaTemp(3, targetTempinF);
           //COMMS.Instance.SetAthenaTemp(4, targetTempinF);
-          if (((currentTemperature > targetTempinF - 1) && (currentTemperature < targetTempinF + 1)))
+          if (((currentTemperature > targetTempinF - 1))) //therefore you must always go in steps of increasing temperature
           {
             temperatureHasBeenReached = true;
           }
@@ -703,8 +741,8 @@ namespace LukMachine
     private void backgroundWorkerReadAndDisplay_ProgressChanged(object sender, ProgressChangedEventArgs e)
     {
       //temp
-      int myintInCelsius = (Convert.ToInt32((currentTemperature - 32) * 5 / 9));
-      label6.Text = "Temperature  =  " + String.Format("{0:0}", myintInCelsius) + " C / " + String.Format("{0:0}", currentTemperature) + " F";
+      currentTemperatureInC = (Convert.ToDouble((currentTemperature - 32) * 5 / 9));
+      label6.Text = "Temperature  =  " + String.Format("{0:0}", currentTemperatureInC) + " C / " + String.Format("{0:0}", currentTemperature) + " F";
 
       displayVolumeLevels();
       labelPressure.Text = "Pressure  =  " + String.Format("{0:0.0} PSI", currentPressure);
