@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -37,6 +38,24 @@ namespace LukMachine
     TimeSpan timeSpanStep;
     double stepTimeInMinutes;
     bool testFinished = false;
+    string totalTime;
+    double flow;
+    double lastFlow=0;
+    int collectedCount;
+    int lastCollectedCount;
+    int collectedDifferenceInCounts;
+    bool firstDataPoint;
+    double timeDifferenceInMinutes;
+    double totalTimeInMinutes;
+    double lastTotalTimeInMinutes;
+    StreamWriter SR;
+    StreamWriter SR2;
+    private string dataFile = Properties.Settings.Default.TestData;
+    private string dataFilePathForCapRep;
+    double convertedTemp=0;
+    private string sampleID = Properties.Settings.Default.TestSampleID;
+    private string lotNumber = Properties.Settings.Default.TestLotNumber;
+    bool abort = false;
 
     public AutoScrn()
     {
@@ -49,6 +68,22 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+      try
+      {
+        SR = new StreamWriter(dataFile);
+        dataFilePathForCapRep = dataFile.Substring(0, dataFile.Length - 4) + "-forCapRep.txt";
+        SR2 = new StreamWriter(dataFilePathForCapRep);
+        WriteHeader();
+        WriteHeaderForCapRep();
+        SR.Close();
+        SR2.Close();
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(ex.Message + " Restart the application and select a different folder to save the data, or else run the application as an administrator");
+        Application.Exit();
+      }
+      firstDataPoint = true;
       buttonReport.Visible = false;
       if (backgroundWorkerMainLoop.IsBusy != true)
       {
@@ -58,6 +93,10 @@ namespace LukMachine
       {
         backgroundWorkerReadAndDisplay.RunWorkerAsync();
       }
+      chart1.ChartAreas[0].AxisY.Title = "Flow (mL/min)";
+      chart1.ChartAreas[0].AxisX.Title = "Time (mins)";
+      chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
+      chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
     }
 
     //-----------------------------------------------------------------------------------------------
@@ -76,8 +115,12 @@ namespace LukMachine
         //MessageBox.Show("targetPressure is " + targetPressure.ToString());
         goToTargetPressure();
         startTimeWriteToFileAndGraph();
+        if (abort)
+        {
+          break;
+        }
       }
-      backgroundWorkerMainLoop.ReportProgress(0, "finished()");
+      backgroundWorkerMainLoop.ReportProgress(0, "finished()"); 
     }
 
     private void backgroundWorkerMainLoop_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -96,6 +139,14 @@ namespace LukMachine
           if (mystring == "addDataPointToTableAndGraph()")
           {
             addDataPointToTableAndGraph();
+          }         
+          else if (mystring == "displayPanel1()")
+          {
+            displayPanel1();
+          }
+          else if (mystring == "hidePanel1()")
+          {
+            hidePanel1();
           }
           else if (mystring == "displaySkipButton()")
           {
@@ -112,36 +163,89 @@ namespace LukMachine
         }
         else //if it is not a function then just add the string to the listbox 1
         {
-          listBox1.Items.Add(mystring);
-          listBox1.TopIndex = listBox1.Items.Count - 1;
+          addToListBox1(mystring);
           labelPanel.Text = mystring;
         }
       }
     }
+
+    private void addToListBox1(string param)
+    {
+      listBox1.Items.Add(param);
+      listBox1.TopIndex = listBox1.Items.Count - 1;
+    }
+
     private void addDataPointToTableAndGraph()
     {
+      if (firstDataPoint)
+      {
+        flow = lastFlow;
+        lastCollectedCount = collectedCount;
+        totalTimeInMinutes = Convert.ToDouble(timeSpanTotal.Minutes) + Convert.ToDouble(timeSpanTotal.Seconds) / 60;
+        lastTotalTimeInMinutes = totalTimeInMinutes;
+        firstDataPoint = false;
+      }
+      else
+      {
+        collectedDifferenceInCounts = collectedCount - lastCollectedCount;
+        totalTimeInMinutes = Convert.ToDouble(timeSpanTotal.Minutes) + Convert.ToDouble(timeSpanTotal.Seconds) / 60;
+        timeDifferenceInMinutes = lastTotalTimeInMinutes - totalTimeInMinutes;
+        if (timeDifferenceInMinutes==0)
+        {
+          flow = 0;
+        }
+        else
+        {
+          flow = Convert.ToDouble(collectedDifferenceInCounts / timeDifferenceInMinutes); //this is flow in pent counts per minute
+          flow = flow * Convert.ToDouble(Properties.Settings.Default.MaxCapacityInML) / 58000; //this converts flow to mL       
+          lastFlow = flow; //this is to keep count of last flow during pressure adjust
+        }
+        //Debug.WriteLine("flow: "+ flow+ " totalTimeInMinutes: "+ totalTimeInMinutes+ " lastTotalTimeInMinutes: " + lastTotalTimeInMinutes+" timeDifferenceInMinutes: " +timeDifferenceInMinutes.ToString() + " collectedDifferenceInCounts: " + collectedDifferenceInCounts.ToString());
+      }
+      dataGridView1.Rows.Add(totalTime, flow.ToString("#0.00"));
+      dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
+      chart1.Series["Series1"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), flow.ToString("#0.00"));
+      lastCollectedCount = collectedCount;
+      lastTotalTimeInMinutes = totalTimeInMinutes;
+      SR = new StreamWriter(dataFile, true);
+      SR2 = new StreamWriter(dataFilePathForCapRep, true);
+      SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", totalTimeInMinutes.ToString("#0.00"), flow.ToString("#0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
+      //Console.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
+      SR2.WriteLine("{0,10}\t{1,10}", flow.ToString("0.00"), currentPressure.ToString("0.000"));
+      SR.Close();
+      SR2.Close();
+    }
 
+    private void displayPanel1()
+    {
+      panel1.Visible = true;
+    }
+
+    private void hidePanel1()
+    {
+      panel1.Visible = false;
     }
 
     private void finished()
     {
       testFinished = true;
       buttonReport.Visible = true;
-      listBox1.Items.Add("Finished");
-      listBox1.TopIndex = listBox1.Items.Count - 1;
+      addToListBox1("Finished");
       labelPanel.Text = "Finished";
+      addToListBox1("Data saved to " + Properties.Settings.Default.TestData);
     }
     private void startTimeWriteToFileAndGraph()
     {
+      backgroundWorkerMainLoop.ReportProgress(0, "hidePanel1()");
       backgroundWorkerMainLoop.ReportProgress(0, "Running step " + (stepCount + 1));
       stopwatch.Start();
       stopwatchStep.Restart();
       stepTimeReached = false;
+      firstDataPoint = true;
       while (!stepTimeReached)
       {
-
-        Thread.Sleep(2000);
         backgroundWorkerMainLoop.ReportProgress(0, "addDataPointToTableAndGraph()");
+        Thread.Sleep(1000*Properties.Settings.Default.intervalBetweenTimePoints);      
       }
       stopwatch.Stop();
       stopwatchStep.Stop();
@@ -153,6 +257,7 @@ namespace LukMachine
     private void goToTargetPressure()
     {
       backgroundWorkerMainLoop.ReportProgress(0, "Setting pressure to target pressure. Please wait...");
+      backgroundWorkerMainLoop.ReportProgress(0, "displayPanel1()");
       targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
       pressureHasBeenReached = false;
       skip = false;
@@ -188,7 +293,7 @@ namespace LukMachine
       }
       if (collectedPercent > maxPercentFull)
       {
-        MessageBox.Show("collectedPercent=" + collectedPercent + " maxPercentFull=" + maxPercentFull);
+        //MessageBox.Show("collectedPercent=" + collectedPercent + " maxPercentFull=" + maxPercentFull);
         MessageBox.Show("The collected penetrometer contains liquid. The collected volume will now be flushed.");
         backgroundWorkerMainLoop.ReportProgress(0, "Emptying collected volume...");
 
@@ -311,6 +416,7 @@ namespace LukMachine
         //read reservoirs
         collectedPercent = COMMS.Instance.getCollectedLevelPercent();
         reservoirPercent = COMMS.Instance.getReservoirLevelPercent();
+        collectedCount = COMMS.CollectedLevelCount; //this is to have a more accurate (double intead of int) number to calcultate flow. (notice it's not a funct).
 
         //save current pressure (this will be used in pressure adjust loop)
         lastPressure = currentPressure;
@@ -377,6 +483,125 @@ namespace LukMachine
       }
     }
 
+    public void WriteHeaderForCapRep()
+    {
+      SR2.WriteLine("EXTENDED");
+      SR2.WriteLine(" 6");
+      SR2.WriteLine("Operator=EWS");
+      SR2.WriteLine("Lot Number=11121");
+      SR2.WriteLine("Hardware Serial Number=09182012-2092");
+      SR2.WriteLine("Type of Test=Liquid Perm - Elevated");
+      SR2.WriteLine("Lohm Table=lohmtable.cal");
+      SR2.WriteLine("Piston Compression Pressure = 90");
+      SR2.WriteLine("12-17-2015");
+      SR2.WriteLine("UBC");
+      SR2.WriteLine("LP");
+      SR2.WriteLine(Properties.Settings.Default.CurrentViscosity);
+      SR2.WriteLine("0");
+      SR2.WriteLine("UBC A2");
+      SR2.WriteLine(Properties.Settings.Default.SampleDiameter);
+      SR2.WriteLine(Properties.Settings.Default.SampleThickness);
+      SR2.WriteLine("0"); //atmosphereric pressure (0 for our gauges).
+    }
+    public void WriteHeader()
+    {
+      string paper = null;
+      string sheets = null;
+      string grammage = null;
+      if (Properties.Settings.Default.paper)
+      {
+        paper = "Y";
+        sheets = Properties.Settings.Default.paperSheets.ToString();
+        grammage = Properties.Settings.Default.grammage.ToString();
+      }
+      else
+      {
+        paper = "N";
+        sheets = "N/A";
+        grammage = "N/A";
+      }
+      //Make a hat for the data.
+      SR.WriteLine("Liquid Permeability Test");
+      SR.WriteLine("");
+      SR.WriteLine("Sample Info:");
+      SR.WriteLine("");
+      SR.WriteLine("Sample ID=" + sampleID);
+      SR.WriteLine("Lot Number=" + lotNumber);
+      //SR.WriteLine("Paper Sample=" + paper);
+      //SR.WriteLine("Sheets=" + sheets);
+      //SR.WriteLine("Grammage=" + grammage);
+      SR.WriteLine("");
+      SR.WriteLine("Test Details:");
+      SR.WriteLine("");
+      SR.WriteLine("Date= " + DateTime.Now.ToString("dd/MM/yyyy H:mm"));
+      SR.WriteLine("Time Units=" + "Minutes");
+      SR.WriteLine("Flow Units=" + "mL/min");
+      if (Properties.Settings.Default.TempCorF == "C")
+      {
+        SR.WriteLine("Temperature Units=" + "Celsius");
+      }
+      else
+      {
+        SR.WriteLine("Temperature Units=" + "Fahrenheit");
+      }
+      SR.WriteLine("Pressure Units=PSI" );
+      SR.WriteLine("Steps=" + Properties.Settings.Default.NumberOfSteps);
+
+
+      /*SR.Write("Pressure=");
+      foreach (string item in Properties.Settings.Default.CollectionPressure)
+      {
+        SR.Write(item + "; ");
+      }*/
+      string pressure;
+      pressure = Properties.Settings.Default.CollectionPressure[0];
+      for (int i = 1; i < Properties.Settings.Default.CollectionPressure.Count; i++)
+      {
+        pressure = pressure + "; " + Properties.Settings.Default.CollectionPressure[i];
+      }
+      SR.Write("Pressure=" + pressure);
+
+      SR.WriteLine(""); //to end the line
+
+      /*SR.Write("Duration=");
+      foreach (string item in Properties.Settings.Default.CollectionDuration)
+      {
+        SR.Write(item + "; ");
+      }*/
+
+      string Duration;
+      Duration = Properties.Settings.Default.CollectionDuration[0];
+      for (int i = 1; i < Properties.Settings.Default.CollectionDuration.Count; i++)
+      {
+        Duration = Duration + "; " + Properties.Settings.Default.CollectionDuration[i];
+      }
+      SR.Write("Time=" + Duration);
+
+      SR.WriteLine("");//to end the line
+
+      /*SR.Write("Temperature=");
+      foreach (string item in Properties.Settings.Default.CollectionTemperature)
+      {
+        SR.Write(item + "; ");
+      }*/
+      string Temperature;
+      Temperature = Properties.Settings.Default.CollectionTemperature[0];
+      for (int i = 1; i < Properties.Settings.Default.CollectionTemperature.Count; i++)
+      {
+        Temperature = Temperature + "; " + Properties.Settings.Default.CollectionTemperature[i];
+      }
+      SR.Write("Temperature=" + Temperature);
+
+      SR.WriteLine("");//to end the line
+      //SR.WriteLine("Pressure Rate(mL / min)=" + pressureRate.ToString());
+      SR.WriteLine("");
+      SR.WriteLine("Data:");
+      SR.WriteLine("");
+      //SR.WriteLine("Time,\tFlow,\tTemperature,\tPressure");
+      SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", "Time", "Flow", "Temperature", "Pressure");
+      SR.WriteLine("");
+    }
+
     private void backgroundWorkerReadAndDisplay_ProgressChanged(object sender, ProgressChangedEventArgs e)
     {
       displayVolumeLevels();
@@ -396,7 +621,8 @@ namespace LukMachine
 
       timeSpanTotal = stopwatch.Elapsed;
       timeSpanStep = stopwatchStep.Elapsed;
-      labelTotalTime.Text = "Total time = " + String.Format("{0:00}:{1:00}", timeSpanTotal.Minutes, timeSpanTotal.Seconds); ;
+      totalTime = String.Format("{0:00}:{1:00}", timeSpanTotal.Minutes, timeSpanTotal.Seconds);
+      labelTotalTime.Text = "Total time = " + totalTime;
       labelStepTime.Text = "Step time = " + String.Format("{0:00}:{1:00}", timeSpanStep.Minutes, timeSpanStep.Seconds);
       stepTimeInMinutes = Convert.ToDouble(timeSpanStep.Minutes) + Convert.ToDouble(timeSpanStep.Seconds) / 60;
       if (stepTimeInMinutes >= Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]))
@@ -407,11 +633,24 @@ namespace LukMachine
 
     private void button2_Click(object sender, EventArgs e)
     {
+      stepTimeReached = true;
+      abort = true;
       stopwatchStep.Stop();
       stopwatch.Stop();
       Pumps.SetPump2(0);
       backgroundWorkerMainLoop.CancelAsync();
       button2.Enabled = false;
+    }
+
+    private void AutoScrn_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      stepTimeReached = true;
+      abort = true;
+      stopwatchStep.Stop();
+      stopwatch.Stop();
+      Pumps.SetPump2(0);
+      backgroundWorkerMainLoop.CancelAsync();
+      backgroundWorkerReadAndDisplay.CancelAsync();
     }
   }
 }

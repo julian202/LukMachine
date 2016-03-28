@@ -162,5 +162,18 @@ namespace LukMachine
       comboBox1.Items.Clear();
       loadPortList();
     }
+
+    private void textBox4_TextChanged(object sender, EventArgs e)
+    {
+      try
+      {
+        Properties.Settings.Default.intervalBetweenTimePoints = Convert.ToInt32(textBox4.Text);
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Please enter a valid number");
+      }
+      
+    }
   }
 }

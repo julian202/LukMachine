@@ -69,6 +69,9 @@
       this.button4 = new System.Windows.Forms.Button();
       this.button3 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
+      this.groupBox3 = new System.Windows.Forms.GroupBox();
+      this.textBox4 = new System.Windows.Forms.TextBox();
+      this.label12 = new System.Windows.Forms.Label();
       this.groupBox1.SuspendLayout();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
@@ -82,13 +85,14 @@
       this.tabPage3.SuspendLayout();
       this.tabPage4.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+      this.groupBox3.SuspendLayout();
       this.SuspendLayout();
       // 
       // groupBox1
       // 
       this.groupBox1.Controls.Add(this.comboBox1);
       this.groupBox1.Controls.Add(this.button1);
-      this.groupBox1.Location = new System.Drawing.Point(77, 28);
+      this.groupBox1.Location = new System.Drawing.Point(77, 7);
       this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
       this.groupBox1.Name = "groupBox1";
       this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -134,6 +138,7 @@
       // 
       // tabPage1
       // 
+      this.tabPage1.Controls.Add(this.groupBox3);
       this.tabPage1.Controls.Add(this.groupBox2);
       this.tabPage1.Controls.Add(this.groupBox1);
       this.tabPage1.Location = new System.Drawing.Point(4, 35);
@@ -148,9 +153,9 @@
       // 
       this.groupBox2.Controls.Add(this.radioButton2);
       this.groupBox2.Controls.Add(this.radioButton1);
-      this.groupBox2.Location = new System.Drawing.Point(77, 136);
+      this.groupBox2.Location = new System.Drawing.Point(77, 94);
       this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(294, 99);
+      this.groupBox2.Size = new System.Drawing.Size(294, 82);
       this.groupBox2.TabIndex = 16;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Temperature Units";
@@ -158,7 +163,7 @@
       // radioButton2
       // 
       this.radioButton2.AutoSize = true;
-      this.radioButton2.Location = new System.Drawing.Point(149, 46);
+      this.radioButton2.Location = new System.Drawing.Point(149, 34);
       this.radioButton2.Name = "radioButton2";
       this.radioButton2.Size = new System.Drawing.Size(127, 27);
       this.radioButton2.TabIndex = 1;
@@ -170,7 +175,7 @@
       // radioButton1
       // 
       this.radioButton1.AutoSize = true;
-      this.radioButton1.Location = new System.Drawing.Point(16, 46);
+      this.radioButton1.Location = new System.Drawing.Point(16, 34);
       this.radioButton1.Name = "radioButton1";
       this.radioButton1.Size = new System.Drawing.Size(98, 27);
       this.radioButton1.TabIndex = 0;
@@ -502,6 +507,36 @@
       this.button2.UseVisualStyleBackColor = true;
       this.button2.Click += new System.EventHandler(this.button2_Click);
       // 
+      // groupBox3
+      // 
+      this.groupBox3.Controls.Add(this.label12);
+      this.groupBox3.Controls.Add(this.textBox4);
+      this.groupBox3.Location = new System.Drawing.Point(77, 192);
+      this.groupBox3.Name = "groupBox3";
+      this.groupBox3.Size = new System.Drawing.Size(294, 74);
+      this.groupBox3.TabIndex = 17;
+      this.groupBox3.TabStop = false;
+      this.groupBox3.Text = "Interval between data points:";
+      // 
+      // textBox4
+      // 
+      this.textBox4.Location = new System.Drawing.Point(43, 29);
+      this.textBox4.Name = "textBox4";
+      this.textBox4.Size = new System.Drawing.Size(88, 30);
+      this.textBox4.TabIndex = 0;
+      this.textBox4.Text = "10";
+      this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+      // 
+      // label12
+      // 
+      this.label12.AutoSize = true;
+      this.label12.Location = new System.Drawing.Point(144, 32);
+      this.label12.Name = "label12";
+      this.label12.Size = new System.Drawing.Size(86, 23);
+      this.label12.TabIndex = 1;
+      this.label12.Text = "Seconds";
+      // 
       // settings
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
@@ -536,6 +571,8 @@
       this.tabPage4.ResumeLayout(false);
       this.tabPage4.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+      this.groupBox3.ResumeLayout(false);
+      this.groupBox3.PerformLayout();
       this.ResumeLayout(false);
 
         }
@@ -582,5 +619,8 @@
     private System.Windows.Forms.GroupBox groupBox2;
     private System.Windows.Forms.RadioButton radioButton2;
     private System.Windows.Forms.RadioButton radioButton1;
+    private System.Windows.Forms.GroupBox groupBox3;
+    private System.Windows.Forms.Label label12;
+    private System.Windows.Forms.TextBox textBox4;
   }
 }
