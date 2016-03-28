@@ -68,6 +68,11 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+      for (int i = 0; i < Properties.Settings.Default.CollectionPressure.Count; i++)
+      {
+        dataGridView2.Rows.Add(Properties.Settings.Default.CollectionPressure[i], Properties.Settings.Default.CollectionDuration[i], Properties.Settings.Default.CollectionTemperature[i]);
+      }
+        
       try
       {
         SR = new StreamWriter(dataFile);
@@ -304,7 +309,7 @@ namespace LukMachine
       backgroundWorkerMainLoop.ReportProgress(0, "displaySkipButton()");
       while ((collectedPercent > maxPercentFull) && !skip)
       {
-        MessageBox.Show("collectedPercent=" + collectedPercent + " maxPercentFull=" + maxPercentFull);
+        //MessageBox.Show("collectedPercent=" + collectedPercent + " maxPercentFull=" + maxPercentFull);
 
         Thread.Sleep(300);
         //collectedPercent = COMMS.Instance.getCollectedLevelPercent();
