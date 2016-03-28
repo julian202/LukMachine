@@ -452,8 +452,15 @@ namespace LukMachine
       int minCount = Convert.ToInt32( Properties.Settings.Default.ground);
       //int maxCount = Properties.Settings.Default.MaxCollectedCount;
       int maxCount = Properties.Settings.Default.RefCount10V;
-
-      CollectedLevelCount = Convert.ToInt32(getCollectedLevelCount());
+      try
+      {
+        CollectedLevelCount = Convert.ToInt32(getCollectedLevelCount());
+      }
+      catch (Exception)
+      {
+        System.Diagnostics.Debug.Write("-------ERROR in CollectedLevelCount------------");
+      }
+     
       int percent= 100 * (CollectedLevelCount - minCount) / (maxCount - minCount);
       int invertedPercent = 100 - percent; //must invert because of how the penetrometers are set up.
       return invertedPercent;

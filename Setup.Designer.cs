@@ -41,6 +41,17 @@
       this.label6 = new System.Windows.Forms.Label();
       this.label7 = new System.Windows.Forms.Label();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.panel3 = new System.Windows.Forms.Panel();
+      this.label21 = new System.Windows.Forms.Label();
+      this.textBoxViscosity = new System.Windows.Forms.TextBox();
+      this.radioButtonOil = new System.Windows.Forms.RadioButton();
+      this.radioButtonWater = new System.Windows.Forms.RadioButton();
+      this.label19 = new System.Windows.Forms.Label();
+      this.label20 = new System.Windows.Forms.Label();
+      this.textBoxThickness = new System.Windows.Forms.TextBox();
+      this.label17 = new System.Windows.Forms.Label();
+      this.label18 = new System.Windows.Forms.Label();
+      this.textBoxDiameter = new System.Windows.Forms.TextBox();
       this.linkLabel1 = new System.Windows.Forms.LinkLabel();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.button6 = new System.Windows.Forms.Button();
@@ -84,18 +95,9 @@
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.pictureBox2 = new System.Windows.Forms.PictureBox();
       this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-      this.label17 = new System.Windows.Forms.Label();
-      this.label18 = new System.Windows.Forms.Label();
-      this.textBoxDiameter = new System.Windows.Forms.TextBox();
-      this.label19 = new System.Windows.Forms.Label();
-      this.label20 = new System.Windows.Forms.Label();
-      this.textBoxThickness = new System.Windows.Forms.TextBox();
-      this.panel3 = new System.Windows.Forms.Panel();
-      this.radioButtonOil = new System.Windows.Forms.RadioButton();
-      this.radioButtonWater = new System.Windows.Forms.RadioButton();
-      this.textBoxViscosity = new System.Windows.Forms.TextBox();
-      this.label21 = new System.Windows.Forms.Label();
+      this.groupBox3 = new System.Windows.Forms.GroupBox();
       this.groupBox1.SuspendLayout();
+      this.panel3.SuspendLayout();
       this.groupBox2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel2.SuspendLayout();
@@ -103,7 +105,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-      this.panel3.SuspendLayout();
+      this.groupBox3.SuspendLayout();
       this.SuspendLayout();
       // 
       // textBox1
@@ -214,6 +216,114 @@
       this.groupBox1.TabStop = false;
       this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
       // 
+      // panel3
+      // 
+      this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.panel3.Controls.Add(this.label21);
+      this.panel3.Controls.Add(this.textBoxViscosity);
+      this.panel3.Controls.Add(this.radioButtonOil);
+      this.panel3.Controls.Add(this.radioButtonWater);
+      this.panel3.Location = new System.Drawing.Point(302, 211);
+      this.panel3.Name = "panel3";
+      this.panel3.Size = new System.Drawing.Size(247, 79);
+      this.panel3.TabIndex = 54;
+      // 
+      // label21
+      // 
+      this.label21.AutoSize = true;
+      this.label21.Location = new System.Drawing.Point(13, 46);
+      this.label21.Name = "label21";
+      this.label21.Size = new System.Drawing.Size(137, 23);
+      this.label21.TabIndex = 56;
+      this.label21.Text = "Viscosity (cP):";
+      // 
+      // textBoxViscosity
+      // 
+      this.textBoxViscosity.Location = new System.Drawing.Point(107, 43);
+      this.textBoxViscosity.Name = "textBoxViscosity";
+      this.textBoxViscosity.Size = new System.Drawing.Size(127, 30);
+      this.textBoxViscosity.TabIndex = 55;
+      this.textBoxViscosity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBoxViscosity.TextChanged += new System.EventHandler(this.textBoxViscosity_TextChanged);
+      // 
+      // radioButtonOil
+      // 
+      this.radioButtonOil.AutoSize = true;
+      this.radioButtonOil.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.radioButtonOil.Location = new System.Drawing.Point(40, 10);
+      this.radioButtonOil.Name = "radioButtonOil";
+      this.radioButtonOil.Size = new System.Drawing.Size(61, 28);
+      this.radioButtonOil.TabIndex = 29;
+      this.radioButtonOil.TabStop = true;
+      this.radioButtonOil.Text = "Oil";
+      this.radioButtonOil.UseVisualStyleBackColor = true;
+      this.radioButtonOil.CheckedChanged += new System.EventHandler(this.radioButtonOil_CheckedChanged);
+      // 
+      // radioButtonWater
+      // 
+      this.radioButtonWater.AutoSize = true;
+      this.radioButtonWater.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.radioButtonWater.Location = new System.Drawing.Point(107, 10);
+      this.radioButtonWater.Name = "radioButtonWater";
+      this.radioButtonWater.Size = new System.Drawing.Size(90, 28);
+      this.radioButtonWater.TabIndex = 30;
+      this.radioButtonWater.TabStop = true;
+      this.radioButtonWater.Text = "Water";
+      this.radioButtonWater.UseVisualStyleBackColor = true;
+      this.radioButtonWater.CheckedChanged += new System.EventHandler(this.radioButtonWater_CheckedChanged);
+      // 
+      // label19
+      // 
+      this.label19.AutoSize = true;
+      this.label19.Location = new System.Drawing.Point(20, 261);
+      this.label19.Name = "label19";
+      this.label19.Size = new System.Drawing.Size(175, 23);
+      this.label19.TabIndex = 51;
+      this.label19.Text = "Sample Thickness:";
+      // 
+      // label20
+      // 
+      this.label20.AutoSize = true;
+      this.label20.Location = new System.Drawing.Point(260, 261);
+      this.label20.Name = "label20";
+      this.label20.Size = new System.Drawing.Size(36, 23);
+      this.label20.TabIndex = 53;
+      this.label20.Text = "cm";
+      // 
+      // textBoxThickness
+      // 
+      this.textBoxThickness.Location = new System.Drawing.Point(193, 258);
+      this.textBoxThickness.Name = "textBoxThickness";
+      this.textBoxThickness.Size = new System.Drawing.Size(63, 30);
+      this.textBoxThickness.TabIndex = 52;
+      this.textBoxThickness.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      // 
+      // label17
+      // 
+      this.label17.AutoSize = true;
+      this.label17.Location = new System.Drawing.Point(20, 221);
+      this.label17.Name = "label17";
+      this.label17.Size = new System.Drawing.Size(168, 23);
+      this.label17.TabIndex = 48;
+      this.label17.Text = "Sample Diameter:";
+      // 
+      // label18
+      // 
+      this.label18.AutoSize = true;
+      this.label18.Location = new System.Drawing.Point(260, 221);
+      this.label18.Name = "label18";
+      this.label18.Size = new System.Drawing.Size(36, 23);
+      this.label18.TabIndex = 50;
+      this.label18.Text = "cm";
+      // 
+      // textBoxDiameter
+      // 
+      this.textBoxDiameter.Location = new System.Drawing.Point(193, 218);
+      this.textBoxDiameter.Name = "textBoxDiameter";
+      this.textBoxDiameter.Size = new System.Drawing.Size(63, 30);
+      this.textBoxDiameter.TabIndex = 49;
+      this.textBoxDiameter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      // 
       // linkLabel1
       // 
       this.linkLabel1.AutoSize = true;
@@ -227,20 +337,10 @@
       // 
       // groupBox2
       // 
+      this.groupBox2.Controls.Add(this.groupBox3);
       this.groupBox2.Controls.Add(this.button6);
       this.groupBox2.Controls.Add(this.button4);
-      this.groupBox2.Controls.Add(this.buttonAdd);
       this.groupBox2.Controls.Add(this.dataGridView1);
-      this.groupBox2.Controls.Add(this.label16);
-      this.groupBox2.Controls.Add(this.label12);
-      this.groupBox2.Controls.Add(this.label3);
-      this.groupBox2.Controls.Add(this.textBoxTemperature);
-      this.groupBox2.Controls.Add(this.textBoxDuration);
-      this.groupBox2.Controls.Add(this.label13);
-      this.groupBox2.Controls.Add(this.label4);
-      this.groupBox2.Controls.Add(this.checkBoxTemperature);
-      this.groupBox2.Controls.Add(this.label15);
-      this.groupBox2.Controls.Add(this.textBoxPressure);
       this.groupBox2.Location = new System.Drawing.Point(6, 296);
       this.groupBox2.Name = "groupBox2";
       this.groupBox2.Size = new System.Drawing.Size(549, 258);
@@ -250,9 +350,9 @@
       // 
       // button6
       // 
-      this.button6.Location = new System.Drawing.Point(9, 194);
+      this.button6.Location = new System.Drawing.Point(20, 208);
       this.button6.Name = "button6";
-      this.button6.Size = new System.Drawing.Size(285, 42);
+      this.button6.Size = new System.Drawing.Size(240, 43);
       this.button6.TabIndex = 48;
       this.button6.Text = "Load previously used values";
       this.button6.UseVisualStyleBackColor = true;
@@ -260,9 +360,9 @@
       // 
       // button4
       // 
-      this.button4.Location = new System.Drawing.Point(304, 219);
+      this.button4.Location = new System.Drawing.Point(289, 208);
       this.button4.Name = "button4";
-      this.button4.Size = new System.Drawing.Size(239, 34);
+      this.button4.Size = new System.Drawing.Size(240, 43);
       this.button4.TabIndex = 46;
       this.button4.Text = "Remove Selected Row";
       this.button4.UseVisualStyleBackColor = true;
@@ -270,9 +370,9 @@
       // 
       // buttonAdd
       // 
-      this.buttonAdd.Location = new System.Drawing.Point(9, 146);
+      this.buttonAdd.Location = new System.Drawing.Point(11, 131);
       this.buttonAdd.Name = "buttonAdd";
-      this.buttonAdd.Size = new System.Drawing.Size(285, 42);
+      this.buttonAdd.Size = new System.Drawing.Size(240, 43);
       this.buttonAdd.TabIndex = 45;
       this.buttonAdd.Text = "Add these values to the list";
       this.buttonAdd.UseVisualStyleBackColor = true;
@@ -302,7 +402,7 @@
             this.PressureColumn,
             this.DurationColumn,
             this.TemperatureColumn});
-      this.dataGridView1.Location = new System.Drawing.Point(304, 20);
+      this.dataGridView1.Location = new System.Drawing.Point(277, 20);
       this.dataGridView1.Name = "dataGridView1";
       this.dataGridView1.ReadOnly = true;
       dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -317,7 +417,7 @@
       dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
       this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
       this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-      this.dataGridView1.Size = new System.Drawing.Size(239, 193);
+      this.dataGridView1.Size = new System.Drawing.Size(266, 181);
       this.dataGridView1.TabIndex = 45;
       // 
       // PressureColumn
@@ -344,7 +444,7 @@
       // label16
       // 
       this.label16.AutoSize = true;
-      this.label16.Location = new System.Drawing.Point(37, 41);
+      this.label16.Location = new System.Drawing.Point(22, 26);
       this.label16.Name = "label16";
       this.label16.Size = new System.Drawing.Size(95, 23);
       this.label16.TabIndex = 39;
@@ -353,7 +453,7 @@
       // label12
       // 
       this.label12.AutoSize = true;
-      this.label12.Location = new System.Drawing.Point(37, 113);
+      this.label12.Location = new System.Drawing.Point(28, 98);
       this.label12.Name = "label12";
       this.label12.Size = new System.Drawing.Size(127, 23);
       this.label12.TabIndex = 33;
@@ -362,7 +462,7 @@
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(222, 77);
+      this.label3.Location = new System.Drawing.Point(200, 62);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(78, 23);
       this.label3.TabIndex = 44;
@@ -370,7 +470,7 @@
       // 
       // textBoxTemperature
       // 
-      this.textBoxTemperature.Location = new System.Drawing.Point(153, 110);
+      this.textBoxTemperature.Location = new System.Drawing.Point(135, 95);
       this.textBoxTemperature.Name = "textBoxTemperature";
       this.textBoxTemperature.Size = new System.Drawing.Size(63, 30);
       this.textBoxTemperature.TabIndex = 34;
@@ -379,7 +479,7 @@
       // 
       // textBoxDuration
       // 
-      this.textBoxDuration.Location = new System.Drawing.Point(153, 74);
+      this.textBoxDuration.Location = new System.Drawing.Point(135, 59);
       this.textBoxDuration.Name = "textBoxDuration";
       this.textBoxDuration.Size = new System.Drawing.Size(63, 30);
       this.textBoxDuration.TabIndex = 43;
@@ -389,7 +489,7 @@
       // label13
       // 
       this.label13.AutoSize = true;
-      this.label13.Location = new System.Drawing.Point(222, 113);
+      this.label13.Location = new System.Drawing.Point(200, 98);
       this.label13.Name = "label13";
       this.label13.Size = new System.Drawing.Size(63, 23);
       this.label13.TabIndex = 35;
@@ -398,7 +498,7 @@
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(37, 77);
+      this.label4.Location = new System.Drawing.Point(22, 62);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(89, 23);
       this.label4.TabIndex = 42;
@@ -407,7 +507,7 @@
       // checkBoxTemperature
       // 
       this.checkBoxTemperature.AutoSize = true;
-      this.checkBoxTemperature.Location = new System.Drawing.Point(9, 115);
+      this.checkBoxTemperature.Location = new System.Drawing.Point(8, 100);
       this.checkBoxTemperature.Name = "checkBoxTemperature";
       this.checkBoxTemperature.Size = new System.Drawing.Size(22, 21);
       this.checkBoxTemperature.TabIndex = 36;
@@ -417,7 +517,7 @@
       // label15
       // 
       this.label15.AutoSize = true;
-      this.label15.Location = new System.Drawing.Point(222, 41);
+      this.label15.Location = new System.Drawing.Point(200, 26);
       this.label15.Name = "label15";
       this.label15.Size = new System.Drawing.Size(42, 23);
       this.label15.TabIndex = 41;
@@ -425,7 +525,7 @@
       // 
       // textBoxPressure
       // 
-      this.textBoxPressure.Location = new System.Drawing.Point(153, 38);
+      this.textBoxPressure.Location = new System.Drawing.Point(135, 23);
       this.textBoxPressure.Name = "textBoxPressure";
       this.textBoxPressure.Size = new System.Drawing.Size(63, 30);
       this.textBoxPressure.TabIndex = 40;
@@ -699,113 +799,24 @@
       this.saveFileDialog1.Title = "Select data file";
       this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
       // 
-      // label17
+      // groupBox3
       // 
-      this.label17.AutoSize = true;
-      this.label17.Location = new System.Drawing.Point(20, 221);
-      this.label17.Name = "label17";
-      this.label17.Size = new System.Drawing.Size(168, 23);
-      this.label17.TabIndex = 48;
-      this.label17.Text = "Sample Diameter:";
-      // 
-      // label18
-      // 
-      this.label18.AutoSize = true;
-      this.label18.Location = new System.Drawing.Point(260, 221);
-      this.label18.Name = "label18";
-      this.label18.Size = new System.Drawing.Size(36, 23);
-      this.label18.TabIndex = 50;
-      this.label18.Text = "cm";
-      // 
-      // textBoxDiameter
-      // 
-      this.textBoxDiameter.Location = new System.Drawing.Point(193, 218);
-      this.textBoxDiameter.Name = "textBoxDiameter";
-      this.textBoxDiameter.Size = new System.Drawing.Size(63, 30);
-      this.textBoxDiameter.TabIndex = 49;
-      this.textBoxDiameter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      // 
-      // label19
-      // 
-      this.label19.AutoSize = true;
-      this.label19.Location = new System.Drawing.Point(20, 261);
-      this.label19.Name = "label19";
-      this.label19.Size = new System.Drawing.Size(175, 23);
-      this.label19.TabIndex = 51;
-      this.label19.Text = "Sample Thickness:";
-      // 
-      // label20
-      // 
-      this.label20.AutoSize = true;
-      this.label20.Location = new System.Drawing.Point(260, 261);
-      this.label20.Name = "label20";
-      this.label20.Size = new System.Drawing.Size(36, 23);
-      this.label20.TabIndex = 53;
-      this.label20.Text = "cm";
-      // 
-      // textBoxThickness
-      // 
-      this.textBoxThickness.Location = new System.Drawing.Point(193, 258);
-      this.textBoxThickness.Name = "textBoxThickness";
-      this.textBoxThickness.Size = new System.Drawing.Size(63, 30);
-      this.textBoxThickness.TabIndex = 52;
-      this.textBoxThickness.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      // 
-      // panel3
-      // 
-      this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.panel3.Controls.Add(this.label21);
-      this.panel3.Controls.Add(this.textBoxViscosity);
-      this.panel3.Controls.Add(this.radioButtonOil);
-      this.panel3.Controls.Add(this.radioButtonWater);
-      this.panel3.Location = new System.Drawing.Point(302, 211);
-      this.panel3.Name = "panel3";
-      this.panel3.Size = new System.Drawing.Size(247, 79);
-      this.panel3.TabIndex = 54;
-      // 
-      // radioButtonOil
-      // 
-      this.radioButtonOil.AutoSize = true;
-      this.radioButtonOil.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.radioButtonOil.Location = new System.Drawing.Point(40, 10);
-      this.radioButtonOil.Name = "radioButtonOil";
-      this.radioButtonOil.Size = new System.Drawing.Size(61, 28);
-      this.radioButtonOil.TabIndex = 29;
-      this.radioButtonOil.TabStop = true;
-      this.radioButtonOil.Text = "Oil";
-      this.radioButtonOil.UseVisualStyleBackColor = true;
-      this.radioButtonOil.CheckedChanged += new System.EventHandler(this.radioButtonOil_CheckedChanged);
-      // 
-      // radioButtonWater
-      // 
-      this.radioButtonWater.AutoSize = true;
-      this.radioButtonWater.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.radioButtonWater.Location = new System.Drawing.Point(107, 10);
-      this.radioButtonWater.Name = "radioButtonWater";
-      this.radioButtonWater.Size = new System.Drawing.Size(90, 28);
-      this.radioButtonWater.TabIndex = 30;
-      this.radioButtonWater.TabStop = true;
-      this.radioButtonWater.Text = "Water";
-      this.radioButtonWater.UseVisualStyleBackColor = true;
-      this.radioButtonWater.CheckedChanged += new System.EventHandler(this.radioButtonWater_CheckedChanged);
-      // 
-      // textBoxViscosity
-      // 
-      this.textBoxViscosity.Location = new System.Drawing.Point(107, 43);
-      this.textBoxViscosity.Name = "textBoxViscosity";
-      this.textBoxViscosity.Size = new System.Drawing.Size(127, 30);
-      this.textBoxViscosity.TabIndex = 55;
-      this.textBoxViscosity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.textBoxViscosity.TextChanged += new System.EventHandler(this.textBoxViscosity_TextChanged);
-      // 
-      // label21
-      // 
-      this.label21.AutoSize = true;
-      this.label21.Location = new System.Drawing.Point(13, 46);
-      this.label21.Name = "label21";
-      this.label21.Size = new System.Drawing.Size(137, 23);
-      this.label21.TabIndex = 56;
-      this.label21.Text = "Viscosity (cP):";
+      this.groupBox3.Controls.Add(this.label16);
+      this.groupBox3.Controls.Add(this.textBoxPressure);
+      this.groupBox3.Controls.Add(this.label15);
+      this.groupBox3.Controls.Add(this.buttonAdd);
+      this.groupBox3.Controls.Add(this.checkBoxTemperature);
+      this.groupBox3.Controls.Add(this.label4);
+      this.groupBox3.Controls.Add(this.label13);
+      this.groupBox3.Controls.Add(this.label12);
+      this.groupBox3.Controls.Add(this.textBoxDuration);
+      this.groupBox3.Controls.Add(this.label3);
+      this.groupBox3.Controls.Add(this.textBoxTemperature);
+      this.groupBox3.Location = new System.Drawing.Point(9, 19);
+      this.groupBox3.Name = "groupBox3";
+      this.groupBox3.Size = new System.Drawing.Size(262, 182);
+      this.groupBox3.TabIndex = 49;
+      this.groupBox3.TabStop = false;
       // 
       // Setup
       // 
@@ -823,8 +834,9 @@
       this.Load += new System.EventHandler(this.Setup_Load);
       this.groupBox1.ResumeLayout(false);
       this.groupBox1.PerformLayout();
+      this.panel3.ResumeLayout(false);
+      this.panel3.PerformLayout();
       this.groupBox2.ResumeLayout(false);
-      this.groupBox2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
       this.panel2.ResumeLayout(false);
       this.panel2.PerformLayout();
@@ -833,8 +845,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-      this.panel3.ResumeLayout(false);
-      this.panel3.PerformLayout();
+      this.groupBox3.ResumeLayout(false);
+      this.groupBox3.PerformLayout();
       this.ResumeLayout(false);
 
         }
@@ -903,5 +915,6 @@
     private System.Windows.Forms.RadioButton radioButtonWater;
     private System.Windows.Forms.Label label21;
     private System.Windows.Forms.TextBox textBoxViscosity;
+    private System.Windows.Forms.GroupBox groupBox3;
   }
 }

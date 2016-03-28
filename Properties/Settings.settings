@@ -188,7 +188,7 @@
     <Setting Name="RefillPumpState" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="MainPumpStatePercent" Type="System.Int32" Scope="User">
+    <Setting Name="MainPumpStatePercent" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="TargetPressure" Type="System.String" Scope="User">
@@ -218,7 +218,7 @@
   &lt;string&gt;0&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
-    <Setting Name="StepCount" Type="System.Int32" Scope="User">
+    <Setting Name="NumberOfSteps" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="TempCorF" Type="System.String" Scope="User">
@@ -256,6 +256,9 @@
     </Setting>
     <Setting Name="CurrentViscosity" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="intervalBetweenTimePoints" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
     </Setting>
   </Settings>
 </SettingsFile>

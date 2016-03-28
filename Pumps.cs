@@ -20,15 +20,15 @@ namespace LukMachine
       Properties.Settings.Default.RefillPumpState = false;
       Properties.Settings.Default.Save();
     }
-    public static void SetPump2(int percent)
+    public static void SetPump2(double percent)
     {
-      int num= percent * 4000 / 100;
+      int num= Convert.ToInt32(percent * 4000 / 100);
       COMMS.Instance.SetRegulator(1, num);
       Properties.Settings.Default.MainPumpStatePercent = percent;
       Properties.Settings.Default.Save();
     }
 
-    public static void IncreaseMainPump(int percent) //Increases MainPump by percent %
+    public static void IncreaseMainPump(double percent) //Increases MainPump by percent %
     {
       if ((Properties.Settings.Default.MainPumpStatePercent + percent)<=100) //becuase pump can't be less than 0.
       {
@@ -41,7 +41,7 @@ namespace LukMachine
       Properties.Settings.Default.Save();
     }
 
-    public static void DecreaseMainPump(int percent) //Increases MainPump by percent %
+    public static void DecreaseMainPump(double percent) //Increases MainPump by percent %
     {
       if (Properties.Settings.Default.MainPumpStatePercent>= percent) //becuase pump can't be less than 0.
       {

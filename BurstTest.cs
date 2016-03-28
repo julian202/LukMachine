@@ -741,7 +741,7 @@ namespace LukMachine
         SR.WriteLine("Temperature Units=" + "Fahrenheit");
       }
       SR.WriteLine("Pressure Units=" + pUnits);
-      SR.WriteLine("Steps=" + Properties.Settings.Default.StepCount);
+      SR.WriteLine("Steps=" + Properties.Settings.Default.NumberOfSteps);
 
 
       /*SR.Write("Pressure=");

@@ -159,7 +159,7 @@ namespace LukMachine
       }
 
       //Save selected values
-      Properties.Settings.Default.StepCount = dataGridView1.RowCount;
+      Properties.Settings.Default.NumberOfSteps = dataGridView1.RowCount;
       Properties.Settings.Default.selectedTemp = selectedTemp;
       Properties.Settings.Default.TestSampleID = textBox1.Text;
       Properties.Settings.Default.TestLotNumber = textBox2.Text;

@@ -750,9 +750,9 @@ namespace LukMachine.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int MainPumpStatePercent {
+        public double MainPumpStatePercent {
             get {
-                return ((int)(this["MainPumpStatePercent"]));
+                return ((double)(this["MainPumpStatePercent"]));
             }
             set {
                 this["MainPumpStatePercent"] = value;
@@ -840,12 +840,12 @@ namespace LukMachine.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int StepCount {
+        public int NumberOfSteps {
             get {
-                return ((int)(this["StepCount"]));
+                return ((int)(this["NumberOfSteps"]));
             }
             set {
-                this["StepCount"] = value;
+                this["NumberOfSteps"] = value;
             }
         }
         
@@ -990,6 +990,18 @@ namespace LukMachine.Properties {
             }
             set {
                 this["CurrentViscosity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int intervalBetweenTimePoints {
+            get {
+                return ((int)(this["intervalBetweenTimePoints"]));
+            }
+            set {
+                this["intervalBetweenTimePoints"] = value;
             }
         }
     }
