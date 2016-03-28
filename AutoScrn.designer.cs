@@ -28,22 +28,26 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
       System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoScrn));
       this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
       this.dataGridView1 = new System.Windows.Forms.DataGridView();
-      this.TimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.PressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.button3 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
       this.listBox1 = new System.Windows.Forms.ListBox();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.buttonSkip = new System.Windows.Forms.Button();
       this.buttonSkipPressure = new System.Windows.Forms.Button();
       this.buttonSkipSettingTemp = new System.Windows.Forms.Button();
       this.labelPanel = new System.Windows.Forms.Label();
@@ -66,7 +70,15 @@
       this.linkLabelOpenFolder = new System.Windows.Forms.LinkLabel();
       this.backgroundWorkerMainLoop = new System.ComponentModel.BackgroundWorker();
       this.backgroundWorkerReadAndDisplay = new System.ComponentModel.BackgroundWorker();
-      this.buttonSkip = new System.Windows.Forms.Button();
+      this.labelStepTime = new System.Windows.Forms.Label();
+      this.TimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.PressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.timerForStopWatch = new System.Windows.Forms.Timer(this.components);
+      this.dataGridView2 = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.DurationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.TemperatureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -76,6 +88,8 @@
       this.groupBoxPressure.SuspendLayout();
       this.groupBoxCollectedVolume.SuspendLayout();
       this.groupBoxReservoir.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+      this.groupBox2.SuspendLayout();
       this.SuspendLayout();
       // 
       // chart1
@@ -134,18 +148,6 @@
       this.dataGridView1.Size = new System.Drawing.Size(231, 308);
       this.dataGridView1.TabIndex = 1;
       // 
-      // TimeColumn
-      // 
-      this.TimeColumn.HeaderText = "Time(sec)";
-      this.TimeColumn.Name = "TimeColumn";
-      this.TimeColumn.ReadOnly = true;
-      // 
-      // PressureColumn
-      // 
-      this.PressureColumn.HeaderText = "Flow(mL/min)";
-      this.PressureColumn.Name = "PressureColumn";
-      this.PressureColumn.ReadOnly = true;
-      // 
       // button3
       // 
       this.button3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -161,7 +163,6 @@
       // 
       // button2
       // 
-      this.button2.Enabled = false;
       this.button2.Image = global::LukMachine.Properties.Resources._109_AllAnnotations_Error_32x32_72;
       this.button2.Location = new System.Drawing.Point(664, 528);
       this.button2.Name = "button2";
@@ -170,6 +171,7 @@
       this.button2.Text = "Stop Test";
       this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
       this.button2.UseVisualStyleBackColor = true;
+      this.button2.Click += new System.EventHandler(this.button2_Click);
       // 
       // button1
       // 
@@ -213,6 +215,16 @@
       this.panel1.Size = new System.Drawing.Size(614, 178);
       this.panel1.TabIndex = 13;
       // 
+      // buttonSkip
+      // 
+      this.buttonSkip.Location = new System.Drawing.Point(252, 124);
+      this.buttonSkip.Name = "buttonSkip";
+      this.buttonSkip.Size = new System.Drawing.Size(143, 36);
+      this.buttonSkip.TabIndex = 3;
+      this.buttonSkip.Text = "Skip";
+      this.buttonSkip.UseVisualStyleBackColor = true;
+      this.buttonSkip.Click += new System.EventHandler(this.buttonSkip_Click);
+      // 
       // buttonSkipPressure
       // 
       this.buttonSkipPressure.Location = new System.Drawing.Point(300, 22);
@@ -248,7 +260,7 @@
       // 
       this.label6.AutoSize = true;
       this.label6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label6.Location = new System.Drawing.Point(20, 93);
+      this.label6.Location = new System.Drawing.Point(20, 108);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(132, 21);
       this.label6.TabIndex = 16;
@@ -271,7 +283,7 @@
       this.groupBox1.Controls.Add(this.labelStepsTotal);
       this.groupBox1.Controls.Add(this.label8);
       this.groupBox1.Controls.Add(this.labelTargetPressure);
-      this.groupBox1.Location = new System.Drawing.Point(467, 12);
+      this.groupBox1.Location = new System.Drawing.Point(664, 333);
       this.groupBox1.Name = "groupBox1";
       this.groupBox1.Size = new System.Drawing.Size(210, 190);
       this.groupBox1.TabIndex = 18;
@@ -320,6 +332,7 @@
       // 
       // groupBoxPressure
       // 
+      this.groupBoxPressure.Controls.Add(this.labelStepTime);
       this.groupBoxPressure.Controls.Add(this.labelTotalTime);
       this.groupBoxPressure.Controls.Add(this.labelStepCurrent);
       this.groupBoxPressure.Controls.Add(this.labelPumpState);
@@ -330,13 +343,13 @@
       this.groupBoxPressure.Size = new System.Drawing.Size(210, 190);
       this.groupBoxPressure.TabIndex = 19;
       this.groupBoxPressure.TabStop = false;
-      this.groupBoxPressure.Text = "Current State";
+      this.groupBoxPressure.Text = "Current State:";
       // 
       // labelTotalTime
       // 
       this.labelTotalTime.AutoSize = true;
       this.labelTotalTime.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelTotalTime.Location = new System.Drawing.Point(20, 63);
+      this.labelTotalTime.Location = new System.Drawing.Point(20, 83);
       this.labelTotalTime.Name = "labelTotalTime";
       this.labelTotalTime.Size = new System.Drawing.Size(103, 21);
       this.labelTotalTime.TabIndex = 21;
@@ -356,7 +369,7 @@
       // 
       this.labelPumpState.AutoSize = true;
       this.labelPumpState.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelPumpState.Location = new System.Drawing.Point(20, 153);
+      this.labelPumpState.Location = new System.Drawing.Point(20, 158);
       this.labelPumpState.Name = "labelPumpState";
       this.labelPumpState.Size = new System.Drawing.Size(133, 21);
       this.labelPumpState.TabIndex = 19;
@@ -366,7 +379,7 @@
       // 
       this.labelPressure.AutoSize = true;
       this.labelPressure.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelPressure.Location = new System.Drawing.Point(20, 123);
+      this.labelPressure.Location = new System.Drawing.Point(20, 133);
       this.labelPressure.Name = "labelPressure";
       this.labelPressure.Size = new System.Drawing.Size(98, 21);
       this.labelPressure.TabIndex = 15;
@@ -386,9 +399,9 @@
       // groupBoxCollectedVolume
       // 
       this.groupBoxCollectedVolume.Controls.Add(this.verticalProgressBar2);
-      this.groupBoxCollectedVolume.Location = new System.Drawing.Point(236, 12);
+      this.groupBoxCollectedVolume.Location = new System.Drawing.Point(336, 12);
       this.groupBoxCollectedVolume.Name = "groupBoxCollectedVolume";
-      this.groupBoxCollectedVolume.Size = new System.Drawing.Size(225, 190);
+      this.groupBoxCollectedVolume.Size = new System.Drawing.Size(181, 190);
       this.groupBoxCollectedVolume.TabIndex = 20;
       this.groupBoxCollectedVolume.TabStop = false;
       this.groupBoxCollectedVolume.Text = "Collected Volume";
@@ -396,9 +409,9 @@
       // groupBoxReservoir
       // 
       this.groupBoxReservoir.Controls.Add(this.verticalProgressBar1);
-      this.groupBoxReservoir.Location = new System.Drawing.Point(13, 12);
+      this.groupBoxReservoir.Location = new System.Drawing.Point(523, 12);
       this.groupBoxReservoir.Name = "groupBoxReservoir";
-      this.groupBoxReservoir.Size = new System.Drawing.Size(217, 190);
+      this.groupBoxReservoir.Size = new System.Drawing.Size(154, 190);
       this.groupBoxReservoir.TabIndex = 21;
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir";
@@ -408,7 +421,7 @@
       this.buttonReport.AutoSize = true;
       this.buttonReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.buttonReport.ForeColor = System.Drawing.Color.Green;
-      this.buttonReport.Location = new System.Drawing.Point(666, 528);
+      this.buttonReport.Location = new System.Drawing.Point(664, 529);
       this.buttonReport.Name = "buttonReport";
       this.buttonReport.Size = new System.Drawing.Size(229, 86);
       this.buttonReport.TabIndex = 25;
@@ -433,19 +446,114 @@
       this.backgroundWorkerMainLoop.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerMainLoop_DoWork);
       this.backgroundWorkerMainLoop.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerMainLoop_ProgressChanged);
       // 
-      // buttonSkip
+      // backgroundWorkerReadAndDisplay
       // 
-      this.buttonSkip.Location = new System.Drawing.Point(252, 124);
-      this.buttonSkip.Name = "buttonSkip";
-      this.buttonSkip.Size = new System.Drawing.Size(143, 36);
-      this.buttonSkip.TabIndex = 3;
-      this.buttonSkip.Text = "Skip";
-      this.buttonSkip.UseVisualStyleBackColor = true;
-      this.buttonSkip.Click += new System.EventHandler(this.buttonSkip_Click);
+      this.backgroundWorkerReadAndDisplay.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerReadAndDisplay_DoWork);
+      this.backgroundWorkerReadAndDisplay.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerReadAndDisplay_ProgressChanged);
+      // 
+      // labelStepTime
+      // 
+      this.labelStepTime.AutoSize = true;
+      this.labelStepTime.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelStepTime.Location = new System.Drawing.Point(20, 58);
+      this.labelStepTime.Name = "labelStepTime";
+      this.labelStepTime.Size = new System.Drawing.Size(101, 21);
+      this.labelStepTime.TabIndex = 22;
+      this.labelStepTime.Text = "Step time =";
+      // 
+      // TimeColumn
+      // 
+      this.TimeColumn.HeaderText = "Time(m:s)";
+      this.TimeColumn.Name = "TimeColumn";
+      this.TimeColumn.ReadOnly = true;
+      // 
+      // PressureColumn
+      // 
+      this.PressureColumn.HeaderText = "Flow(mL/min)";
+      this.PressureColumn.Name = "PressureColumn";
+      this.PressureColumn.ReadOnly = true;
+      // 
+      // timerForStopWatch
+      // 
+      this.timerForStopWatch.Interval = 1000;
+      this.timerForStopWatch.Tick += new System.EventHandler(this.timerForStopWatch_Tick);
+      // 
+      // dataGridView2
+      // 
+      this.dataGridView2.AllowUserToAddRows = false;
+      this.dataGridView2.AllowUserToDeleteRows = false;
+      this.dataGridView2.AllowUserToResizeColumns = false;
+      this.dataGridView2.AllowUserToResizeRows = false;
+      dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+      this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+      this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
+      this.dataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+      dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+      dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+      dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+      dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+      this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.DurationColumn,
+            this.TemperatureColumn});
+      this.dataGridView2.Location = new System.Drawing.Point(12, 28);
+      this.dataGridView2.Name = "dataGridView2";
+      this.dataGridView2.ReadOnly = true;
+      dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+      dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+      dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+      dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+      this.dataGridView2.RowHeadersVisible = false;
+      dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle7;
+      this.dataGridView2.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      this.dataGridView2.Size = new System.Drawing.Size(294, 149);
+      this.dataGridView2.TabIndex = 46;
+      // 
+      // dataGridViewTextBoxColumn1
+      // 
+      this.dataGridViewTextBoxColumn1.DividerWidth = 1;
+      this.dataGridViewTextBoxColumn1.HeaderText = "Pressure (PSI)";
+      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+      this.dataGridViewTextBoxColumn1.ReadOnly = true;
+      // 
+      // DurationColumn
+      // 
+      this.DurationColumn.DividerWidth = 1;
+      this.DurationColumn.HeaderText = "Duration (Mins)";
+      this.DurationColumn.Name = "DurationColumn";
+      this.DurationColumn.ReadOnly = true;
+      // 
+      // TemperatureColumn
+      // 
+      this.TemperatureColumn.DividerWidth = 1;
+      this.TemperatureColumn.HeaderText = "Temperature (C)";
+      this.TemperatureColumn.Name = "TemperatureColumn";
+      this.TemperatureColumn.ReadOnly = true;
+      // 
+      // groupBox2
+      // 
+      this.groupBox2.Controls.Add(this.dataGridView2);
+      this.groupBox2.Location = new System.Drawing.Point(13, 12);
+      this.groupBox2.Name = "groupBox2";
+      this.groupBox2.Size = new System.Drawing.Size(317, 190);
+      this.groupBox2.TabIndex = 47;
+      this.groupBox2.TabStop = false;
+      this.groupBox2.Text = "Program:";
       // 
       // verticalProgressBar1
       // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(68, 42);
+      this.verticalProgressBar1.Location = new System.Drawing.Point(37, 42);
       this.verticalProgressBar1.Name = "verticalProgressBar1";
       this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
       this.verticalProgressBar1.TabIndex = 9;
@@ -453,7 +561,7 @@
       // 
       // verticalProgressBar2
       // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(65, 42);
+      this.verticalProgressBar2.Location = new System.Drawing.Point(52, 42);
       this.verticalProgressBar2.Name = "verticalProgressBar2";
       this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
       this.verticalProgressBar2.TabIndex = 10;
@@ -465,6 +573,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.ClientSize = new System.Drawing.Size(905, 629);
+      this.Controls.Add(this.groupBox2);
       this.Controls.Add(this.linkLabelOpenFolder);
       this.Controls.Add(this.buttonReport);
       this.Controls.Add(this.labelDuration);
@@ -488,6 +597,7 @@
       this.Name = "AutoScrn";
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.Text = "Auto test";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AutoScrn_FormClosing);
       this.Load += new System.EventHandler(this.AutoScrn_Load);
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -499,6 +609,8 @@
       this.groupBoxPressure.PerformLayout();
       this.groupBoxCollectedVolume.ResumeLayout(false);
       this.groupBoxReservoir.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+      this.groupBox2.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -531,8 +643,6 @@
     private System.Windows.Forms.Label labelStepsTotal;
     private System.Windows.Forms.Label labelStepCurrent;
     private System.Windows.Forms.Label labelTotalTime;
-    private System.Windows.Forms.DataGridViewTextBoxColumn TimeColumn;
-    private System.Windows.Forms.DataGridViewTextBoxColumn PressureColumn;
     private System.Windows.Forms.Button buttonSkipSettingTemp;
     private System.Windows.Forms.Button buttonSkipPressure;
     private System.Windows.Forms.Label labelChamber;
@@ -541,6 +651,15 @@
     private System.ComponentModel.BackgroundWorker backgroundWorkerMainLoop;
     private System.ComponentModel.BackgroundWorker backgroundWorkerReadAndDisplay;
     private System.Windows.Forms.Button buttonSkip;
+    private System.Windows.Forms.Label labelStepTime;
+    private System.Windows.Forms.DataGridViewTextBoxColumn TimeColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn PressureColumn;
+    private System.Windows.Forms.Timer timerForStopWatch;
+    private System.Windows.Forms.DataGridView dataGridView2;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+    private System.Windows.Forms.DataGridViewTextBoxColumn DurationColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn TemperatureColumn;
+    private System.Windows.Forms.GroupBox groupBox2;
     // private System.Windows.Controls.ProgressBar progbar;
 
 
