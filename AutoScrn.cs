@@ -16,12 +16,14 @@ namespace LukMachine
   public partial class AutoScrn : Form
   {
     int reservoirPercent;
-    int collectedPercent = -1;
+    int collectedPercent = -100;
     int collectedVolume;
     bool skip = false;
     double targetPressure = 0;
-    double targetTemperature;
-    double targetTemp;
+    double targetTemperature = 0;
+    private double reservoirTemp;
+    double targetTemperatureInF;
+    double currentTemperature;
     int stepCount;
     bool pressureHasBeenReached = false;
     bool temperatureHasBeenReached = false;
@@ -40,7 +42,7 @@ namespace LukMachine
     bool testFinished = false;
     string totalTime;
     double flow;
-    double lastFlow=0;
+    double lastFlow = 0;
     int collectedCount;
     int lastCollectedCount;
     int collectedDifferenceInCounts;
@@ -52,10 +54,12 @@ namespace LukMachine
     StreamWriter SR2;
     private string dataFile = Properties.Settings.Default.TestData;
     private string dataFilePathForCapRep;
-    double convertedTemp=0;
+    double convertedTemp = 0;
     private string sampleID = Properties.Settings.Default.TestSampleID;
     private string lotNumber = Properties.Settings.Default.TestLotNumber;
     bool abort = false;
+    bool nowSettingTemp = false;
+    private double chamberTemp;
 
     public AutoScrn()
     {
@@ -72,7 +76,7 @@ namespace LukMachine
       {
         dataGridView2.Rows.Add(Properties.Settings.Default.CollectionPressure[i], Properties.Settings.Default.CollectionDuration[i], Properties.Settings.Default.CollectionTemperature[i]);
       }
-        
+
       try
       {
         SR = new StreamWriter(dataFile);
@@ -120,13 +124,14 @@ namespace LukMachine
         targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
         //MessageBox.Show("targetPressure is " + targetPressure.ToString());
         goToTargetPressure();
+        goToTargetTemperature();
         startTimeWriteToFileAndGraph();
         if (abort)
         {
           break;
         }
       }
-      backgroundWorkerMainLoop.ReportProgress(0, "finished()"); 
+      backgroundWorkerMainLoop.ReportProgress(0, "finished()");
     }
 
     private void backgroundWorkerMainLoop_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -141,11 +146,11 @@ namespace LukMachine
           {
             displayVolumeLevels();
           }*/
-          
+
           if (mystring == "addDataPointToTableAndGraph()")
           {
             addDataPointToTableAndGraph();
-          }         
+          }
           else if (mystring == "displayPanel1()")
           {
             displayPanel1();
@@ -196,7 +201,7 @@ namespace LukMachine
         collectedDifferenceInCounts = collectedCount - lastCollectedCount;
         totalTimeInMinutes = Convert.ToDouble(timeSpanTotal.Minutes) + Convert.ToDouble(timeSpanTotal.Seconds) / 60;
         timeDifferenceInMinutes = lastTotalTimeInMinutes - totalTimeInMinutes;
-        if (timeDifferenceInMinutes==0)
+        if (timeDifferenceInMinutes == 0)
         {
           flow = 0;
         }
@@ -239,6 +244,7 @@ namespace LukMachine
       addToListBox1("Finished");
       labelPanel.Text = "Finished";
       addToListBox1("Data saved to " + Properties.Settings.Default.TestData);
+      showReport();
     }
     private void startTimeWriteToFileAndGraph()
     {
@@ -251,13 +257,39 @@ namespace LukMachine
       while (!stepTimeReached)
       {
         backgroundWorkerMainLoop.ReportProgress(0, "addDataPointToTableAndGraph()");
-        Thread.Sleep(1000*Properties.Settings.Default.intervalBetweenTimePoints);      
+        Thread.Sleep(1000 * Properties.Settings.Default.intervalBetweenTimePoints);
       }
       stopwatch.Stop();
       stopwatchStep.Stop();
 
       //MessageBox.Show(((stopwatch.ElapsedMilliseconds)/1000).ToString());
       //time.f "Time elapsed: {0:hh\\:mm\\:ss}", stopwatch.Elapsed
+    }
+
+    private void goToTargetTemperature()
+    {  
+      if (Properties.Settings.Default.CollectionTemperature[stepCount] != "-")
+      {
+        targetTemperature = Convert.ToDouble(Properties.Settings.Default.CollectionTemperature[stepCount]);
+        backgroundWorkerMainLoop.ReportProgress(0, "Setting temperature to target temperature. Please wait...");
+        backgroundWorkerMainLoop.ReportProgress(0, "displayPanel1()");
+        temperatureHasBeenReached = false;
+        skip = false;
+        backgroundWorkerMainLoop.ReportProgress(0, "displaySkipButton()");
+        nowSettingTemp = true;
+        while (!temperatureHasBeenReached && !skip)
+        {
+          Thread.Sleep(100);//waits until pressure has been set.                 
+        }
+        nowSettingTemp = false;
+        Thread.Sleep(700);
+        backgroundWorkerMainLoop.ReportProgress(0, "Target temperature reached");
+        backgroundWorkerMainLoop.ReportProgress(0, "hideSkipButton()");
+      }
+      else
+      {
+
+      }
     }
 
     private void goToTargetPressure()
@@ -293,7 +325,7 @@ namespace LukMachine
       //displayVolumeLevels();
       //backgroundWorkerMainLoop.ReportProgress(0, "displayVolumeLevels()");
       int maxPercentFull = Properties.Settings.Default.maxEmptyCollectedPercentFull;
-      while (collectedPercent == -1) //-1 is the default value of collectedPercent.
+      while (collectedPercent == -100) //-1 is the default value of collectedPercent.
       {
         Thread.Sleep(100);//waits until collectedPercent has been set.
       }
@@ -316,6 +348,7 @@ namespace LukMachine
         //backgroundWorkerMainLoop.ReportProgress(0, "displayVolumeLevels()");
         //backgroundWorkerMainLoop.ReportProgress(0,"display volume levels =" + reservoirPercent.ToString() + "=" + collectedPercent.ToString());//fix this, dont read twice
       }
+      Valves.CloseValve1();
       backgroundWorkerMainLoop.ReportProgress(0, "hideSkipButton()");
     }
     private void displaySkipButton()
@@ -387,6 +420,11 @@ namespace LukMachine
 
     private void buttonReport_Click(object sender, EventArgs e) //this should be called automatically at end of test
     {
+      showReport();
+    }
+
+    private void showReport()
+    {
       this.Hide();
       Report rep = new Report(true);
       rep.ShowDialog();
@@ -432,7 +470,7 @@ namespace LukMachine
         currentPressure = (pressureCounts - ground) * Properties.Settings.Default.p1Max / 60000;  //twoVolt is 60000
 
         //adjust pump for target pressure
-        if ((currentPressure < targetPressure - 0.2) && (currentPressure > targetPressure - 10)) //if pressure is between these two numbers
+        if ((currentPressure < targetPressure - 0.2) && (currentPressure > targetPressure - 7)) //if pressure is between these two numbers
         {
           if (currentPressure < (lastPressure + 0.1)) //this is the target increase of pressure per step
           {
@@ -443,9 +481,9 @@ namespace LukMachine
             Pumps.DecreaseMainPump(0.1);
           }
         }
-        if ((currentPressure <= targetPressure - 10) && (currentPressure > targetPressure - 20)) //if pressure is between these two numbers
+        if ((currentPressure <= targetPressure - 7) && (currentPressure > targetPressure - 20)) //if pressure is between these two numbers
         {
-          if (currentPressure < (lastPressure + 0.2)) //this is the target increase of pressure per step
+          if (currentPressure < (lastPressure + 0.3)) //this is the target increase of pressure per step
           {
             Pumps.IncreaseMainPump(0.2);
           }
@@ -456,9 +494,9 @@ namespace LukMachine
         }
         if ((currentPressure <= targetPressure - 20)) //if pressure is between these two numbers
         {
-          if (currentPressure < (lastPressure + 0.5)) //this is the target increase of pressure per step
+          if (currentPressure < (lastPressure + 0.6)) //this is the target increase of pressure per step
           {
-            Pumps.IncreaseMainPump(0.3);
+            Pumps.IncreaseMainPump(0.5);
           }
           else //decrease pump if it is going too fast
           {
@@ -468,11 +506,40 @@ namespace LukMachine
 
         if (currentPressure > targetPressure)
         {
-          Pumps.SetPump2(0);
+          //Pumps.SetPump2(0);
+          Pumps.SetPump2((Properties.Settings.Default.MainPumpStatePercent)*0.8);
         }
+
         if ((currentPressure > (targetPressure - 0.1)) && (currentPressure < targetPressure + 0.1))
         {
           pressureHasBeenReached = true;
+        }
+
+        //read temperatures
+        reservoirTemp = COMMS.Instance.ReadAthenaTemp(1);
+        if (Properties.Settings.Default.Chamber == "Ring")
+        {
+          chamberTemp = COMMS.Instance.ReadAthenaTemp(3);
+        }
+        else if (Properties.Settings.Default.Chamber == "Disk")
+        {
+          chamberTemp = COMMS.Instance.ReadAthenaTemp(2);
+        }
+        //get average temp and display it
+        currentTemperature = (reservoirTemp + chamberTemp) / 2;
+
+        //adjust temperature to target
+        if (nowSettingTemp)
+        {
+          double targetTempinF = (Math.Round(((targetTemperature) * 9 / 5 + 32)));
+          COMMS.Instance.SetAthenaTemp(1, targetTempinF);
+          COMMS.Instance.SetAthenaTemp(2, targetTempinF);
+          COMMS.Instance.SetAthenaTemp(3, targetTempinF);
+          //COMMS.Instance.SetAthenaTemp(4, targetTempinF);
+          if (((currentTemperature > targetTempinF - 1) && (currentTemperature < targetTempinF + 1)))
+          {
+            temperatureHasBeenReached = true;
+          }
         }
 
         //update UI
@@ -550,7 +617,7 @@ namespace LukMachine
       {
         SR.WriteLine("Temperature Units=" + "Fahrenheit");
       }
-      SR.WriteLine("Pressure Units=PSI" );
+      SR.WriteLine("Pressure Units=PSI");
       SR.WriteLine("Steps=" + Properties.Settings.Default.NumberOfSteps);
 
 
@@ -610,6 +677,10 @@ namespace LukMachine
 
     private void backgroundWorkerReadAndDisplay_ProgressChanged(object sender, ProgressChangedEventArgs e)
     {
+      //temp
+      int myintInCelsius = (Convert.ToInt32((currentTemperature - 32) * 5 / 9));
+      label6.Text = "Temperature  =  " + String.Format("{0:0}", myintInCelsius) + " C / " + String.Format("{0:0}", currentTemperature) + " F";
+
       displayVolumeLevels();
       labelPressure.Text = "Pressure  =  " + String.Format("{0:0.0} PSI", currentPressure);
       labelTargetPressure.Text = "Pressure  =  " + targetPressure + " (PSI)";
@@ -623,15 +694,17 @@ namespace LukMachine
       else
       {
         labelStepCurrent.Text = "Step  =  " + (stepCount + 1);
-      }    
+      }
     }
 
     private void button2_Click(object sender, EventArgs e)
     {
+      pressureHasBeenReached = true;
       stepTimeReached = true;
       abort = true;
       stopwatchStep.Stop();
       stopwatch.Stop();
+      Thread.Sleep(1000); //wait for pressure adjust loop to finish before stopping pump or else pump might be turned on.
       Pumps.SetPump2(0);
       backgroundWorkerMainLoop.CancelAsync();
       button2.Enabled = false;
