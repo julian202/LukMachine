@@ -776,6 +776,12 @@ namespace LukMachine
       else
       {
         labelStepCurrent.Text = "Step  =  " + (stepCount + 1);
+        //higlight the current row in the dataGridview:
+        if (stepCount!=0)
+        {
+          dataGridView2.Rows[stepCount-1].Selected = false;
+        }
+        dataGridView2.Rows[stepCount].Selected = true;
       }
     }
 
