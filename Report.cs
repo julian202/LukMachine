@@ -936,5 +936,35 @@ namespace LukMachine
       /*double i = 10 / 5 / 2;
       MessageBox.Show(i.ToString());*/
     }
+
+    private void radioButton4_CheckedChanged(object sender, EventArgs e)
+    {
+      if (radioButton4.Checked)
+      {
+        try
+        {
+          chart1.Series.Clear();
+          chart1.Series.Add(comboBox1.Text);
+          chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+          chart1.Series[comboBox1.Text].BorderWidth = 2;
+          foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
+          {
+            chart1.Series[comboBox1.Text].Points.AddXY(Convert.ToDouble(asdf[0]), Convert.ToDouble(asdf[3]));
+          }
+          chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
+          chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
+          chart1.ChartAreas[0].AxisY.Title = "Pressure (PSI)";
+          chart1.ChartAreas[0].AxisX.Title = "Time (Mins)";
+
+          chart1.Titles.Clear();
+          System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+          title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+          title1.Text = "Pressure VS Time";
+          chart1.Titles.Add(title1);
+        }
+        catch (Exception)
+        { }
+      }
+    }
   }
 }
