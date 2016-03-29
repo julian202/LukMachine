@@ -61,7 +61,8 @@ namespace LukMachine
       foreach (string s in selectedFiles)
       {
         string sampleInfoCSV = null;
-        string fileName = Path.GetFileNameWithoutExtension(s);
+        string fileName;
+        fileName = Path.GetFileNameWithoutExtension(s);     
         if (comboBox1.FindStringExact(fileName) != -1)
         {
           //if item is already listed
@@ -246,6 +247,14 @@ namespace LukMachine
       {
         OpenDataFiles(true);
       }
+      //open last data:
+      try
+      {
+        OpenDataFiles(true);
+      }
+      catch (Exception)
+      {
+      }    
     }
 
     private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -266,7 +275,7 @@ namespace LukMachine
           chart1.Series.Add(s);
           //set chart type
           chart1.Series[s].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-          chart1.Series[comboBox1.Text].BorderWidth = 2;
+          chart1.Series[s].BorderWidth = 2;
 
           //loop through the data table named for the sample id and add it to the series.
           foreach (DataRow asdf in dataSet1.Tables[s].Rows)
