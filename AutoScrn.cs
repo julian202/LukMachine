@@ -581,7 +581,15 @@ namespace LukMachine
           {
             //Pumps.SetPump2(0);
             //Pumps.SetPump2((Properties.Settings.Default.MainPumpStatePercent)*0.8);
-            Pumps.SetPump2(pumpPowerAtEndOfLastStep * 0.6);
+            if ((pumpPowerAtEndOfLastStep * 0.6)<4)
+            {
+              Pumps.SetPump2(4);
+            }
+            else
+            {
+              Pumps.SetPump2(pumpPowerAtEndOfLastStep * 0.6);
+            }
+            
           }
 
           if ((currentPressure > (targetPressure - 0.1)) && (currentPressure < targetPressure + 0.1))
