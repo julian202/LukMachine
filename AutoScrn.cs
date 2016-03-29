@@ -266,6 +266,7 @@ namespace LukMachine
       addToListBox1("Finished");
       labelPanel.Text = "Finished";
       addToListBox1("Data saved to " + Properties.Settings.Default.TestData);
+      stopButton();
       showReport();
     }
     private void startTimeWriteToFileAndGraph()
@@ -796,6 +797,11 @@ namespace LukMachine
 
     private void button2_Click(object sender, EventArgs e)
     {
+      stopButton();
+    }
+
+    private void stopButton()
+    {
       pressureHasBeenReached = true;
       stepTimeReached = true;
       abort = true;
@@ -804,6 +810,8 @@ namespace LukMachine
       Thread.Sleep(1000); //wait for pressure adjust loop to finish before stopping pump or else pump might be turned on.
       Pumps.SetPump2(0);
       backgroundWorkerMainLoop.CancelAsync();
+      Thread.Sleep(1000);
+      backgroundWorkerReadAndDisplay.CancelAsync();
       button2.Enabled = false;
       timerForStopWatch.Stop();
     }
