@@ -228,6 +228,7 @@ namespace LukMachine
       dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
       chart1.Series["Series1"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), flow.ToString("#0.00"));
       chart1.Series["SeriesPressure"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentPressure.ToString("#0.00"));
+      chart1.Series["SeriesTemperature"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentTemperatureInC.ToString("#0.00"));
       if (checkBoxShowPressureGraph.Checked)
       {
         chart1.Series["SeriesPressure"].Enabled = true;
@@ -236,7 +237,14 @@ namespace LukMachine
       {
         chart1.Series["SeriesPressure"].Enabled = false;
       }
-      
+      if (checkBoxShowTemperatureGraph.Checked)
+      {
+        chart1.Series["SeriesTemperature"].Enabled = true;
+      }
+      else
+      {
+        chart1.Series["SeriesTemperature"].Enabled = false;
+      }
 
       lastCollectedCount = collectedCount;
       lastTotalTimeInMinutes = totalTimeInMinutes;
@@ -265,7 +273,7 @@ namespace LukMachine
       buttonReport.Visible = true;
       addToListBox1("Finished");
       labelPanel.Text = "Finished";
-      addToListBox1("Data saved to " + Properties.Settings.Default.TestData);
+      addToListBox1("Data saved to " + Properties.Settings.Default.TestData);     
       stopButton();
       showReport();
     }
@@ -802,6 +810,7 @@ namespace LukMachine
 
     private void stopButton()
     {
+      Valves.OpenValve2();
       pressureHasBeenReached = true;
       stepTimeReached = true;
       abort = true;
@@ -818,6 +827,9 @@ namespace LukMachine
 
     private void AutoScrn_FormClosing(object sender, FormClosingEventArgs e)
     {
+      panel1.Visible = true;
+      labelPanel.Text = "Closing... Please Wait";
+      panel1.Refresh();
       stepTimeReached = true;
       abort = true;
       stopwatchStep.Stop();
@@ -826,6 +838,7 @@ namespace LukMachine
       backgroundWorkerMainLoop.CancelAsync();
       backgroundWorkerReadAndDisplay.CancelAsync();
       timerForStopWatch.Stop();
+      stopButton();
     }
 
     private void timerForStopWatch_Tick(object sender, EventArgs e)
@@ -839,6 +852,46 @@ namespace LukMachine
       if (stepTimeInMinutes >= Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]))
       {
         stepTimeReached = true;
+      }
+    }
+
+    private void checkBoxShowPressureGraph_CheckedChanged(object sender, EventArgs e)
+    {
+      if (checkBoxShowPressureGraph.Checked)
+      {
+        chart1.Series["SeriesPressure"].Enabled = true;
+        chart1.Series["SeriesPressure"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentPressure.ToString("#0.00"));
+        chart1.Update();
+        chart1.Refresh();
+        chart1.Series["SeriesPressure"].Points.RemoveAt(chart1.Series["SeriesPressure"].Points.Count-1);
+      }
+      else
+      {
+        chart1.Series["SeriesPressure"].Enabled = false;
+        chart1.Series["SeriesPressure"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentPressure.ToString("#0.00"));
+        chart1.Update();
+        chart1.Refresh();
+        chart1.Series["SeriesPressure"].Points.RemoveAt(chart1.Series["SeriesPressure"].Points.Count-1);
+      }
+    }
+
+    private void checkBoxShowTemperatureGraph_CheckedChanged(object sender, EventArgs e)
+    {
+      if (checkBoxShowTemperatureGraph.Checked)
+      {
+        chart1.Series["SeriesTemperature"].Enabled = true;
+        chart1.Series["SeriesTemperature"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentTemperature.ToString("#0.00"));
+        chart1.Update();
+        chart1.Refresh();
+        chart1.Series["SeriesTemperature"].Points.RemoveAt(chart1.Series["SeriesTemperature"].Points.Count - 1);
+      }
+      else
+      {
+        chart1.Series["SeriesTemperature"].Enabled = false;
+        chart1.Series["SeriesTemperature"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentTemperature.ToString("#0.00"));
+        chart1.Update();
+        chart1.Refresh();
+        chart1.Series["SeriesTemperature"].Points.RemoveAt(chart1.Series["SeriesTemperature"].Points.Count - 1);
       }
     }
   }
