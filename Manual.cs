@@ -78,6 +78,8 @@ namespace LukMachine
 
     private void Manual_Load(object sender, EventArgs e)
     {
+      //close relieve pressure valve
+      Valves.CloseValve2();
       timerHeater.Enabled = true;
       myInterval = Convert.ToInt32(textBox9.Text);
       pressureThreshold = Convert.ToDouble(textBoxPSIdiff.Text);
@@ -240,7 +242,10 @@ namespace LukMachine
       //updateValveColors();  //gets values from properties
       readPressureAndAdjustPumpIfNecessary();
       //set Label pressure difference (do it here because the pressure is in a faster timer tick)
-      labelPressureDifference.Text = "Pressure Difference (P1-P2) = " + pressureDifference.ToString("#0.0") + " PSI";
+
+      labelPressureDifference.Text = "Pressure";
+      //labelPressureDifference.Text = "Pressure = " + pressureDifference.ToString("#0.0") + " PSI";
+
       shiftArrayToRight();
       aCount++;
       PressureList[0] = pressureDifference;
@@ -1029,15 +1034,19 @@ namespace LukMachine
       startPump2 = true;
     }
 
-
-
     private void button26_Click(object sender, EventArgs e)
-    {
+    {     
       stopMainPump();
+      if (checkBoxTargetPressure.Checked)
+      {
+        checkBoxTargetPressure.Checked = false;
+      }
     }
 
     private void stopMainPump()
     {
+      label17.Text = "Pump 0%";
+      textBox6.Text = "0";
       trackBar3.Value = 0;
       textBox6.Text = ((trackBar3.Value) * 100 / 4000).ToString();
       stopPump2 = true;
@@ -1083,6 +1092,7 @@ namespace LukMachine
 
     private void textBoxTemp_TextChanged(object sender, EventArgs e)
     {
+      /*
       if (textBoxTemp.Text!="")
       {
         try
@@ -1093,7 +1103,7 @@ namespace LukMachine
         {
         }
         heat();
-      }    
+      }    */
     }
 
 
@@ -1126,12 +1136,12 @@ namespace LukMachine
 
     private void checkBoxHeatSystem_CheckedChanged(object sender, EventArgs e)
     {
+   /*
       if (checkBoxHeatSystem.Checked == false)
       {
         textBoxTemp.Text = "20";
         textBoxTemp.Enabled = false;
         heatAlltoRoomTemp();
-
       }
       else
       {
@@ -1142,7 +1152,7 @@ namespace LukMachine
           textBoxTemp.Text = "20";
         }
         heat();
-      }
+      }*/
     }
 
     double chamberTemp;
@@ -1150,6 +1160,8 @@ namespace LukMachine
     double athena1Temp;
     double athena2Temp;
     double targetTemp;
+    double individualTargetTemp;
+
 
     private void heat()
     {
@@ -1293,7 +1305,8 @@ namespace LukMachine
           }
           else if (targetPressure < currentPressure)
           {
-            Pumps.DecreaseMainPump(1);
+            //Pumps.DecreaseMainPump(1);
+            Pumps.SetPump2(0);
           }
         }
         else if (radioButtonP1P2.Checked)
@@ -1308,6 +1321,10 @@ namespace LukMachine
           }
         }
         label17.Text = "Pump " + Properties.Settings.Default.MainPumpStatePercent + "%";
+      }
+      else
+      {
+        //Pumps.SetPump2(0);
       }
 
     }
@@ -1355,7 +1372,7 @@ namespace LukMachine
       //label1.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
       //label30.Text = p1Psi.ToString("#0.000") + " PSI | " + rawP1.ToString() + " cts";
       groupBox13.Text = "Current Pressure: " + p1Psi.ToString("#0.000") + " PSI (" + rawP1.ToString() + " cts)";
-      labelP1.Text = p1Psi.ToString("#0.0") + " PSI";
+      labelP1.Text = p1Psi.ToString("#0.0");
       pressureDifference = (p1Psi - p2Psi);
 
     }
@@ -1605,11 +1622,15 @@ namespace LukMachine
       {
         rectangleShape23.Visible = true;
         rectangleShape20.Visible = true;
+        label39.Visible = true;
+        label49.Visible = true;
       }
       else
       {
         rectangleShape23.Visible = false;
         rectangleShape20.Visible = false;
+        label39.Visible = false;
+        label49.Visible = false;
       }
     }
 
@@ -1695,7 +1716,10 @@ namespace LukMachine
 
     private void checkBoxTargetPressure_CheckedChanged(object sender, EventArgs e)
     {
-
+      if (!checkBoxTargetPressure.Checked)
+      {
+        stopMainPump();
+      }
     }
 
     private void textBoxPDiff_TextChanged(object sender, EventArgs e)
@@ -1726,7 +1750,14 @@ namespace LukMachine
 
     private void button35_Click(object sender, EventArgs e)
     {
-      textBox6.Text = (Convert.ToInt32(textBoxFlow.Text) / 10).ToString();
+      try
+      {
+        textBox6.Text = (Convert.ToInt32(textBoxFlow.Text) / 10).ToString();
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Please enter a valid number");
+      }
     }
 
     private void checkBoxReadTemps_CheckedChanged(object sender, EventArgs e)
@@ -1736,6 +1767,7 @@ namespace LukMachine
 
     private void timerHeater_Tick(object sender, EventArgs e)
     {
+      /*
       if (checkBoxHeatSystem.Checked == false)
       {
         textBoxTemp.Text = "20";
@@ -1752,7 +1784,103 @@ namespace LukMachine
           textBoxTemp.Text = "20";
         }
         heat();
+      }*/
+    }
+
+    private void checkBoxChamber1Temp_CheckedChanged(object sender, EventArgs e)
+    {
+      if (checkBoxChamber1Temp.Checked)
+      {
+        textBoxChamber1Temp.Enabled = true;
+        individualTargetTemp = Convert.ToDouble(textBoxChamber1Temp.Text);
+        COMMS.Instance.SetAthenaTemp(2, (Math.Round(((individualTargetTemp) * 9 / 5 + 32))));
+      }
+      else
+      {
+        textBoxChamber1Temp.Enabled = false;
       }
     }
+
+    private void textBoxChamber1Temp_TextChanged(object sender, EventArgs e)
+    {
+      if (textBoxChamber1Temp.Text != "")
+      {
+        try
+        {
+          label52.Text = "deg C (" + (Math.Round((Convert.ToDouble(textBoxChamber1Temp.Text) * 9 / 5 + 32))).ToString() + " F)";
+          individualTargetTemp = Convert.ToDouble(textBoxChamber1Temp.Text);
+          COMMS.Instance.SetAthenaTemp(2, (Math.Round(((individualTargetTemp) * 9 / 5 + 32))));
+        }
+        catch (Exception)
+        {
+        }
+      }     
+    }
+
+    //chamber2 Temp
+
+    private void checkBoxChamber2Temp_CheckedChanged(object sender, EventArgs e)
+    {
+      if (checkBoxChamber2Temp.Checked)
+      {
+        textBoxChamber2Temp.Enabled = true;
+        individualTargetTemp = Convert.ToDouble(textBoxChamber2Temp.Text);
+        COMMS.Instance.SetAthenaTemp(1, (Math.Round(((individualTargetTemp) * 9 / 5 + 32))));
+      }
+      else
+      {
+        textBoxChamber2Temp.Enabled = false;
+      }
+    }
+
+    private void textBoxChamber2Temp_TextChanged(object sender, EventArgs e)
+    {
+      if (textBoxChamber2Temp.Text != "")
+      {
+        try
+        {
+          label57.Text = "deg C (" + (Math.Round((Convert.ToDouble(textBoxChamber2Temp.Text) * 9 / 5 + 32))).ToString() + " F)";
+          individualTargetTemp = Convert.ToDouble(textBoxChamber2Temp.Text);
+          COMMS.Instance.SetAthenaTemp(1, (Math.Round(((individualTargetTemp) * 9 / 5 + 32))));
+        }
+        catch (Exception)
+        {
+        }
+      }
+    }
+
+    //Reservoir Temp
+
+    private void checkBoxReservoirTemp_CheckedChanged(object sender, EventArgs e)
+    {
+      if (checkBoxReservoirTemp.Checked)
+      {
+        textBoxReservoirTemp.Enabled = true;
+        individualTargetTemp = Convert.ToDouble(textBoxReservoirTemp.Text);
+        COMMS.Instance.SetAthenaTemp(3, (Math.Round(((individualTargetTemp) * 9 / 5 + 32))));
+      }
+      else
+      {
+        textBoxReservoirTemp.Enabled = false;
+      }
+    }
+
+    private void textBoxReservoirTemp_TextChanged(object sender, EventArgs e)
+    {
+      if (textBoxReservoirTemp.Text != "")
+      {
+        try
+        {
+          label63.Text = "deg C (" + (Math.Round((Convert.ToDouble(textBoxReservoirTemp.Text) * 9 / 5 + 32))).ToString() + " F)";
+          individualTargetTemp = Convert.ToDouble(textBoxReservoirTemp.Text);
+          COMMS.Instance.SetAthenaTemp(3, (Math.Round(((individualTargetTemp) * 9 / 5 + 32))));
+        }
+        catch (Exception)
+        {
+        }
+      }
+    }
+
+   
   }
 }
