@@ -64,6 +64,7 @@ namespace LukMachine
     double pumpPowerAtEndOfLastStep=0;
     bool emptyingCollected = false;
     bool dontCountFirstDataPointAfterEmtpying = false;
+    bool goingToTargetTemperature = false;
 
     public AutoScrn()
     {
@@ -307,7 +308,8 @@ namespace LukMachine
     }
 
     private void goToTargetTemperature()
-    {  
+    {
+      goingToTargetTemperature = true;
       if (Properties.Settings.Default.CollectionTemperature[stepCount] != "-")
       {
         targetTemperature = Convert.ToDouble(Properties.Settings.Default.CollectionTemperature[stepCount]);
@@ -330,6 +332,7 @@ namespace LukMachine
       {
 
       }
+      goingToTargetTemperature = false;
     }
 
     private void goToTargetPressure()
@@ -520,63 +523,72 @@ namespace LukMachine
         pressureCounts = Convert.ToDouble(COMMS.Instance.ReadPressureGauge(1));
         currentPressure = (pressureCounts - ground) * Properties.Settings.Default.p1Max / 60000;  //twoVolt is 60000
 
-        //adjust pump for target pressure
-        if ((currentPressure < targetPressure - 0.2) && (currentPressure > targetPressure - 5)) //if pressure is between these two numbers
-        {
-          if (currentPressure < (lastPressure + 0.1)) //this is the target increase of pressure per step
-          {
-            Pumps.IncreaseMainPump(0.1);
-          }
-          else //decrease pump if it is going too fast
-          {
-            Pumps.DecreaseMainPump(0.1);
-          }
-        }
-        if ((currentPressure <= targetPressure - 5) && (currentPressure > targetPressure - 15)) //if pressure is between these two numbers
-        {
-          if (currentPressure < (lastPressure + 0.3)) //this is the target increase of pressure per step
-          {
-            Pumps.IncreaseMainPump(0.2);
-          }
-          else //decrease pump if it is going too fast
-          {
-            Pumps.DecreaseMainPump(0.2);
-          }
-        }
-        if ((currentPressure <= targetPressure - 15) && (currentPressure > targetPressure - 25)) //if pressure is between these two numbers
-        {
-          if (currentPressure < (lastPressure + 0.5)) //this is the target increase of pressure per step
-          {
-            Pumps.IncreaseMainPump(0.3);
-          }
-          else //decrease pump if it is going too fast
-          {
-            Pumps.DecreaseMainPump(0.3);
-          }
-        }
-        if ((currentPressure <= targetPressure - 25)) //if pressure is between these two numbers
-        {
-          if (currentPressure < (lastPressure + 0.7)) //this is the target increase of pressure per step
-          {
-            Pumps.IncreaseMainPump(0.5);
-          }
-          else //decrease pump if it is going too fast
-          {
-            Pumps.DecreaseMainPump(0.3);
-          }
-        }
 
-        if (currentPressure > targetPressure)
+        if (goingToTargetTemperature)
         {
-          //Pumps.SetPump2(0);
-          //Pumps.SetPump2((Properties.Settings.Default.MainPumpStatePercent)*0.8);
-          Pumps.SetPump2(pumpPowerAtEndOfLastStep*0.6);
+          Pumps.SetPump2(0);
         }
+        else
+        {
+          //adjust pump for target pressure
+          if ((currentPressure < targetPressure - 0.2) && (currentPressure > targetPressure - 5)) //if pressure is between these two numbers
+          {
+            if (currentPressure < (lastPressure + 0.1)) //this is the target increase of pressure per step
+            {
+              Pumps.IncreaseMainPump(0.1);
+            }
+            else //decrease pump if it is going too fast
+            {
+              Pumps.DecreaseMainPump(0.1);
+            }
+          }
+          if ((currentPressure <= targetPressure - 5) && (currentPressure > targetPressure - 15)) //if pressure is between these two numbers
+          {
+            if (currentPressure < (lastPressure + 0.3)) //this is the target increase of pressure per step
+            {
+              Pumps.IncreaseMainPump(0.2);
+            }
+            else //decrease pump if it is going too fast
+            {
+              Pumps.DecreaseMainPump(0.2);
+            }
+          }
+          if ((currentPressure <= targetPressure - 15) && (currentPressure > targetPressure - 25)) //if pressure is between these two numbers
+          {
+            if (currentPressure < (lastPressure + 0.5)) //this is the target increase of pressure per step
+            {
+              Pumps.IncreaseMainPump(0.3);
+            }
+            else //decrease pump if it is going too fast
+            {
+              Pumps.DecreaseMainPump(0.3);
+            }
+          }
+          if ((currentPressure <= targetPressure - 25)) //if pressure is between these two numbers
+          {
+            if (currentPressure < (lastPressure + 0.7)) //this is the target increase of pressure per step
+            {
+              Pumps.IncreaseMainPump(0.5);
+            }
+            else //decrease pump if it is going too fast
+            {
+              Pumps.DecreaseMainPump(0.3);
+            }
+          }
 
-        if ((currentPressure > (targetPressure - 0.1)) && (currentPressure < targetPressure + 0.1))
-        {
-          pressureHasBeenReached = true;
+          if (currentPressure > targetPressure)
+          {
+            //Pumps.SetPump2(0);
+            //Pumps.SetPump2((Properties.Settings.Default.MainPumpStatePercent)*0.8);
+            Pumps.SetPump2(pumpPowerAtEndOfLastStep * 0.6);
+          }
+
+          if ((currentPressure > (targetPressure - 0.1)) && (currentPressure < targetPressure + 0.1))
+          {
+            pressureHasBeenReached = true;
+          }
         }
+        
 
         //read temperatures
         reservoirTemp = COMMS.Instance.ReadAthenaTemp(1);
