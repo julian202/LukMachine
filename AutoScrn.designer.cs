@@ -69,9 +69,7 @@
       this.labelPressure = new System.Windows.Forms.Label();
       this.labelDuration = new System.Windows.Forms.Label();
       this.groupBoxCollectedVolume = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.buttonReport = new System.Windows.Forms.Button();
       this.linkLabelOpenFolder = new System.Windows.Forms.LinkLabel();
       this.backgroundWorkerMainLoop = new System.ComponentModel.BackgroundWorker();
@@ -83,6 +81,8 @@
       this.TemperatureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.checkBoxShowPressureGraph = new System.Windows.Forms.CheckBox();
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
@@ -435,14 +435,6 @@
       this.groupBoxCollectedVolume.TabStop = false;
       this.groupBoxCollectedVolume.Text = "Collected Volume";
       // 
-      // verticalProgressBar2
-      // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(52, 42);
-      this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar2.TabIndex = 10;
-      this.verticalProgressBar2.Value = 50;
-      // 
       // groupBoxReservoir
       // 
       this.groupBoxReservoir.Controls.Add(this.verticalProgressBar1);
@@ -452,14 +444,6 @@
       this.groupBoxReservoir.TabIndex = 21;
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir";
-      // 
-      // verticalProgressBar1
-      // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(37, 42);
-      this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar1.TabIndex = 9;
-      this.verticalProgressBar1.Value = 50;
       // 
       // buttonReport
       // 
@@ -583,6 +567,23 @@
       this.checkBoxShowPressureGraph.TabIndex = 48;
       this.checkBoxShowPressureGraph.Text = "Show Pressure Graph";
       this.checkBoxShowPressureGraph.UseVisualStyleBackColor = true;
+      this.checkBoxShowPressureGraph.CheckedChanged += new System.EventHandler(this.checkBoxShowPressureGraph_CheckedChanged);
+      // 
+      // verticalProgressBar1
+      // 
+      this.verticalProgressBar1.Location = new System.Drawing.Point(37, 42);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar1.TabIndex = 9;
+      this.verticalProgressBar1.Value = 50;
+      // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(52, 42);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar2.TabIndex = 10;
+      this.verticalProgressBar2.Value = 50;
       // 
       // AutoScrn
       // 
