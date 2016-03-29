@@ -591,10 +591,10 @@ namespace LukMachine
         
 
         //read temperatures
-        reservoirTemp = COMMS.Instance.ReadAthenaTemp(1);
+        reservoirTemp = COMMS.Instance.ReadAthenaTemp(3);
         if (Properties.Settings.Default.Chamber == "Ring")
         {
-          chamberTemp = COMMS.Instance.ReadAthenaTemp(3);
+          chamberTemp = COMMS.Instance.ReadAthenaTemp(1);
         }
         else if (Properties.Settings.Default.Chamber == "Disk")
         {
@@ -607,10 +607,17 @@ namespace LukMachine
         if (nowSettingTemp)
         {
           double targetTempinF = (Math.Round(((targetTemperature) * 9 / 5 + 32)));
-          COMMS.Instance.SetAthenaTemp(1, targetTempinF);
-          COMMS.Instance.SetAthenaTemp(2, targetTempinF);
-          COMMS.Instance.SetAthenaTemp(3, targetTempinF);
-          //COMMS.Instance.SetAthenaTemp(4, targetTempinF);
+          //set temperatures:
+          COMMS.Instance.SetAthenaTemp(3, targetTempinF);//reservoir
+          if (Properties.Settings.Default.Chamber == "Ring")
+          {
+            COMMS.Instance.SetAthenaTemp(1, targetTempinF);//chamber2
+          }
+          else if (Properties.Settings.Default.Chamber == "Disk")
+          {
+            COMMS.Instance.SetAthenaTemp(2, targetTempinF);//chamber1
+          }
+          
           if (((currentTemperature > targetTempinF - 1))) //therefore you must always go in steps of increasing temperature
           {
             temperatureHasBeenReached = true;
