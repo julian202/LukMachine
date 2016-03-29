@@ -171,12 +171,12 @@ namespace LukMachine
             string[] splitString = RL.Split('\t');
             try
             {
-              double volume = Convert.ToDouble(splitString[0]);
-              double time = Convert.ToDouble(splitString[1]);
+              double time = Convert.ToDouble(splitString[0]);
+              double volume = Convert.ToDouble(splitString[1]);
               double temperature = Convert.ToDouble(splitString[2]);
               double pressure = Convert.ToDouble(splitString[3]);
               //add doubles to data table for current sample
-              dataSet1.Tables[fileName].Rows.Add(volume, time, temperature, pressure);
+              dataSet1.Tables[fileName].Rows.Add(time, volume, temperature, pressure);
             }
             catch (FormatException ex)
             {
@@ -338,7 +338,7 @@ namespace LukMachine
       chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
       chart1.ChartAreas[0].AxisX.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.DashDotDot;
       chart1.ChartAreas[0].AxisY.Title = "Flow (mL/min)";
-      chart1.ChartAreas[0].AxisX.Title = "Time (seconds)";
+      chart1.ChartAreas[0].AxisX.Title = "Time (Mins)";
 
     }
 
@@ -537,7 +537,7 @@ namespace LukMachine
       chart.Title.Text = "Volume VS Time";
 
       chart.YAxis.Title.Text = "Differential Pressure(" + splitStuff[3] + ")";
-      chart.XAxis.Title.Text = "Time(seconds)";
+      chart.XAxis.Title.Text = "Time(Mins)";
       ws.Cells[ws.Dimension.Address.ToString()].AutoFitColumns();
       saveFileDialog1.FileName = splitStuff[0];
       if (multi == 0)
@@ -836,11 +836,14 @@ namespace LukMachine
           //MessageBox.Show("y");
           chart1.Series.Clear();
           chart1.Series.Add(comboBox1.Text);
-          chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+          chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
           chart1.Series[comboBox1.Text].BorderWidth = 2;
           foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
           {
-            chart1.Series[comboBox1.Text].Points.AddXY(Convert.ToDouble(asdf[2]), Convert.ToDouble(asdf[1]));
+            double x = Convert.ToDouble(asdf[2]);
+            double y = Convert.ToDouble(asdf[1]);
+            chart1.Series[comboBox1.Text].Points.AddXY(x, y);
+            Refresh();
           }
           chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
           chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
@@ -854,10 +857,7 @@ namespace LukMachine
           chart1.Titles.Add(title1);
         }
         catch (Exception)
-        {
-
-        }
-
+        {}
       }
     }
 
@@ -878,7 +878,7 @@ namespace LukMachine
           chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
           chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
           chart1.ChartAreas[0].AxisY.Title = "Flow (mL/min)";
-          chart1.ChartAreas[0].AxisX.Title = "Time (seconds)";
+          chart1.ChartAreas[0].AxisX.Title = "Time (Mins)";
 
           chart1.Titles.Clear();
           System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
@@ -887,10 +887,7 @@ namespace LukMachine
           chart1.Titles.Add(title1);
         }
         catch (Exception)
-        {
-
-        }
-
+        {}
       }
     }
 
@@ -900,10 +897,9 @@ namespace LukMachine
       {
         try
         {
-
           chart1.Series.Clear();
           chart1.Series.Add(comboBox1.Text);
-          chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+          chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
           chart1.Series[comboBox1.Text].BorderWidth = 2;
           foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
           {
@@ -919,7 +915,6 @@ namespace LukMachine
           title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
           title1.Text = "Flow VS Pressure";
           chart1.Titles.Add(title1);
-
         }
         catch (Exception)
         {
