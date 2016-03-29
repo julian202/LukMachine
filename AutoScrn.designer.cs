@@ -31,6 +31,7 @@
       this.components = new System.ComponentModel.Container();
       System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
       System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -41,6 +42,8 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoScrn));
       this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
       this.dataGridView1 = new System.Windows.Forms.DataGridView();
+      this.TimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.PressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.button3 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
@@ -59,28 +62,27 @@
       this.labelStepsTotal = new System.Windows.Forms.Label();
       this.labelTargetPressure = new System.Windows.Forms.Label();
       this.groupBoxPressure = new System.Windows.Forms.GroupBox();
+      this.labelStepTime = new System.Windows.Forms.Label();
       this.labelTotalTime = new System.Windows.Forms.Label();
       this.labelStepCurrent = new System.Windows.Forms.Label();
       this.labelPumpState = new System.Windows.Forms.Label();
       this.labelPressure = new System.Windows.Forms.Label();
       this.labelDuration = new System.Windows.Forms.Label();
       this.groupBoxCollectedVolume = new System.Windows.Forms.GroupBox();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.buttonReport = new System.Windows.Forms.Button();
       this.linkLabelOpenFolder = new System.Windows.Forms.LinkLabel();
       this.backgroundWorkerMainLoop = new System.ComponentModel.BackgroundWorker();
       this.backgroundWorkerReadAndDisplay = new System.ComponentModel.BackgroundWorker();
-      this.labelStepTime = new System.Windows.Forms.Label();
-      this.TimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.PressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.timerForStopWatch = new System.Windows.Forms.Timer(this.components);
       this.dataGridView2 = new System.Windows.Forms.DataGridView();
       this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.DurationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.TemperatureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
-      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
+      this.checkBoxShowPressureGraph = new System.Windows.Forms.CheckBox();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
@@ -104,7 +106,11 @@
       series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
       series1.IsVisibleInLegend = false;
       series1.Name = "Series1";
+      series2.ChartArea = "ChartArea1";
+      series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+      series2.Name = "SeriesPressure";
       this.chart1.Series.Add(series1);
+      this.chart1.Series.Add(series2);
       this.chart1.Size = new System.Drawing.Size(646, 308);
       this.chart1.TabIndex = 0;
       this.chart1.Text = "chart1";
@@ -147,6 +153,18 @@
       this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
       this.dataGridView1.Size = new System.Drawing.Size(231, 308);
       this.dataGridView1.TabIndex = 1;
+      // 
+      // TimeColumn
+      // 
+      this.TimeColumn.HeaderText = "Time(m:s)";
+      this.TimeColumn.Name = "TimeColumn";
+      this.TimeColumn.ReadOnly = true;
+      // 
+      // PressureColumn
+      // 
+      this.PressureColumn.HeaderText = "Flow(mL/min)";
+      this.PressureColumn.Name = "PressureColumn";
+      this.PressureColumn.ReadOnly = true;
       // 
       // button3
       // 
@@ -283,12 +301,13 @@
       this.groupBox1.Controls.Add(this.labelStepsTotal);
       this.groupBox1.Controls.Add(this.label8);
       this.groupBox1.Controls.Add(this.labelTargetPressure);
-      this.groupBox1.Location = new System.Drawing.Point(664, 333);
+      this.groupBox1.Location = new System.Drawing.Point(319, 586);
       this.groupBox1.Name = "groupBox1";
       this.groupBox1.Size = new System.Drawing.Size(210, 190);
       this.groupBox1.TabIndex = 18;
       this.groupBox1.TabStop = false;
       this.groupBox1.Text = "Programmed Parameters";
+      this.groupBox1.Visible = false;
       // 
       // labelChamber
       // 
@@ -344,6 +363,16 @@
       this.groupBoxPressure.TabIndex = 19;
       this.groupBoxPressure.TabStop = false;
       this.groupBoxPressure.Text = "Current State:";
+      // 
+      // labelStepTime
+      // 
+      this.labelStepTime.AutoSize = true;
+      this.labelStepTime.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelStepTime.Location = new System.Drawing.Point(20, 58);
+      this.labelStepTime.Name = "labelStepTime";
+      this.labelStepTime.Size = new System.Drawing.Size(101, 21);
+      this.labelStepTime.TabIndex = 22;
+      this.labelStepTime.Text = "Step time =";
       // 
       // labelTotalTime
       // 
@@ -406,6 +435,14 @@
       this.groupBoxCollectedVolume.TabStop = false;
       this.groupBoxCollectedVolume.Text = "Collected Volume";
       // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(52, 42);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar2.TabIndex = 10;
+      this.verticalProgressBar2.Value = 50;
+      // 
       // groupBoxReservoir
       // 
       this.groupBoxReservoir.Controls.Add(this.verticalProgressBar1);
@@ -416,12 +453,20 @@
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir";
       // 
+      // verticalProgressBar1
+      // 
+      this.verticalProgressBar1.Location = new System.Drawing.Point(37, 42);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar1.TabIndex = 9;
+      this.verticalProgressBar1.Value = 50;
+      // 
       // buttonReport
       // 
       this.buttonReport.AutoSize = true;
       this.buttonReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.buttonReport.ForeColor = System.Drawing.Color.Green;
-      this.buttonReport.Location = new System.Drawing.Point(664, 529);
+      this.buttonReport.Location = new System.Drawing.Point(664, 528);
       this.buttonReport.Name = "buttonReport";
       this.buttonReport.Size = new System.Drawing.Size(229, 86);
       this.buttonReport.TabIndex = 25;
@@ -450,28 +495,6 @@
       // 
       this.backgroundWorkerReadAndDisplay.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerReadAndDisplay_DoWork);
       this.backgroundWorkerReadAndDisplay.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerReadAndDisplay_ProgressChanged);
-      // 
-      // labelStepTime
-      // 
-      this.labelStepTime.AutoSize = true;
-      this.labelStepTime.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelStepTime.Location = new System.Drawing.Point(20, 58);
-      this.labelStepTime.Name = "labelStepTime";
-      this.labelStepTime.Size = new System.Drawing.Size(101, 21);
-      this.labelStepTime.TabIndex = 22;
-      this.labelStepTime.Text = "Step time =";
-      // 
-      // TimeColumn
-      // 
-      this.TimeColumn.HeaderText = "Time(m:s)";
-      this.TimeColumn.Name = "TimeColumn";
-      this.TimeColumn.ReadOnly = true;
-      // 
-      // PressureColumn
-      // 
-      this.PressureColumn.HeaderText = "Flow(mL/min)";
-      this.PressureColumn.Name = "PressureColumn";
-      this.PressureColumn.ReadOnly = true;
       // 
       // timerForStopWatch
       // 
@@ -551,21 +574,15 @@
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Program:";
       // 
-      // verticalProgressBar1
+      // checkBoxShowPressureGraph
       // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(37, 42);
-      this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar1.TabIndex = 9;
-      this.verticalProgressBar1.Value = 50;
-      // 
-      // verticalProgressBar2
-      // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(52, 42);
-      this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar2.TabIndex = 10;
-      this.verticalProgressBar2.Value = 50;
+      this.checkBoxShowPressureGraph.AutoSize = true;
+      this.checkBoxShowPressureGraph.Location = new System.Drawing.Point(230, 521);
+      this.checkBoxShowPressureGraph.Name = "checkBoxShowPressureGraph";
+      this.checkBoxShowPressureGraph.Size = new System.Drawing.Size(231, 27);
+      this.checkBoxShowPressureGraph.TabIndex = 48;
+      this.checkBoxShowPressureGraph.Text = "Show Pressure Graph";
+      this.checkBoxShowPressureGraph.UseVisualStyleBackColor = true;
       // 
       // AutoScrn
       // 
@@ -573,6 +590,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.ClientSize = new System.Drawing.Size(905, 629);
+      this.Controls.Add(this.checkBoxShowPressureGraph);
       this.Controls.Add(this.groupBox2);
       this.Controls.Add(this.linkLabelOpenFolder);
       this.Controls.Add(this.buttonReport);
@@ -660,6 +678,7 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn DurationColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn TemperatureColumn;
     private System.Windows.Forms.GroupBox groupBox2;
+    private System.Windows.Forms.CheckBox checkBoxShowPressureGraph;
     // private System.Windows.Controls.ProgressBar progbar;
 
 

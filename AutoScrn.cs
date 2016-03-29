@@ -77,6 +77,7 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+      goingToTargetTemperature = false;
       for (int i = 0; i < Properties.Settings.Default.CollectionPressure.Count; i++)
       {
         dataGridView2.Rows.Add(Properties.Settings.Default.CollectionPressure[i], Properties.Settings.Default.CollectionDuration[i], Properties.Settings.Default.CollectionTemperature[i]);
