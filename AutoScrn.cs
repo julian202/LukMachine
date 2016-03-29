@@ -127,8 +127,8 @@ namespace LukMachine
         stepCount = i;
         targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
         //--MessageBox.Show("targetPressure is " + targetPressure.ToString());
-        goToTargetPressure();
         goToTargetTemperature();
+        goToTargetPressure();     
         startTimeWriteToFileAndGraph();
         if (abort)
         {
