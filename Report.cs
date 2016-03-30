@@ -66,14 +66,14 @@ namespace LukMachine
         if (comboBox1.FindStringExact(fileName) != -1)
         {
           //if item is already listed
-          MessageBox.Show("A file with the same name is already open. This file will be skipped.", "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          //MessageBox.Show("A file with the same name is already open. This file will be skipped.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
           continue;
         }
         StreamReader SR = new StreamReader(s);
         string RL = SR.ReadLine();
         if (RL != "Liquid Permeability Test")
         {
-          MessageBox.Show(s + " is not a liquid permeability data file!", "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          MessageBox.Show(s + " is not a liquid permeability data file!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
           continue;
         }
         string[] splitStuff;
@@ -125,7 +125,7 @@ namespace LukMachine
         {
           if (lastPUnit != "" && lastPUnit != null)
           {
-            MessageBox.Show("When loading multiple data files, all data must be in the same pressure units. The software cannot graph files with different pressure units together.", "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("When loading multiple data files, all data must be in the same pressure units. The software cannot graph files with different pressure units together.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             continue;
           }
         }
@@ -181,7 +181,7 @@ namespace LukMachine
             }
             catch (FormatException ex)
             {
-              MessageBox.Show(s + " is a valid data file, however the program has encountered an error while reading the time/pressure data!" + Environment.NewLine + ex.Message, "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              MessageBox.Show(s + " is a valid data file, however the program has encountered an error while reading the time/pressure data!" + Environment.NewLine + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
               //go to the end of file so while loop will end
               SR.ReadToEnd();
               //delete this table
@@ -234,6 +234,7 @@ namespace LukMachine
 
     private void Report_Load(object sender, EventArgs e)
     {
+      Pumps.SetPump2(0); //for some reason the pump doesn't always stop
       LoadDistensionTable();
 
       if (Properties.Settings.Default.mustRunReport)
@@ -421,7 +422,7 @@ namespace LukMachine
           {
             if (comboBox1.Text == "Show All")
             {
-              MessageBox.Show("To export a single data set, you must select a single data set to export.", "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              MessageBox.Show("To export a single data set, you must select a single data set to export.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
               return;
             }
             //get correct header
@@ -456,7 +457,7 @@ namespace LukMachine
                 ExportExcelFile(header, Properties.Settings.Default.ExportOption, Properties.Settings.Default.ExportPath);
               }
             }
-            MessageBox.Show("All files exported successfully!", "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("All files exported successfully!", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
           }
         }
       }
@@ -540,7 +541,7 @@ namespace LukMachine
       }
       catch (ArgumentOutOfRangeException ex)
       {
-        MessageBox.Show("Argument our of range!" + Environment.NewLine + ex.Message, "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show("Argument our of range!" + Environment.NewLine + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
 
       chart.Title.Text = "Volume VS Time";
@@ -555,7 +556,7 @@ namespace LukMachine
         {
           using (var file = File.Create(Properties.Settings.Default.ExportPath + @"\" + dataname + ".xlsx"))
             excel.SaveAs(file);
-          MessageBox.Show(Properties.Settings.Default.ExportPath + @"\" + dataname + ".xlsx" + " has been saved.", "Burst Tester", MessageBoxButtons.OK, MessageBoxIcon.Information);
+          MessageBox.Show(Properties.Settings.Default.ExportPath + @"\" + dataname + ".xlsx" + " has been saved.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         else
         {
@@ -969,6 +970,36 @@ namespace LukMachine
           System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
           title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
           title1.Text = "Pressure VS Time";
+          chart1.Titles.Add(title1);
+        }
+        catch (Exception)
+        { }
+      }
+    }
+
+    private void radioButton5_CheckedChanged(object sender, EventArgs e)
+    {
+      if (radioButton5.Checked)
+      {
+        try
+        {
+          chart1.Series.Clear();
+          chart1.Series.Add(comboBox1.Text);
+          chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+          chart1.Series[comboBox1.Text].BorderWidth = 2;
+          foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
+          {
+            chart1.Series[comboBox1.Text].Points.AddXY(Convert.ToDouble(asdf[0]), Convert.ToDouble(asdf[2]));
+          }
+          chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
+          chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
+          chart1.ChartAreas[0].AxisY.Title = "Temperature (C)";
+          chart1.ChartAreas[0].AxisX.Title = "Time (Mins)";
+
+          chart1.Titles.Clear();
+          System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+          title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+          title1.Text = "Temperature VS Time";
           chart1.Titles.Add(title1);
         }
         catch (Exception)
