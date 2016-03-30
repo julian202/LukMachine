@@ -546,7 +546,7 @@ namespace LukMachine
         else
         {
           //adjust pump for target pressure
-          if ((currentPressure < targetPressure - 0.2) && (currentPressure > targetPressure - 5)) //if pressure is between these two numbers
+          if ((currentPressure < targetPressure - 0.2) && (currentPressure > targetPressure - 2)) //if pressure is between these two numbers
           {
             if (currentPressure < (lastPressure + 0.1)) //this is the target increase of pressure per step
             {
@@ -557,7 +557,7 @@ namespace LukMachine
               Pumps.DecreaseMainPump(0.1);
             }
           }
-          if ((currentPressure <= targetPressure - 5) && (currentPressure > targetPressure - 15)) //if pressure is between these two numbers
+          if ((currentPressure <= targetPressure - 2) && (currentPressure > targetPressure - 15)) //if pressure is between these two numbers
           {
             if (currentPressure < (lastPressure + 0.3)) //this is the target increase of pressure per step
             {
@@ -570,13 +570,13 @@ namespace LukMachine
           }
           if ((currentPressure <= targetPressure - 15) && (currentPressure > targetPressure - 25)) //if pressure is between these two numbers
           {
-            if (currentPressure < (lastPressure + 0.5)) //this is the target increase of pressure per step
+            if (currentPressure < (lastPressure + 0.6)) //this is the target increase of pressure per step
             {
-              Pumps.IncreaseMainPump(0.3);
+              Pumps.IncreaseMainPump(0.4);
             }
             else //decrease pump if it is going too fast
             {
-              Pumps.DecreaseMainPump(0.3);
+              Pumps.DecreaseMainPump(0.4);
             }
           }
           if ((currentPressure <= targetPressure - 25)) //if pressure is between these two numbers
