@@ -65,6 +65,7 @@ namespace LukMachine
     bool emptyingCollected = false;
     bool dontCountFirstDataPointAfterEmtpying = false;
     bool goingToTargetTemperature = false;
+    bool goingToTargetPressure = false;
 
     public AutoScrn()
     {
@@ -78,6 +79,7 @@ namespace LukMachine
     private void AutoScrn_Load(object sender, EventArgs e)
     {
       goingToTargetTemperature = false;
+      goingToTargetPressure = false;
       for (int i = 0; i < Properties.Settings.Default.CollectionPressure.Count; i++)
       {
         dataGridView2.Rows.Add(Properties.Settings.Default.CollectionPressure[i], Properties.Settings.Default.CollectionDuration[i], Properties.Settings.Default.CollectionTemperature[i]);
@@ -347,6 +349,7 @@ namespace LukMachine
 
     private void goToTargetPressure()
     {
+      goingToTargetPressure = true;
       backgroundWorkerMainLoop.ReportProgress(0, "Setting pressure to target pressure. Please wait...");
       backgroundWorkerMainLoop.ReportProgress(0, "displayPanel1()");
       targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
@@ -367,7 +370,7 @@ namespace LukMachine
       backgroundWorkerMainLoop.ReportProgress(0, "Target pressure reached");
       backgroundWorkerMainLoop.ReportProgress(0, "hideSkipButton()");
       pumpPowerAtEndOfLastStep = Properties.Settings.Default.MainPumpStatePercent;
-
+      goingToTargetPressure = false;
     }
     private void emptyCollectedVolume() //refill reservoir with the liquid from the collected volume
     {
@@ -534,7 +537,7 @@ namespace LukMachine
         currentPressure = (pressureCounts - ground) * Properties.Settings.Default.p1Max / 60000;  //twoVolt is 60000
 
 
-        if (goingToTargetTemperature)
+        if ((goingToTargetTemperature)||(goingToTargetPressure))
         {
           Pumps.SetPump2(0);
         }
