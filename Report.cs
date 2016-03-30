@@ -160,6 +160,7 @@ namespace LukMachine
         dataSet1.Tables[fileName].Columns.Add("Time");
         dataSet1.Tables[fileName].Columns.Add("Temperature");
         dataSet1.Tables[fileName].Columns.Add("Pressure");
+        dataSet1.Tables[fileName].Columns.Add("Permeability");
 
         //add sample name to combobox
         comboBox1.Items.Add(fileName);
@@ -176,8 +177,19 @@ namespace LukMachine
               double volume = Convert.ToDouble(splitString[1]);
               double temperature = Convert.ToDouble(splitString[2]);
               double pressure = Convert.ToDouble(splitString[3]);
+              double permeability = 0;
+              try
+              {
+                permeability = Convert.ToDouble(splitString[4]);
+              }
+              catch (Exception)
+              {
+                MessageBox.Show("The file does not have a permeability column!");
+                return;
+              }
+              
               //add doubles to data table for current sample
-              dataSet1.Tables[fileName].Rows.Add(time, volume, temperature, pressure);
+              dataSet1.Tables[fileName].Rows.Add(time, volume, temperature, pressure, permeability);
             }
             catch (FormatException ex)
             {
@@ -1006,5 +1018,41 @@ namespace LukMachine
         { }
       }
     }
+
+    private void radioButton6_CheckedChanged(object sender, EventArgs e)
+    {
+      if (radioButton6.Checked)
+      {
+        try
+        {
+          chart1.Series.Clear();
+          chart1.Series.Add(comboBox1.Text);
+          chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+          chart1.Series[comboBox1.Text].BorderWidth = 2;
+          foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
+          {
+            chart1.Series[comboBox1.Text].Points.AddXY(Convert.ToDouble(asdf[0]), Convert.ToDouble(asdf[4]));
+          }
+          chart1.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12F);
+          chart1.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12F);
+          chart1.ChartAreas[0].AxisY.Title = "Permeability (Darcys)";
+          chart1.ChartAreas[0].AxisX.Title = "Time (Mins)";
+
+          chart1.Titles.Clear();
+          System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+          title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+          title1.Text = "Permeability VS Time";
+          chart1.Titles.Add(title1);
+        }
+        catch (Exception)
+        { }
+      }
+    }
+
+    private void linkLabelOpenFolder_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+      System.Diagnostics.Process.Start("explorer.exe", System.IO.Directory.GetParent(Properties.Settings.Default.TestData).ToString());
+    }
+
   }
 }
