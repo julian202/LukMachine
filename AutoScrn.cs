@@ -29,6 +29,7 @@ namespace LukMachine
     bool pressureHasBeenReached = false;
     bool temperatureHasBeenReached = false;
     double pressureCounts;
+    double lastPressureCounts;
     double currentPressure;
     double lastPressure;
     private int twoVolt = COMMS.Instance.get2v();
@@ -61,12 +62,17 @@ namespace LukMachine
     bool abort = false;
     bool nowSettingTemp = false;
     private double chamberTemp;
-    double pumpPowerAtEndOfLastStep=0;
+    double pumpPowerAtEndOfLastStep = 0;
     bool emptyingCollected = false;
     bool dontCountFirstDataPointAfterEmtpying = false;
     bool goingToTargetTemperature = false;
     bool goingToTargetPressure = false;
-    bool firstLoopToTargetPressure = false; 
+    bool firstLoopToTargetPressure = false;
+    double perm;
+    double thickness;
+    double diameter;
+    double area;
+    double k1;
 
     public AutoScrn()
     {
@@ -133,7 +139,7 @@ namespace LukMachine
         targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
         //--MessageBox.Show("targetPressure is " + targetPressure.ToString());
         goToTargetTemperature();
-        goToTargetPressure();     
+        goToTargetPressure();
         startTimeWriteToFileAndGraph();
         if (abort)
         {
@@ -206,7 +212,7 @@ namespace LukMachine
         firstDataPoint = false;
       }
       else
-      {      
+      {
         collectedDifferenceInCounts = collectedCount - lastCollectedCount;
         if (dontCountFirstDataPointAfterEmtpying)
         {
@@ -253,7 +259,19 @@ namespace LukMachine
       lastTotalTimeInMinutes = totalTimeInMinutes;
       SR = new StreamWriter(dataFile, true);
       SR2 = new StreamWriter(dataFilePathForCapRep, true);
-      SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", totalTimeInMinutes.ToString("#0.00"), flow.ToString("#0.00"), currentTemperatureInC.ToString("0.0"), currentPressure.ToString("0.000"));
+
+      //calculate permeability
+      thickness = Convert.ToDouble(Properties.Settings.Default.SampleThickness);
+      k1 = flow * thickness * 14.7;
+      diameter = Convert.ToDouble(Properties.Settings.Default.SampleDiameter);
+      area = 3.1415926 * diameter * diameter / 4;
+      //perm = k1  / (60 * area * Convert.ToDouble(textBoxPressure.Text));
+      perm = k1 / (area * currentPressure);
+      //labelPermeability.Text = "= " + perm.ToString("#.0000000");
+
+      chart1.Series["SeriesPermeability"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), perm.ToString("#.0000000"));
+
+      SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}\t{4,10}", totalTimeInMinutes.ToString("#0.00"), flow.ToString("#0.00"), currentTemperatureInC.ToString("0.0"), currentPressure.ToString("0.000"), perm.ToString("#.0000000"));
       //Console.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
       SR2.WriteLine("{0,10}\t{1,10}", flow.ToString("0.00"), currentPressure.ToString("0.000"));
       SR.Close();
@@ -276,7 +294,7 @@ namespace LukMachine
       buttonReport.Visible = true;
       addToListBox1("Finished");
       labelPanel.Text = "Finished";
-      addToListBox1("Data saved to " + Properties.Settings.Default.TestData);     
+      addToListBox1("Data saved to " + Properties.Settings.Default.TestData);
       stopButton();
       showReport();
     }
@@ -292,7 +310,7 @@ namespace LukMachine
       {
         backgroundWorkerMainLoop.ReportProgress(0, "addDataPointToTableAndGraph()");
 
-        if (collectedPercent>95)
+        if (collectedPercent > 95)
         {
           backgroundWorkerMainLoop.ReportProgress(0, "Collected volume is full. Flushing... (Please make sure you add more volume to the reservoir!)");
           backgroundWorkerMainLoop.ReportProgress(0, "displayPanel1()");
@@ -306,7 +324,7 @@ namespace LukMachine
         }
         if (!stopwatchStep.IsRunning)
         {
-          dontCountFirstDataPointAfterEmtpying = true; 
+          dontCountFirstDataPointAfterEmtpying = true;
           backgroundWorkerMainLoop.ReportProgress(0, "hidePanel1()");
           stopwatch.Start();
           stopwatchStep.Start();
@@ -364,14 +382,16 @@ namespace LukMachine
       }
       firstLoopToTargetPressure = false;
       //repeat
+      /*
       Thread.Sleep(700);
       pressureHasBeenReached = false;
       while (!pressureHasBeenReached && !skip)
       {
         Thread.Sleep(100);//waits until pressure has been set.                 
       }
+      */
       backgroundWorkerMainLoop.ReportProgress(0, "Target pressure reached");
-      backgroundWorkerMainLoop.ReportProgress(0, "hideSkipButton()");     
+      backgroundWorkerMainLoop.ReportProgress(0, "hideSkipButton()");
       goingToTargetPressure = false;
     }
     private void emptyCollectedVolume() //refill reservoir with the liquid from the collected volume
@@ -524,7 +544,7 @@ namespace LukMachine
         if (emptyingCollected)
         {
           Valves.OpenValve1();
-          if (collectedPercent< Properties.Settings.Default.maxEmptyCollectedPercentFull)
+          if (collectedPercent < Properties.Settings.Default.maxEmptyCollectedPercentFull)
           {
             Valves.CloseValve1();
             emptyingCollected = false;
@@ -535,7 +555,17 @@ namespace LukMachine
         lastPressure = currentPressure;
 
         //read pressure gauge, convert to PSI (will need to * by conversion factor and set units label later)
-        pressureCounts = Convert.ToDouble(COMMS.Instance.ReadPressureGauge(1));
+
+        lastPressureCounts = pressureCounts; //this is just as a backup in case there is an error in reading in the next try catch.
+        try
+        {
+          pressureCounts = Convert.ToDouble(COMMS.Instance.ReadPressureGauge(1));
+        }
+        catch (Exception)
+        {
+          pressureCounts = lastPressureCounts;
+        }
+
         currentPressure = (pressureCounts - ground) * Properties.Settings.Default.p1Max / 60000;  //twoVolt is 60000
 
 
@@ -593,9 +623,13 @@ namespace LukMachine
 
           if (currentPressure < targetPressure)
           {
-            if (Properties.Settings.Default.MainPumpStatePercent< pumpPowerAtEndOfLastStep)
+            if (Properties.Settings.Default.MainPumpStatePercent < pumpPowerAtEndOfLastStep)
             {
               Pumps.SetPump2(pumpPowerAtEndOfLastStep);
+            }
+            if (Properties.Settings.Default.MainPumpStatePercent < 4)//because pump doesn't seem to do anything below 4.
+            {
+              Pumps.SetPump2(4);
             }
           }
 
@@ -612,7 +646,7 @@ namespace LukMachine
             {
               Pumps.SetPump2(pumpPowerAtEndOfLastStep * 0.6);
             }*/
-            
+
           }
 
           if ((currentPressure > (targetPressure - 0.1)) && (currentPressure < targetPressure + 0.1))
@@ -624,7 +658,7 @@ namespace LukMachine
             pressureHasBeenReached = true;
           }
         }
-        
+
 
         //read temperatures
         reservoirTemp = COMMS.Instance.ReadAthenaTemp(3);
@@ -637,7 +671,9 @@ namespace LukMachine
           chamberTemp = COMMS.Instance.ReadAthenaTemp(2);
         }
         //get average temp and display it
-        currentTemperature = (reservoirTemp + chamberTemp) / 2;
+        //currentTemperature = (reservoirTemp + chamberTemp) / 2;
+        currentTemperature = chamberTemp;
+
 
         //adjust temperature to target
         if (nowSettingTemp)
@@ -653,8 +689,8 @@ namespace LukMachine
           {
             COMMS.Instance.SetAthenaTemp(2, targetTempinF);//chamber1
           }
-          
-          if (((currentTemperature > targetTempinF - 1))) //therefore you must always go in steps of increasing temperature
+
+          if (((currentTemperature > targetTempinF - 10))) //therefore you must always go in steps of increasing temperature
           {
             temperatureHasBeenReached = true;
           }
@@ -692,7 +728,7 @@ namespace LukMachine
       SR2.WriteLine("UBC A2");
       SR2.WriteLine(Properties.Settings.Default.SampleDiameter);
       SR2.WriteLine(Properties.Settings.Default.SampleThickness);
-      SR2.WriteLine("0"); //atmosphereric pressure (0 for our gauges).
+      SR2.WriteLine("0.001"); //atmosphereric pressure (0 for our gauges but can't use 0!: causes caprep error.)
     }
     public void WriteHeader()
     {
@@ -789,7 +825,7 @@ namespace LukMachine
       SR.WriteLine("Data:");
       SR.WriteLine("");
       //SR.WriteLine("Time,\tFlow,\tTemperature,\tPressure");
-      SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", "Time", "Flow", "Temperature", "Pressure");
+      SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}\t{4,10}", "Time", "Flow", "Temperature", "Pressure", "Permeability");
       SR.WriteLine("");
     }
 
@@ -813,9 +849,9 @@ namespace LukMachine
       {
         labelStepCurrent.Text = "Step  =  " + (stepCount + 1);
         //higlight the current row in the dataGridview:
-        if (stepCount!=0)
+        if (stepCount != 0)
         {
-          dataGridView2.Rows[stepCount-1].Selected = false;
+          dataGridView2.Rows[stepCount - 1].Selected = false;
         }
         dataGridView2.Rows[stepCount].Selected = true;
       }
@@ -841,6 +877,10 @@ namespace LukMachine
       backgroundWorkerReadAndDisplay.CancelAsync();
       button2.Enabled = false;
       timerForStopWatch.Stop();
+      double zerotemp = 0;
+      COMMS.Instance.SetAthenaTemp(1, zerotemp);
+      COMMS.Instance.SetAthenaTemp(2, zerotemp);
+      COMMS.Instance.SetAthenaTemp(3, zerotemp);
     }
 
     private void AutoScrn_FormClosing(object sender, FormClosingEventArgs e)
@@ -881,7 +921,7 @@ namespace LukMachine
         chart1.Series["SeriesPressure"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentPressure.ToString("#0.00"));
         chart1.Update();
         chart1.Refresh();
-        chart1.Series["SeriesPressure"].Points.RemoveAt(chart1.Series["SeriesPressure"].Points.Count-1);
+        chart1.Series["SeriesPressure"].Points.RemoveAt(chart1.Series["SeriesPressure"].Points.Count - 1);
       }
       else
       {
@@ -889,7 +929,7 @@ namespace LukMachine
         chart1.Series["SeriesPressure"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentPressure.ToString("#0.00"));
         chart1.Update();
         chart1.Refresh();
-        chart1.Series["SeriesPressure"].Points.RemoveAt(chart1.Series["SeriesPressure"].Points.Count-1);
+        chart1.Series["SeriesPressure"].Points.RemoveAt(chart1.Series["SeriesPressure"].Points.Count - 1);
       }
     }
 
@@ -910,6 +950,26 @@ namespace LukMachine
         chart1.Update();
         chart1.Refresh();
         chart1.Series["SeriesTemperature"].Points.RemoveAt(chart1.Series["SeriesTemperature"].Points.Count - 1);
+      }
+    }
+
+    private void checkBoxShowPermeabilityGraph_CheckedChanged(object sender, EventArgs e)
+    {
+      if (checkBoxShowPermeabilityGraph.Checked)
+      {
+        chart1.Series["SeriesPermeability"].Enabled = true;
+        chart1.Series["SeriesPermeability"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), perm.ToString("#0.00"));
+        chart1.Update();
+        chart1.Refresh();
+        chart1.Series["SeriesPermeability"].Points.RemoveAt(chart1.Series["SeriesPermeability"].Points.Count - 1);
+      }
+      else
+      {
+        chart1.Series["SeriesPermeability"].Enabled = false;
+        chart1.Series["SeriesPermeability"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), perm.ToString("#0.00"));
+        chart1.Update();
+        chart1.Refresh();
+        chart1.Series["SeriesPermeability"].Points.RemoveAt(chart1.Series["SeriesPermeability"].Points.Count - 1);
       }
     }
   }
