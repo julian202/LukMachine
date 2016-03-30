@@ -539,7 +539,7 @@ namespace LukMachine
         currentPressure = (pressureCounts - ground) * Properties.Settings.Default.p1Max / 60000;  //twoVolt is 60000
 
 
-        if ((goingToTargetTemperature)||(goingToTargetPressure))
+        if (goingToTargetTemperature)
         {
           Pumps.SetPump2(0);
         }
