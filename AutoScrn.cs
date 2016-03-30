@@ -66,6 +66,7 @@ namespace LukMachine
     bool dontCountFirstDataPointAfterEmtpying = false;
     bool goingToTargetTemperature = false;
     bool goingToTargetPressure = false;
+    bool firstLoopToTargetPressure = false; 
 
     public AutoScrn()
     {
@@ -356,10 +357,12 @@ namespace LukMachine
       pressureHasBeenReached = false;
       skip = false;
       backgroundWorkerMainLoop.ReportProgress(0, "displaySkipButton()");
+      firstLoopToTargetPressure = true;
       while (!pressureHasBeenReached && !skip)
       {
         Thread.Sleep(100);//waits until pressure has been set.                 
       }
+      firstLoopToTargetPressure = false;
       //repeat
       Thread.Sleep(700);
       pressureHasBeenReached = false;
@@ -368,8 +371,7 @@ namespace LukMachine
         Thread.Sleep(100);//waits until pressure has been set.                 
       }
       backgroundWorkerMainLoop.ReportProgress(0, "Target pressure reached");
-      backgroundWorkerMainLoop.ReportProgress(0, "hideSkipButton()");
-      pumpPowerAtEndOfLastStep = Properties.Settings.Default.MainPumpStatePercent;
+      backgroundWorkerMainLoop.ReportProgress(0, "hideSkipButton()");     
       goingToTargetPressure = false;
     }
     private void emptyCollectedVolume() //refill reservoir with the liquid from the collected volume
@@ -589,10 +591,19 @@ namespace LukMachine
             }
           }
 
+          if (currentPressure < targetPressure)
+          {
+            if (Properties.Settings.Default.MainPumpStatePercent< pumpPowerAtEndOfLastStep)
+            {
+              Pumps.SetPump2(pumpPowerAtEndOfLastStep);
+            }
+          }
+
           if (currentPressure > targetPressure)
           {
-            //Pumps.SetPump2(0);
+            Pumps.SetPump2(0);
             //Pumps.SetPump2((Properties.Settings.Default.MainPumpStatePercent)*0.8);
+            /*
             if ((pumpPowerAtEndOfLastStep * 0.6)<4)
             {
               Pumps.SetPump2(4);
@@ -600,12 +611,16 @@ namespace LukMachine
             else
             {
               Pumps.SetPump2(pumpPowerAtEndOfLastStep * 0.6);
-            }
+            }*/
             
           }
 
           if ((currentPressure > (targetPressure - 0.1)) && (currentPressure < targetPressure + 0.1))
           {
+            if (firstLoopToTargetPressure) // since there's 2 consecutive gototargetloops: if you are at the end of the first loop then record MainPumpStatePercent; (you don't want to do this after the 2nd loop becuase then pressure is usally going down and pump is at 0%)
+            {
+              pumpPowerAtEndOfLastStep = Properties.Settings.Default.MainPumpStatePercent;
+            }
             pressureHasBeenReached = true;
           }
         }
