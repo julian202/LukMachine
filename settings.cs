@@ -19,6 +19,15 @@ namespace LukMachine
 
     private void button2_Click(object sender, EventArgs e)
     {
+      try
+      {
+        Properties.Settings.Default.p1Max = Convert.ToInt32(textBoxPressure.Text);
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("'Max Gauge Pressure' must be an integer");
+      }
+     
       Properties.Settings.Default.LowPumpSetting = textBox1.Text;
       Properties.Settings.Default.MediumPumpSetting = textBox2.Text;
       Properties.Settings.Default.HighPumpSetting = textBox3.Text;
@@ -83,6 +92,7 @@ namespace LukMachine
 
     private void settings_Load(object sender, EventArgs e)
     {
+      textBoxPressure.Text = Properties.Settings.Default.p1Max.ToString();
 
       if (Properties.Settings.Default.TempCorF == "C")
       {

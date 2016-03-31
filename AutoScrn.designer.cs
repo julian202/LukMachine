@@ -32,6 +32,8 @@
       System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
       System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
       System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -69,7 +71,9 @@
       this.labelPressure = new System.Windows.Forms.Label();
       this.labelDuration = new System.Windows.Forms.Label();
       this.groupBoxCollectedVolume = new System.Windows.Forms.GroupBox();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.buttonReport = new System.Windows.Forms.Button();
       this.linkLabelOpenFolder = new System.Windows.Forms.LinkLabel();
       this.backgroundWorkerMainLoop = new System.ComponentModel.BackgroundWorker();
@@ -81,8 +85,8 @@
       this.TemperatureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.checkBoxShowPressureGraph = new System.Windows.Forms.CheckBox();
-      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
-      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
+      this.checkBoxShowTemperatureGraph = new System.Windows.Forms.CheckBox();
+      this.checkBoxShowPermeabilityGraph = new System.Windows.Forms.CheckBox();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
@@ -109,8 +113,16 @@
       series2.ChartArea = "ChartArea1";
       series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
       series2.Name = "SeriesPressure";
+      series3.ChartArea = "ChartArea1";
+      series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+      series3.Name = "SeriesTemperature";
+      series4.ChartArea = "ChartArea1";
+      series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+      series4.Name = "SeriesPermeability";
       this.chart1.Series.Add(series1);
       this.chart1.Series.Add(series2);
+      this.chart1.Series.Add(series3);
+      this.chart1.Series.Add(series4);
       this.chart1.Size = new System.Drawing.Size(646, 308);
       this.chart1.TabIndex = 0;
       this.chart1.Text = "chart1";
@@ -217,9 +229,9 @@
       this.listBox1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.listBox1.FormattingEnabled = true;
       this.listBox1.ItemHeight = 19;
-      this.listBox1.Location = new System.Drawing.Point(12, 553);
+      this.listBox1.Location = new System.Drawing.Point(12, 557);
       this.listBox1.Name = "listBox1";
-      this.listBox1.Size = new System.Drawing.Size(646, 61);
+      this.listBox1.Size = new System.Drawing.Size(345, 80);
       this.listBox1.TabIndex = 7;
       // 
       // panel1
@@ -301,7 +313,7 @@
       this.groupBox1.Controls.Add(this.labelStepsTotal);
       this.groupBox1.Controls.Add(this.label8);
       this.groupBox1.Controls.Add(this.labelTargetPressure);
-      this.groupBox1.Location = new System.Drawing.Point(319, 586);
+      this.groupBox1.Location = new System.Drawing.Point(160, 618);
       this.groupBox1.Name = "groupBox1";
       this.groupBox1.Size = new System.Drawing.Size(210, 190);
       this.groupBox1.TabIndex = 18;
@@ -435,6 +447,14 @@
       this.groupBoxCollectedVolume.TabStop = false;
       this.groupBoxCollectedVolume.Text = "Collected Volume";
       // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(52, 42);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar2.TabIndex = 10;
+      this.verticalProgressBar2.Value = 50;
+      // 
       // groupBoxReservoir
       // 
       this.groupBoxReservoir.Controls.Add(this.verticalProgressBar1);
@@ -444,6 +464,14 @@
       this.groupBoxReservoir.TabIndex = 21;
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir";
+      // 
+      // verticalProgressBar1
+      // 
+      this.verticalProgressBar1.Location = new System.Drawing.Point(37, 42);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar1.TabIndex = 9;
+      this.verticalProgressBar1.Value = 50;
       // 
       // buttonReport
       // 
@@ -462,7 +490,7 @@
       // 
       this.linkLabelOpenFolder.AutoSize = true;
       this.linkLabelOpenFolder.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.linkLabelOpenFolder.Location = new System.Drawing.Point(533, 528);
+      this.linkLabelOpenFolder.Location = new System.Drawing.Point(798, 621);
       this.linkLabelOpenFolder.Name = "linkLabelOpenFolder";
       this.linkLabelOpenFolder.Size = new System.Drawing.Size(95, 18);
       this.linkLabelOpenFolder.TabIndex = 26;
@@ -561,7 +589,7 @@
       // checkBoxShowPressureGraph
       // 
       this.checkBoxShowPressureGraph.AutoSize = true;
-      this.checkBoxShowPressureGraph.Location = new System.Drawing.Point(230, 521);
+      this.checkBoxShowPressureGraph.Location = new System.Drawing.Point(388, 541);
       this.checkBoxShowPressureGraph.Name = "checkBoxShowPressureGraph";
       this.checkBoxShowPressureGraph.Size = new System.Drawing.Size(231, 27);
       this.checkBoxShowPressureGraph.TabIndex = 48;
@@ -569,28 +597,36 @@
       this.checkBoxShowPressureGraph.UseVisualStyleBackColor = true;
       this.checkBoxShowPressureGraph.CheckedChanged += new System.EventHandler(this.checkBoxShowPressureGraph_CheckedChanged);
       // 
-      // verticalProgressBar1
+      // checkBoxShowTemperatureGraph
       // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(37, 42);
-      this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar1.TabIndex = 9;
-      this.verticalProgressBar1.Value = 50;
+      this.checkBoxShowTemperatureGraph.AutoSize = true;
+      this.checkBoxShowTemperatureGraph.Location = new System.Drawing.Point(388, 574);
+      this.checkBoxShowTemperatureGraph.Name = "checkBoxShowTemperatureGraph";
+      this.checkBoxShowTemperatureGraph.Size = new System.Drawing.Size(263, 27);
+      this.checkBoxShowTemperatureGraph.TabIndex = 49;
+      this.checkBoxShowTemperatureGraph.Text = "Show Temperature Graph";
+      this.checkBoxShowTemperatureGraph.UseVisualStyleBackColor = true;
+      this.checkBoxShowTemperatureGraph.CheckedChanged += new System.EventHandler(this.checkBoxShowTemperatureGraph_CheckedChanged);
       // 
-      // verticalProgressBar2
+      // checkBoxShowPermeabilityGraph
       // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(52, 42);
-      this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar2.TabIndex = 10;
-      this.verticalProgressBar2.Value = 50;
+      this.checkBoxShowPermeabilityGraph.AutoSize = true;
+      this.checkBoxShowPermeabilityGraph.Location = new System.Drawing.Point(388, 607);
+      this.checkBoxShowPermeabilityGraph.Name = "checkBoxShowPermeabilityGraph";
+      this.checkBoxShowPermeabilityGraph.Size = new System.Drawing.Size(260, 27);
+      this.checkBoxShowPermeabilityGraph.TabIndex = 50;
+      this.checkBoxShowPermeabilityGraph.Text = "Show Permeability Graph";
+      this.checkBoxShowPermeabilityGraph.UseVisualStyleBackColor = true;
+      this.checkBoxShowPermeabilityGraph.CheckedChanged += new System.EventHandler(this.checkBoxShowPermeabilityGraph_CheckedChanged);
       // 
       // AutoScrn
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-      this.ClientSize = new System.Drawing.Size(905, 629);
+      this.ClientSize = new System.Drawing.Size(905, 648);
+      this.Controls.Add(this.checkBoxShowPermeabilityGraph);
+      this.Controls.Add(this.checkBoxShowTemperatureGraph);
       this.Controls.Add(this.checkBoxShowPressureGraph);
       this.Controls.Add(this.groupBox2);
       this.Controls.Add(this.linkLabelOpenFolder);
@@ -680,6 +716,8 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn TemperatureColumn;
     private System.Windows.Forms.GroupBox groupBox2;
     private System.Windows.Forms.CheckBox checkBoxShowPressureGraph;
+    private System.Windows.Forms.CheckBox checkBoxShowTemperatureGraph;
+    private System.Windows.Forms.CheckBox checkBoxShowPermeabilityGraph;
     // private System.Windows.Controls.ProgressBar progbar;
 
 

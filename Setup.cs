@@ -124,6 +124,14 @@ namespace LukMachine
 
     private void button2_Click(object sender, EventArgs e)
     {
+      if (File.Exists(textBox6.Text))
+      {
+        DialogResult result = MessageBox.Show("This data file already exists. Do you want to overwrite it?", "Overwrite data file?", MessageBoxButtons.YesNo);
+        if (result == System.Windows.Forms.DialogResult.No)
+        {
+          return;
+        }
+      }
       //parse Inputs For Errors:
       if (dataGridView1.RowCount == 0)
       {
@@ -163,8 +171,8 @@ namespace LukMachine
       Properties.Settings.Default.selectedTemp = selectedTemp;
       Properties.Settings.Default.TestSampleID = textBox1.Text;
       Properties.Settings.Default.TestLotNumber = textBox2.Text;
-      Properties.Settings.Default.SampleDiameter=textBoxDiameter.Text;
-      Properties.Settings.Default.SampleThickness=textBoxThickness.Text;
+      Properties.Settings.Default.SampleDiameter = textBoxDiameter.Text;
+      Properties.Settings.Default.SampleThickness = textBoxThickness.Text;
       if (radioButtonOil.Checked)
       {
         Properties.Settings.Default.LiquidType = "Oil";
@@ -309,7 +317,7 @@ namespace LukMachine
 
         //Valves.CloseValve7();//left chamber
         //set right chamber
-        if (Properties.Settings.Default.checkbLeftChecked==false)
+        if (Properties.Settings.Default.checkbLeftChecked == false)
         {
           run3wayValve7();
           switch3wayValveB();
@@ -379,7 +387,7 @@ namespace LukMachine
       {
         radioButtonOil.Checked = true;
         radioButtonWater.Checked = false;
-        textBoxViscosity.Text=Properties.Settings.Default.OilViscosity;
+        textBoxViscosity.Text = Properties.Settings.Default.OilViscosity;
       }
       if (Properties.Settings.Default.LiquidType == "Water")
       {
@@ -414,7 +422,23 @@ namespace LukMachine
       {
         textBox6.Text = Properties.Settings.Default.TestData;
       }
-
+      if (File.Exists(textBox6.Text))
+      {
+        string previousString = textBox6.Text;
+        int num;
+        string previousStringCropped = previousString.Substring(0, previousString.Length - 8);
+        string croppedPart = previousString.Substring(previousString.Length - 7, 3);
+        string dash= previousString.Substring(previousString.Length - 8,1);
+        if (IsNumeric(croppedPart)&&(dash=="-"))
+        {
+          num = Convert.ToInt32(croppedPart) + 1;
+          textBox6.Text = previousStringCropped +"-"+ num.ToString("000") + ".pmi";
+        }
+        else
+        {
+          textBox6.Text = previousString.Substring(0, previousString.Length - 4) + "-001" + ".pmi";
+        }
+      }
 
       textBoxTemperature.Text = Properties.Settings.Default.selectedTemp.ToString();
 
@@ -522,6 +546,13 @@ namespace LukMachine
       //textBox5.Text = Properties.Settings.Default.TestRate.ToString();
       //textBox4.Text = Properties.Settings.Default.TestDetection.ToString();
     }
+
+    public bool IsNumeric(string input)
+    {
+      int test;
+      return int.TryParse(input, out test);
+    }
+
     /*
     private void radioButton1_CheckedChanged(object sender, EventArgs e)
     {
@@ -635,7 +666,22 @@ namespace LukMachine
 
     private void textBoxTemperature_TextChanged(object sender, EventArgs e)
     {
-
+      if (textBoxTemperature.Text != "")
+      {
+        try
+        {
+          if ((Convert.ToInt32(textBoxTemperature.Text) > 200) || (Convert.ToInt32(textBoxTemperature.Text) < 0))
+          {
+            MessageBox.Show("Temperature should be between 0 and 200 C");
+            textBoxTemperature.Text = "";
+          }
+        }
+        catch (Exception)
+        {
+          MessageBox.Show("Temperature should be between 0 and 200 C");
+          textBoxTemperature.Text = "";
+        }
+      }
     }
 
     private void buttonAdd_Click(object sender, EventArgs e)
@@ -695,7 +741,7 @@ namespace LukMachine
       DataGridViewRowCollection drc = dataGridView1.Rows;
       foreach (DataGridViewRow item in drc)
       {
-        if (item.Cells[1].Value.ToString()=="0")
+        if (item.Cells[1].Value.ToString() == "0")
         {
           MessageBox.Show("Please delete the row with 0 duration");
         }
@@ -718,6 +764,22 @@ namespace LukMachine
 
     private void textBoxPressure_TextChanged(object sender, EventArgs e)
     {
+      if (textBoxPressure.Text!="")
+      {   
+        try
+        {
+          if ((Convert.ToInt32(textBoxPressure.Text) > 100) || (Convert.ToInt32(textBoxPressure.Text) < 0))
+          {
+            MessageBox.Show("Pressure should be between 0 and 100 PSI");
+            textBoxPressure.Text = "";
+          }
+        }
+        catch (Exception)
+        {
+          MessageBox.Show("Pressure should be between 0 and 100 PSI");
+          textBoxPressure.Text = "";
+        }
+      }
       Properties.Settings.Default.TextboxPressure = textBoxPressure.Text;
       Properties.Settings.Default.Save();
     }
@@ -727,8 +789,6 @@ namespace LukMachine
       Properties.Settings.Default.TextboxDuration = textBoxDuration.Text;
       Properties.Settings.Default.Save();
     }
-
-
 
     private void button6_Click(object sender, EventArgs e)
     {
