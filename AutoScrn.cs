@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace LukMachine
 {
@@ -75,7 +76,7 @@ namespace LukMachine
     double k1;
     int dataGridViewStepCount;
     int myBorderWidth = Convert.ToInt32(Properties.Settings.Default.myBorderWidth);
-    double pressureTolerance=Properties.Settings.Default.pressureTolerance;
+    double pressureTolerance = Properties.Settings.Default.pressureTolerance;
 
     public AutoScrn()
     {
@@ -88,6 +89,11 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+      button2.Visible = false;
+      chart1.Series["SeriesPressure"].Enabled = false;
+      chart1.Series["SeriesTemperature"].Enabled = false;
+      chart1.Series["SeriesPermeability"].Enabled = false;
+
       chart1.Series["Series1"].BorderWidth = myBorderWidth;
       chart1.Series["SeriesPressure"].BorderWidth = myBorderWidth;
       chart1.Series["SeriesTemperature"].BorderWidth = myBorderWidth;
@@ -99,7 +105,7 @@ namespace LukMachine
       for (int i = 0; i < Properties.Settings.Default.CollectionPressure.Count; i++)
       {
         dataGridViewStepCount++;
-        dataGridView2.Rows.Add(dataGridViewStepCount,Properties.Settings.Default.CollectionPressure[i], Properties.Settings.Default.CollectionDuration[i], Properties.Settings.Default.CollectionTemperature[i]);
+        dataGridView2.Rows.Add(dataGridViewStepCount, Properties.Settings.Default.CollectionPressure[i], Properties.Settings.Default.CollectionDuration[i], Properties.Settings.Default.CollectionTemperature[i]);
       }
 
       try
@@ -142,6 +148,7 @@ namespace LukMachine
     {
       emptyCollectedVolume();
       fillReservoir();
+      backgroundWorkerMainLoop.ReportProgress(0, "showStopButton()"); //we didn't show it earlier to avoid clicking on it by mistake at start
 
       for (int i = 0; i < Properties.Settings.Default.CollectionPressure.Count; i++)
       {
@@ -196,6 +203,11 @@ namespace LukMachine
           {
             finished();
           }
+
+          else if (mystring == "showStopButton()")
+          {
+            showStopButton();
+          }
         }
         else //if it is not a function then just add the string to the listbox 1
         {
@@ -203,6 +215,10 @@ namespace LukMachine
           labelPanel.Text = mystring;
         }
       }
+    }
+    private void showStopButton()
+    {
+      button2.Visible = true;
     }
 
     private void addToListBox1(string param)
@@ -248,22 +264,7 @@ namespace LukMachine
       chart1.Series["Series1"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), flow.ToString("#0.00"));
       chart1.Series["SeriesPressure"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentPressure.ToString("#0.00"));
       chart1.Series["SeriesTemperature"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentTemperatureInC.ToString("#0.00"));
-      if (checkBoxShowPressureGraph.Checked)
-      {
-        chart1.Series["SeriesPressure"].Enabled = true;
-      }
-      else
-      {
-        chart1.Series["SeriesPressure"].Enabled = false;
-      }
-      if (checkBoxShowTemperatureGraph.Checked)
-      {
-        chart1.Series["SeriesTemperature"].Enabled = true;
-      }
-      else
-      {
-        chart1.Series["SeriesTemperature"].Enabled = false;
-      }
+
 
       lastCollectedCount = collectedCount;
       lastTotalTimeInMinutes = totalTimeInMinutes;
@@ -280,14 +281,7 @@ namespace LukMachine
       //labelPermeability.Text = "= " + perm.ToString("#.0000000");
 
       chart1.Series["SeriesPermeability"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), perm.ToString("#.0000000"));
-      if (checkBoxShowTemperatureGraph.Checked)
-      {
-        chart1.Series["SeriesPermeability"].Enabled = true;
-      }
-      else
-      {
-        chart1.Series["SeriesPermeability"].Enabled = false;
-      }
+
 
 
       SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}\t{4,10}", totalTimeInMinutes.ToString("#0.00"), flow.ToString("#0.00"), currentTemperatureInC.ToString("0.0"), currentPressure.ToString("0.000"), perm.ToString("#.0000000"));
@@ -310,7 +304,7 @@ namespace LukMachine
     private void finished()
     {
       testFinished = true;
-      buttonReport.Visible = true;
+      //buttonReport.Visible = true;
       addToListBox1("Finished");
       labelPanel.Text = "Finished";
       addToListBox1("Data saved to " + Properties.Settings.Default.TestData);
@@ -886,7 +880,7 @@ namespace LukMachine
       if (testFinished)
       {
         labelPanel.Text = "The test has finished. Please wait...";
-      } 
+      }
       panel1.Visible = true;
       Refresh();
       Valves.OpenValve2();
@@ -907,14 +901,14 @@ namespace LukMachine
       COMMS.Instance.SetAthenaTemp(2, zerotemp);
       COMMS.Instance.SetAthenaTemp(3, zerotemp);
       //start chamber fan
-      COMMS.Instance.StartFan(); 
+      COMMS.Instance.StartFan();
     }
 
 
 
 
     private void AutoScrn_FormClosing(object sender, FormClosingEventArgs e)
-    {    
+    {
       //stopButton();
     }
 
@@ -936,19 +930,46 @@ namespace LukMachine
     {
       if (checkBoxShowPressureGraph.Checked)
       {
+        /*
         chart1.Series["SeriesPressure"].Enabled = true;
         chart1.Series["SeriesPressure"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentPressure.ToString("#0.00"));
         chart1.Update();
         chart1.Refresh();
         chart1.Series["SeriesPressure"].Points.RemoveAt(chart1.Series["SeriesPressure"].Points.Count - 1);
+      */
+        chart1.Series["SeriesPressure"].Enabled = true;
+        // Set custom chart area position
+        chart1.ChartAreas[0].InnerPlotPosition = new ElementPosition(chart1.ChartAreas["ChartArea1"].InnerPlotPosition.X, chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Y, chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Width - 10, chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Height);
+        CreateYAxis(chart1, chart1.ChartAreas[0], chart1.Series["SeriesPressure"], 0, chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Width);
+
       }
       else
       {
+        /*
         chart1.Series["SeriesPressure"].Enabled = false;
         chart1.Series["SeriesPressure"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentPressure.ToString("#0.00"));
         chart1.Update();
         chart1.Refresh();
         chart1.Series["SeriesPressure"].Points.RemoveAt(chart1.Series["SeriesPressure"].Points.Count - 1);
+      */
+        chart1.Series["SeriesPressure"].Enabled = false;
+        // Set default chart areas
+        chart1.Series["Series1"].ChartArea = "ChartArea1";
+        //chart1.Series["Series3"].ChartArea = "ChartArea1";
+
+        // Remove newly created series and chart areas
+        while (chart1.Series.Count > 4)
+        {
+          chart1.Series.RemoveAt(4);
+        }
+        while (chart1.ChartAreas.Count > 1)
+        {
+          chart1.ChartAreas.RemoveAt(1);
+        }
+
+        // Set default chart are position to Auto
+        chart1.ChartAreas["ChartArea1"].Position.Auto = true;
+        chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Auto = true;
       }
     }
 
@@ -956,20 +977,49 @@ namespace LukMachine
     {
       if (checkBoxShowTemperatureGraph.Checked)
       {
+        /*
         chart1.Series["SeriesTemperature"].Enabled = true;
         chart1.Series["SeriesTemperature"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentTemperature.ToString("#0.00"));
         chart1.Update();
         chart1.Refresh();
         chart1.Series["SeriesTemperature"].Points.RemoveAt(chart1.Series["SeriesTemperature"].Points.Count - 1);
+        */
+        chart1.Series["SeriesTemperature"].Enabled = true;
+        // Set custom chart area position
+        chart1.ChartAreas[0].InnerPlotPosition = new ElementPosition(chart1.ChartAreas["ChartArea1"].InnerPlotPosition.X, chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Y, chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Width - 10, chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Height);
+        CreateYAxis(chart1, chart1.ChartAreas[0], chart1.Series["SeriesTemperature"], 0, chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Width);
+
       }
       else
       {
+        /*
         chart1.Series["SeriesTemperature"].Enabled = false;
         chart1.Series["SeriesTemperature"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentTemperature.ToString("#0.00"));
         chart1.Update();
         chart1.Refresh();
         chart1.Series["SeriesTemperature"].Points.RemoveAt(chart1.Series["SeriesTemperature"].Points.Count - 1);
+     */
+        chart1.Series["SeriesTemperature"].Enabled = false;
+        // Set default chart areas
+        chart1.Series["Series1"].ChartArea = "ChartArea1";
+        //chart1.Series["Series3"].ChartArea = "ChartArea1";
+
+        // Remove newly created series and chart areas
+        while (chart1.Series.Count > 4)
+        {
+          chart1.Series.RemoveAt(4);
+        }
+        while (chart1.ChartAreas.Count > 1)
+        {
+          chart1.ChartAreas.RemoveAt(1);
+        }
+
+        // Set default chart are position to Auto
+        chart1.ChartAreas["ChartArea1"].Position.Auto = true;
+        chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Auto = true;
       }
+
+
     }
 
     private void checkBoxShowPermeabilityGraph_CheckedChanged(object sender, EventArgs e)
@@ -989,6 +1039,101 @@ namespace LukMachine
         chart1.Update();
         chart1.Refresh();
         chart1.Series["SeriesPermeability"].Points.RemoveAt(chart1.Series["SeriesPermeability"].Points.Count - 1);
+      }
+    }
+
+    public void CreateYAxis(Chart chart, ChartArea area, Series series, float axisOffset, float labelsSize)
+    {
+      // Create new chart area for original series
+      ChartArea areaSeries = chart.ChartAreas.Add("ChartArea_" + series.Name);
+      areaSeries.BackColor = Color.Transparent;
+      areaSeries.BorderColor = Color.Transparent;
+      areaSeries.Position.FromRectangleF(area.Position.ToRectangleF());
+      areaSeries.InnerPlotPosition.FromRectangleF(area.InnerPlotPosition.ToRectangleF());
+      areaSeries.AxisX.MajorGrid.Enabled = false;
+      areaSeries.AxisX.MajorTickMark.Enabled = false;
+      areaSeries.AxisX.LabelStyle.Enabled = false;
+      areaSeries.AxisY.MajorGrid.Enabled = false;
+      areaSeries.AxisY.MajorTickMark.Enabled = false;
+      areaSeries.AxisY.LabelStyle.Enabled = false;
+      areaSeries.AxisY.IsStartedFromZero = area.AxisY.IsStartedFromZero;
+
+
+      series.ChartArea = areaSeries.Name;
+
+      // Create new chart area for axis
+      ChartArea areaAxis = chart.ChartAreas.Add("AxisY_" + series.ChartArea);
+      areaAxis.BackColor = Color.Transparent;
+      areaAxis.BorderColor = Color.Transparent;
+      areaAxis.Position.FromRectangleF(chart.ChartAreas[series.ChartArea].Position.ToRectangleF());
+      areaAxis.InnerPlotPosition.FromRectangleF(chart.ChartAreas[series.ChartArea].InnerPlotPosition.ToRectangleF());
+
+      // Create a copy of specified series
+      Series seriesCopy = chart.Series.Add(series.Name + "_Copy");
+      seriesCopy.ChartType = series.ChartType;
+      foreach (DataPoint point in series.Points)
+      {
+        seriesCopy.Points.AddXY(point.XValue, point.YValues[0]);
+      }
+
+      // Hide copied series
+      seriesCopy.IsVisibleInLegend = false;
+      seriesCopy.Color = Color.Transparent;
+      seriesCopy.BorderColor = Color.Transparent;
+      seriesCopy.ChartArea = areaAxis.Name;
+
+      // Disable drid lines & tickmarks
+      areaAxis.AxisX.LineWidth = 0;
+      areaAxis.AxisX.MajorGrid.Enabled = false;
+      areaAxis.AxisX.MajorTickMark.Enabled = false;
+      areaAxis.AxisX.LabelStyle.Enabled = false;
+      areaAxis.AxisY.MajorGrid.Enabled = false;
+      areaAxis.AxisY.IsStartedFromZero = area.AxisY.IsStartedFromZero;
+      areaAxis.AxisY.LabelStyle.Font = area.AxisY.LabelStyle.Font;
+
+      // Adjust area position
+      areaAxis.Position.X += axisOffset;
+      areaAxis.InnerPlotPosition.X += labelsSize;
+
+    }
+
+    private void checkBoxShowPermeabilityGraph2_CheckedChanged(object sender, EventArgs e)
+    {
+      if (checkBoxShowPermeabilityGraph2.Checked)
+      {
+        chart1.Series["SeriesPermeability"].Enabled = true;
+        // Set custom chart area position
+        //chart1.ChartAreas[0].Position = new ElementPosition(25, 10, 68, 85);
+        //chart1.ChartAreas[0].InnerPlotPosition = new ElementPosition(10, 0, 90, 90);
+        chart1.ChartAreas[0].InnerPlotPosition = new ElementPosition(chart1.ChartAreas["ChartArea1"].InnerPlotPosition.X, chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Y, chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Width - 10, chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Height);
+
+        // Create extra Y axis for second and third series
+        CreateYAxis(chart1, chart1.ChartAreas[0], chart1.Series["SeriesPermeability"], 0, chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Width);
+        //CreateYAxis(chart1, chart1.ChartAreas["ChartArea1"], chart1.Series["Series3"], 22, 8);
+
+        //chart1.Series["Series2"].Enabled = true;
+      }
+      else
+      {
+        chart1.Series["SeriesPermeability"].Enabled = false;
+        // Set default chart areas
+        chart1.Series["Series1"].ChartArea = "ChartArea1";
+        //chart1.Series["Series3"].ChartArea = "ChartArea1";
+
+        // Remove newly created series and chart areas
+        while (chart1.Series.Count > 4)
+        {
+          chart1.Series.RemoveAt(4);
+        }
+        while (chart1.ChartAreas.Count > 1)
+        {
+          chart1.ChartAreas.RemoveAt(1);
+        }
+
+        // Set default chart are position to Auto
+        chart1.ChartAreas["ChartArea1"].Position.Auto = true;
+        chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Auto = true;
+        // chart1.Series["Series2"].Enabled = false;
       }
     }
   }
