@@ -75,7 +75,7 @@ namespace LukMachine
     double k1;
     int dataGridViewStepCount;
     int myBorderWidth = Convert.ToInt32(Properties.Settings.Default.myBorderWidth);
-
+    double pressureTolerance=Properties.Settings.Default.pressureTolerance;
 
     public AutoScrn()
     {
@@ -665,10 +665,9 @@ namespace LukMachine
             {
               Pumps.SetPump2(pumpPowerAtEndOfLastStep * 0.6);
             }*/
-
           }
 
-          if ((currentPressure > (targetPressure - 0.1)) && (currentPressure < targetPressure + 0.1))
+          if ((currentPressure > (targetPressure - pressureTolerance)) && (currentPressure < targetPressure + pressureTolerance))
           {
             if (firstLoopToTargetPressure) // since there's 2 consecutive gototargetloops: if you are at the end of the first loop then record MainPumpStatePercent; (you don't want to do this after the 2nd loop becuase then pressure is usally going down and pump is at 0%)
             {
@@ -709,7 +708,7 @@ namespace LukMachine
             COMMS.Instance.SetAthenaTemp(2, targetTempinF);//chamber1
           }
 
-          if (((currentTemperature > targetTempinF - 10))) //therefore you must always go in steps of increasing temperature
+          if (((currentTemperature > targetTempinF - Properties.Settings.Default.temperatureTolerance))) //therefore you must always go in steps of increasing temperature
           {
             temperatureHasBeenReached = true;
           }
