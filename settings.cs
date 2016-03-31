@@ -21,13 +21,51 @@ namespace LukMachine
     {
       try
       {
+        if ((Convert.ToDouble(textBoxPressureTolerance.Text) >= 0.1) && (Convert.ToDouble(textBoxPressureTolerance.Text) <= 5))
+        {
+          Properties.Settings.Default.pressureTolerance = Convert.ToDouble(textBoxPressureTolerance.Text);
+        }
+        else
+        {
+          MessageBox.Show("Pressure tolerance should be between 0.1 and 5 PSI");
+          return;
+        }
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Pressure should be a valid number");
+        return;
+      }
+
+      try
+      {
+        if ((Convert.ToDouble(textBoxTemperatureTolerance.Text) >= 1) && (Convert.ToDouble(textBoxTemperatureTolerance.Text) <= 75))
+        {
+          Properties.Settings.Default.temperatureTolerance = Convert.ToDouble(textBoxTemperatureTolerance.Text);
+        }
+        else
+        {
+          MessageBox.Show("Temperature tolerance should be between 1 and 75 deg C");
+          return;
+        }
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Temperature should be a valid number");
+        return;
+      }
+      
+
+
+      try
+      {
         Properties.Settings.Default.p1Max = Convert.ToInt32(textBoxPressure.Text);
       }
       catch (Exception)
       {
         MessageBox.Show("'Max Gauge Pressure' must be an integer");
       }
-     
+
       Properties.Settings.Default.LowPumpSetting = textBox1.Text;
       Properties.Settings.Default.MediumPumpSetting = textBox2.Text;
       Properties.Settings.Default.HighPumpSetting = textBox3.Text;
@@ -92,6 +130,8 @@ namespace LukMachine
 
     private void settings_Load(object sender, EventArgs e)
     {
+      textBoxPressureTolerance.Text = Properties.Settings.Default.pressureTolerance.ToString();
+      textBoxTemperatureTolerance.Text = Properties.Settings.Default.temperatureTolerance.ToString();
       textBoxPressure.Text = Properties.Settings.Default.p1Max.ToString();
 
       if (Properties.Settings.Default.TempCorF == "C")
@@ -116,7 +156,7 @@ namespace LukMachine
 
 
       loadPortList();
-      
+
 
 
       //load settings for pressure units
@@ -183,7 +223,7 @@ namespace LukMachine
       {
         MessageBox.Show("Please enter a valid number");
       }
-      
+
     }
   }
 }
