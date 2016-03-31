@@ -592,6 +592,16 @@ namespace LukMachine
       return null;
     }
 
+    public void StartFan()
+    {
+      COMMS.Instance.MoveMotorValve(4, "O");
+    }
+
+    public void StopFan()
+    {
+      COMMS.Instance.MoveMotorValve(4, "S");
+    }
+
     public void SetAthenaTemp(int channel, double temp)
     {
       double changedTemp = temp * 10;

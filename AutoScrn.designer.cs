@@ -86,6 +86,7 @@
       this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.DurationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.TemperatureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.checkBoxShowPermeabilityGraph2 = new System.Windows.Forms.CheckBox();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -195,9 +196,9 @@
       // button2
       // 
       this.button2.Image = global::LukMachine.Properties.Resources._109_AllAnnotations_Error_32x32_72;
-      this.button2.Location = new System.Drawing.Point(664, 528);
+      this.button2.Location = new System.Drawing.Point(666, 528);
       this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(229, 86);
+      this.button2.Size = new System.Drawing.Size(229, 90);
       this.button2.TabIndex = 3;
       this.button2.Text = "Stop Test";
       this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -464,7 +465,7 @@
       this.buttonReport.AutoSize = true;
       this.buttonReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.buttonReport.ForeColor = System.Drawing.Color.Green;
-      this.buttonReport.Location = new System.Drawing.Point(665, 529);
+      this.buttonReport.Location = new System.Drawing.Point(405, 543);
       this.buttonReport.Name = "buttonReport";
       this.buttonReport.Size = new System.Drawing.Size(229, 86);
       this.buttonReport.TabIndex = 25;
@@ -482,6 +483,7 @@
       this.linkLabelOpenFolder.TabIndex = 26;
       this.linkLabelOpenFolder.TabStop = true;
       this.linkLabelOpenFolder.Text = "Open Folder";
+      this.linkLabelOpenFolder.Visible = false;
       this.linkLabelOpenFolder.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelOpenFolder_LinkClicked);
       // 
       // backgroundWorkerMainLoop
@@ -555,34 +557,35 @@
       // checkBoxShowPressureGraph
       // 
       this.checkBoxShowPressureGraph.AutoSize = true;
-      this.checkBoxShowPressureGraph.Location = new System.Drawing.Point(388, 541);
+      this.checkBoxShowPressureGraph.Location = new System.Drawing.Point(381, 541);
       this.checkBoxShowPressureGraph.Name = "checkBoxShowPressureGraph";
-      this.checkBoxShowPressureGraph.Size = new System.Drawing.Size(231, 27);
+      this.checkBoxShowPressureGraph.Size = new System.Drawing.Size(283, 27);
       this.checkBoxShowPressureGraph.TabIndex = 48;
-      this.checkBoxShowPressureGraph.Text = "Show Pressure Graph";
+      this.checkBoxShowPressureGraph.Text = "Show Pressure Graph (PSI)";
       this.checkBoxShowPressureGraph.UseVisualStyleBackColor = true;
       this.checkBoxShowPressureGraph.CheckedChanged += new System.EventHandler(this.checkBoxShowPressureGraph_CheckedChanged);
       // 
       // checkBoxShowTemperatureGraph
       // 
       this.checkBoxShowTemperatureGraph.AutoSize = true;
-      this.checkBoxShowTemperatureGraph.Location = new System.Drawing.Point(388, 574);
+      this.checkBoxShowTemperatureGraph.Location = new System.Drawing.Point(381, 574);
       this.checkBoxShowTemperatureGraph.Name = "checkBoxShowTemperatureGraph";
-      this.checkBoxShowTemperatureGraph.Size = new System.Drawing.Size(263, 27);
+      this.checkBoxShowTemperatureGraph.Size = new System.Drawing.Size(336, 27);
       this.checkBoxShowTemperatureGraph.TabIndex = 49;
-      this.checkBoxShowTemperatureGraph.Text = "Show Temperature Graph";
+      this.checkBoxShowTemperatureGraph.Text = "Show Temperature Graph (deg C)";
       this.checkBoxShowTemperatureGraph.UseVisualStyleBackColor = true;
       this.checkBoxShowTemperatureGraph.CheckedChanged += new System.EventHandler(this.checkBoxShowTemperatureGraph_CheckedChanged);
       // 
       // checkBoxShowPermeabilityGraph
       // 
       this.checkBoxShowPermeabilityGraph.AutoSize = true;
-      this.checkBoxShowPermeabilityGraph.Location = new System.Drawing.Point(388, 607);
+      this.checkBoxShowPermeabilityGraph.Location = new System.Drawing.Point(683, 621);
       this.checkBoxShowPermeabilityGraph.Name = "checkBoxShowPermeabilityGraph";
-      this.checkBoxShowPermeabilityGraph.Size = new System.Drawing.Size(260, 27);
+      this.checkBoxShowPermeabilityGraph.Size = new System.Drawing.Size(342, 27);
       this.checkBoxShowPermeabilityGraph.TabIndex = 50;
-      this.checkBoxShowPermeabilityGraph.Text = "Show Permeability Graph";
+      this.checkBoxShowPermeabilityGraph.Text = "Show Permeability Graph (Darcys)";
       this.checkBoxShowPermeabilityGraph.UseVisualStyleBackColor = true;
+      this.checkBoxShowPermeabilityGraph.Visible = false;
       this.checkBoxShowPermeabilityGraph.CheckedChanged += new System.EventHandler(this.checkBoxShowPermeabilityGraph_CheckedChanged);
       // 
       // StepColumn
@@ -616,6 +619,17 @@
       this.TemperatureColumn.Name = "TemperatureColumn";
       this.TemperatureColumn.ReadOnly = true;
       // 
+      // checkBoxShowPermeabilityGraph2
+      // 
+      this.checkBoxShowPermeabilityGraph2.AutoSize = true;
+      this.checkBoxShowPermeabilityGraph2.Location = new System.Drawing.Point(381, 607);
+      this.checkBoxShowPermeabilityGraph2.Name = "checkBoxShowPermeabilityGraph2";
+      this.checkBoxShowPermeabilityGraph2.Size = new System.Drawing.Size(342, 27);
+      this.checkBoxShowPermeabilityGraph2.TabIndex = 51;
+      this.checkBoxShowPermeabilityGraph2.Text = "Show Permeability Graph (Darcys)";
+      this.checkBoxShowPermeabilityGraph2.UseVisualStyleBackColor = true;
+      this.checkBoxShowPermeabilityGraph2.CheckedChanged += new System.EventHandler(this.checkBoxShowPermeabilityGraph2_CheckedChanged);
+      // 
       // verticalProgressBar1
       // 
       this.verticalProgressBar1.Location = new System.Drawing.Point(37, 42);
@@ -639,6 +653,7 @@
       this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.ClientSize = new System.Drawing.Size(905, 648);
       this.ControlBox = false;
+      this.Controls.Add(this.checkBoxShowPermeabilityGraph2);
       this.Controls.Add(this.checkBoxShowPermeabilityGraph);
       this.Controls.Add(this.checkBoxShowTemperatureGraph);
       this.Controls.Add(this.checkBoxShowPressureGraph);
@@ -733,6 +748,7 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
     private System.Windows.Forms.DataGridViewTextBoxColumn DurationColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn TemperatureColumn;
+    private System.Windows.Forms.CheckBox checkBoxShowPermeabilityGraph2;
     // private System.Windows.Controls.ProgressBar progbar;
 
 

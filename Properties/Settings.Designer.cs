@@ -1016,5 +1016,29 @@ namespace LukMachine.Properties {
                 this["myBorderWidth"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public double temperatureTolerance {
+            get {
+                return ((double)(this["temperatureTolerance"]));
+            }
+            set {
+                this["temperatureTolerance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public double pressureTolerance {
+            get {
+                return ((double)(this["pressureTolerance"]));
+            }
+            set {
+                this["pressureTolerance"] = value;
+            }
+        }
     }
 }

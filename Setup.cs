@@ -125,6 +125,46 @@ namespace LukMachine
 
     private void button2_Click(object sender, EventArgs e)
     {
+      COMMS.Instance.StopFan();
+
+      DataGridViewRowCollection drc = dataGridView1.Rows;
+      int count = 0; //just for the next foreach which disallows steps with and without temp. 
+      bool noTemp=true;
+      foreach (DataGridViewRow item in drc)
+      {
+        count++;
+        if (count==1)
+        {
+          if (item.Cells[3].Value.ToString() == "-")
+          {
+            noTemp = true;
+          }
+          else
+          {
+            noTemp = false;
+          }
+        }
+        else
+        {
+          if (noTemp)
+          {
+            if (item.Cells[3].Value.ToString() != "-")
+            {
+              MessageBox.Show("Either all steps should have a temperature or none of them!");
+              return;
+            }
+          }
+          else
+          {
+            if (item.Cells[3].Value.ToString() == "-")
+            {
+              MessageBox.Show("Either all steps should have a temperature or none of them!");
+              return;
+            }
+          }
+        }
+      }
+
       if (File.Exists(textBox6.Text))
       {
         DialogResult result = MessageBox.Show("This data file already exists. Do you want to overwrite it?", "Overwrite data file?", MessageBoxButtons.YesNo);

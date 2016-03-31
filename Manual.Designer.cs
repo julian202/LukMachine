@@ -86,11 +86,17 @@
       this.aGauge5 = new AGaugeApp.AGauge();
       this.groupBox6 = new System.Windows.Forms.GroupBox();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.groupBoxCollected = new System.Windows.Forms.GroupBox();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.label8 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.label64 = new System.Windows.Forms.Label();
+      this.radioButtonP1P2 = new System.Windows.Forms.RadioButton();
+      this.textBoxPDiff = new System.Windows.Forms.TextBox();
+      this.label62 = new System.Windows.Forms.Label();
       this.trackBar3 = new System.Windows.Forms.TrackBar();
       this.button27 = new System.Windows.Forms.Button();
       this.button24 = new System.Windows.Forms.Button();
@@ -156,15 +162,21 @@
       this.label19 = new System.Windows.Forms.Label();
       this.label33 = new System.Windows.Forms.Label();
       this.groupBox13 = new System.Windows.Forms.GroupBox();
-      this.radioButtonP1P2 = new System.Windows.Forms.RadioButton();
       this.radioButtonP1 = new System.Windows.Forms.RadioButton();
-      this.label62 = new System.Windows.Forms.Label();
-      this.textBoxPDiff = new System.Windows.Forms.TextBox();
       this.checkBoxTargetPressure = new System.Windows.Forms.CheckBox();
       this.aGauge1 = new AGaugeApp.AGauge();
       this.label30 = new System.Windows.Forms.Label();
       this.textBox7 = new System.Windows.Forms.TextBox();
       this.groupBox10 = new System.Windows.Forms.GroupBox();
+      this.checkBoxReservoirTemp = new System.Windows.Forms.CheckBox();
+      this.label63 = new System.Windows.Forms.Label();
+      this.textBoxReservoirTemp = new System.Windows.Forms.TextBox();
+      this.checkBoxChamber2Temp = new System.Windows.Forms.CheckBox();
+      this.label57 = new System.Windows.Forms.Label();
+      this.textBoxChamber2Temp = new System.Windows.Forms.TextBox();
+      this.checkBoxChamber1Temp = new System.Windows.Forms.CheckBox();
+      this.label52 = new System.Windows.Forms.Label();
+      this.textBoxChamber1Temp = new System.Windows.Forms.TextBox();
       this.labelReservoirTemp = new System.Windows.Forms.Label();
       this.labelChamber2Temp = new System.Windows.Forms.Label();
       this.labelChamber1Temp = new System.Windows.Forms.Label();
@@ -182,10 +194,12 @@
       this.label29 = new System.Windows.Forms.Label();
       this.label28 = new System.Windows.Forms.Label();
       this.label27 = new System.Windows.Forms.Label();
+      this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
       this.label23 = new System.Windows.Forms.Label();
       this.label22 = new System.Windows.Forms.Label();
       this.label21 = new System.Windows.Forms.Label();
       this.label20 = new System.Windows.Forms.Label();
+      this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
       this.label18 = new System.Windows.Forms.Label();
       this.label9 = new System.Windows.Forms.Label();
       this.label17 = new System.Windows.Forms.Label();
@@ -240,20 +254,8 @@
       this.button25 = new System.Windows.Forms.Button();
       this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
       this.timerHeater = new System.Windows.Forms.Timer(this.components);
-      this.checkBoxChamber1Temp = new System.Windows.Forms.CheckBox();
-      this.label52 = new System.Windows.Forms.Label();
-      this.textBoxChamber1Temp = new System.Windows.Forms.TextBox();
-      this.checkBoxChamber2Temp = new System.Windows.Forms.CheckBox();
-      this.label57 = new System.Windows.Forms.Label();
-      this.textBoxChamber2Temp = new System.Windows.Forms.TextBox();
-      this.checkBoxReservoirTemp = new System.Windows.Forms.CheckBox();
-      this.label63 = new System.Windows.Forms.Label();
-      this.textBoxReservoirTemp = new System.Windows.Forms.TextBox();
-      this.label64 = new System.Windows.Forms.Label();
-      this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
-      this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
-      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
-      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
+      this.buttonStartFan = new System.Windows.Forms.Button();
+      this.buttonStopFan = new System.Windows.Forms.Button();
       this.groupBox9.SuspendLayout();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -1022,6 +1024,13 @@
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir Volume";
       // 
+      // verticalProgressBar1
+      // 
+      this.verticalProgressBar1.Location = new System.Drawing.Point(35, 63);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
+      this.verticalProgressBar1.TabIndex = 43;
+      // 
       // groupBoxCollected
       // 
       this.groupBoxCollected.Controls.Add(this.verticalProgressBar2);
@@ -1031,6 +1040,13 @@
       this.groupBoxCollected.TabIndex = 41;
       this.groupBoxCollected.TabStop = false;
       this.groupBoxCollected.Text = "Collected Volume";
+      // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(42, 64);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
+      this.verticalProgressBar2.TabIndex = 44;
       // 
       // label8
       // 
@@ -1066,6 +1082,8 @@
       // tabPage1
       // 
       this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+      this.tabPage1.Controls.Add(this.buttonStopFan);
+      this.tabPage1.Controls.Add(this.buttonStartFan);
       this.tabPage1.Controls.Add(this.label64);
       this.tabPage1.Controls.Add(this.radioButtonP1P2);
       this.tabPage1.Controls.Add(this.textBoxPDiff);
@@ -1152,6 +1170,52 @@
       this.tabPage1.Text = "Diagram Control";
       this.tabPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabPage1_Paint);
       // 
+      // label64
+      // 
+      this.label64.AutoSize = true;
+      this.label64.BackColor = System.Drawing.Color.Orange;
+      this.label64.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label64.Location = new System.Drawing.Point(549, 253);
+      this.label64.Name = "label64";
+      this.label64.Size = new System.Drawing.Size(29, 16);
+      this.label64.TabIndex = 125;
+      this.label64.Text = "PSI";
+      // 
+      // radioButtonP1P2
+      // 
+      this.radioButtonP1P2.AutoSize = true;
+      this.radioButtonP1P2.Location = new System.Drawing.Point(837, 472);
+      this.radioButtonP1P2.Name = "radioButtonP1P2";
+      this.radioButtonP1P2.Size = new System.Drawing.Size(104, 29);
+      this.radioButtonP1P2.TabIndex = 86;
+      this.radioButtonP1P2.TabStop = true;
+      this.radioButtonP1P2.Text = "P1-P2:";
+      this.radioButtonP1P2.UseVisualStyleBackColor = true;
+      this.radioButtonP1P2.Visible = false;
+      // 
+      // textBoxPDiff
+      // 
+      this.textBoxPDiff.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.textBoxPDiff.Location = new System.Drawing.Point(941, 472);
+      this.textBoxPDiff.Name = "textBoxPDiff";
+      this.textBoxPDiff.Size = new System.Drawing.Size(53, 30);
+      this.textBoxPDiff.TabIndex = 82;
+      this.textBoxPDiff.Text = "0";
+      this.textBoxPDiff.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBoxPDiff.Visible = false;
+      this.textBoxPDiff.TextChanged += new System.EventHandler(this.textBoxPDiff_TextChanged);
+      // 
+      // label62
+      // 
+      this.label62.AutoSize = true;
+      this.label62.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label62.Location = new System.Drawing.Point(997, 475);
+      this.label62.Name = "label62";
+      this.label62.Size = new System.Drawing.Size(42, 23);
+      this.label62.TabIndex = 83;
+      this.label62.Text = "PSI";
+      this.label62.Visible = false;
+      // 
       // trackBar3
       // 
       this.trackBar3.LargeChange = 100;
@@ -1228,7 +1292,7 @@
       // 
       this.checkBox1.AutoSize = true;
       this.checkBox1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBox1.Location = new System.Drawing.Point(1099, 487);
+      this.checkBox1.Location = new System.Drawing.Point(1234, 486);
       this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
       this.checkBox1.Name = "checkBox1";
       this.checkBox1.Size = new System.Drawing.Size(177, 27);
@@ -1241,7 +1305,7 @@
       // 
       this.checkBox3.AutoSize = true;
       this.checkBox3.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBox3.Location = new System.Drawing.Point(1099, 559);
+      this.checkBox3.Location = new System.Drawing.Point(1234, 558);
       this.checkBox3.Margin = new System.Windows.Forms.Padding(4);
       this.checkBox3.Name = "checkBox3";
       this.checkBox3.Size = new System.Drawing.Size(173, 27);
@@ -1254,7 +1318,7 @@
       // 
       this.checkBox2.AutoSize = true;
       this.checkBox2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBox2.Location = new System.Drawing.Point(1099, 523);
+      this.checkBox2.Location = new System.Drawing.Point(1234, 522);
       this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
       this.checkBox2.Name = "checkBox2";
       this.checkBox2.Size = new System.Drawing.Size(177, 27);
@@ -1267,7 +1331,7 @@
       // 
       this.checkBox4.AutoSize = true;
       this.checkBox4.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBox4.Location = new System.Drawing.Point(1099, 594);
+      this.checkBox4.Location = new System.Drawing.Point(1234, 593);
       this.checkBox4.Margin = new System.Windows.Forms.Padding(4);
       this.checkBox4.Name = "checkBox4";
       this.checkBox4.Size = new System.Drawing.Size(164, 27);
@@ -1863,18 +1927,6 @@
       this.groupBox13.TabStop = false;
       this.groupBox13.Text = "Current Pressure (PSI)  Gauge P1";
       // 
-      // radioButtonP1P2
-      // 
-      this.radioButtonP1P2.AutoSize = true;
-      this.radioButtonP1P2.Location = new System.Drawing.Point(837, 472);
-      this.radioButtonP1P2.Name = "radioButtonP1P2";
-      this.radioButtonP1P2.Size = new System.Drawing.Size(104, 29);
-      this.radioButtonP1P2.TabIndex = 86;
-      this.radioButtonP1P2.TabStop = true;
-      this.radioButtonP1P2.Text = "P1-P2:";
-      this.radioButtonP1P2.UseVisualStyleBackColor = true;
-      this.radioButtonP1P2.Visible = false;
-      // 
       // radioButtonP1
       // 
       this.radioButtonP1.AutoSize = true;
@@ -1887,29 +1939,6 @@
       this.radioButtonP1.Text = "P1:";
       this.radioButtonP1.UseVisualStyleBackColor = true;
       this.radioButtonP1.Visible = false;
-      // 
-      // label62
-      // 
-      this.label62.AutoSize = true;
-      this.label62.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label62.Location = new System.Drawing.Point(997, 475);
-      this.label62.Name = "label62";
-      this.label62.Size = new System.Drawing.Size(42, 23);
-      this.label62.TabIndex = 83;
-      this.label62.Text = "PSI";
-      this.label62.Visible = false;
-      // 
-      // textBoxPDiff
-      // 
-      this.textBoxPDiff.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBoxPDiff.Location = new System.Drawing.Point(941, 472);
-      this.textBoxPDiff.Name = "textBoxPDiff";
-      this.textBoxPDiff.Size = new System.Drawing.Size(53, 30);
-      this.textBoxPDiff.TabIndex = 82;
-      this.textBoxPDiff.Text = "0";
-      this.textBoxPDiff.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.textBoxPDiff.Visible = false;
-      this.textBoxPDiff.TextChanged += new System.EventHandler(this.textBoxPDiff_TextChanged);
       // 
       // checkBoxTargetPressure
       // 
@@ -2073,6 +2102,111 @@
       this.groupBox10.Size = new System.Drawing.Size(437, 213);
       this.groupBox10.TabIndex = 73;
       this.groupBox10.TabStop = false;
+      // 
+      // checkBoxReservoirTemp
+      // 
+      this.checkBoxReservoirTemp.AutoSize = true;
+      this.checkBoxReservoirTemp.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.checkBoxReservoirTemp.Location = new System.Drawing.Point(236, 150);
+      this.checkBoxReservoirTemp.Margin = new System.Windows.Forms.Padding(4);
+      this.checkBoxReservoirTemp.Name = "checkBoxReservoirTemp";
+      this.checkBoxReservoirTemp.Size = new System.Drawing.Size(196, 27);
+      this.checkBoxReservoirTemp.TabIndex = 131;
+      this.checkBoxReservoirTemp.Text = "Heat Reservoir to:";
+      this.checkBoxReservoirTemp.UseVisualStyleBackColor = true;
+      this.checkBoxReservoirTemp.CheckedChanged += new System.EventHandler(this.checkBoxReservoirTemp_CheckedChanged);
+      // 
+      // label63
+      // 
+      this.label63.AutoSize = true;
+      this.label63.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label63.Location = new System.Drawing.Point(310, 178);
+      this.label63.Name = "label63";
+      this.label63.Size = new System.Drawing.Size(95, 23);
+      this.label63.TabIndex = 132;
+      this.label63.Text = "deg C (F)";
+      // 
+      // textBoxReservoirTemp
+      // 
+      this.textBoxReservoirTemp.Enabled = false;
+      this.textBoxReservoirTemp.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.textBoxReservoirTemp.Location = new System.Drawing.Point(261, 177);
+      this.textBoxReservoirTemp.Name = "textBoxReservoirTemp";
+      this.textBoxReservoirTemp.Size = new System.Drawing.Size(47, 30);
+      this.textBoxReservoirTemp.TabIndex = 130;
+      this.textBoxReservoirTemp.Text = "10";
+      this.textBoxReservoirTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBoxReservoirTemp.TextChanged += new System.EventHandler(this.textBoxReservoirTemp_TextChanged);
+      // 
+      // checkBoxChamber2Temp
+      // 
+      this.checkBoxChamber2Temp.AutoSize = true;
+      this.checkBoxChamber2Temp.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.checkBoxChamber2Temp.Location = new System.Drawing.Point(236, 86);
+      this.checkBoxChamber2Temp.Margin = new System.Windows.Forms.Padding(4);
+      this.checkBoxChamber2Temp.Name = "checkBoxChamber2Temp";
+      this.checkBoxChamber2Temp.Size = new System.Drawing.Size(209, 27);
+      this.checkBoxChamber2Temp.TabIndex = 128;
+      this.checkBoxChamber2Temp.Text = "Heat Chamber 2 to:";
+      this.checkBoxChamber2Temp.UseVisualStyleBackColor = true;
+      this.checkBoxChamber2Temp.CheckedChanged += new System.EventHandler(this.checkBoxChamber2Temp_CheckedChanged);
+      // 
+      // label57
+      // 
+      this.label57.AutoSize = true;
+      this.label57.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label57.Location = new System.Drawing.Point(310, 114);
+      this.label57.Name = "label57";
+      this.label57.Size = new System.Drawing.Size(95, 23);
+      this.label57.TabIndex = 129;
+      this.label57.Text = "deg C (F)";
+      // 
+      // textBoxChamber2Temp
+      // 
+      this.textBoxChamber2Temp.Enabled = false;
+      this.textBoxChamber2Temp.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.textBoxChamber2Temp.Location = new System.Drawing.Point(261, 113);
+      this.textBoxChamber2Temp.Name = "textBoxChamber2Temp";
+      this.textBoxChamber2Temp.Size = new System.Drawing.Size(47, 30);
+      this.textBoxChamber2Temp.TabIndex = 127;
+      this.textBoxChamber2Temp.Text = "10";
+      this.textBoxChamber2Temp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBoxChamber2Temp.TextChanged += new System.EventHandler(this.textBoxChamber2Temp_TextChanged);
+      // 
+      // checkBoxChamber1Temp
+      // 
+      this.checkBoxChamber1Temp.AutoSize = true;
+      this.checkBoxChamber1Temp.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.checkBoxChamber1Temp.Location = new System.Drawing.Point(236, 22);
+      this.checkBoxChamber1Temp.Margin = new System.Windows.Forms.Padding(4);
+      this.checkBoxChamber1Temp.Name = "checkBoxChamber1Temp";
+      this.checkBoxChamber1Temp.Size = new System.Drawing.Size(209, 27);
+      this.checkBoxChamber1Temp.TabIndex = 125;
+      this.checkBoxChamber1Temp.Text = "Heat Chamber 1 to:";
+      this.checkBoxChamber1Temp.UseVisualStyleBackColor = true;
+      this.checkBoxChamber1Temp.CheckedChanged += new System.EventHandler(this.checkBoxChamber1Temp_CheckedChanged);
+      // 
+      // label52
+      // 
+      this.label52.AutoSize = true;
+      this.label52.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label52.Location = new System.Drawing.Point(310, 50);
+      this.label52.Name = "label52";
+      this.label52.Size = new System.Drawing.Size(95, 23);
+      this.label52.TabIndex = 126;
+      this.label52.Text = "deg C (F)";
+      // 
+      // textBoxChamber1Temp
+      // 
+      this.textBoxChamber1Temp.Enabled = false;
+      this.textBoxChamber1Temp.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.textBoxChamber1Temp.Location = new System.Drawing.Point(261, 49);
+      this.textBoxChamber1Temp.Name = "textBoxChamber1Temp";
+      this.textBoxChamber1Temp.Size = new System.Drawing.Size(47, 30);
+      this.textBoxChamber1Temp.TabIndex = 124;
+      this.textBoxChamber1Temp.Text = "10";
+      this.textBoxChamber1Temp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBoxChamber1Temp.TextChanged += new System.EventHandler(this.textBoxChamber1Temp_TextChanged);
       // 
       // labelReservoirTemp
       // 
@@ -2261,6 +2395,14 @@
       this.label27.TabIndex = 54;
       this.label27.Text = "Reservoir:";
       // 
+      // verticalProgressBar4
+      // 
+      this.verticalProgressBar4.Location = new System.Drawing.Point(253, 317);
+      this.verticalProgressBar4.Name = "verticalProgressBar4";
+      this.verticalProgressBar4.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar4.TabIndex = 50;
+      this.verticalProgressBar4.Click += new System.EventHandler(this.verticalProgressBar4_Click);
+      // 
       // label23
       // 
       this.label23.AutoSize = true;
@@ -2304,6 +2446,14 @@
       this.label20.Size = new System.Drawing.Size(68, 25);
       this.label20.TabIndex = 46;
       this.label20.Text = "Outlet";
+      // 
+      // verticalProgressBar3
+      // 
+      this.verticalProgressBar3.Location = new System.Drawing.Point(115, 76);
+      this.verticalProgressBar3.Name = "verticalProgressBar3";
+      this.verticalProgressBar3.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar3.TabIndex = 45;
+      this.verticalProgressBar3.Click += new System.EventHandler(this.verticalProgressBar3_Click);
       // 
       // label18
       // 
@@ -2895,151 +3045,25 @@
       this.timerHeater.Interval = 4000;
       this.timerHeater.Tick += new System.EventHandler(this.timerHeater_Tick);
       // 
-      // checkBoxChamber1Temp
+      // buttonStartFan
       // 
-      this.checkBoxChamber1Temp.AutoSize = true;
-      this.checkBoxChamber1Temp.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBoxChamber1Temp.Location = new System.Drawing.Point(236, 22);
-      this.checkBoxChamber1Temp.Margin = new System.Windows.Forms.Padding(4);
-      this.checkBoxChamber1Temp.Name = "checkBoxChamber1Temp";
-      this.checkBoxChamber1Temp.Size = new System.Drawing.Size(209, 27);
-      this.checkBoxChamber1Temp.TabIndex = 125;
-      this.checkBoxChamber1Temp.Text = "Heat Chamber 1 to:";
-      this.checkBoxChamber1Temp.UseVisualStyleBackColor = true;
-      this.checkBoxChamber1Temp.CheckedChanged += new System.EventHandler(this.checkBoxChamber1Temp_CheckedChanged);
+      this.buttonStartFan.Location = new System.Drawing.Point(1093, 503);
+      this.buttonStartFan.Name = "buttonStartFan";
+      this.buttonStartFan.Size = new System.Drawing.Size(108, 39);
+      this.buttonStartFan.TabIndex = 18;
+      this.buttonStartFan.Text = "Start Fan";
+      this.buttonStartFan.UseVisualStyleBackColor = true;
+      this.buttonStartFan.Click += new System.EventHandler(this.buttonStartFan_Click);
       // 
-      // label52
+      // buttonStopFan
       // 
-      this.label52.AutoSize = true;
-      this.label52.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label52.Location = new System.Drawing.Point(310, 50);
-      this.label52.Name = "label52";
-      this.label52.Size = new System.Drawing.Size(95, 23);
-      this.label52.TabIndex = 126;
-      this.label52.Text = "deg C (F)";
-      // 
-      // textBoxChamber1Temp
-      // 
-      this.textBoxChamber1Temp.Enabled = false;
-      this.textBoxChamber1Temp.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBoxChamber1Temp.Location = new System.Drawing.Point(261, 49);
-      this.textBoxChamber1Temp.Name = "textBoxChamber1Temp";
-      this.textBoxChamber1Temp.Size = new System.Drawing.Size(47, 30);
-      this.textBoxChamber1Temp.TabIndex = 124;
-      this.textBoxChamber1Temp.Text = "10";
-      this.textBoxChamber1Temp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.textBoxChamber1Temp.TextChanged += new System.EventHandler(this.textBoxChamber1Temp_TextChanged);
-      // 
-      // checkBoxChamber2Temp
-      // 
-      this.checkBoxChamber2Temp.AutoSize = true;
-      this.checkBoxChamber2Temp.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBoxChamber2Temp.Location = new System.Drawing.Point(236, 86);
-      this.checkBoxChamber2Temp.Margin = new System.Windows.Forms.Padding(4);
-      this.checkBoxChamber2Temp.Name = "checkBoxChamber2Temp";
-      this.checkBoxChamber2Temp.Size = new System.Drawing.Size(209, 27);
-      this.checkBoxChamber2Temp.TabIndex = 128;
-      this.checkBoxChamber2Temp.Text = "Heat Chamber 2 to:";
-      this.checkBoxChamber2Temp.UseVisualStyleBackColor = true;
-      this.checkBoxChamber2Temp.CheckedChanged += new System.EventHandler(this.checkBoxChamber2Temp_CheckedChanged);
-      // 
-      // label57
-      // 
-      this.label57.AutoSize = true;
-      this.label57.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label57.Location = new System.Drawing.Point(310, 114);
-      this.label57.Name = "label57";
-      this.label57.Size = new System.Drawing.Size(95, 23);
-      this.label57.TabIndex = 129;
-      this.label57.Text = "deg C (F)";
-      // 
-      // textBoxChamber2Temp
-      // 
-      this.textBoxChamber2Temp.Enabled = false;
-      this.textBoxChamber2Temp.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBoxChamber2Temp.Location = new System.Drawing.Point(261, 113);
-      this.textBoxChamber2Temp.Name = "textBoxChamber2Temp";
-      this.textBoxChamber2Temp.Size = new System.Drawing.Size(47, 30);
-      this.textBoxChamber2Temp.TabIndex = 127;
-      this.textBoxChamber2Temp.Text = "10";
-      this.textBoxChamber2Temp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.textBoxChamber2Temp.TextChanged += new System.EventHandler(this.textBoxChamber2Temp_TextChanged);
-      // 
-      // checkBoxReservoirTemp
-      // 
-      this.checkBoxReservoirTemp.AutoSize = true;
-      this.checkBoxReservoirTemp.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.checkBoxReservoirTemp.Location = new System.Drawing.Point(236, 150);
-      this.checkBoxReservoirTemp.Margin = new System.Windows.Forms.Padding(4);
-      this.checkBoxReservoirTemp.Name = "checkBoxReservoirTemp";
-      this.checkBoxReservoirTemp.Size = new System.Drawing.Size(196, 27);
-      this.checkBoxReservoirTemp.TabIndex = 131;
-      this.checkBoxReservoirTemp.Text = "Heat Reservoir to:";
-      this.checkBoxReservoirTemp.UseVisualStyleBackColor = true;
-      this.checkBoxReservoirTemp.CheckedChanged += new System.EventHandler(this.checkBoxReservoirTemp_CheckedChanged);
-      // 
-      // label63
-      // 
-      this.label63.AutoSize = true;
-      this.label63.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label63.Location = new System.Drawing.Point(310, 178);
-      this.label63.Name = "label63";
-      this.label63.Size = new System.Drawing.Size(95, 23);
-      this.label63.TabIndex = 132;
-      this.label63.Text = "deg C (F)";
-      // 
-      // textBoxReservoirTemp
-      // 
-      this.textBoxReservoirTemp.Enabled = false;
-      this.textBoxReservoirTemp.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBoxReservoirTemp.Location = new System.Drawing.Point(261, 177);
-      this.textBoxReservoirTemp.Name = "textBoxReservoirTemp";
-      this.textBoxReservoirTemp.Size = new System.Drawing.Size(47, 30);
-      this.textBoxReservoirTemp.TabIndex = 130;
-      this.textBoxReservoirTemp.Text = "10";
-      this.textBoxReservoirTemp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.textBoxReservoirTemp.TextChanged += new System.EventHandler(this.textBoxReservoirTemp_TextChanged);
-      // 
-      // label64
-      // 
-      this.label64.AutoSize = true;
-      this.label64.BackColor = System.Drawing.Color.Orange;
-      this.label64.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label64.Location = new System.Drawing.Point(549, 253);
-      this.label64.Name = "label64";
-      this.label64.Size = new System.Drawing.Size(29, 16);
-      this.label64.TabIndex = 125;
-      this.label64.Text = "PSI";
-      // 
-      // verticalProgressBar4
-      // 
-      this.verticalProgressBar4.Location = new System.Drawing.Point(253, 317);
-      this.verticalProgressBar4.Name = "verticalProgressBar4";
-      this.verticalProgressBar4.Size = new System.Drawing.Size(84, 180);
-      this.verticalProgressBar4.TabIndex = 50;
-      this.verticalProgressBar4.Click += new System.EventHandler(this.verticalProgressBar4_Click);
-      // 
-      // verticalProgressBar3
-      // 
-      this.verticalProgressBar3.Location = new System.Drawing.Point(115, 76);
-      this.verticalProgressBar3.Name = "verticalProgressBar3";
-      this.verticalProgressBar3.Size = new System.Drawing.Size(84, 180);
-      this.verticalProgressBar3.TabIndex = 45;
-      this.verticalProgressBar3.Click += new System.EventHandler(this.verticalProgressBar3_Click);
-      // 
-      // verticalProgressBar1
-      // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(35, 63);
-      this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
-      this.verticalProgressBar1.TabIndex = 43;
-      // 
-      // verticalProgressBar2
-      // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(42, 64);
-      this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
-      this.verticalProgressBar2.TabIndex = 44;
+      this.buttonStopFan.Location = new System.Drawing.Point(1093, 550);
+      this.buttonStopFan.Name = "buttonStopFan";
+      this.buttonStopFan.Size = new System.Drawing.Size(108, 39);
+      this.buttonStopFan.TabIndex = 126;
+      this.buttonStopFan.Text = "Stop Fan";
+      this.buttonStopFan.UseVisualStyleBackColor = true;
+      this.buttonStopFan.Click += new System.EventHandler(this.buttonStopFan_Click);
       // 
       // Manual
       // 
@@ -3323,5 +3347,7 @@
     private System.Windows.Forms.Label label52;
     private System.Windows.Forms.TextBox textBoxChamber1Temp;
     private System.Windows.Forms.Label label64;
+    private System.Windows.Forms.Button buttonStopFan;
+    private System.Windows.Forms.Button buttonStartFan;
   }
 }

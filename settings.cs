@@ -21,6 +21,24 @@ namespace LukMachine
     {
       try
       {
+        if ((Convert.ToInt32(textBoxmaxEmptyCollectedPercentFull.Text) >= 0) && (Convert.ToInt32(textBoxmaxEmptyCollectedPercentFull.Text) <= 50))
+        {
+          Properties.Settings.Default.maxEmptyCollectedPercentFull = Convert.ToInt32(textBoxmaxEmptyCollectedPercentFull.Text);
+        }
+        else
+        {
+          MessageBox.Show("Collected volume percent should be between 0 and 50%");
+        }
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Collected volume percent should be between 0 and 50%");
+        return;
+      }
+      
+      //Properties.Settings.Default.maxEmptyCollectedPercentFull
+      try
+      {
         if ((Convert.ToDouble(textBoxPressureTolerance.Text) >= 0.1) && (Convert.ToDouble(textBoxPressureTolerance.Text) <= 5))
         {
           Properties.Settings.Default.pressureTolerance = Convert.ToDouble(textBoxPressureTolerance.Text);
@@ -130,6 +148,7 @@ namespace LukMachine
 
     private void settings_Load(object sender, EventArgs e)
     {
+      textBoxmaxEmptyCollectedPercentFull.Text = Properties.Settings.Default.maxEmptyCollectedPercentFull.ToString();
       textBoxPressureTolerance.Text = Properties.Settings.Default.pressureTolerance.ToString();
       textBoxTemperatureTolerance.Text = Properties.Settings.Default.temperatureTolerance.ToString();
       textBoxPressure.Text = Properties.Settings.Default.p1Max.ToString();
