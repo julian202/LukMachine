@@ -906,7 +906,10 @@ namespace LukMachine
       COMMS.Instance.SetAthenaTemp(1, zerotemp);
       COMMS.Instance.SetAthenaTemp(2, zerotemp);
       COMMS.Instance.SetAthenaTemp(3, zerotemp);
+      //start chamber fan
+      COMMS.Instance.StartFan(); 
     }
+
 
 
 
