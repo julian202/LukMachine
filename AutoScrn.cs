@@ -526,7 +526,7 @@ namespace LukMachine
       this.Hide();
       Report rep = new Report(true);
       rep.ShowDialog();
-      this.Show();
+      this.Close();
     }
 
     private void linkLabelOpenFolder_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -883,16 +883,23 @@ namespace LukMachine
 
     private void stopButton()
     {
+      labelPanel.Text = "The test is being stopped. Please wait...";
+      if (testFinished)
+      {
+        labelPanel.Text = "The test has finished. Please wait...";
+      } 
+      panel1.Visible = true;
+      Refresh();
       Valves.OpenValve2();
       pressureHasBeenReached = true;
       stepTimeReached = true;
       abort = true;
       stopwatchStep.Stop();
       stopwatch.Stop();
-      Thread.Sleep(1000); //wait for pressure adjust loop to finish before stopping pump or else pump might be turned on.
+      Thread.Sleep(200); //wait for pressure adjust loop to finish before stopping pump or else pump might be turned on.
       Pumps.SetPump2(0);
       backgroundWorkerMainLoop.CancelAsync();
-      Thread.Sleep(1000);
+      Thread.Sleep(200);
       backgroundWorkerReadAndDisplay.CancelAsync();
       button2.Enabled = false;
       timerForStopWatch.Stop();
@@ -902,20 +909,11 @@ namespace LukMachine
       COMMS.Instance.SetAthenaTemp(3, zerotemp);
     }
 
+
+
     private void AutoScrn_FormClosing(object sender, FormClosingEventArgs e)
-    {
-      panel1.Visible = true;
-      labelPanel.Text = "Closing... Please Wait";
-      panel1.Refresh();
-      stepTimeReached = true;
-      abort = true;
-      stopwatchStep.Stop();
-      stopwatch.Stop();
-      Pumps.SetPump2(0);
-      backgroundWorkerMainLoop.CancelAsync();
-      backgroundWorkerReadAndDisplay.CancelAsync();
-      timerForStopWatch.Stop();
-      stopButton();
+    {    
+      //stopButton();
     }
 
     private void timerForStopWatch_Tick(object sender, EventArgs e)

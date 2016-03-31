@@ -241,14 +241,14 @@
       this.panel1.Controls.Add(this.buttonSkipPressure);
       this.panel1.Controls.Add(this.buttonSkipSettingTemp);
       this.panel1.Controls.Add(this.labelPanel);
-      this.panel1.Location = new System.Drawing.Point(30, 272);
+      this.panel1.Location = new System.Drawing.Point(30, 320);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(614, 178);
+      this.panel1.Size = new System.Drawing.Size(614, 108);
       this.panel1.TabIndex = 13;
       // 
       // buttonSkip
       // 
-      this.buttonSkip.Location = new System.Drawing.Point(252, 124);
+      this.buttonSkip.Location = new System.Drawing.Point(252, 64);
       this.buttonSkip.Name = "buttonSkip";
       this.buttonSkip.Size = new System.Drawing.Size(143, 36);
       this.buttonSkip.TabIndex = 3;
@@ -281,10 +281,10 @@
       // labelPanel
       // 
       this.labelPanel.AutoSize = true;
-      this.labelPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelPanel.Location = new System.Drawing.Point(41, 61);
+      this.labelPanel.Font = new System.Drawing.Font("Arial", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelPanel.Location = new System.Drawing.Point(39, 26);
       this.labelPanel.Name = "labelPanel";
-      this.labelPanel.Size = new System.Drawing.Size(562, 24);
+      this.labelPanel.Size = new System.Drawing.Size(565, 25);
       this.labelPanel.TabIndex = 0;
       this.labelPanel.Text = "Please wait...  (setting reservoirs / temperature / pressure)";
       // 
@@ -464,7 +464,7 @@
       this.buttonReport.AutoSize = true;
       this.buttonReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.buttonReport.ForeColor = System.Drawing.Color.Green;
-      this.buttonReport.Location = new System.Drawing.Point(664, 528);
+      this.buttonReport.Location = new System.Drawing.Point(665, 529);
       this.buttonReport.Name = "buttonReport";
       this.buttonReport.Size = new System.Drawing.Size(229, 86);
       this.buttonReport.TabIndex = 25;
@@ -638,6 +638,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
       this.ClientSize = new System.Drawing.Size(905, 648);
+      this.ControlBox = false;
       this.Controls.Add(this.checkBoxShowPermeabilityGraph);
       this.Controls.Add(this.checkBoxShowTemperatureGraph);
       this.Controls.Add(this.checkBoxShowPressureGraph);
