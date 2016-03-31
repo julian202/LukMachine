@@ -1705,12 +1705,26 @@ namespace LukMachine
 
     private void textBox7_TextChanged_1(object sender, EventArgs e)
     {
-      try
+      if (textBox7.Text != "")
       {
-        targetPressure = Convert.ToInt32(textBox7.Text);
-      }
-      catch (Exception)
-      {
+        try
+        {
+          if ((Convert.ToInt32(textBox7.Text) > 100) || (Convert.ToInt32(textBox7.Text) < 0))
+          {
+            MessageBox.Show("Pressure should be between 0 and 100 PSI");
+            textBox7.Text = "";
+            return;
+          }
+          else
+          {
+            targetPressure = Convert.ToInt32(textBox7.Text);
+          }
+        }
+        catch (Exception)
+        {
+          MessageBox.Show("Pressure should be between 0 and 100 PSI");
+          textBox7.Text = "";
+        }
       }
     }
 
