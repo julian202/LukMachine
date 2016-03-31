@@ -1895,6 +1895,14 @@ namespace LukMachine
       }
     }
 
-   
+    private void buttonStartFan_Click(object sender, EventArgs e)
+    {
+      COMMS.Instance.StartFan();
+    }
+
+    private void buttonStopFan_Click(object sender, EventArgs e)
+    {
+      COMMS.Instance.StopFan();
+    }
   }
 }
