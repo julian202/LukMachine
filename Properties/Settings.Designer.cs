@@ -1004,5 +1004,17 @@ namespace LukMachine.Properties {
                 this["intervalBetweenTimePoints"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public string myBorderWidth {
+            get {
+                return ((string)(this["myBorderWidth"]));
+            }
+            set {
+                this["myBorderWidth"] = value;
+            }
+        }
     }
 }

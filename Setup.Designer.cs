@@ -54,23 +54,21 @@
       this.textBoxDiameter = new System.Windows.Forms.TextBox();
       this.linkLabel1 = new System.Windows.Forms.LinkLabel();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
-      this.button6 = new System.Windows.Forms.Button();
-      this.button4 = new System.Windows.Forms.Button();
-      this.buttonAdd = new System.Windows.Forms.Button();
-      this.dataGridView1 = new System.Windows.Forms.DataGridView();
-      this.PressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.DurationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.TemperatureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.groupBox3 = new System.Windows.Forms.GroupBox();
       this.label16 = new System.Windows.Forms.Label();
+      this.textBoxPressure = new System.Windows.Forms.TextBox();
+      this.label15 = new System.Windows.Forms.Label();
+      this.buttonAdd = new System.Windows.Forms.Button();
+      this.checkBoxTemperature = new System.Windows.Forms.CheckBox();
+      this.label4 = new System.Windows.Forms.Label();
+      this.label13 = new System.Windows.Forms.Label();
       this.label12 = new System.Windows.Forms.Label();
+      this.textBoxDuration = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
       this.textBoxTemperature = new System.Windows.Forms.TextBox();
-      this.textBoxDuration = new System.Windows.Forms.TextBox();
-      this.label13 = new System.Windows.Forms.Label();
-      this.label4 = new System.Windows.Forms.Label();
-      this.checkBoxTemperature = new System.Windows.Forms.CheckBox();
-      this.label15 = new System.Windows.Forms.Label();
-      this.textBoxPressure = new System.Windows.Forms.TextBox();
+      this.button6 = new System.Windows.Forms.Button();
+      this.button4 = new System.Windows.Forms.Button();
+      this.dataGridView1 = new System.Windows.Forms.DataGridView();
       this.label14 = new System.Windows.Forms.Label();
       this.textBox4 = new System.Windows.Forms.TextBox();
       this.panel2 = new System.Windows.Forms.Panel();
@@ -95,24 +93,27 @@
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.pictureBox2 = new System.Windows.Forms.PictureBox();
       this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-      this.groupBox3 = new System.Windows.Forms.GroupBox();
+      this.StepColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.PressureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.DurationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.TemperatureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.groupBox1.SuspendLayout();
       this.panel3.SuspendLayout();
       this.groupBox2.SuspendLayout();
+      this.groupBox3.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel2.SuspendLayout();
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-      this.groupBox3.SuspendLayout();
       this.SuspendLayout();
       // 
       // textBox1
       // 
       this.textBox1.Location = new System.Drawing.Point(181, 31);
       this.textBox1.Name = "textBox1";
-      this.textBox1.Size = new System.Drawing.Size(235, 30);
+      this.textBox1.Size = new System.Drawing.Size(274, 30);
       this.textBox1.TabIndex = 2;
       this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
       // 
@@ -120,7 +121,7 @@
       // 
       this.textBox2.Location = new System.Drawing.Point(181, 67);
       this.textBox2.Name = "textBox2";
-      this.textBox2.Size = new System.Drawing.Size(235, 30);
+      this.textBox2.Size = new System.Drawing.Size(274, 30);
       this.textBox2.TabIndex = 2;
       this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
       // 
@@ -128,7 +129,7 @@
       // 
       this.textBox6.Location = new System.Drawing.Point(181, 103);
       this.textBox6.Name = "textBox6";
-      this.textBox6.Size = new System.Drawing.Size(319, 30);
+      this.textBox6.Size = new System.Drawing.Size(327, 30);
       this.textBox6.TabIndex = 5;
       this.textBox6.Text = "C:\\data.pmi";
       this.textBox6.Enter += new System.EventHandler(this.textBox6_Enter);
@@ -211,7 +212,7 @@
       this.groupBox1.Controls.Add(this.textBox6);
       this.groupBox1.Location = new System.Drawing.Point(11, 13);
       this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(561, 640);
+      this.groupBox1.Size = new System.Drawing.Size(597, 640);
       this.groupBox1.TabIndex = 14;
       this.groupBox1.TabStop = false;
       this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
@@ -223,7 +224,7 @@
       this.panel3.Controls.Add(this.textBoxViscosity);
       this.panel3.Controls.Add(this.radioButtonOil);
       this.panel3.Controls.Add(this.radioButtonWater);
-      this.panel3.Location = new System.Drawing.Point(302, 211);
+      this.panel3.Location = new System.Drawing.Point(310, 212);
       this.panel3.Name = "panel3";
       this.panel3.Size = new System.Drawing.Size(247, 79);
       this.panel3.TabIndex = 54;
@@ -343,10 +344,130 @@
       this.groupBox2.Controls.Add(this.dataGridView1);
       this.groupBox2.Location = new System.Drawing.Point(6, 296);
       this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(549, 258);
+      this.groupBox2.Size = new System.Drawing.Size(585, 258);
       this.groupBox2.TabIndex = 46;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Program to run:";
+      // 
+      // groupBox3
+      // 
+      this.groupBox3.Controls.Add(this.label16);
+      this.groupBox3.Controls.Add(this.textBoxPressure);
+      this.groupBox3.Controls.Add(this.label15);
+      this.groupBox3.Controls.Add(this.buttonAdd);
+      this.groupBox3.Controls.Add(this.checkBoxTemperature);
+      this.groupBox3.Controls.Add(this.label4);
+      this.groupBox3.Controls.Add(this.label13);
+      this.groupBox3.Controls.Add(this.label12);
+      this.groupBox3.Controls.Add(this.textBoxDuration);
+      this.groupBox3.Controls.Add(this.label3);
+      this.groupBox3.Controls.Add(this.textBoxTemperature);
+      this.groupBox3.Location = new System.Drawing.Point(9, 19);
+      this.groupBox3.Name = "groupBox3";
+      this.groupBox3.Size = new System.Drawing.Size(262, 182);
+      this.groupBox3.TabIndex = 49;
+      this.groupBox3.TabStop = false;
+      // 
+      // label16
+      // 
+      this.label16.AutoSize = true;
+      this.label16.Location = new System.Drawing.Point(22, 26);
+      this.label16.Name = "label16";
+      this.label16.Size = new System.Drawing.Size(95, 23);
+      this.label16.TabIndex = 39;
+      this.label16.Text = "Pressure:";
+      // 
+      // textBoxPressure
+      // 
+      this.textBoxPressure.Location = new System.Drawing.Point(135, 23);
+      this.textBoxPressure.Name = "textBoxPressure";
+      this.textBoxPressure.Size = new System.Drawing.Size(63, 30);
+      this.textBoxPressure.TabIndex = 40;
+      this.textBoxPressure.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBoxPressure.TextChanged += new System.EventHandler(this.textBoxPressure_TextChanged);
+      // 
+      // label15
+      // 
+      this.label15.AutoSize = true;
+      this.label15.Location = new System.Drawing.Point(200, 26);
+      this.label15.Name = "label15";
+      this.label15.Size = new System.Drawing.Size(42, 23);
+      this.label15.TabIndex = 41;
+      this.label15.Text = "PSI";
+      // 
+      // buttonAdd
+      // 
+      this.buttonAdd.Location = new System.Drawing.Point(11, 131);
+      this.buttonAdd.Name = "buttonAdd";
+      this.buttonAdd.Size = new System.Drawing.Size(240, 43);
+      this.buttonAdd.TabIndex = 45;
+      this.buttonAdd.Text = "Add these values to the list";
+      this.buttonAdd.UseVisualStyleBackColor = true;
+      this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+      // 
+      // checkBoxTemperature
+      // 
+      this.checkBoxTemperature.AutoSize = true;
+      this.checkBoxTemperature.Location = new System.Drawing.Point(8, 100);
+      this.checkBoxTemperature.Name = "checkBoxTemperature";
+      this.checkBoxTemperature.Size = new System.Drawing.Size(22, 21);
+      this.checkBoxTemperature.TabIndex = 36;
+      this.checkBoxTemperature.UseVisualStyleBackColor = true;
+      this.checkBoxTemperature.CheckedChanged += new System.EventHandler(this.checkBoxTemperature_CheckedChanged);
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(22, 62);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(89, 23);
+      this.label4.TabIndex = 42;
+      this.label4.Text = "Duration:";
+      // 
+      // label13
+      // 
+      this.label13.AutoSize = true;
+      this.label13.Location = new System.Drawing.Point(200, 98);
+      this.label13.Name = "label13";
+      this.label13.Size = new System.Drawing.Size(63, 23);
+      this.label13.TabIndex = 35;
+      this.label13.Text = "deg C";
+      // 
+      // label12
+      // 
+      this.label12.AutoSize = true;
+      this.label12.Location = new System.Drawing.Point(28, 98);
+      this.label12.Name = "label12";
+      this.label12.Size = new System.Drawing.Size(127, 23);
+      this.label12.TabIndex = 33;
+      this.label12.Text = "Temperature:";
+      // 
+      // textBoxDuration
+      // 
+      this.textBoxDuration.Location = new System.Drawing.Point(135, 59);
+      this.textBoxDuration.Name = "textBoxDuration";
+      this.textBoxDuration.Size = new System.Drawing.Size(63, 30);
+      this.textBoxDuration.TabIndex = 43;
+      this.textBoxDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBoxDuration.TextChanged += new System.EventHandler(this.textBoxDuration_TextChanged);
+      // 
+      // label3
+      // 
+      this.label3.AutoSize = true;
+      this.label3.Location = new System.Drawing.Point(200, 62);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(78, 23);
+      this.label3.TabIndex = 44;
+      this.label3.Text = "Minutes";
+      // 
+      // textBoxTemperature
+      // 
+      this.textBoxTemperature.Location = new System.Drawing.Point(135, 95);
+      this.textBoxTemperature.Name = "textBoxTemperature";
+      this.textBoxTemperature.Size = new System.Drawing.Size(63, 30);
+      this.textBoxTemperature.TabIndex = 34;
+      this.textBoxTemperature.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.textBoxTemperature.TextChanged += new System.EventHandler(this.textBoxTemperature_TextChanged);
       // 
       // button6
       // 
@@ -360,23 +481,13 @@
       // 
       // button4
       // 
-      this.button4.Location = new System.Drawing.Point(289, 208);
+      this.button4.Location = new System.Drawing.Point(308, 208);
       this.button4.Name = "button4";
       this.button4.Size = new System.Drawing.Size(240, 43);
       this.button4.TabIndex = 46;
       this.button4.Text = "Remove Selected Row";
       this.button4.UseVisualStyleBackColor = true;
       this.button4.Click += new System.EventHandler(this.button4_Click);
-      // 
-      // buttonAdd
-      // 
-      this.buttonAdd.Location = new System.Drawing.Point(11, 131);
-      this.buttonAdd.Name = "buttonAdd";
-      this.buttonAdd.Size = new System.Drawing.Size(240, 43);
-      this.buttonAdd.TabIndex = 45;
-      this.buttonAdd.Text = "Add these values to the list";
-      this.buttonAdd.UseVisualStyleBackColor = true;
-      this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
       // 
       // dataGridView1
       // 
@@ -399,6 +510,7 @@
       this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
       this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.StepColumn,
             this.PressureColumn,
             this.DurationColumn,
             this.TemperatureColumn});
@@ -417,120 +529,8 @@
       dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
       this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
       this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-      this.dataGridView1.Size = new System.Drawing.Size(266, 181);
+      this.dataGridView1.Size = new System.Drawing.Size(302, 181);
       this.dataGridView1.TabIndex = 45;
-      // 
-      // PressureColumn
-      // 
-      this.PressureColumn.DividerWidth = 1;
-      this.PressureColumn.HeaderText = "Pressure (PSI)";
-      this.PressureColumn.Name = "PressureColumn";
-      this.PressureColumn.ReadOnly = true;
-      // 
-      // DurationColumn
-      // 
-      this.DurationColumn.DividerWidth = 1;
-      this.DurationColumn.HeaderText = "Duration (Mins)";
-      this.DurationColumn.Name = "DurationColumn";
-      this.DurationColumn.ReadOnly = true;
-      // 
-      // TemperatureColumn
-      // 
-      this.TemperatureColumn.DividerWidth = 1;
-      this.TemperatureColumn.HeaderText = "Temperature (C)";
-      this.TemperatureColumn.Name = "TemperatureColumn";
-      this.TemperatureColumn.ReadOnly = true;
-      // 
-      // label16
-      // 
-      this.label16.AutoSize = true;
-      this.label16.Location = new System.Drawing.Point(22, 26);
-      this.label16.Name = "label16";
-      this.label16.Size = new System.Drawing.Size(95, 23);
-      this.label16.TabIndex = 39;
-      this.label16.Text = "Pressure:";
-      // 
-      // label12
-      // 
-      this.label12.AutoSize = true;
-      this.label12.Location = new System.Drawing.Point(28, 98);
-      this.label12.Name = "label12";
-      this.label12.Size = new System.Drawing.Size(127, 23);
-      this.label12.TabIndex = 33;
-      this.label12.Text = "Temperature:";
-      // 
-      // label3
-      // 
-      this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(200, 62);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(78, 23);
-      this.label3.TabIndex = 44;
-      this.label3.Text = "Minutes";
-      // 
-      // textBoxTemperature
-      // 
-      this.textBoxTemperature.Location = new System.Drawing.Point(135, 95);
-      this.textBoxTemperature.Name = "textBoxTemperature";
-      this.textBoxTemperature.Size = new System.Drawing.Size(63, 30);
-      this.textBoxTemperature.TabIndex = 34;
-      this.textBoxTemperature.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.textBoxTemperature.TextChanged += new System.EventHandler(this.textBoxTemperature_TextChanged);
-      // 
-      // textBoxDuration
-      // 
-      this.textBoxDuration.Location = new System.Drawing.Point(135, 59);
-      this.textBoxDuration.Name = "textBoxDuration";
-      this.textBoxDuration.Size = new System.Drawing.Size(63, 30);
-      this.textBoxDuration.TabIndex = 43;
-      this.textBoxDuration.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.textBoxDuration.TextChanged += new System.EventHandler(this.textBoxDuration_TextChanged);
-      // 
-      // label13
-      // 
-      this.label13.AutoSize = true;
-      this.label13.Location = new System.Drawing.Point(200, 98);
-      this.label13.Name = "label13";
-      this.label13.Size = new System.Drawing.Size(63, 23);
-      this.label13.TabIndex = 35;
-      this.label13.Text = "deg C";
-      // 
-      // label4
-      // 
-      this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(22, 62);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(89, 23);
-      this.label4.TabIndex = 42;
-      this.label4.Text = "Duration:";
-      // 
-      // checkBoxTemperature
-      // 
-      this.checkBoxTemperature.AutoSize = true;
-      this.checkBoxTemperature.Location = new System.Drawing.Point(8, 100);
-      this.checkBoxTemperature.Name = "checkBoxTemperature";
-      this.checkBoxTemperature.Size = new System.Drawing.Size(22, 21);
-      this.checkBoxTemperature.TabIndex = 36;
-      this.checkBoxTemperature.UseVisualStyleBackColor = true;
-      this.checkBoxTemperature.CheckedChanged += new System.EventHandler(this.checkBoxTemperature_CheckedChanged);
-      // 
-      // label15
-      // 
-      this.label15.AutoSize = true;
-      this.label15.Location = new System.Drawing.Point(200, 26);
-      this.label15.Name = "label15";
-      this.label15.Size = new System.Drawing.Size(42, 23);
-      this.label15.TabIndex = 41;
-      this.label15.Text = "PSI";
-      // 
-      // textBoxPressure
-      // 
-      this.textBoxPressure.Location = new System.Drawing.Point(135, 23);
-      this.textBoxPressure.Name = "textBoxPressure";
-      this.textBoxPressure.Size = new System.Drawing.Size(63, 30);
-      this.textBoxPressure.TabIndex = 40;
-      this.textBoxPressure.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      this.textBoxPressure.TextChanged += new System.EventHandler(this.textBoxPressure_TextChanged);
       // 
       // label14
       // 
@@ -565,7 +565,7 @@
       // 
       this.radioButtonRingChamber.AutoSize = true;
       this.radioButtonRingChamber.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.radioButtonRingChamber.Location = new System.Drawing.Point(0, 14);
+      this.radioButtonRingChamber.Location = new System.Drawing.Point(3, 38);
       this.radioButtonRingChamber.Name = "radioButtonRingChamber";
       this.radioButtonRingChamber.Size = new System.Drawing.Size(169, 28);
       this.radioButtonRingChamber.TabIndex = 29;
@@ -577,7 +577,7 @@
       // 
       this.radioButtonDiskChamber.AutoSize = true;
       this.radioButtonDiskChamber.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.radioButtonDiskChamber.Location = new System.Drawing.Point(0, 43);
+      this.radioButtonDiskChamber.Location = new System.Drawing.Point(3, 4);
       this.radioButtonDiskChamber.Name = "radioButtonDiskChamber";
       this.radioButtonDiskChamber.Size = new System.Drawing.Size(167, 28);
       this.radioButtonDiskChamber.TabIndex = 30;
@@ -740,7 +740,7 @@
       // button3
       // 
       this.button3.Image = global::LukMachine.Properties.Resources.OpenSelectedItemHS;
-      this.button3.Location = new System.Drawing.Point(506, 103);
+      this.button3.Location = new System.Drawing.Point(529, 103);
       this.button3.Name = "button3";
       this.button3.Size = new System.Drawing.Size(49, 30);
       this.button3.TabIndex = 16;
@@ -750,9 +750,9 @@
       // button2
       // 
       this.button2.Image = global::LukMachine.Properties.Resources._109_AllAnnotations_Default_32x32_72;
-      this.button2.Location = new System.Drawing.Point(458, 564);
+      this.button2.Location = new System.Drawing.Point(469, 564);
       this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(87, 64);
+      this.button2.Size = new System.Drawing.Size(111, 64);
       this.button2.TabIndex = 1;
       this.button2.Text = "&Continue";
       this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -762,7 +762,7 @@
       // button1
       // 
       this.button1.Image = global::LukMachine.Properties.Resources._109_AllAnnotations_Error_32x32_72;
-      this.button1.Location = new System.Drawing.Point(365, 564);
+      this.button1.Location = new System.Drawing.Point(368, 564);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(87, 64);
       this.button1.TabIndex = 14;
@@ -774,7 +774,7 @@
       // pictureBox1
       // 
       this.pictureBox1.Image = global::LukMachine.Properties.Resources._1438802662_Config;
-      this.pictureBox1.Location = new System.Drawing.Point(469, 21);
+      this.pictureBox1.Location = new System.Drawing.Point(492, 21);
       this.pictureBox1.Name = "pictureBox1";
       this.pictureBox1.Size = new System.Drawing.Size(86, 73);
       this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -799,30 +799,43 @@
       this.saveFileDialog1.Title = "Select data file";
       this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
       // 
-      // groupBox3
+      // StepColumn
       // 
-      this.groupBox3.Controls.Add(this.label16);
-      this.groupBox3.Controls.Add(this.textBoxPressure);
-      this.groupBox3.Controls.Add(this.label15);
-      this.groupBox3.Controls.Add(this.buttonAdd);
-      this.groupBox3.Controls.Add(this.checkBoxTemperature);
-      this.groupBox3.Controls.Add(this.label4);
-      this.groupBox3.Controls.Add(this.label13);
-      this.groupBox3.Controls.Add(this.label12);
-      this.groupBox3.Controls.Add(this.textBoxDuration);
-      this.groupBox3.Controls.Add(this.label3);
-      this.groupBox3.Controls.Add(this.textBoxTemperature);
-      this.groupBox3.Location = new System.Drawing.Point(9, 19);
-      this.groupBox3.Name = "groupBox3";
-      this.groupBox3.Size = new System.Drawing.Size(262, 182);
-      this.groupBox3.TabIndex = 49;
-      this.groupBox3.TabStop = false;
+      this.StepColumn.DividerWidth = 1;
+      this.StepColumn.FillWeight = 60.9137F;
+      this.StepColumn.HeaderText = "Step";
+      this.StepColumn.Name = "StepColumn";
+      this.StepColumn.ReadOnly = true;
+      // 
+      // PressureColumn
+      // 
+      this.PressureColumn.DividerWidth = 1;
+      this.PressureColumn.FillWeight = 113.0288F;
+      this.PressureColumn.HeaderText = "Pressure (PSI)";
+      this.PressureColumn.Name = "PressureColumn";
+      this.PressureColumn.ReadOnly = true;
+      // 
+      // DurationColumn
+      // 
+      this.DurationColumn.DividerWidth = 1;
+      this.DurationColumn.FillWeight = 113.0288F;
+      this.DurationColumn.HeaderText = "Duration (Mins)";
+      this.DurationColumn.Name = "DurationColumn";
+      this.DurationColumn.ReadOnly = true;
+      // 
+      // TemperatureColumn
+      // 
+      this.TemperatureColumn.DividerWidth = 1;
+      this.TemperatureColumn.FillWeight = 113.0288F;
+      this.TemperatureColumn.HeaderText = "Temperature (C)";
+      this.TemperatureColumn.Name = "TemperatureColumn";
+      this.TemperatureColumn.ReadOnly = true;
       // 
       // Setup
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(583, 665);
+      this.ClientSize = new System.Drawing.Size(620, 665);
       this.Controls.Add(this.groupBox1);
       this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -837,6 +850,8 @@
       this.panel3.ResumeLayout(false);
       this.panel3.PerformLayout();
       this.groupBox2.ResumeLayout(false);
+      this.groupBox3.ResumeLayout(false);
+      this.groupBox3.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
       this.panel2.ResumeLayout(false);
       this.panel2.PerformLayout();
@@ -845,8 +860,6 @@
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-      this.groupBox3.ResumeLayout(false);
-      this.groupBox3.PerformLayout();
       this.ResumeLayout(false);
 
         }
@@ -899,9 +912,6 @@
     private System.Windows.Forms.GroupBox groupBox2;
     private System.Windows.Forms.Button buttonAdd;
     private System.Windows.Forms.Button button4;
-    private System.Windows.Forms.DataGridViewTextBoxColumn PressureColumn;
-    private System.Windows.Forms.DataGridViewTextBoxColumn DurationColumn;
-    private System.Windows.Forms.DataGridViewTextBoxColumn TemperatureColumn;
     private System.Windows.Forms.Button button6;
     private System.Windows.Forms.LinkLabel linkLabel1;
     private System.Windows.Forms.Label label19;
@@ -916,5 +926,9 @@
     private System.Windows.Forms.Label label21;
     private System.Windows.Forms.TextBox textBoxViscosity;
     private System.Windows.Forms.GroupBox groupBox3;
+    private System.Windows.Forms.DataGridViewTextBoxColumn StepColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn PressureColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn DurationColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn TemperatureColumn;
   }
 }

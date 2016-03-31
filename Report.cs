@@ -17,6 +17,8 @@ namespace LukMachine
 
     bool openSaved;
     string lastPUnit = "";
+    int myBorderWidth = Convert.ToInt32(Properties.Settings.Default.myBorderWidth);
+
     public Report()
     {
       InitializeComponent();
@@ -288,7 +290,8 @@ namespace LukMachine
           chart1.Series.Add(s);
           //set chart type
           chart1.Series[s].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-          chart1.Series[s].BorderWidth = 2;
+          chart1.Series[s].BorderWidth = myBorderWidth;
+      
 
           //loop through the data table named for the sample id and add it to the series.
           foreach (DataRow asdf in dataSet1.Tables[s].Rows)
@@ -316,6 +319,7 @@ namespace LukMachine
         chart1.Series.Clear();
         chart1.Series.Add(comboBox1.Text);
         chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+        chart1.Series[comboBox1.Text].BorderWidth = myBorderWidth;
         foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
         {
           chart1.Series[comboBox1.Text].Points.AddXY(Convert.ToDouble(asdf[0]), Convert.ToDouble(asdf[1]));
@@ -608,6 +612,7 @@ namespace LukMachine
       {
         chart1.Series.Add(asdf.TableName);
         chart1.Series[asdf.TableName].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+        chart1.Series[comboBox1.Text].BorderWidth = myBorderWidth;
         chart1.Series[asdf.TableName].Points.DataBindXY(asdf.Columns["Time"].ToString(), asdf.Columns["Pressure"].ToString());
       }
     }
@@ -859,7 +864,7 @@ namespace LukMachine
           chart1.Series.Clear();
           chart1.Series.Add(comboBox1.Text);
           chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-          chart1.Series[comboBox1.Text].BorderWidth = 2;
+          chart1.Series[comboBox1.Text].BorderWidth = myBorderWidth;
           foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
           {
             double x = Convert.ToDouble(asdf[2]);
@@ -892,7 +897,7 @@ namespace LukMachine
           chart1.Series.Clear();
           chart1.Series.Add(comboBox1.Text);
           chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-          chart1.Series[comboBox1.Text].BorderWidth = 2;
+          chart1.Series[comboBox1.Text].BorderWidth = myBorderWidth;
           foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
           {
             chart1.Series[comboBox1.Text].Points.AddXY(Convert.ToDouble(asdf[0]), Convert.ToDouble(asdf[1]));
@@ -922,7 +927,7 @@ namespace LukMachine
           chart1.Series.Clear();
           chart1.Series.Add(comboBox1.Text);
           chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
-          chart1.Series[comboBox1.Text].BorderWidth = 2;
+          chart1.Series[comboBox1.Text].BorderWidth = myBorderWidth;
           foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
           {
             chart1.Series[comboBox1.Text].Points.AddXY(Convert.ToDouble(asdf[3]), Convert.ToDouble(asdf[1]));
@@ -968,7 +973,7 @@ namespace LukMachine
           chart1.Series.Clear();
           chart1.Series.Add(comboBox1.Text);
           chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-          chart1.Series[comboBox1.Text].BorderWidth = 2;
+          chart1.Series[comboBox1.Text].BorderWidth = myBorderWidth;
           foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
           {
             chart1.Series[comboBox1.Text].Points.AddXY(Convert.ToDouble(asdf[0]), Convert.ToDouble(asdf[3]));
@@ -998,7 +1003,7 @@ namespace LukMachine
           chart1.Series.Clear();
           chart1.Series.Add(comboBox1.Text);
           chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-          chart1.Series[comboBox1.Text].BorderWidth = 2;
+          chart1.Series[comboBox1.Text].BorderWidth = myBorderWidth;
           foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
           {
             chart1.Series[comboBox1.Text].Points.AddXY(Convert.ToDouble(asdf[0]), Convert.ToDouble(asdf[2]));
@@ -1028,7 +1033,7 @@ namespace LukMachine
           chart1.Series.Clear();
           chart1.Series.Add(comboBox1.Text);
           chart1.Series[comboBox1.Text].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-          chart1.Series[comboBox1.Text].BorderWidth = 2;
+          chart1.Series[comboBox1.Text].BorderWidth = myBorderWidth;
           foreach (DataRow asdf in dataSet1.Tables[comboBox1.Text].Rows)
           {
             chart1.Series[comboBox1.Text].Points.AddXY(Convert.ToDouble(asdf[0]), Convert.ToDouble(asdf[4]));

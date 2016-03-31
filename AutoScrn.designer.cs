@@ -71,22 +71,23 @@
       this.labelPressure = new System.Windows.Forms.Label();
       this.labelDuration = new System.Windows.Forms.Label();
       this.groupBoxCollectedVolume = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.buttonReport = new System.Windows.Forms.Button();
       this.linkLabelOpenFolder = new System.Windows.Forms.LinkLabel();
       this.backgroundWorkerMainLoop = new System.ComponentModel.BackgroundWorker();
       this.backgroundWorkerReadAndDisplay = new System.ComponentModel.BackgroundWorker();
       this.timerForStopWatch = new System.Windows.Forms.Timer(this.components);
       this.dataGridView2 = new System.Windows.Forms.DataGridView();
-      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.DurationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.TemperatureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.checkBoxShowPressureGraph = new System.Windows.Forms.CheckBox();
       this.checkBoxShowTemperatureGraph = new System.Windows.Forms.CheckBox();
       this.checkBoxShowPermeabilityGraph = new System.Windows.Forms.CheckBox();
+      this.StepColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.DurationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.TemperatureColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
@@ -280,9 +281,10 @@
       // labelPanel
       // 
       this.labelPanel.AutoSize = true;
+      this.labelPanel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.labelPanel.Location = new System.Drawing.Point(41, 61);
       this.labelPanel.Name = "labelPanel";
-      this.labelPanel.Size = new System.Drawing.Size(527, 23);
+      this.labelPanel.Size = new System.Drawing.Size(562, 24);
       this.labelPanel.TabIndex = 0;
       this.labelPanel.Text = "Please wait...  (setting reservoirs / temperature / pressure)";
       // 
@@ -447,14 +449,6 @@
       this.groupBoxCollectedVolume.TabStop = false;
       this.groupBoxCollectedVolume.Text = "Collected Volume";
       // 
-      // verticalProgressBar2
-      // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(52, 42);
-      this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar2.TabIndex = 10;
-      this.verticalProgressBar2.Value = 50;
-      // 
       // groupBoxReservoir
       // 
       this.groupBoxReservoir.Controls.Add(this.verticalProgressBar1);
@@ -464,14 +458,6 @@
       this.groupBoxReservoir.TabIndex = 21;
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir";
-      // 
-      // verticalProgressBar1
-      // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(37, 42);
-      this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar1.TabIndex = 9;
-      this.verticalProgressBar1.Value = 50;
       // 
       // buttonReport
       // 
@@ -534,6 +520,7 @@
       this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
       this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.StepColumn,
             this.dataGridViewTextBoxColumn1,
             this.DurationColumn,
             this.TemperatureColumn});
@@ -554,27 +541,6 @@
       this.dataGridView2.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
       this.dataGridView2.Size = new System.Drawing.Size(294, 149);
       this.dataGridView2.TabIndex = 46;
-      // 
-      // dataGridViewTextBoxColumn1
-      // 
-      this.dataGridViewTextBoxColumn1.DividerWidth = 1;
-      this.dataGridViewTextBoxColumn1.HeaderText = "Pressure (PSI)";
-      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-      this.dataGridViewTextBoxColumn1.ReadOnly = true;
-      // 
-      // DurationColumn
-      // 
-      this.DurationColumn.DividerWidth = 1;
-      this.DurationColumn.HeaderText = "Duration (Mins)";
-      this.DurationColumn.Name = "DurationColumn";
-      this.DurationColumn.ReadOnly = true;
-      // 
-      // TemperatureColumn
-      // 
-      this.TemperatureColumn.DividerWidth = 1;
-      this.TemperatureColumn.HeaderText = "Temperature (C)";
-      this.TemperatureColumn.Name = "TemperatureColumn";
-      this.TemperatureColumn.ReadOnly = true;
       // 
       // groupBox2
       // 
@@ -618,6 +584,53 @@
       this.checkBoxShowPermeabilityGraph.Text = "Show Permeability Graph";
       this.checkBoxShowPermeabilityGraph.UseVisualStyleBackColor = true;
       this.checkBoxShowPermeabilityGraph.CheckedChanged += new System.EventHandler(this.checkBoxShowPermeabilityGraph_CheckedChanged);
+      // 
+      // StepColumn
+      // 
+      this.StepColumn.FillWeight = 60.9137F;
+      this.StepColumn.HeaderText = "Step";
+      this.StepColumn.Name = "StepColumn";
+      this.StepColumn.ReadOnly = true;
+      // 
+      // dataGridViewTextBoxColumn1
+      // 
+      this.dataGridViewTextBoxColumn1.DividerWidth = 1;
+      this.dataGridViewTextBoxColumn1.FillWeight = 113.0288F;
+      this.dataGridViewTextBoxColumn1.HeaderText = "Pressure (PSI)";
+      this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+      this.dataGridViewTextBoxColumn1.ReadOnly = true;
+      // 
+      // DurationColumn
+      // 
+      this.DurationColumn.DividerWidth = 1;
+      this.DurationColumn.FillWeight = 113.0288F;
+      this.DurationColumn.HeaderText = "Duration (Mins)";
+      this.DurationColumn.Name = "DurationColumn";
+      this.DurationColumn.ReadOnly = true;
+      // 
+      // TemperatureColumn
+      // 
+      this.TemperatureColumn.DividerWidth = 1;
+      this.TemperatureColumn.FillWeight = 113.0288F;
+      this.TemperatureColumn.HeaderText = "Temperature (C)";
+      this.TemperatureColumn.Name = "TemperatureColumn";
+      this.TemperatureColumn.ReadOnly = true;
+      // 
+      // verticalProgressBar1
+      // 
+      this.verticalProgressBar1.Location = new System.Drawing.Point(37, 42);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar1.TabIndex = 9;
+      this.verticalProgressBar1.Value = 50;
+      // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(52, 42);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar2.TabIndex = 10;
+      this.verticalProgressBar2.Value = 50;
       // 
       // AutoScrn
       // 
@@ -711,13 +724,14 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn PressureColumn;
     private System.Windows.Forms.Timer timerForStopWatch;
     private System.Windows.Forms.DataGridView dataGridView2;
-    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-    private System.Windows.Forms.DataGridViewTextBoxColumn DurationColumn;
-    private System.Windows.Forms.DataGridViewTextBoxColumn TemperatureColumn;
     private System.Windows.Forms.GroupBox groupBox2;
     private System.Windows.Forms.CheckBox checkBoxShowPressureGraph;
     private System.Windows.Forms.CheckBox checkBoxShowTemperatureGraph;
     private System.Windows.Forms.CheckBox checkBoxShowPermeabilityGraph;
+    private System.Windows.Forms.DataGridViewTextBoxColumn StepColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+    private System.Windows.Forms.DataGridViewTextBoxColumn DurationColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn TemperatureColumn;
     // private System.Windows.Controls.ProgressBar progbar;
 
 

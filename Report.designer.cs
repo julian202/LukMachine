@@ -115,7 +115,7 @@
       // 
       // chart1
       // 
-      this.chart1.BorderlineColor = System.Drawing.Color.Black;
+      this.chart1.BorderlineColor = System.Drawing.Color.Black;   
       this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
       chartArea1.Name = "ChartArea1";
       this.chart1.ChartAreas.Add(chartArea1);

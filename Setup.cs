@@ -14,6 +14,7 @@ namespace LukMachine
 {
   public partial class Setup : Form
   {
+    int stepCount;
     public Setup()
     {
       InitializeComponent();
@@ -728,8 +729,8 @@ namespace LukMachine
       {
         temperature = "-";
       }
-
-      dataGridView1.Rows.Add(pressure, duration, temperature);
+      stepCount++;
+      dataGridView1.Rows.Add(stepCount.ToString(), pressure, duration, temperature);
       saveValues();
     }
 
@@ -741,13 +742,13 @@ namespace LukMachine
       DataGridViewRowCollection drc = dataGridView1.Rows;
       foreach (DataGridViewRow item in drc)
       {
-        if (item.Cells[1].Value.ToString() == "0")
+        if (item.Cells[2].Value.ToString() == "0")
         {
           MessageBox.Show("Please delete the row with 0 duration");
         }
-        Properties.Settings.Default.CollectionPressure.Add(item.Cells[0].Value.ToString());
-        Properties.Settings.Default.CollectionDuration.Add(item.Cells[1].Value.ToString());
-        Properties.Settings.Default.CollectionTemperature.Add(item.Cells[2].Value.ToString());
+        Properties.Settings.Default.CollectionPressure.Add(item.Cells[1].Value.ToString());
+        Properties.Settings.Default.CollectionDuration.Add(item.Cells[2].Value.ToString());
+        Properties.Settings.Default.CollectionTemperature.Add(item.Cells[3].Value.ToString());
       }
       Properties.Settings.Default.Save();
     }
@@ -760,6 +761,13 @@ namespace LukMachine
           dataGridView1.Rows.RemoveAt(oneCell.RowIndex);
       }
       saveValues();
+      stepCount--;
+      recalculateSteps();
+    }
+
+    private void recalculateSteps()
+    {
+      loadPreviousValues();
     }
 
     private void textBoxPressure_TextChanged(object sender, EventArgs e)
@@ -796,10 +804,12 @@ namespace LukMachine
     }
     private void loadPreviousValues()
     {
+      stepCount = 0;
       dataGridView1.Rows.Clear();
       for (int row = 0; row < Properties.Settings.Default.CollectionPressure.Count; row++)
       {
-        dataGridView1.Rows.Add(Properties.Settings.Default.CollectionPressure[row], Properties.Settings.Default.CollectionDuration[row], Properties.Settings.Default.CollectionTemperature[row]);
+        stepCount++;
+        dataGridView1.Rows.Add(stepCount,Properties.Settings.Default.CollectionPressure[row], Properties.Settings.Default.CollectionDuration[row], Properties.Settings.Default.CollectionTemperature[row]);
       }
     }
 

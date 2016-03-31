@@ -73,6 +73,9 @@ namespace LukMachine
     double diameter;
     double area;
     double k1;
+    int dataGridViewStepCount;
+    int myBorderWidth = Convert.ToInt32(Properties.Settings.Default.myBorderWidth);
+
 
     public AutoScrn()
     {
@@ -85,11 +88,18 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+      chart1.Series["Series1"].BorderWidth = myBorderWidth;
+      chart1.Series["SeriesPressure"].BorderWidth = myBorderWidth;
+      chart1.Series["SeriesTemperature"].BorderWidth = myBorderWidth;
+      chart1.Series["SeriesPermeability"].BorderWidth = myBorderWidth;
+
+      dataGridViewStepCount = 0;
       goingToTargetTemperature = false;
       goingToTargetPressure = false;
       for (int i = 0; i < Properties.Settings.Default.CollectionPressure.Count; i++)
       {
-        dataGridView2.Rows.Add(Properties.Settings.Default.CollectionPressure[i], Properties.Settings.Default.CollectionDuration[i], Properties.Settings.Default.CollectionTemperature[i]);
+        dataGridViewStepCount++;
+        dataGridView2.Rows.Add(dataGridViewStepCount,Properties.Settings.Default.CollectionPressure[i], Properties.Settings.Default.CollectionDuration[i], Properties.Settings.Default.CollectionTemperature[i]);
       }
 
       try
@@ -270,6 +280,15 @@ namespace LukMachine
       //labelPermeability.Text = "= " + perm.ToString("#.0000000");
 
       chart1.Series["SeriesPermeability"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), perm.ToString("#.0000000"));
+      if (checkBoxShowTemperatureGraph.Checked)
+      {
+        chart1.Series["SeriesPermeability"].Enabled = true;
+      }
+      else
+      {
+        chart1.Series["SeriesPermeability"].Enabled = false;
+      }
+
 
       SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}\t{4,10}", totalTimeInMinutes.ToString("#0.00"), flow.ToString("#0.00"), currentTemperatureInC.ToString("0.0"), currentPressure.ToString("0.000"), perm.ToString("#.0000000"));
       //Console.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
