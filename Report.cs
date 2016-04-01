@@ -145,6 +145,11 @@ namespace LukMachine
         RL = SR.ReadLine(); //Temperatures
         splitStuff = RL.Split('=');
         sampleInfoCSV += splitStuff[1] + ",";
+
+        RL = SR.ReadLine(); //Chamber
+        splitStuff = RL.Split('=');
+        sampleInfoCSV += splitStuff[1] + ",";
+
         RL = SR.ReadLine(); //blank
         RL = SR.ReadLine(); //Data:
         RL = SR.ReadLine(); //blank
@@ -154,6 +159,7 @@ namespace LukMachine
         sampleInfoCSV += splitStuff[1] + ",";
         sampleInfoCSV += splitStuff[2] + ",";
         sampleInfoCSV += splitStuff[3] + ",";
+        sampleInfoCSV += splitStuff[4] + ",";
         RL = SR.ReadLine(); //blank
 
         //setup data table for current sample
@@ -522,17 +528,21 @@ namespace LukMachine
       ws.Cells[17, 2].Value = splitStuff[9];
       ws.Cells[18, 1].Value = "Temperature";
       ws.Cells[18, 2].Value = splitStuff[10];
-      ws.Cells[19, 1].Value = " ";
-      ws.Cells[20, 1].Value = "Data:";
-      ws.Cells[21, 1].Value = " ";
-      ws.Cells[22, 1].Value = splitStuff[11];
-      ws.Cells[22, 2].Value = splitStuff[12];
-      ws.Cells[22, 3].Value = splitStuff[13];
-      ws.Cells[22, 4].Value = splitStuff[14];
-      row = 23;
+      ws.Cells[19, 1].Value = "Chamber";
+      ws.Cells[19, 2].Value = splitStuff[11];
+
+      ws.Cells[20, 1].Value = " ";
+      ws.Cells[21, 1].Value = "Data:";
+      ws.Cells[22, 1].Value = " ";
+      ws.Cells[23, 1].Value = splitStuff[12];
+      ws.Cells[23, 2].Value = splitStuff[13];
+      ws.Cells[23, 3].Value = splitStuff[14];
+      ws.Cells[23, 4].Value = splitStuff[15];
+      ws.Cells[23, 5].Value = splitStuff[16];
+      row = 24;
 
       //output test data
-      string dataname = splitStuff[15];
+      string dataname = splitStuff[17];
       foreach (DataRow asdf in dataSet1.Tables[dataname].Rows)
       {
         row++;
@@ -540,6 +550,7 @@ namespace LukMachine
         ws.Cells[row, 2].Value = Convert.ToDouble(asdf[1]);
         ws.Cells[row, 3].Value = Convert.ToDouble(asdf[2]);
         ws.Cells[row, 4].Value = Convert.ToDouble(asdf[3]);
+        ws.Cells[row, 5].Value = Convert.ToDouble(asdf[4]);
       }
 
       //output graph
@@ -552,8 +563,8 @@ namespace LukMachine
 
       try
       {
-        r1 = ws.Cells["A26:A" + row.ToString()];
-        r2 = ws.Cells["B26:B" + row.ToString()];
+        r1 = ws.Cells["A25:A" + row.ToString()];
+        r2 = ws.Cells["B25:B" + row.ToString()];
         chart.Series.Add(r2, r1);
       }
       catch (ArgumentOutOfRangeException ex)
@@ -561,9 +572,10 @@ namespace LukMachine
         MessageBox.Show("Argument our of range!" + Environment.NewLine + ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
 
-      chart.Title.Text = "Volume VS Time";
+      chart.Title.Text = "Flow VS Time";
 
-      chart.YAxis.Title.Text = "Differential Pressure(" + splitStuff[3] + ")";
+      //chart.YAxis.Title.Text = "Differential Pressure(" + splitStuff[3] + ")";
+      chart.YAxis.Title.Text = "Flow (mL/min)";
       chart.XAxis.Title.Text = "Time(Mins)";
       ws.Cells[ws.Dimension.Address.ToString()].AutoFitColumns();
       saveFileDialog1.FileName = splitStuff[0];
@@ -602,8 +614,17 @@ namespace LukMachine
       }
       if (multi == 1)
       {
-        using (var file = File.Create(path + @"\" + dataname + ".xlsx"))
-          excel.SaveAs(file);
+        try
+        {
+          using (var file = File.Create(path + @"\" + dataname + ".xlsx"))
+            excel.SaveAs(file);
+        }
+        catch (Exception)
+        {
+          MessageBox.Show("Choose a different directory. Access to this directory is not allowed");
+          return;
+        }
+        
       }
 
     }
