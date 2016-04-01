@@ -256,6 +256,7 @@
       this.timerHeater = new System.Windows.Forms.Timer(this.components);
       this.buttonStartFan = new System.Windows.Forms.Button();
       this.buttonStopFan = new System.Windows.Forms.Button();
+      this.checkBox5 = new System.Windows.Forms.CheckBox();
       this.groupBox9.SuspendLayout();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -2851,6 +2852,7 @@
       // tabPage2
       // 
       this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+      this.tabPage2.Controls.Add(this.checkBox5);
       this.tabPage2.Controls.Add(this.label32);
       this.tabPage2.Controls.Add(this.button34);
       this.tabPage2.Controls.Add(this.checkBoxAllowValve2);
@@ -3064,6 +3066,17 @@
       this.buttonStopFan.Text = "Stop Fan";
       this.buttonStopFan.UseVisualStyleBackColor = true;
       this.buttonStopFan.Click += new System.EventHandler(this.buttonStopFan_Click);
+      // 
+      // checkBox5
+      // 
+      this.checkBox5.AutoSize = true;
+      this.checkBox5.Location = new System.Drawing.Point(35, 564);
+      this.checkBox5.Name = "checkBox5";
+      this.checkBox5.Size = new System.Drawing.Size(323, 29);
+      this.checkBox5.TabIndex = 88;
+      this.checkBox5.Text = "Show Percentage and Counts";
+      this.checkBox5.UseVisualStyleBackColor = true;
+      this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
       // 
       // Manual
       // 
@@ -3349,5 +3362,6 @@
     private System.Windows.Forms.Label label64;
     private System.Windows.Forms.Button buttonStopFan;
     private System.Windows.Forms.Button buttonStartFan;
+    private System.Windows.Forms.CheckBox checkBox5;
   }
 }

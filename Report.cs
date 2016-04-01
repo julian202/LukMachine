@@ -248,6 +248,7 @@ namespace LukMachine
 
     private void Report_Load(object sender, EventArgs e)
     {
+      textBoxViscosity.Text = Properties.Settings.Default.CurrentViscosity;
       Pumps.SetPump2(0); //for some reason the pump doesn't always stop
       LoadDistensionTable();
 
@@ -951,10 +952,11 @@ namespace LukMachine
 
     private void buttonCalculate_Click(object sender, EventArgs e)
     {
-      double perm;
+          double perm;
       double flow = Convert.ToDouble(textBoxFlow.Text);
       double thickness = Convert.ToDouble(textBoxThickness.Text);
-      double k1 = flow * thickness * 14.7;
+      double viscosity = Convert.ToDouble(textBoxViscosity.Text);
+      double k1 = flow * thickness * viscosity * 14.7; //the 14.7 is a conversion factor, NOT atmospheric pressure! It lumps together the conversion from centipoise to poise for viscosity, the conversion from PSI to dynes/cm^2, and the conversion from cm^2 to Darcies.
       labelk1.Text = k1.ToString();   
       double area = 3.1415926 * (Convert.ToDouble(textBoxDiameter.Text) * Convert.ToDouble(textBoxDiameter.Text)) / 4;    
       //perm = k1  / (60 * area * Convert.ToDouble(textBoxPressure.Text));
@@ -1058,6 +1060,7 @@ namespace LukMachine
     {
       System.Diagnostics.Process.Start("explorer.exe", System.IO.Directory.GetParent(Properties.Settings.Default.TestData).ToString());
     }
+
 
   }
 }

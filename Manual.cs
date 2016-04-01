@@ -1904,5 +1904,25 @@ namespace LukMachine
     {
       COMMS.Instance.StopFan();
     }
+
+    private void checkBox5_CheckedChanged(object sender, EventArgs e)
+    {
+      if (checkBox5.Checked)
+      {
+        
+        labelCollectedCount.Visible = true;
+        labelReservoirCounts.Visible = true;
+        label28.Visible = true;
+        label29.Visible = true;
+
+      }
+      else
+      {
+        labelCollectedCount.Visible = false;
+        labelReservoirCounts.Visible = false;
+        label28.Visible = false;
+        label29.Visible = false;
+      }
+    }
   }
 }

@@ -75,6 +75,8 @@
       this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.dataSet1 = new System.Data.DataSet();
+      this.textBoxViscosity = new System.Windows.Forms.TextBox();
+      this.label14 = new System.Windows.Forms.Label();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -369,6 +371,8 @@
       // 
       // groupBox3
       // 
+      this.groupBox3.Controls.Add(this.textBoxViscosity);
+      this.groupBox3.Controls.Add(this.label14);
       this.groupBox3.Controls.Add(this.label7);
       this.groupBox3.Controls.Add(this.labelk1);
       this.groupBox3.Controls.Add(this.label6);
@@ -387,7 +391,7 @@
       this.groupBox3.Font = new System.Drawing.Font("Arial Narrow", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.groupBox3.Location = new System.Drawing.Point(103, 55);
       this.groupBox3.Name = "groupBox3";
-      this.groupBox3.Size = new System.Drawing.Size(835, 264);
+      this.groupBox3.Size = new System.Drawing.Size(835, 283);
       this.groupBox3.TabIndex = 24;
       this.groupBox3.TabStop = false;
       this.groupBox3.Text = "Permeability Calculation:";
@@ -435,7 +439,7 @@
       // label8
       // 
       this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(56, 150);
+      this.label8.Location = new System.Drawing.Point(56, 192);
       this.label8.Name = "label8";
       this.label8.Size = new System.Drawing.Size(225, 26);
       this.label8.TabIndex = 10;
@@ -454,7 +458,7 @@
       // label9
       // 
       this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(56, 186);
+      this.label9.Location = new System.Drawing.Point(56, 230);
       this.label9.Name = "label9";
       this.label9.Size = new System.Drawing.Size(130, 26);
       this.label9.TabIndex = 11;
@@ -462,7 +466,7 @@
       // 
       // textBoxThickness
       // 
-      this.textBoxThickness.Location = new System.Drawing.Point(272, 111);
+      this.textBoxThickness.Location = new System.Drawing.Point(272, 113);
       this.textBoxThickness.Name = "textBoxThickness";
       this.textBoxThickness.Size = new System.Drawing.Size(92, 32);
       this.textBoxThickness.TabIndex = 19;
@@ -481,7 +485,7 @@
       // label11
       // 
       this.label11.AutoSize = true;
-      this.label11.Location = new System.Drawing.Point(56, 114);
+      this.label11.Location = new System.Drawing.Point(56, 116);
       this.label11.Name = "label11";
       this.label11.Size = new System.Drawing.Size(205, 26);
       this.label11.TabIndex = 18;
@@ -504,10 +508,11 @@
       this.buttonCalculate.TabIndex = 17;
       this.buttonCalculate.Text = "Calculate";
       this.buttonCalculate.UseVisualStyleBackColor = true;
+      this.buttonCalculate.Click += new System.EventHandler(this.buttonCalculate_Click);
       // 
       // textBoxPressure
       // 
-      this.textBoxPressure.Location = new System.Drawing.Point(272, 147);
+      this.textBoxPressure.Location = new System.Drawing.Point(272, 189);
       this.textBoxPressure.Name = "textBoxPressure";
       this.textBoxPressure.Size = new System.Drawing.Size(92, 32);
       this.textBoxPressure.TabIndex = 14;
@@ -526,7 +531,7 @@
       // 
       // textBoxFlow
       // 
-      this.textBoxFlow.Location = new System.Drawing.Point(272, 183);
+      this.textBoxFlow.Location = new System.Drawing.Point(272, 227);
       this.textBoxFlow.Name = "textBoxFlow";
       this.textBoxFlow.Size = new System.Drawing.Size(92, 32);
       this.textBoxFlow.TabIndex = 15;
@@ -547,6 +552,24 @@
       // dataSet1
       // 
       this.dataSet1.DataSetName = "NewDataSet";
+      // 
+      // textBoxViscosity
+      // 
+      this.textBoxViscosity.Location = new System.Drawing.Point(272, 151);
+      this.textBoxViscosity.Name = "textBoxViscosity";
+      this.textBoxViscosity.Size = new System.Drawing.Size(92, 32);
+      this.textBoxViscosity.TabIndex = 24;
+      this.textBoxViscosity.Text = "1";
+      this.textBoxViscosity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      // 
+      // label14
+      // 
+      this.label14.AutoSize = true;
+      this.label14.Location = new System.Drawing.Point(56, 154);
+      this.label14.Name = "label14";
+      this.label14.Size = new System.Drawing.Size(127, 26);
+      this.label14.TabIndex = 23;
+      this.label14.Text = "Viscosity (cP):";
       // 
       // Report
       // 
@@ -624,5 +647,7 @@
     private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     private System.Windows.Forms.OpenFileDialog openFileDialog1;
     private System.Data.DataSet dataSet1;
+    private System.Windows.Forms.TextBox textBoxViscosity;
+    private System.Windows.Forms.Label label14;
   }
 }

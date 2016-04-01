@@ -463,7 +463,7 @@ namespace LukMachine
         System.Diagnostics.Debug.Write("-------ERROR in CollectedLevelCount------------");
       }
      
-      int percent= 100 * (CollectedLevelCount - minCount) / (maxCount - minCount);
+      int percent= 100 * (CollectedLevelCount - minCount) / (maxCount - minCount); //CollectedLevelCount comes directly from the board.
       int invertedPercent = 100 - percent; //must invert because of how the penetrometers are set up.
       return invertedPercent;
     }

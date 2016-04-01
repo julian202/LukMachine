@@ -863,7 +863,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("576")]
+        [global::System.Configuration.DefaultSettingValueAttribute("678")]
         public string MaxCapacityInML {
             get {
                 return ((string)(this["MaxCapacityInML"]));
@@ -983,7 +983,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public string CurrentViscosity {
             get {
                 return ((string)(this["CurrentViscosity"]));

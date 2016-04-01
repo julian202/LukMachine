@@ -225,7 +225,7 @@
       <Value Profile="(Default)">C</Value>
     </Setting>
     <Setting Name="MaxCapacityInML" Type="System.String" Scope="User">
-      <Value Profile="(Default)">576</Value>
+      <Value Profile="(Default)">678</Value>
     </Setting>
     <Setting Name="Valve8State" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -255,7 +255,7 @@
       <Value Profile="(Default)">-Type here viscosity</Value>
     </Setting>
     <Setting Name="CurrentViscosity" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="intervalBetweenTimePoints" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
