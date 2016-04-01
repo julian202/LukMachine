@@ -65,7 +65,7 @@ namespace LukMachine
       COMMS.Instance.Pause(.5);
       if (!openIt)
       {
-        asdf = MessageBox.Show("Error opening COM port: " + Properties.Settings.Default.COMM + " Please check your COM port settings. Press 'Ignore' to ignore this error and enter demo mode.", "Burst Tester", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
+        asdf = MessageBox.Show("Error opening COM port: " + Properties.Settings.Default.COMM + " Please check your COM port settings. Press 'Ignore' to ignore this error and enter demo mode.", "Message", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error);
         if (asdf == DialogResult.Ignore)
         {
           Properties.Settings.Default.COMM = "Demo";
@@ -93,7 +93,6 @@ namespace LukMachine
 
     private void main_Load(object sender, EventArgs e)
     {
-      
       button1.Select();
       //stopPumpCloseValves();
       //this.Text = String.Format("PMI Liquid Permeability [Luk] Version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);

@@ -117,16 +117,16 @@ namespace LukMachine
       try
       {
         SR = new StreamWriter(dataFile);
-        dataFilePathForCapRep = dataFile.Substring(0, dataFile.Length - 4) + "-forCapRep.txt";
-        SR2 = new StreamWriter(dataFilePathForCapRep);
+        //dataFilePathForCapRep = dataFile.Substring(0, dataFile.Length - 4) + "-forCapRep.txt";
+        //SR2 = new StreamWriter(dataFilePathForCapRep);
         WriteHeader();
-        WriteHeaderForCapRep();
+        //WriteHeaderForCapRep();
         SR.Close();
-        SR2.Close();
+        //SR2.Close();
       }
       catch (Exception ex)
       {
-        MessageBox.Show(ex.Message + " Restart the application and select a different folder to save the data, or else run the application as an administrator");
+        MessageBox.Show("Restart the application and select a different folder to save the data, or else run the application as an administrator. "+ ex.Message);
         Application.Exit();
       }
       firstDataPoint = true;
@@ -282,7 +282,7 @@ namespace LukMachine
       lastCollectedCount = collectedCount;
       lastTotalTimeInMinutes = totalTimeInMinutes;
       SR = new StreamWriter(dataFile, true);
-      SR2 = new StreamWriter(dataFilePathForCapRep, true);
+      //SR2 = new StreamWriter(dataFilePathForCapRep, true);
 
       //calculate permeability
       thickness = Convert.ToDouble(Properties.Settings.Default.SampleThickness);
@@ -300,9 +300,9 @@ namespace LukMachine
 
       SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}\t{4,10}", totalTimeInMinutes.ToString("#0.00"), flow.ToString("#0.00"), currentTemperatureInC.ToString("0.0"), currentPressure.ToString("0.000"), perm.ToString("#.0000000"));
       //Console.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
-      SR2.WriteLine("{0,10}\t{1,10}", flow.ToString("0.00"), currentPressure.ToString("0.000"));
+      //SR2.WriteLine("{0,10}\t{1,10}", flow.ToString("0.00"), currentPressure.ToString("0.000"));
       SR.Close();
-      SR2.Close();
+      //SR2.Close();
     }
 
     private void displayPanel1()
@@ -842,7 +842,8 @@ namespace LukMachine
       {
         Temperature = Temperature + "; " + Properties.Settings.Default.CollectionTemperature[i];
       }
-      SR.Write("Temperature=" + Temperature);
+      SR.WriteLine("Temperature=" + Temperature);
+      SR.Write("Chamber=" + Properties.Settings.Default.Chamber);
 
       SR.WriteLine("");//to end the line
       //SR.WriteLine("Pressure Rate(mL / min)=" + pressureRate.ToString());
@@ -865,6 +866,7 @@ namespace LukMachine
       labelTargetPressure.Text = "Pressure  =  " + targetPressure + " (PSI)";
       pumpstate = Properties.Settings.Default.MainPumpStatePercent.ToString("#0.0");
       labelPumpState.Text = "Pump Power  =  " + pumpstate + "%";
+      labelSelectedChamber.Text = "Chamber  =  " + Properties.Settings.Default.Chamber;
       labelStepsTotal.Text = "Total Steps  =  " + Properties.Settings.Default.NumberOfSteps.ToString();
       if (testFinished)
       {

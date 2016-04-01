@@ -2459,20 +2459,20 @@
       // label18
       // 
       this.label18.AutoSize = true;
-      this.label18.Location = new System.Drawing.Point(643, 95);
+      this.label18.Location = new System.Drawing.Point(644, 95);
       this.label18.Name = "label18";
-      this.label18.Size = new System.Drawing.Size(118, 25);
+      this.label18.Size = new System.Drawing.Size(150, 25);
       this.label18.TabIndex = 4;
-      this.label18.Text = "Chamber 2";
+      this.label18.Text = "Ring Chamber";
       // 
       // label9
       // 
       this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(367, 95);
+      this.label9.Location = new System.Drawing.Point(366, 95);
       this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(118, 25);
+      this.label9.Size = new System.Drawing.Size(148, 25);
       this.label9.TabIndex = 3;
-      this.label9.Text = "Chamber 1";
+      this.label9.Text = "Disk Chamber";
       // 
       // label17
       // 
@@ -2903,6 +2903,8 @@
       // checkBoxAllowValve2
       // 
       this.checkBoxAllowValve2.AutoSize = true;
+      this.checkBoxAllowValve2.Checked = true;
+      this.checkBoxAllowValve2.CheckState = System.Windows.Forms.CheckState.Checked;
       this.checkBoxAllowValve2.Location = new System.Drawing.Point(35, 400);
       this.checkBoxAllowValve2.Name = "checkBoxAllowValve2";
       this.checkBoxAllowValve2.Size = new System.Drawing.Size(572, 29);
@@ -2942,6 +2944,8 @@
       // checkBoxShowArrows
       // 
       this.checkBoxShowArrows.AutoSize = true;
+      this.checkBoxShowArrows.Checked = true;
+      this.checkBoxShowArrows.CheckState = System.Windows.Forms.CheckState.Checked;
       this.checkBoxShowArrows.Location = new System.Drawing.Point(35, 216);
       this.checkBoxShowArrows.Name = "checkBoxShowArrows";
       this.checkBoxShowArrows.Size = new System.Drawing.Size(165, 29);

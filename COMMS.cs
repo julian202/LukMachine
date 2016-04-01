@@ -42,7 +42,7 @@ namespace LukMachine
     string[] valvePosition = new string[24]; // to remember valve position
     public string inputReturn = null;
     public bool continueExport = false;
-    public static bool skipTemp=false;
+    public static bool skipTemp = false;
     public static bool skipPressure = false;
 
     // SEND, SEND/RECEIVE, OPEN PORT, CLOSE PORT, LIST PORTS.
@@ -187,7 +187,7 @@ namespace LukMachine
           //MessageBox.Show("Timeout reading comport for " + toSend + " (first response)");
           System.Diagnostics.Debug.WriteLine("/////////////////////////ERROR-Exception//////////////////////////");
           System.Diagnostics.Debug.WriteLine(ex.Message);
-        }     
+        }
       }
       catch (TimeoutException ex)
       {
@@ -279,7 +279,10 @@ namespace LukMachine
       }
       catch (IOException ex)
       {
-        MessageBox.Show("ERROR READING COMPORT (not a timeout)");
+        if (Properties.Settings.Default.showErrorMessages)
+        {
+          MessageBox.Show("ERROR READING COMPORT (not a timeout)");
+        }
         System.Diagnostics.Debug.WriteLine(ex.Message);
         return null;
       }
@@ -422,14 +425,17 @@ namespace LukMachine
       int maxCount = Properties.Settings.Default.RefCount10V;
       string cnt = getReservoirLevelCount();
       try
-      {      
+      {
         ReservoirLevelCount = Convert.ToInt32(cnt);
       }
       catch (Exception)
       {
-        MessageBox.Show("Couldn't get getReservoirLevelCount() was in incorrect format. getReservoirLevelCount()= "+ cnt);
+        if (Properties.Settings.Default.showErrorMessages)
+        {
+          MessageBox.Show("Couldn't get getReservoirLevelCount() was in incorrect format. getReservoirLevelCount()= " + cnt);
+        }
       }
-      
+
       int percent = 100 * (ReservoirLevelCount - minCount) / (maxCount - minCount);
       int invertedPercent = 100 - percent; //must invert because of how the penetrometers are set up.
       return invertedPercent;
@@ -446,12 +452,12 @@ namespace LukMachine
     }
 
     public static bool Valve3wayToRight;
-    public static int CollectedLevelCount=0;
+    public static int CollectedLevelCount = 0;
     public static bool Valve3wayBToRight;
-    public Int32 getCollectedLevelPercent() 
+    public Int32 getCollectedLevelPercent()
     {
       //int minCount = Properties.Settings.Default.MinCollectedCount;
-      int minCount = Convert.ToInt32( Properties.Settings.Default.ground);
+      int minCount = Convert.ToInt32(Properties.Settings.Default.ground);
       //int maxCount = Properties.Settings.Default.MaxCollectedCount;
       int maxCount = Properties.Settings.Default.RefCount10V;
       try
@@ -462,8 +468,8 @@ namespace LukMachine
       {
         System.Diagnostics.Debug.Write("-------ERROR in CollectedLevelCount------------");
       }
-     
-      int percent= 100 * (CollectedLevelCount - minCount) / (maxCount - minCount); //CollectedLevelCount comes directly from the board.
+
+      int percent = 100 * (CollectedLevelCount - minCount) / (maxCount - minCount); //CollectedLevelCount comes directly from the board.
       int invertedPercent = 100 - percent; //must invert because of how the penetrometers are set up.
       return invertedPercent;
     }

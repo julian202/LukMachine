@@ -1040,5 +1040,17 @@ namespace LukMachine.Properties {
                 this["pressureTolerance"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool showErrorMessages {
+            get {
+                return ((bool)(this["showErrorMessages"]));
+            }
+            set {
+                this["showErrorMessages"] = value;
+            }
+        }
     }
 }

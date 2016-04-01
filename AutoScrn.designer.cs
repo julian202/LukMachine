@@ -89,6 +89,7 @@
       this.checkBoxShowPermeabilityGraph2 = new System.Windows.Forms.CheckBox();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
+      this.labelSelectedChamber = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
@@ -293,7 +294,7 @@
       // 
       this.label6.AutoSize = true;
       this.label6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label6.Location = new System.Drawing.Point(20, 108);
+      this.label6.Location = new System.Drawing.Point(20, 96);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(132, 21);
       this.label6.TabIndex = 16;
@@ -366,6 +367,7 @@
       // 
       // groupBoxPressure
       // 
+      this.groupBoxPressure.Controls.Add(this.labelSelectedChamber);
       this.groupBoxPressure.Controls.Add(this.labelStepTime);
       this.groupBoxPressure.Controls.Add(this.labelTotalTime);
       this.groupBoxPressure.Controls.Add(this.labelStepCurrent);
@@ -383,7 +385,7 @@
       // 
       this.labelStepTime.AutoSize = true;
       this.labelStepTime.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelStepTime.Location = new System.Drawing.Point(20, 58);
+      this.labelStepTime.Location = new System.Drawing.Point(20, 52);
       this.labelStepTime.Name = "labelStepTime";
       this.labelStepTime.Size = new System.Drawing.Size(101, 21);
       this.labelStepTime.TabIndex = 22;
@@ -393,7 +395,7 @@
       // 
       this.labelTotalTime.AutoSize = true;
       this.labelTotalTime.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelTotalTime.Location = new System.Drawing.Point(20, 83);
+      this.labelTotalTime.Location = new System.Drawing.Point(20, 74);
       this.labelTotalTime.Name = "labelTotalTime";
       this.labelTotalTime.Size = new System.Drawing.Size(103, 21);
       this.labelTotalTime.TabIndex = 21;
@@ -403,7 +405,7 @@
       // 
       this.labelStepCurrent.AutoSize = true;
       this.labelStepCurrent.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelStepCurrent.Location = new System.Drawing.Point(20, 33);
+      this.labelStepCurrent.Location = new System.Drawing.Point(20, 30);
       this.labelStepCurrent.Name = "labelStepCurrent";
       this.labelStepCurrent.Size = new System.Drawing.Size(68, 21);
       this.labelStepCurrent.TabIndex = 18;
@@ -413,7 +415,7 @@
       // 
       this.labelPumpState.AutoSize = true;
       this.labelPumpState.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelPumpState.Location = new System.Drawing.Point(20, 158);
+      this.labelPumpState.Location = new System.Drawing.Point(20, 140);
       this.labelPumpState.Name = "labelPumpState";
       this.labelPumpState.Size = new System.Drawing.Size(133, 21);
       this.labelPumpState.TabIndex = 19;
@@ -423,7 +425,7 @@
       // 
       this.labelPressure.AutoSize = true;
       this.labelPressure.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelPressure.Location = new System.Drawing.Point(20, 133);
+      this.labelPressure.Location = new System.Drawing.Point(20, 118);
       this.labelPressure.Name = "labelPressure";
       this.labelPressure.Size = new System.Drawing.Size(98, 21);
       this.labelPressure.TabIndex = 15;
@@ -646,6 +648,16 @@
       this.verticalProgressBar2.TabIndex = 10;
       this.verticalProgressBar2.Value = 50;
       // 
+      // labelSelectedChamber
+      // 
+      this.labelSelectedChamber.AutoSize = true;
+      this.labelSelectedChamber.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelSelectedChamber.Location = new System.Drawing.Point(19, 162);
+      this.labelSelectedChamber.Name = "labelSelectedChamber";
+      this.labelSelectedChamber.Size = new System.Drawing.Size(104, 21);
+      this.labelSelectedChamber.TabIndex = 23;
+      this.labelSelectedChamber.Text = "Chamber  =";
+      // 
       // AutoScrn
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
@@ -749,6 +761,7 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn DurationColumn;
     private System.Windows.Forms.DataGridViewTextBoxColumn TemperatureColumn;
     private System.Windows.Forms.CheckBox checkBoxShowPermeabilityGraph2;
+    private System.Windows.Forms.Label labelSelectedChamber;
     // private System.Windows.Controls.ProgressBar progbar;
 
 

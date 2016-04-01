@@ -439,11 +439,11 @@ namespace LukMachine
       {
         SR = new StreamWriter(dataFile);       
         dataFilePathForCapRep = dataFile.Substring(0, dataFile.Length - 4)+"-forCapRep.txt";
-        SR2 = new StreamWriter(dataFilePathForCapRep);
+        //SR2 = new StreamWriter(dataFilePathForCapRep);
         WriteHeader();
-        WriteHeaderForCapRep();
+        //WriteHeaderForCapRep();
         SR.Close();
-        SR2.Close();
+        //SR2.Close();
       }
       catch (Exception ex)
       {
@@ -536,9 +536,9 @@ namespace LukMachine
         }
         SR.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
         //Console.WriteLine("{0,10}\t{1,10}\t{2,10}\t{3,10}", outputTime.ToString("0.00"), Flow.ToString("0.00"), convertedTemp.ToString("0.0"), currentPressure.ToString("0.000"));
-        SR2.WriteLine("{0,10}\t{1,10}", Flow.ToString("0.00"), currentPressure.ToString("0.000"));
+        //SR2.WriteLine("{0,10}\t{1,10}", Flow.ToString("0.00"), currentPressure.ToString("0.000"));
         SR.Close();
-        SR2.Close();
+        //SR2.Close();
         //Progress("Reading:" + outputTime.ToString("0.00") + "," + collectedLevelCount + "," + convertedTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
         Progress("Reading:" + outputTime.ToString("0.00") + "," + Flow.ToString("0.000") + "," + convertedTemp.ToString("0.0") + "," + currentPressure.ToString("0.000"));
         Progress("display stepCount=" + (stepCount + 1).ToString());

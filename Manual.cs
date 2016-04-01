@@ -78,6 +78,21 @@ namespace LukMachine
 
     private void Manual_Load(object sender, EventArgs e)
     {
+      if (checkBoxShowArrows.Checked)//ok
+      {
+        rectangleShape23.Visible = true;
+        rectangleShape20.Visible = true;
+        label39.Visible = true;
+        label49.Visible = true;
+      }
+      else
+      {
+        rectangleShape23.Visible = false;
+        rectangleShape20.Visible = false;
+        label39.Visible = false;
+        label49.Visible = false;
+      }
+
       //close relieve pressure valve
       Valves.CloseValve2();
       timerHeater.Enabled = true;
@@ -1194,7 +1209,11 @@ namespace LukMachine
       }
       catch (Exception ex)
       {
-        MessageBox.Show("Problem setting temperature on Athena: " + ex.Message);
+        if (Properties.Settings.Default.showErrorMessages)
+        {
+          MessageBox.Show("Problem setting temperature on Athena: " + ex.Message);
+        }
+        
       }
     }
 
@@ -1209,7 +1228,10 @@ namespace LukMachine
       }
       catch (Exception ex)
       {
-        MessageBox.Show("Problem setting temperature on Athena: " + ex.Message);
+        if (Properties.Settings.Default.showErrorMessages)
+        {
+          MessageBox.Show("Problem setting temperature on Athena: " + ex.Message);
+        }
       }
     }
 
