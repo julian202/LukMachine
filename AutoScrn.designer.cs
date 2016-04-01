@@ -244,12 +244,12 @@
       this.panel1.Controls.Add(this.labelPanel);
       this.panel1.Location = new System.Drawing.Point(30, 320);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(614, 108);
+      this.panel1.Size = new System.Drawing.Size(707, 108);
       this.panel1.TabIndex = 13;
       // 
       // buttonSkip
       // 
-      this.buttonSkip.Location = new System.Drawing.Point(252, 64);
+      this.buttonSkip.Location = new System.Drawing.Point(286, 64);
       this.buttonSkip.Name = "buttonSkip";
       this.buttonSkip.Size = new System.Drawing.Size(143, 36);
       this.buttonSkip.TabIndex = 3;

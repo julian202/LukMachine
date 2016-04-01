@@ -49,6 +49,7 @@ namespace LukMachine
     int collectedCount;
     int lastCollectedCount;
     int collectedDifferenceInCounts;
+    int lastCollectedDifferenceInCounts;
     bool firstDataPoint;
     double timeDifferenceInMinutes;
     double totalTimeInMinutes;
@@ -242,9 +243,10 @@ namespace LukMachine
         collectedDifferenceInCounts = collectedCount - lastCollectedCount;
         if (dontCountFirstDataPointAfterEmtpying)
         {
-          collectedDifferenceInCounts = 0;
+          collectedDifferenceInCounts = lastCollectedDifferenceInCounts;
           dontCountFirstDataPointAfterEmtpying = false;
         }
+        lastCollectedDifferenceInCounts = collectedDifferenceInCounts;
         totalTimeInMinutes = Convert.ToDouble(timeSpanTotal.Minutes) + Convert.ToDouble(timeSpanTotal.Seconds) / 60;
         timeDifferenceInMinutes = lastTotalTimeInMinutes - totalTimeInMinutes;
         if (timeDifferenceInMinutes == 0)
@@ -876,6 +878,7 @@ namespace LukMachine
 
     private void stopButton()
     {
+      emptyingCollected = false;
       labelPanel.Text = "The test is being stopped. Please wait...";
       if (testFinished)
       {
