@@ -73,6 +73,7 @@ namespace LukMachine
     bool firstLoopToTargetPressure = false;
     double perm;
     double thickness;
+    double viscosity;
     double diameter;
     double area;
     double k1;
@@ -283,7 +284,8 @@ namespace LukMachine
 
       //calculate permeability
       thickness = Convert.ToDouble(Properties.Settings.Default.SampleThickness);
-      k1 = flow * thickness * 14.7;
+      viscosity = Convert.ToDouble(Properties.Settings.Default.CurrentViscosity);
+      k1 = flow * thickness * viscosity * 14.7;
       diameter = Convert.ToDouble(Properties.Settings.Default.SampleDiameter);
       area = 3.1415926 * diameter * diameter / 4;
       //perm = k1  / (60 * area * Convert.ToDouble(textBoxPressure.Text));
