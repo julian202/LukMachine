@@ -93,6 +93,8 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+      COMMS.calculateVoltageReferences();
+
       button2.Visible = false;
       chart1.Series["SeriesPressure"].Enabled = false;
       chart1.Series["SeriesTemperature"].Enabled = false;
