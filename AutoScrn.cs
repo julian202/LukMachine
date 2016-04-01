@@ -65,6 +65,7 @@ namespace LukMachine
     bool nowSettingTemp = false;
     private double chamberTemp;
     double pumpPowerAtEndOfLastStep = 0;
+    double PREVIOUSpumpPowerAtEndOfLastStep = 0;
     bool emptyingCollected = false;
     bool dontCountFirstDataPointAfterEmtpying = false;
     bool goingToTargetTemperature = false;
@@ -641,6 +642,7 @@ namespace LukMachine
             if (Properties.Settings.Default.MainPumpStatePercent < pumpPowerAtEndOfLastStep)
             {
               Pumps.SetPump2(pumpPowerAtEndOfLastStep);
+              Properties.Settings.Default.MainPumpStatePercent = pumpPowerAtEndOfLastStep;
             }
             if (Properties.Settings.Default.MainPumpStatePercent < 4)//because pump doesn't seem to do anything below 4.
             {
@@ -665,10 +667,14 @@ namespace LukMachine
 
           if ((currentPressure > (targetPressure - pressureTolerance)) && (currentPressure < targetPressure + pressureTolerance))
           {
-            if (firstLoopToTargetPressure) // since there's 2 consecutive gototargetloops: if you are at the end of the first loop then record MainPumpStatePercent; (you don't want to do this after the 2nd loop becuase then pressure is usally going down and pump is at 0%)
-            {
-              pumpPowerAtEndOfLastStep = Properties.Settings.Default.MainPumpStatePercent;
-            }
+            //if (firstLoopToTargetPressure) //this actually only means it is going to target pressure.   older-> // since there's 2 consecutive gototargetloops: if you are at the end of the first loop then record MainPumpStatePercent; (you don't want to do this after the 2nd loop becuase then pressure is usally going down and pump is at 0%)
+            //{
+              if (Properties.Settings.Default.MainPumpStatePercent >= pumpPowerAtEndOfLastStep)
+              {
+                pumpPowerAtEndOfLastStep = Properties.Settings.Default.MainPumpStatePercent;
+                //PREVIOUSpumpPowerAtEndOfLastStep = pumpPowerAtEndOfLastStep;
+              }             
+            //}
             pressureHasBeenReached = true;
           }
         }
