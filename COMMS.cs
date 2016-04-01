@@ -293,6 +293,7 @@ namespace LukMachine
 
     public void PassThrough(char channel, string toSend)
     {
+      Thread.Sleep(10);
       //pass characters through to specified COM port. (BCAD)
       //receive no response.
       string chrs = toSend.Length.ToString("00");
@@ -372,6 +373,7 @@ namespace LukMachine
 
     public string ReadPressureGauge(int channel)
     {
+      Thread.Sleep(10);
       //convert channel number to an ascii code
       int realChan = channel + 64;
       //convert ascii code to a character
@@ -386,7 +388,7 @@ namespace LukMachine
     public void MoveValve(int valveNum, string vPos)
     {
       //no 0 offset any longer.  Valve 1 = A and so on.
-
+      Thread.Sleep(10);
       //convert valve number to an ascii code
       int realValve = valveNum + 64;
       //convert ascii code to a character
@@ -468,15 +470,18 @@ namespace LukMachine
 
     public string getReservoirLevelCount()
     {
+      Thread.Sleep(10);
       return COMMS.Instance.MotorValvePosition(2); //pent2
     }
     public string getCollectedLevelCount()
     {
+      Thread.Sleep(10);
       return COMMS.Instance.MotorValvePosition(1); //pent3
     }
 
     public string MotorValvePosition(int valveNum)
     {
+      Thread.Sleep(10);
       char valveChannel = 'Z';
       string response;
       //System.Diagnostics.Debug.Write("Valve Number: " + valveNum.ToString() + Environment.NewLine);
@@ -604,6 +609,7 @@ namespace LukMachine
 
     public void SetAthenaTemp(int channel, double temp)
     {
+      Thread.Sleep(10);
       double changedTemp = temp * 10;
       string finalTemp = changedTemp.ToString("0000");
 
@@ -614,6 +620,7 @@ namespace LukMachine
 
     public double ReadAthenaTemp(int channel)
     {
+      Thread.Sleep(10);
       System.Diagnostics.Debug.WriteLine("Reading Temperature, Sending to rsEcho TT" + channel.ToString());
       string returnValue = rsEcho("TT" + channel.ToString());
 
@@ -798,6 +805,7 @@ namespace LukMachine
 
     public void SetRegulator(int channel, int amount)
     {
+      Thread.Sleep(10);
       RegulatorPosition[channel - 1] = amount;
       Send("A" + channel.ToString() + amount.ToString("0000"));
     }
@@ -808,7 +816,7 @@ namespace LukMachine
 
     public void IncreaseRegulator(int channel, int amount)
     {
-
+      Thread.Sleep(10);
       if (RegulatorPosition[channel - 1] + amount > 4000)
       {
         amount = 4000 - RegulatorPosition[channel - 1];
@@ -827,6 +835,7 @@ namespace LukMachine
 
     public void DecreaseRegulator(int channel, int amount)
     {
+      Thread.Sleep(10);
       amount = Math.Abs(amount);
       if (amount > RegulatorPosition[channel - 1])
       {
@@ -843,6 +852,7 @@ namespace LukMachine
 
     public void ZeroRegulator(int channel)
     {
+      Thread.Sleep(10);
       Send("A" + channel.ToString() + "0000");
       RegulatorPosition[channel - 1] = 0;
     }
@@ -854,6 +864,7 @@ namespace LukMachine
 
     public int getGround()
     {
+      Thread.Sleep(10);
       char channel = (Char)95;  //this is underscore R_
       string asdf = rsEcho("R" + channel.ToString());
 
@@ -870,6 +881,7 @@ namespace LukMachine
 
     public int get2v()
     {
+      Thread.Sleep(10);
       char channel = (Char)96;
       string asdf = rsEcho("R`");
       try
@@ -885,13 +897,14 @@ namespace LukMachine
 
     public void StartPump(char channel, int speed)
     {
-
+      Thread.Sleep(10);
       PassThrough('C', "#FL" + speed + (char)13);
       PassThrough(channel, "#RU" + (char)13);
     }
 
     public void StopPump(char channel)
     {
+      Thread.Sleep(10);
       PassThrough(channel, "#ST" + (char)13);
     }
 
