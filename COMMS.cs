@@ -447,6 +447,8 @@ namespace LukMachine
       Properties.Settings.Default.RefCount2V = COMMS.Instance.get2v();
       int Ref0V = Convert.ToInt32(Properties.Settings.Default.ground);
       int Ref2V = Properties.Settings.Default.RefCount2V;
+      if (Ref0V == 0) Ref0V = 2000;
+      if (Ref2V == 0) Ref2V = 14000;
       Properties.Settings.Default.RefCount10V = Ref0V + Convert.ToInt32((Ref2V - Ref0V) * 4.75);// or 5;  4.75 is 9.5/2 becuase 9.5V is the voltage when it is empty
       Properties.Settings.Default.Save();
     }
