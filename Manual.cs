@@ -73,7 +73,7 @@ namespace LukMachine
     double[] PressureList;  // 6 is 5+1, you have to show 5 in manual form.
     double pressureDifference;
     int aCount = 0;
-    bool samePressures;
+    bool samePressures;//
     double pressureThreshold;
 
     private void Manual_Load(object sender, EventArgs e)
