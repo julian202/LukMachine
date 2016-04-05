@@ -146,14 +146,14 @@ namespace LukMachine
         //for troubleshooting
         try
         {
-          System.Diagnostics.Debug.WriteLine("Sending Serial = " + toSend);
+          System.Diagnostics.Debug.WriteLine("Sending Serial = " + toSend+ " on thread: " + Thread.CurrentThread.ManagedThreadId);
           _serialPort.Write(toSend);
           System.Diagnostics.Debug.WriteLine("Sent Serial = " + toSend);
         }
         catch (Exception ex)
         {
           //MessageBox.Show("Timeout writing comport for " + toSend);
-          System.Diagnostics.Debug.WriteLine("/////////////////////////ERROR-//////////////////////////");
+          System.Diagnostics.Debug.WriteLine("/////////////////////////ERROR-////////////////////////// thread: "+ Thread.CurrentThread.ManagedThreadId);
           System.Diagnostics.Debug.WriteLine(ex.Message);
         }
 
@@ -628,6 +628,8 @@ namespace LukMachine
     public void SetAthenaTemp(int channel, double temp)
     {
       Thread.Sleep(10);
+      //convert temp to celsius
+      temp = Math.Round(((temp - 32) * 5 / 9));
       double changedTemp = temp * 10;
       string finalTemp = changedTemp.ToString("0000");
 
@@ -644,7 +646,7 @@ namespace LukMachine
 
       try
       {
-        System.Diagnostics.Debug.WriteLine("Now trying to convert returned temperature to double");
+        System.Diagnostics.Debug.WriteLine("Now converting returned temp to double");
         double fixReturn = double.Parse(returnValue) / 10;
         System.Diagnostics.Debug.WriteLine("Done, returned temperature = " + fixReturn.ToString());
         return fixReturn;
