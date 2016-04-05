@@ -75,6 +75,7 @@ namespace LukMachine
     double thickness;
     double viscosity;
     double diameter;
+    double innerDiameter;
     double area;
     double k1;
     int dataGridViewStepCount;
@@ -93,6 +94,8 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+      //MessageBox.Show(Properties.Settings.Default.p1Max.ToString()); 
+
       COMMS.calculateVoltageReferences();
 
       button2.Visible = false;
@@ -286,10 +289,21 @@ namespace LukMachine
 
       //calculate permeability
       thickness = Convert.ToDouble(Properties.Settings.Default.SampleThickness);
-      viscosity = Convert.ToDouble(Properties.Settings.Default.CurrentViscosity);
-      k1 = flow * thickness * viscosity * 14.7;
+      viscosity = Convert.ToDouble(Properties.Settings.Default.CurrentViscosity);    
       diameter = Convert.ToDouble(Properties.Settings.Default.SampleDiameter);
+      innerDiameter = Convert.ToDouble(Properties.Settings.Default.innerDiameter);
       area = 3.1415926 * diameter * diameter / 4;
+
+      if (Properties.Settings.Default.Chamber == "Ring") //calculate ring area:
+      {
+        //area = 2* (area - 3.1415926 * innerDiameter * innerDiameter / 4); //multiplied by 2 because there are 2 sheets of paper per ring.
+        //assuming liquid flows horizontally then:
+        area = 2 * thickness * (diameter + innerDiameter) / 2;
+        //now change thickness to horizontal distance for correct k1 calculation:
+        thickness = diameter - innerDiameter;
+      }
+      k1 = flow * thickness * viscosity * 14.7;
+
       //perm = k1  / (60 * area * Convert.ToDouble(textBoxPressure.Text));
       perm = k1 / (area * currentPressure);
       //labelPermeability.Text = "= " + perm.ToString("#.0000000");
