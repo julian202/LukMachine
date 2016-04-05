@@ -237,12 +237,26 @@ namespace LukMachine
       try
       {
         Properties.Settings.Default.intervalBetweenTimePoints = Convert.ToInt32(textBox4.Text);
+        Properties.Settings.Default.Save();
       }
       catch (Exception)
       {
         MessageBox.Show("Please enter a valid number");
       }
 
+    }
+
+    private void button5_Click(object sender, EventArgs e)
+    {
+      //MessageBox.Show(System.IO.Directory.GetCurrentDirectory()+ "\\Help\\PMI Liquid Permeameter\\index.htm");
+      try
+      {
+        System.Diagnostics.Process.Start(System.IO.Directory.GetCurrentDirectory() + "\\Help\\PMI Liquid Permeameter\\index.htm");
+      }
+      catch (Exception)
+      {
+      }
+          
     }
   }
 }

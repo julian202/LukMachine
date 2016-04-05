@@ -56,6 +56,8 @@
       this.comboBox1 = new System.Windows.Forms.ComboBox();
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.groupBox3 = new System.Windows.Forms.GroupBox();
+      this.textBoxViscosity = new System.Windows.Forms.TextBox();
+      this.label14 = new System.Windows.Forms.Label();
       this.label7 = new System.Windows.Forms.Label();
       this.labelk1 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
@@ -75,8 +77,19 @@
       this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.dataSet1 = new System.Data.DataSet();
-      this.textBoxViscosity = new System.Windows.Forms.TextBox();
-      this.label14 = new System.Windows.Forms.Label();
+      this.label22 = new System.Windows.Forms.Label();
+      this.textBoxInnerDiameter = new System.Windows.Forms.TextBox();
+      this.label15 = new System.Windows.Forms.Label();
+      this.label16 = new System.Windows.Forms.Label();
+      this.label17 = new System.Windows.Forms.Label();
+      this.label18 = new System.Windows.Forms.Label();
+      this.label19 = new System.Windows.Forms.Label();
+      this.label20 = new System.Windows.Forms.Label();
+      this.label21 = new System.Windows.Forms.Label();
+      this.label23 = new System.Windows.Forms.Label();
+      this.label24 = new System.Windows.Forms.Label();
+      this.button5 = new System.Windows.Forms.Button();
+      this.label25 = new System.Windows.Forms.Label();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -95,7 +108,7 @@
       this.tabControl1.Location = new System.Drawing.Point(6, 12);
       this.tabControl1.Name = "tabControl1";
       this.tabControl1.SelectedIndex = 0;
-      this.tabControl1.Size = new System.Drawing.Size(1096, 556);
+      this.tabControl1.Size = new System.Drawing.Size(1096, 611);
       this.tabControl1.TabIndex = 23;
       // 
       // tabPage1
@@ -365,12 +378,25 @@
       this.tabPage2.Location = new System.Drawing.Point(4, 33);
       this.tabPage2.Name = "tabPage2";
       this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage2.Size = new System.Drawing.Size(1088, 519);
+      this.tabPage2.Size = new System.Drawing.Size(1088, 574);
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Formula";
       // 
       // groupBox3
       // 
+      this.groupBox3.Controls.Add(this.label18);
+      this.groupBox3.Controls.Add(this.label19);
+      this.groupBox3.Controls.Add(this.label20);
+      this.groupBox3.Controls.Add(this.label21);
+      this.groupBox3.Controls.Add(this.label23);
+      this.groupBox3.Controls.Add(this.label24);
+      this.groupBox3.Controls.Add(this.button5);
+      this.groupBox3.Controls.Add(this.label25);
+      this.groupBox3.Controls.Add(this.label17);
+      this.groupBox3.Controls.Add(this.label16);
+      this.groupBox3.Controls.Add(this.label15);
+      this.groupBox3.Controls.Add(this.label22);
+      this.groupBox3.Controls.Add(this.textBoxInnerDiameter);
       this.groupBox3.Controls.Add(this.textBoxViscosity);
       this.groupBox3.Controls.Add(this.label14);
       this.groupBox3.Controls.Add(this.label7);
@@ -389,27 +415,45 @@
       this.groupBox3.Controls.Add(this.labelPermeability);
       this.groupBox3.Controls.Add(this.textBoxFlow);
       this.groupBox3.Font = new System.Drawing.Font("Arial Narrow", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.groupBox3.Location = new System.Drawing.Point(103, 55);
+      this.groupBox3.Location = new System.Drawing.Point(93, 27);
       this.groupBox3.Name = "groupBox3";
-      this.groupBox3.Size = new System.Drawing.Size(835, 283);
+      this.groupBox3.Size = new System.Drawing.Size(928, 522);
       this.groupBox3.TabIndex = 24;
       this.groupBox3.TabStop = false;
       this.groupBox3.Text = "Permeability Calculation:";
       // 
+      // textBoxViscosity
+      // 
+      this.textBoxViscosity.Location = new System.Drawing.Point(254, 199);
+      this.textBoxViscosity.Name = "textBoxViscosity";
+      this.textBoxViscosity.Size = new System.Drawing.Size(92, 32);
+      this.textBoxViscosity.TabIndex = 24;
+      this.textBoxViscosity.Text = "1";
+      this.textBoxViscosity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      // 
+      // label14
+      // 
+      this.label14.AutoSize = true;
+      this.label14.Location = new System.Drawing.Point(38, 202);
+      this.label14.Name = "label14";
+      this.label14.Size = new System.Drawing.Size(127, 26);
+      this.label14.TabIndex = 23;
+      this.label14.Text = "Viscosity (cP):";
+      // 
       // label7
       // 
       this.label7.AutoSize = true;
-      this.label7.Location = new System.Drawing.Point(56, 78);
+      this.label7.Location = new System.Drawing.Point(38, 129);
       this.label7.Name = "label7";
-      this.label7.Size = new System.Drawing.Size(197, 26);
+      this.label7.Size = new System.Drawing.Size(181, 26);
       this.label7.TabIndex = 9;
-      this.label7.Text = "Sample Diameter (cm):";
+      this.label7.Text = "Outer Diameter (cm):";
       // 
       // labelk1
       // 
       this.labelk1.AutoSize = true;
       this.labelk1.Font = new System.Drawing.Font("Arial Narrow", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelk1.Location = new System.Drawing.Point(639, 94);
+      this.labelk1.Location = new System.Drawing.Point(598, 105);
       this.labelk1.Name = "labelk1";
       this.labelk1.Size = new System.Drawing.Size(26, 40);
       this.labelk1.TabIndex = 22;
@@ -419,7 +463,7 @@
       // label6
       // 
       this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(417, 75);
+      this.label6.Location = new System.Drawing.Point(404, 83);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(116, 26);
       this.label6.TabIndex = 8;
@@ -429,7 +473,7 @@
       // 
       this.label13.AutoSize = true;
       this.label13.Font = new System.Drawing.Font("Arial Narrow", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label13.Location = new System.Drawing.Point(541, 97);
+      this.label13.Location = new System.Drawing.Point(528, 108);
       this.label13.Name = "label13";
       this.label13.Size = new System.Drawing.Size(71, 40);
       this.label13.TabIndex = 21;
@@ -439,7 +483,7 @@
       // label8
       // 
       this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(56, 192);
+      this.label8.Location = new System.Drawing.Point(38, 240);
       this.label8.Name = "label8";
       this.label8.Size = new System.Drawing.Size(225, 26);
       this.label8.TabIndex = 10;
@@ -449,7 +493,7 @@
       // 
       this.label12.AutoSize = true;
       this.label12.Font = new System.Drawing.Font("Arial Narrow", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label12.Location = new System.Drawing.Point(541, 130);
+      this.label12.Location = new System.Drawing.Point(528, 141);
       this.label12.Name = "label12";
       this.label12.Size = new System.Drawing.Size(71, 40);
       this.label12.TabIndex = 20;
@@ -458,7 +502,7 @@
       // label9
       // 
       this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(56, 230);
+      this.label9.Location = new System.Drawing.Point(38, 278);
       this.label9.Name = "label9";
       this.label9.Size = new System.Drawing.Size(130, 26);
       this.label9.TabIndex = 11;
@@ -466,7 +510,7 @@
       // 
       // textBoxThickness
       // 
-      this.textBoxThickness.Location = new System.Drawing.Point(272, 113);
+      this.textBoxThickness.Location = new System.Drawing.Point(254, 90);
       this.textBoxThickness.Name = "textBoxThickness";
       this.textBoxThickness.Size = new System.Drawing.Size(92, 32);
       this.textBoxThickness.TabIndex = 19;
@@ -476,16 +520,16 @@
       // label10
       // 
       this.label10.AutoSize = true;
-      this.label10.Location = new System.Drawing.Point(528, 75);
+      this.label10.Location = new System.Drawing.Point(515, 83);
       this.label10.Name = "label10";
-      this.label10.Size = new System.Drawing.Size(265, 26);
+      this.label10.Size = new System.Drawing.Size(374, 26);
       this.label10.TabIndex = 12;
-      this.label10.Text = "k = 14.7 * Flow/(Area*Pressure)";
+      this.label10.Text = "k = 14.7 * (Flow*T*Viscosity)/(Area*Pressure)";
       // 
       // label11
       // 
       this.label11.AutoSize = true;
-      this.label11.Location = new System.Drawing.Point(56, 116);
+      this.label11.Location = new System.Drawing.Point(38, 93);
       this.label11.Name = "label11";
       this.label11.Size = new System.Drawing.Size(205, 26);
       this.label11.TabIndex = 18;
@@ -493,7 +537,7 @@
       // 
       // textBoxDiameter
       // 
-      this.textBoxDiameter.Location = new System.Drawing.Point(272, 75);
+      this.textBoxDiameter.Location = new System.Drawing.Point(254, 126);
       this.textBoxDiameter.Name = "textBoxDiameter";
       this.textBoxDiameter.Size = new System.Drawing.Size(92, 32);
       this.textBoxDiameter.TabIndex = 13;
@@ -502,17 +546,17 @@
       // 
       // buttonCalculate
       // 
-      this.buttonCalculate.Location = new System.Drawing.Point(421, 118);
+      this.buttonCalculate.Location = new System.Drawing.Point(408, 129);
       this.buttonCalculate.Name = "buttonCalculate";
       this.buttonCalculate.Size = new System.Drawing.Size(101, 69);
       this.buttonCalculate.TabIndex = 17;
-      this.buttonCalculate.Text = "Calculate";
+      this.buttonCalculate.Text = "Calculate for Disk";
       this.buttonCalculate.UseVisualStyleBackColor = true;
       this.buttonCalculate.Click += new System.EventHandler(this.buttonCalculate_Click);
       // 
       // textBoxPressure
       // 
-      this.textBoxPressure.Location = new System.Drawing.Point(272, 189);
+      this.textBoxPressure.Location = new System.Drawing.Point(254, 237);
       this.textBoxPressure.Name = "textBoxPressure";
       this.textBoxPressure.Size = new System.Drawing.Size(92, 32);
       this.textBoxPressure.TabIndex = 14;
@@ -523,7 +567,7 @@
       // 
       this.labelPermeability.AutoSize = true;
       this.labelPermeability.Font = new System.Drawing.Font("Arial Narrow", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelPermeability.Location = new System.Drawing.Point(639, 130);
+      this.labelPermeability.Location = new System.Drawing.Point(598, 141);
       this.labelPermeability.Name = "labelPermeability";
       this.labelPermeability.Size = new System.Drawing.Size(26, 40);
       this.labelPermeability.TabIndex = 16;
@@ -531,7 +575,7 @@
       // 
       // textBoxFlow
       // 
-      this.textBoxFlow.Location = new System.Drawing.Point(272, 227);
+      this.textBoxFlow.Location = new System.Drawing.Point(254, 275);
       this.textBoxFlow.Name = "textBoxFlow";
       this.textBoxFlow.Size = new System.Drawing.Size(92, 32);
       this.textBoxFlow.TabIndex = 15;
@@ -553,29 +597,136 @@
       // 
       this.dataSet1.DataSetName = "NewDataSet";
       // 
-      // textBoxViscosity
+      // label22
       // 
-      this.textBoxViscosity.Location = new System.Drawing.Point(272, 151);
-      this.textBoxViscosity.Name = "textBoxViscosity";
-      this.textBoxViscosity.Size = new System.Drawing.Size(92, 32);
-      this.textBoxViscosity.TabIndex = 24;
-      this.textBoxViscosity.Text = "1";
-      this.textBoxViscosity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      this.label22.AutoSize = true;
+      this.label22.Location = new System.Drawing.Point(38, 165);
+      this.label22.Name = "label22";
+      this.label22.Size = new System.Drawing.Size(227, 26);
+      this.label22.TabIndex = 58;
+      this.label22.Text = "Inner Diameter (Ring only):";
       // 
-      // label14
+      // textBoxInnerDiameter
       // 
-      this.label14.AutoSize = true;
-      this.label14.Location = new System.Drawing.Point(56, 154);
-      this.label14.Name = "label14";
-      this.label14.Size = new System.Drawing.Size(127, 26);
-      this.label14.TabIndex = 23;
-      this.label14.Text = "Viscosity (cP):";
+      this.textBoxInnerDiameter.Location = new System.Drawing.Point(254, 162);
+      this.textBoxInnerDiameter.Name = "textBoxInnerDiameter";
+      this.textBoxInnerDiameter.Size = new System.Drawing.Size(92, 32);
+      this.textBoxInnerDiameter.TabIndex = 59;
+      this.textBoxInnerDiameter.Text = "2";
+      this.textBoxInnerDiameter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      // 
+      // label15
+      // 
+      this.label15.AutoSize = true;
+      this.label15.Location = new System.Drawing.Point(87, 402);
+      this.label15.Name = "label15";
+      this.label15.Size = new System.Drawing.Size(625, 26);
+      this.label15.TabIndex = 60;
+      this.label15.Text = "Note: The calculator multiplies the cross sectional area by 2 for ring samples.";
+      // 
+      // label16
+      // 
+      this.label16.AutoSize = true;
+      this.label16.Location = new System.Drawing.Point(87, 442);
+      this.label16.Name = "label16";
+      this.label16.Size = new System.Drawing.Size(834, 26);
+      this.label16.TabIndex = 61;
+      this.label16.Text = "Note: It is assumed that liquid flows vertically through disk sample and horizont" +
+    "ally through ring sample.";
+      // 
+      // label17
+      // 
+      this.label17.AutoSize = true;
+      this.label17.Location = new System.Drawing.Point(404, 47);
+      this.label17.Name = "label17";
+      this.label17.Size = new System.Drawing.Size(421, 26);
+      this.label17.TabIndex = 62;
+      this.label17.Text = "Disk :  T= Sample Thickness; Area= Pi*((O.D.)^2)/4";
+      // 
+      // label18
+      // 
+      this.label18.AutoSize = true;
+      this.label18.Location = new System.Drawing.Point(404, 219);
+      this.label18.Name = "label18";
+      this.label18.Size = new System.Drawing.Size(458, 26);
+      this.label18.TabIndex = 70;
+      this.label18.Text = "Ring :  T= (O.D. - I.D) ;  Area=2*Thickness*(O.D.+I.D.)/2";
+      // 
+      // label19
+      // 
+      this.label19.AutoSize = true;
+      this.label19.Font = new System.Drawing.Font("Arial Narrow", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label19.Location = new System.Drawing.Point(598, 277);
+      this.label19.Name = "label19";
+      this.label19.Size = new System.Drawing.Size(26, 40);
+      this.label19.TabIndex = 69;
+      this.label19.Text = "-";
+      this.label19.Visible = false;
+      // 
+      // label20
+      // 
+      this.label20.AutoSize = true;
+      this.label20.Location = new System.Drawing.Point(404, 255);
+      this.label20.Name = "label20";
+      this.label20.Size = new System.Drawing.Size(116, 26);
+      this.label20.TabIndex = 63;
+      this.label20.Text = "Permeability:";
+      // 
+      // label21
+      // 
+      this.label21.AutoSize = true;
+      this.label21.Font = new System.Drawing.Font("Arial Narrow", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label21.Location = new System.Drawing.Point(528, 280);
+      this.label21.Name = "label21";
+      this.label21.Size = new System.Drawing.Size(71, 40);
+      this.label21.TabIndex = 68;
+      this.label21.Text = "k1 =";
+      this.label21.Visible = false;
+      // 
+      // label23
+      // 
+      this.label23.AutoSize = true;
+      this.label23.Font = new System.Drawing.Font("Arial Narrow", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label23.Location = new System.Drawing.Point(528, 313);
+      this.label23.Name = "label23";
+      this.label23.Size = new System.Drawing.Size(71, 40);
+      this.label23.TabIndex = 67;
+      this.label23.Text = "k   =";
+      // 
+      // label24
+      // 
+      this.label24.AutoSize = true;
+      this.label24.Location = new System.Drawing.Point(515, 255);
+      this.label24.Name = "label24";
+      this.label24.Size = new System.Drawing.Size(374, 26);
+      this.label24.TabIndex = 64;
+      this.label24.Text = "k = 14.7 * (Flow*T*Viscosity)/(Area*Pressure)";
+      // 
+      // button5
+      // 
+      this.button5.Location = new System.Drawing.Point(408, 301);
+      this.button5.Name = "button5";
+      this.button5.Size = new System.Drawing.Size(101, 69);
+      this.button5.TabIndex = 66;
+      this.button5.Text = "Calculate for Ring";
+      this.button5.UseVisualStyleBackColor = true;
+      this.button5.Click += new System.EventHandler(this.button5_Click_3);
+      // 
+      // label25
+      // 
+      this.label25.AutoSize = true;
+      this.label25.Font = new System.Drawing.Font("Arial Narrow", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label25.Location = new System.Drawing.Point(598, 313);
+      this.label25.Name = "label25";
+      this.label25.Size = new System.Drawing.Size(26, 40);
+      this.label25.TabIndex = 65;
+      this.label25.Text = "-";
       // 
       // Report
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1114, 567);
+      this.ClientSize = new System.Drawing.Size(1114, 635);
       this.Controls.Add(this.tabControl1);
       this.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -649,5 +800,18 @@
     private System.Data.DataSet dataSet1;
     private System.Windows.Forms.TextBox textBoxViscosity;
     private System.Windows.Forms.Label label14;
+    private System.Windows.Forms.Label label22;
+    private System.Windows.Forms.TextBox textBoxInnerDiameter;
+    private System.Windows.Forms.Label label15;
+    private System.Windows.Forms.Label label17;
+    private System.Windows.Forms.Label label16;
+    private System.Windows.Forms.Label label18;
+    private System.Windows.Forms.Label label19;
+    private System.Windows.Forms.Label label20;
+    private System.Windows.Forms.Label label21;
+    private System.Windows.Forms.Label label23;
+    private System.Windows.Forms.Label label24;
+    private System.Windows.Forms.Button button5;
+    private System.Windows.Forms.Label label25;
   }
 }

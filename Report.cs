@@ -254,6 +254,7 @@ namespace LukMachine
 
     private void Report_Load(object sender, EventArgs e)
     {
+
       textBoxViscosity.Text = Properties.Settings.Default.CurrentViscosity;
       Pumps.SetPump2(0); //for some reason the pump doesn't always stop
       LoadDistensionTable();
@@ -973,16 +974,17 @@ namespace LukMachine
 
     private void buttonCalculate_Click(object sender, EventArgs e)
     {
-          double perm;
+      double perm;
       double flow = Convert.ToDouble(textBoxFlow.Text);
       double thickness = Convert.ToDouble(textBoxThickness.Text);
       double viscosity = Convert.ToDouble(textBoxViscosity.Text);
       double k1 = flow * thickness * viscosity * 14.7; //the 14.7 is a conversion factor, NOT atmospheric pressure! It lumps together the conversion from centipoise to poise for viscosity, the conversion from PSI to dynes/cm^2, and the conversion from cm^2 to Darcies.
       labelk1.Text = k1.ToString();   
-      double area = 3.1415926 * (Convert.ToDouble(textBoxDiameter.Text) * Convert.ToDouble(textBoxDiameter.Text)) / 4;    
+      double area = 3.1415926 * (Convert.ToDouble(textBoxDiameter.Text) * Convert.ToDouble(textBoxDiameter.Text)) / 4;
+
       //perm = k1  / (60 * area * Convert.ToDouble(textBoxPressure.Text));
       perm = k1 / (area * Convert.ToDouble(textBoxPressure.Text));
-      labelPermeability.Text = "= " + perm.ToString("#.0000000");
+      labelPermeability.Text = perm.ToString("#.0000000");
       /*double i = 10 / 5 / 2;
       MessageBox.Show(i.ToString());*/
     }
@@ -1082,6 +1084,28 @@ namespace LukMachine
       System.Diagnostics.Process.Start("explorer.exe", System.IO.Directory.GetParent(Properties.Settings.Default.TestData).ToString());
     }
 
+    private void button5_Click_3(object sender, EventArgs e)
+    {
+      double perm;
+      double flow = Convert.ToDouble(textBoxFlow.Text);
+      double thickness = Convert.ToDouble(textBoxThickness.Text);
+      double viscosity = Convert.ToDouble(textBoxViscosity.Text);
+      double innerDiameter = Convert.ToDouble(textBoxInnerDiameter.Text);
+      double outerDiameter = Convert.ToDouble(textBoxDiameter.Text);
+      double T = outerDiameter - innerDiameter;
 
+      double k1 = flow * T * viscosity * 14.7; //the 14.7 is a conversion factor, NOT atmospheric pressure! It lumps together the conversion from centipoise to poise for viscosity, the conversion from PSI to dynes/cm^2, and the conversion from cm^2 to Darcies.
+      labelk1.Text = k1.ToString();
+      //double area = 3.1415926 * (Convert.ToDouble(textBoxDiameter.Text) * Convert.ToDouble(textBoxDiameter.Text)) / 4;
+      double area = 2 * thickness * (outerDiameter + innerDiameter) / 2;
+      //calculate ring area:
+      //area = 2 * (area - 3.1415926 * innerDiameter * innerDiameter / 4); //multiplied by 2 because there are 2 sheets of paper per ring.
+
+      //perm = k1  / (60 * area * Convert.ToDouble(textBoxPressure.Text));
+      perm = k1 / (area * Convert.ToDouble(textBoxPressure.Text));
+      label25.Text = perm.ToString("#.0000000");
+      /*double i = 10 / 5 / 2;
+      MessageBox.Show(i.ToString());*/
+    }
   }
 }

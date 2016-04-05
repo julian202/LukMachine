@@ -899,7 +899,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("14000")]
         public int RefCount2V {
             get {
                 return ((int)(this["RefCount2V"]));
@@ -911,7 +911,7 @@ namespace LukMachine.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("58000")]
         public int RefCount10V {
             get {
                 return ((int)(this["RefCount10V"]));
@@ -1050,6 +1050,18 @@ namespace LukMachine.Properties {
             }
             set {
                 this["showErrorMessages"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string innerDiameter {
+            get {
+                return ((string)(this["innerDiameter"]));
+            }
+            set {
+                this["innerDiameter"] = value;
             }
         }
     }

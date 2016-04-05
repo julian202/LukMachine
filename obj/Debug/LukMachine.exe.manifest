@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="LukMachine.exe" version="1.0.0.64" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="LukMachine.exe" version="1.0.0.71" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="LukMachine" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LukMachine.exe" size="2008472">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LukMachine.exe" size="2013080">
       <assemblyIdentity name="LukMachine" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3IPuDNotqSXuiIrBxKU2I/1Euw18vKbyQXLyunyJ98Y=</dsig:DigestValue>
+        <dsig:DigestValue>IgXXLQ1I1iCAVvWooKJHBTJmcSth1egPhZI5Q4bG0to=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -89,13 +89,220 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="LukMachine.exe.config" size="12718">
+  <file name="Help\PMI Liquid Permeameter\contents.html" size="1361">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>l7Bgbg+8WDjRtsWqC19d+1By0776rIH1aXSgqf32EkU=</dsig:DigestValue>
+      <dsig:DigestValue>Y5lNkR2XSUjGPrEntNXhqT6qs38ahEjpEleFoZ6SRQg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\autoTest-Screen.JPG" size="96069">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>YiuZqrv2T2G9/gqcfBDgHY5kPAG9fN2DcCg3bZKquzU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\autoTest-Setup.JPG" size="95675">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>HS6dqqzOYYkqnzL8Sd6EB1YVm0CwLRLigvQzSTQ8B7E=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\calculation.PNG" size="31222">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>/qQz5JnQqE42BnW74M3/Z7qbVkQoR2Rl+K8msAff0D4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\checkingTanks.PNG" size="5486">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>xD5ErEv35kVuXdg9wLA07r63ubpGYUk+bfqJ44o+0Lc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\emptyingTankPNG.PNG" size="11201">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>WGj+HHnxC/bZdkHvGha/mnMjmpCk10MJ7wp9S9j05M0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\flushingScreen.PNG" size="8021">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>KfbC9evFkF8hHF1aBMCggW5w+m4RbwJ6jqQyhc/+N60=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\mainScreen.jpg" size="31463">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>KJvNedqejMTKK3DD529ZlG1BgMGOfJYJcF23/mIaIdM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\manualControl.PNG" size="109345">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>sKDlqXtGWKjoUY4GVdZiR9wJ3BaErV/DqmNi2Zxs4rQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\overlayGraphs.PNG" size="13431">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>pl36LofPQAkf4JdL/ViZQ+QaXOBpLZzcndp+z8zAL1s=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\report.PNG" size="64316">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>yHgkodfEwwXyzLNWV0SAriCwTmidG3ocIe4BDbn4+EQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\settingPressure.PNG" size="8758">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>y1A+GAzaSKLmrrPjchGHUyvActMUSvsdjbCj6zv4i1M=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\settingsWindow.PNG" size="33952">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>tD1qJRb4Aq6ZoatvPQFhAkq0Kwdol1QCKLLih+sSI0U=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\settingsWindow2.PNG" size="26933">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ZwDK1m3lBrGrydNohL2+aZLM+5up0aQpUk+Zoa1i91M=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\images\settingTemperature.PNG" size="9260">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>QvGmhpWP57jHkkgmF7LnrXaTv+rDrn37BcIlNZtJBuw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\index.htm" size="402">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Lbc+rP6MpogzGfoKXbMZZtUoFozbtQ2AzyK0sLvxHfc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\Intro.html" size="1197">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>CPQQATrPgK2FTRQuEfBx/KlaL+95svCkGmflbhbr5qc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\sectionA\autoTestScreen.html" size="3968">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>4EKGh8mObpOrCRIR3tBRv/Pn1E6wBN6CP/CatuUJAw0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\sectionA\autoTestSetup.html" size="3240">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Is4OGZgmz3X8Zg85YtkJydYPR7e5UMQc9jqHJtQITUQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\sectionA\MainScreen.html" size="892">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>AbeIAHV4We5+4R/02BMgNU5fKue4YHYWaefHUYKhnLg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\sectionA\manualControl.html" size="3606">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>J+Fd84ZUZW+R6wWA72BXDtqHiegNBlYQQ1PNbGzfHME=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\sectionA\reportWindow.html" size="1636">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>lqQtIyw3vMUWpMmI5ji5paeJG6m/P9OQuLvcTq5z2B0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Help\PMI Liquid Permeameter\sectionA\settingsWindow.html" size="3204">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>FlhR2zYkFgyXM/PfRqsWBhVEY+oeJCPtYWNUPyR6Ouo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="LukMachine.exe.config" size="12842">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>JPzk41mTma/HH7O/dA48fxpAE85OQ3vpE+TGWFq9pq8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="TextFile1.txt" size="121">

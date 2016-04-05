@@ -234,10 +234,10 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="RefCount2V" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">14000</Value>
     </Setting>
     <Setting Name="RefCount10V" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">58000</Value>
     </Setting>
     <Setting Name="SampleDiameter" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -271,6 +271,9 @@
     </Setting>
     <Setting Name="showErrorMessages" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="innerDiameter" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

@@ -628,7 +628,7 @@ namespace LukMachine
     public void SetAthenaTemp(int channel, double temp)
     {
       Thread.Sleep(10);
-      //convert temp to celsius
+      //convert temp to celsius//
       temp = Math.Round(((temp - 32) * 5 / 9));
       double changedTemp = temp * 10;
       string finalTemp = changedTemp.ToString("0000");

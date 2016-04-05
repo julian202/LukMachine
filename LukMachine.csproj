@@ -12,10 +12,10 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>ftp://ftp.pmiapp.com/development/deploy/luk/</PublishUrl>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\MSI-1\Downloads\LUKpublish\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Web</InstallFrom>
+    <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Background</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -23,13 +23,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://www.pmiapp.com/development/deploy/luk/</InstallUrl>
     <UpdateUrl>http://www.pmiapp.com/development/deploy/luk/</UpdateUrl>
     <ProductName>PMI Liquid Permeability %28Luk%29</ProductName>
     <PublisherName>PMI Porous Materials, Inc</PublisherName>
-    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>64</ApplicationRevision>
+    <ApplicationRevision>71</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -330,6 +328,29 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\112_UpLeftArrowShort_Green_32x32_72.png" />
+    <Content Include="Help\PMI Liquid Permeameter\contents.html" />
+    <Content Include="Help\PMI Liquid Permeameter\images\autoTest-Screen.JPG" />
+    <Content Include="Help\PMI Liquid Permeameter\images\autoTest-Setup.JPG" />
+    <Content Include="Help\PMI Liquid Permeameter\images\calculation.PNG" />
+    <Content Include="Help\PMI Liquid Permeameter\images\checkingTanks.PNG" />
+    <Content Include="Help\PMI Liquid Permeameter\images\emptyingTankPNG.PNG" />
+    <Content Include="Help\PMI Liquid Permeameter\images\flushingScreen.PNG" />
+    <Content Include="Help\PMI Liquid Permeameter\images\mainScreen.jpg" />
+    <Content Include="Help\PMI Liquid Permeameter\images\manualControl.PNG" />
+    <Content Include="Help\PMI Liquid Permeameter\images\overlayGraphs.PNG" />
+    <Content Include="Help\PMI Liquid Permeameter\images\report.PNG" />
+    <Content Include="Help\PMI Liquid Permeameter\images\settingPressure.PNG" />
+    <Content Include="Help\PMI Liquid Permeameter\images\settingsWindow.PNG" />
+    <Content Include="Help\PMI Liquid Permeameter\images\settingsWindow2.PNG" />
+    <Content Include="Help\PMI Liquid Permeameter\images\settingTemperature.PNG" />
+    <Content Include="Help\PMI Liquid Permeameter\index.htm" />
+    <Content Include="Help\PMI Liquid Permeameter\Intro.html" />
+    <Content Include="Help\PMI Liquid Permeameter\sectionA\autoTestScreen.html" />
+    <Content Include="Help\PMI Liquid Permeameter\sectionA\autoTestSetup.html" />
+    <Content Include="Help\PMI Liquid Permeameter\sectionA\MainScreen.html" />
+    <Content Include="Help\PMI Liquid Permeameter\sectionA\manualControl.html" />
+    <Content Include="Help\PMI Liquid Permeameter\sectionA\reportWindow.html" />
+    <Content Include="Help\PMI Liquid Permeameter\sectionA\settingsWindow.html" />
     <Content Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>

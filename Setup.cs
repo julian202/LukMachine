@@ -213,6 +213,7 @@ namespace LukMachine
       Properties.Settings.Default.TestSampleID = textBox1.Text;
       Properties.Settings.Default.TestLotNumber = textBox2.Text;
       Properties.Settings.Default.SampleDiameter = textBoxDiameter.Text;
+      Properties.Settings.Default.innerDiameter = textBoxInnerDiameter.Text;
       Properties.Settings.Default.SampleThickness = textBoxThickness.Text;
       if (radioButtonOil.Checked)
       {
@@ -247,6 +248,19 @@ namespace LukMachine
         MessageBox.Show("Diameter must be a valid number");
         return;
       }
+
+      try
+      {
+        double innerDiameter = Convert.ToDouble(textBoxInnerDiameter.Text);
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Inner Diameter must be a valid number");
+        return;
+      }
+
+
+
       try
       {
         double Thickness = Convert.ToDouble(textBoxThickness.Text);
@@ -880,6 +894,11 @@ namespace LukMachine
       {
         textBoxViscosity.Text = Properties.Settings.Default.WaterViscosity;
       }
+    }
+
+    private void textBoxDiameter_TextChanged(object sender, EventArgs e)
+    {
+
     }
   }
 }

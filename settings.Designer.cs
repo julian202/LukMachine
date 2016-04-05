@@ -34,27 +34,25 @@
       this.button1 = new System.Windows.Forms.Button();
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.groupBox5 = new System.Windows.Forms.GroupBox();
+      this.label16 = new System.Windows.Forms.Label();
+      this.textBoxTemperatureTolerance = new System.Windows.Forms.TextBox();
+      this.groupBox4 = new System.Windows.Forms.GroupBox();
+      this.label15 = new System.Windows.Forms.Label();
+      this.textBoxPressureTolerance = new System.Windows.Forms.TextBox();
       this.groupBox3 = new System.Windows.Forms.GroupBox();
       this.label12 = new System.Windows.Forms.Label();
       this.textBox4 = new System.Windows.Forms.TextBox();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.radioButton2 = new System.Windows.Forms.RadioButton();
       this.radioButton1 = new System.Windows.Forms.RadioButton();
-      this.tabPage2 = new System.Windows.Forms.TabPage();
-      this.tabControl2 = new System.Windows.Forms.TabControl();
-      this.tabPage6 = new System.Windows.Forms.TabPage();
-      this.label1 = new System.Windows.Forms.Label();
-      this.button6 = new System.Windows.Forms.Button();
-      this.dataGridView2 = new System.Windows.Forms.DataGridView();
-      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.tabPage7 = new System.Windows.Forms.TabPage();
-      this.dataGridView3 = new System.Windows.Forms.DataGridView();
-      this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.tabPage3 = new System.Windows.Forms.TabPage();
-      this.label14 = new System.Windows.Forms.Label();
+      this.groupBox7 = new System.Windows.Forms.GroupBox();
+      this.textBoxmaxEmptyCollectedPercentFull = new System.Windows.Forms.TextBox();
+      this.label17 = new System.Windows.Forms.Label();
+      this.groupBox6 = new System.Windows.Forms.GroupBox();
       this.textBoxPressure = new System.Windows.Forms.TextBox();
+      this.label14 = new System.Windows.Forms.Label();
       this.label9 = new System.Windows.Forms.Label();
       this.label10 = new System.Windows.Forms.Label();
       this.textBox3 = new System.Windows.Forms.TextBox();
@@ -71,37 +69,40 @@
       this.label7 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
+      this.tabPage2 = new System.Windows.Forms.TabPage();
+      this.tabControl2 = new System.Windows.Forms.TabControl();
+      this.tabPage6 = new System.Windows.Forms.TabPage();
+      this.label1 = new System.Windows.Forms.Label();
+      this.button6 = new System.Windows.Forms.Button();
+      this.dataGridView2 = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.tabPage7 = new System.Windows.Forms.TabPage();
+      this.dataGridView3 = new System.Windows.Forms.DataGridView();
+      this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.button4 = new System.Windows.Forms.Button();
       this.button3 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
-      this.groupBox4 = new System.Windows.Forms.GroupBox();
-      this.label15 = new System.Windows.Forms.Label();
-      this.textBoxPressureTolerance = new System.Windows.Forms.TextBox();
-      this.groupBox5 = new System.Windows.Forms.GroupBox();
-      this.label16 = new System.Windows.Forms.Label();
-      this.textBoxTemperatureTolerance = new System.Windows.Forms.TextBox();
-      this.label17 = new System.Windows.Forms.Label();
-      this.textBoxmaxEmptyCollectedPercentFull = new System.Windows.Forms.TextBox();
-      this.groupBox6 = new System.Windows.Forms.GroupBox();
-      this.groupBox7 = new System.Windows.Forms.GroupBox();
+      this.button5 = new System.Windows.Forms.Button();
       this.groupBox1.SuspendLayout();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
+      this.groupBox5.SuspendLayout();
+      this.groupBox4.SuspendLayout();
       this.groupBox3.SuspendLayout();
       this.groupBox2.SuspendLayout();
+      this.tabPage3.SuspendLayout();
+      this.groupBox7.SuspendLayout();
+      this.groupBox6.SuspendLayout();
+      this.tabPage4.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.tabPage2.SuspendLayout();
       this.tabControl2.SuspendLayout();
       this.tabPage6.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
       this.tabPage7.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-      this.tabPage3.SuspendLayout();
-      this.tabPage4.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-      this.groupBox4.SuspendLayout();
-      this.groupBox5.SuspendLayout();
-      this.groupBox6.SuspendLayout();
-      this.groupBox7.SuspendLayout();
       this.SuspendLayout();
       // 
       // groupBox1
@@ -166,6 +167,64 @@
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "General";
       this.tabPage1.UseVisualStyleBackColor = true;
+      // 
+      // groupBox5
+      // 
+      this.groupBox5.Controls.Add(this.label16);
+      this.groupBox5.Controls.Add(this.textBoxTemperatureTolerance);
+      this.groupBox5.Location = new System.Drawing.Point(72, 267);
+      this.groupBox5.Name = "groupBox5";
+      this.groupBox5.Size = new System.Drawing.Size(294, 74);
+      this.groupBox5.TabIndex = 19;
+      this.groupBox5.TabStop = false;
+      this.groupBox5.Text = "Temperature Tolerance:";
+      // 
+      // label16
+      // 
+      this.label16.AutoSize = true;
+      this.label16.Location = new System.Drawing.Point(144, 32);
+      this.label16.Name = "label16";
+      this.label16.Size = new System.Drawing.Size(63, 23);
+      this.label16.TabIndex = 1;
+      this.label16.Text = "deg C";
+      // 
+      // textBoxTemperatureTolerance
+      // 
+      this.textBoxTemperatureTolerance.Location = new System.Drawing.Point(43, 29);
+      this.textBoxTemperatureTolerance.Name = "textBoxTemperatureTolerance";
+      this.textBoxTemperatureTolerance.Size = new System.Drawing.Size(88, 30);
+      this.textBoxTemperatureTolerance.TabIndex = 0;
+      this.textBoxTemperatureTolerance.Text = "1";
+      this.textBoxTemperatureTolerance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      // 
+      // groupBox4
+      // 
+      this.groupBox4.Controls.Add(this.label15);
+      this.groupBox4.Controls.Add(this.textBoxPressureTolerance);
+      this.groupBox4.Location = new System.Drawing.Point(72, 187);
+      this.groupBox4.Name = "groupBox4";
+      this.groupBox4.Size = new System.Drawing.Size(294, 74);
+      this.groupBox4.TabIndex = 18;
+      this.groupBox4.TabStop = false;
+      this.groupBox4.Text = "Pressure Tolerance:";
+      // 
+      // label15
+      // 
+      this.label15.AutoSize = true;
+      this.label15.Location = new System.Drawing.Point(144, 32);
+      this.label15.Name = "label15";
+      this.label15.Size = new System.Drawing.Size(42, 23);
+      this.label15.TabIndex = 1;
+      this.label15.Text = "PSI";
+      // 
+      // textBoxPressureTolerance
+      // 
+      this.textBoxPressureTolerance.Location = new System.Drawing.Point(43, 29);
+      this.textBoxPressureTolerance.Name = "textBoxPressureTolerance";
+      this.textBoxPressureTolerance.Size = new System.Drawing.Size(88, 30);
+      this.textBoxPressureTolerance.TabIndex = 0;
+      this.textBoxPressureTolerance.Text = "1";
+      this.textBoxPressureTolerance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       // 
       // groupBox3
       // 
@@ -233,13 +292,246 @@
       this.radioButton1.UseVisualStyleBackColor = true;
       this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
       // 
+      // tabPage3
+      // 
+      this.tabPage3.Controls.Add(this.groupBox7);
+      this.tabPage3.Controls.Add(this.groupBox6);
+      this.tabPage3.Controls.Add(this.label9);
+      this.tabPage3.Controls.Add(this.label10);
+      this.tabPage3.Controls.Add(this.textBox3);
+      this.tabPage3.Controls.Add(this.label5);
+      this.tabPage3.Controls.Add(this.label8);
+      this.tabPage3.Controls.Add(this.textBox2);
+      this.tabPage3.Controls.Add(this.label4);
+      this.tabPage3.Controls.Add(this.label3);
+      this.tabPage3.Controls.Add(this.textBox1);
+      this.tabPage3.Controls.Add(this.label2);
+      this.tabPage3.Location = new System.Drawing.Point(4, 35);
+      this.tabPage3.Name = "tabPage3";
+      this.tabPage3.Size = new System.Drawing.Size(439, 373);
+      this.tabPage3.TabIndex = 2;
+      this.tabPage3.Text = "Machine Settings";
+      this.tabPage3.UseVisualStyleBackColor = true;
+      // 
+      // groupBox7
+      // 
+      this.groupBox7.Controls.Add(this.textBoxmaxEmptyCollectedPercentFull);
+      this.groupBox7.Controls.Add(this.label17);
+      this.groupBox7.Location = new System.Drawing.Point(23, 116);
+      this.groupBox7.Name = "groupBox7";
+      this.groupBox7.Size = new System.Drawing.Size(391, 95);
+      this.groupBox7.TabIndex = 17;
+      this.groupBox7.TabStop = false;
+      this.groupBox7.Text = "Close flushing valve at collected volume of:";
+      // 
+      // textBoxmaxEmptyCollectedPercentFull
+      // 
+      this.textBoxmaxEmptyCollectedPercentFull.Location = new System.Drawing.Point(43, 41);
+      this.textBoxmaxEmptyCollectedPercentFull.Name = "textBoxmaxEmptyCollectedPercentFull";
+      this.textBoxmaxEmptyCollectedPercentFull.Size = new System.Drawing.Size(53, 30);
+      this.textBoxmaxEmptyCollectedPercentFull.TabIndex = 13;
+      this.textBoxmaxEmptyCollectedPercentFull.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      // 
+      // label17
+      // 
+      this.label17.AutoSize = true;
+      this.label17.Location = new System.Drawing.Point(102, 44);
+      this.label17.Name = "label17";
+      this.label17.Size = new System.Drawing.Size(28, 23);
+      this.label17.TabIndex = 15;
+      this.label17.Text = "%";
+      // 
+      // groupBox6
+      // 
+      this.groupBox6.Controls.Add(this.textBoxPressure);
+      this.groupBox6.Controls.Add(this.label14);
+      this.groupBox6.Location = new System.Drawing.Point(23, 26);
+      this.groupBox6.Name = "groupBox6";
+      this.groupBox6.Size = new System.Drawing.Size(391, 84);
+      this.groupBox6.TabIndex = 16;
+      this.groupBox6.TabStop = false;
+      this.groupBox6.Text = "Max Gauge Pressure:";
+      // 
+      // textBoxPressure
+      // 
+      this.textBoxPressure.Location = new System.Drawing.Point(43, 39);
+      this.textBoxPressure.Name = "textBoxPressure";
+      this.textBoxPressure.Size = new System.Drawing.Size(53, 30);
+      this.textBoxPressure.TabIndex = 10;
+      this.textBoxPressure.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+      // 
+      // label14
+      // 
+      this.label14.AutoSize = true;
+      this.label14.Location = new System.Drawing.Point(102, 42);
+      this.label14.Name = "label14";
+      this.label14.Size = new System.Drawing.Size(42, 23);
+      this.label14.TabIndex = 12;
+      this.label14.Text = "PSI";
+      // 
+      // label9
+      // 
+      this.label9.AutoSize = true;
+      this.label9.Location = new System.Drawing.Point(324, 350);
+      this.label9.Name = "label9";
+      this.label9.Size = new System.Drawing.Size(28, 23);
+      this.label9.TabIndex = 9;
+      this.label9.Text = "%";
+      this.label9.Visible = false;
+      // 
+      // label10
+      // 
+      this.label10.AutoSize = true;
+      this.label10.Location = new System.Drawing.Point(179, 350);
+      this.label10.Name = "label10";
+      this.label10.Size = new System.Drawing.Size(54, 23);
+      this.label10.TabIndex = 8;
+      this.label10.Text = "High:";
+      this.label10.Visible = false;
+      // 
+      // textBox3
+      // 
+      this.textBox3.Location = new System.Drawing.Point(265, 347);
+      this.textBox3.Name = "textBox3";
+      this.textBox3.Size = new System.Drawing.Size(53, 30);
+      this.textBox3.TabIndex = 7;
+      this.textBox3.Visible = false;
+      // 
+      // label5
+      // 
+      this.label5.AutoSize = true;
+      this.label5.Location = new System.Drawing.Point(324, 318);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(28, 23);
+      this.label5.TabIndex = 6;
+      this.label5.Text = "%";
+      this.label5.Visible = false;
+      // 
+      // label8
+      // 
+      this.label8.AutoSize = true;
+      this.label8.Location = new System.Drawing.Point(179, 318);
+      this.label8.Name = "label8";
+      this.label8.Size = new System.Drawing.Size(85, 23);
+      this.label8.TabIndex = 5;
+      this.label8.Text = "Medium:";
+      this.label8.Visible = false;
+      // 
+      // textBox2
+      // 
+      this.textBox2.Location = new System.Drawing.Point(265, 315);
+      this.textBox2.Name = "textBox2";
+      this.textBox2.Size = new System.Drawing.Size(53, 30);
+      this.textBox2.TabIndex = 4;
+      this.textBox2.Visible = false;
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(324, 286);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(28, 23);
+      this.label4.TabIndex = 3;
+      this.label4.Text = "%";
+      this.label4.Visible = false;
+      // 
+      // label3
+      // 
+      this.label3.AutoSize = true;
+      this.label3.Location = new System.Drawing.Point(179, 286);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(53, 23);
+      this.label3.TabIndex = 2;
+      this.label3.Text = "Low:";
+      this.label3.Visible = false;
+      // 
+      // textBox1
+      // 
+      this.textBox1.Location = new System.Drawing.Point(265, 283);
+      this.textBox1.Name = "textBox1";
+      this.textBox1.Size = new System.Drawing.Size(53, 30);
+      this.textBox1.TabIndex = 1;
+      this.textBox1.Visible = false;
+      // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Location = new System.Drawing.Point(52, 256);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(140, 23);
+      this.label2.TabIndex = 0;
+      this.label2.Text = "Pump settings:";
+      this.label2.Visible = false;
+      // 
+      // tabPage4
+      // 
+      this.tabPage4.Controls.Add(this.textBox8);
+      this.tabPage4.Controls.Add(this.label11);
+      this.tabPage4.Controls.Add(this.label7);
+      this.tabPage4.Controls.Add(this.label6);
+      this.tabPage4.Controls.Add(this.pictureBox1);
+      this.tabPage4.Location = new System.Drawing.Point(4, 35);
+      this.tabPage4.Name = "tabPage4";
+      this.tabPage4.Size = new System.Drawing.Size(439, 373);
+      this.tabPage4.TabIndex = 3;
+      this.tabPage4.Text = "About";
+      this.tabPage4.UseVisualStyleBackColor = true;
+      // 
+      // textBox8
+      // 
+      this.textBox8.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.textBox8.Location = new System.Drawing.Point(17, 165);
+      this.textBox8.Multiline = true;
+      this.textBox8.Name = "textBox8";
+      this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+      this.textBox8.Size = new System.Drawing.Size(406, 118);
+      this.textBox8.TabIndex = 10;
+      this.textBox8.Text = "1.0.0: \r\n-Initial build & release for testing";
+      // 
+      // label11
+      // 
+      this.label11.AutoSize = true;
+      this.label11.Location = new System.Drawing.Point(14, 146);
+      this.label11.Name = "label11";
+      this.label11.Size = new System.Drawing.Size(115, 23);
+      this.label11.TabIndex = 9;
+      this.label11.Text = "Change log:";
+      // 
+      // label7
+      // 
+      this.label7.AutoSize = true;
+      this.label7.Location = new System.Drawing.Point(14, 21);
+      this.label7.Name = "label7";
+      this.label7.Size = new System.Drawing.Size(197, 115);
+      this.label7.TabIndex = 8;
+      this.label7.Text = "Porous Materials, Inc\r\n20 Dutchmill Rd\r\nIthaca, NY 14085\r\n\r\n1-607-257-5544";
+      // 
+      // label6
+      // 
+      this.label6.AutoSize = true;
+      this.label6.Location = new System.Drawing.Point(259, 131);
+      this.label6.Name = "label6";
+      this.label6.Size = new System.Drawing.Size(203, 23);
+      this.label6.TabIndex = 7;
+      this.label6.Text = "Softare Version: 1.0.8";
+      // 
+      // pictureBox1
+      // 
+      this.pictureBox1.Image = global::LukMachine.Properties.Resources.PMI_LOGO_NEW_2010_outerglow_copy;
+      this.pictureBox1.Location = new System.Drawing.Point(234, 21);
+      this.pictureBox1.Name = "pictureBox1";
+      this.pictureBox1.Size = new System.Drawing.Size(189, 98);
+      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.pictureBox1.TabIndex = 6;
+      this.pictureBox1.TabStop = false;
+      // 
       // tabPage2
       // 
       this.tabPage2.Controls.Add(this.tabControl2);
       this.tabPage2.Location = new System.Drawing.Point(4, 35);
       this.tabPage2.Name = "tabPage2";
       this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage2.Size = new System.Drawing.Size(439, 403);
+      this.tabPage2.Size = new System.Drawing.Size(439, 373);
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Units & Fluids";
       this.tabPage2.UseVisualStyleBackColor = true;
@@ -346,205 +638,11 @@
       this.dataGridViewTextBoxColumn4.HeaderText = "Viscosity(cP)";
       this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
       // 
-      // tabPage3
-      // 
-      this.tabPage3.Controls.Add(this.groupBox7);
-      this.tabPage3.Controls.Add(this.groupBox6);
-      this.tabPage3.Controls.Add(this.label9);
-      this.tabPage3.Controls.Add(this.label10);
-      this.tabPage3.Controls.Add(this.textBox3);
-      this.tabPage3.Controls.Add(this.label5);
-      this.tabPage3.Controls.Add(this.label8);
-      this.tabPage3.Controls.Add(this.textBox2);
-      this.tabPage3.Controls.Add(this.label4);
-      this.tabPage3.Controls.Add(this.label3);
-      this.tabPage3.Controls.Add(this.textBox1);
-      this.tabPage3.Controls.Add(this.label2);
-      this.tabPage3.Location = new System.Drawing.Point(4, 35);
-      this.tabPage3.Name = "tabPage3";
-      this.tabPage3.Size = new System.Drawing.Size(439, 373);
-      this.tabPage3.TabIndex = 2;
-      this.tabPage3.Text = "Machine Settings";
-      this.tabPage3.UseVisualStyleBackColor = true;
-      // 
-      // label14
-      // 
-      this.label14.AutoSize = true;
-      this.label14.Location = new System.Drawing.Point(102, 42);
-      this.label14.Name = "label14";
-      this.label14.Size = new System.Drawing.Size(42, 23);
-      this.label14.TabIndex = 12;
-      this.label14.Text = "PSI";
-      // 
-      // textBoxPressure
-      // 
-      this.textBoxPressure.Location = new System.Drawing.Point(43, 39);
-      this.textBoxPressure.Name = "textBoxPressure";
-      this.textBoxPressure.Size = new System.Drawing.Size(53, 30);
-      this.textBoxPressure.TabIndex = 10;
-      this.textBoxPressure.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      // 
-      // label9
-      // 
-      this.label9.AutoSize = true;
-      this.label9.Location = new System.Drawing.Point(324, 350);
-      this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(28, 23);
-      this.label9.TabIndex = 9;
-      this.label9.Text = "%";
-      this.label9.Visible = false;
-      // 
-      // label10
-      // 
-      this.label10.AutoSize = true;
-      this.label10.Location = new System.Drawing.Point(179, 350);
-      this.label10.Name = "label10";
-      this.label10.Size = new System.Drawing.Size(54, 23);
-      this.label10.TabIndex = 8;
-      this.label10.Text = "High:";
-      this.label10.Visible = false;
-      // 
-      // textBox3
-      // 
-      this.textBox3.Location = new System.Drawing.Point(265, 347);
-      this.textBox3.Name = "textBox3";
-      this.textBox3.Size = new System.Drawing.Size(53, 30);
-      this.textBox3.TabIndex = 7;
-      this.textBox3.Visible = false;
-      // 
-      // label5
-      // 
-      this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(324, 318);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(28, 23);
-      this.label5.TabIndex = 6;
-      this.label5.Text = "%";
-      this.label5.Visible = false;
-      // 
-      // label8
-      // 
-      this.label8.AutoSize = true;
-      this.label8.Location = new System.Drawing.Point(179, 318);
-      this.label8.Name = "label8";
-      this.label8.Size = new System.Drawing.Size(85, 23);
-      this.label8.TabIndex = 5;
-      this.label8.Text = "Medium:";
-      this.label8.Visible = false;
-      // 
-      // textBox2
-      // 
-      this.textBox2.Location = new System.Drawing.Point(265, 315);
-      this.textBox2.Name = "textBox2";
-      this.textBox2.Size = new System.Drawing.Size(53, 30);
-      this.textBox2.TabIndex = 4;
-      this.textBox2.Visible = false;
-      // 
-      // label4
-      // 
-      this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(324, 286);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(28, 23);
-      this.label4.TabIndex = 3;
-      this.label4.Text = "%";
-      this.label4.Visible = false;
-      // 
-      // label3
-      // 
-      this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(179, 286);
-      this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(53, 23);
-      this.label3.TabIndex = 2;
-      this.label3.Text = "Low:";
-      this.label3.Visible = false;
-      // 
-      // textBox1
-      // 
-      this.textBox1.Location = new System.Drawing.Point(265, 283);
-      this.textBox1.Name = "textBox1";
-      this.textBox1.Size = new System.Drawing.Size(53, 30);
-      this.textBox1.TabIndex = 1;
-      this.textBox1.Visible = false;
-      // 
-      // label2
-      // 
-      this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(52, 256);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(140, 23);
-      this.label2.TabIndex = 0;
-      this.label2.Text = "Pump settings:";
-      this.label2.Visible = false;
-      // 
-      // tabPage4
-      // 
-      this.tabPage4.Controls.Add(this.textBox8);
-      this.tabPage4.Controls.Add(this.label11);
-      this.tabPage4.Controls.Add(this.label7);
-      this.tabPage4.Controls.Add(this.label6);
-      this.tabPage4.Controls.Add(this.pictureBox1);
-      this.tabPage4.Location = new System.Drawing.Point(4, 35);
-      this.tabPage4.Name = "tabPage4";
-      this.tabPage4.Size = new System.Drawing.Size(439, 403);
-      this.tabPage4.TabIndex = 3;
-      this.tabPage4.Text = "About";
-      this.tabPage4.UseVisualStyleBackColor = true;
-      // 
-      // textBox8
-      // 
-      this.textBox8.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBox8.Location = new System.Drawing.Point(17, 165);
-      this.textBox8.Multiline = true;
-      this.textBox8.Name = "textBox8";
-      this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-      this.textBox8.Size = new System.Drawing.Size(406, 118);
-      this.textBox8.TabIndex = 10;
-      this.textBox8.Text = "1.0.0: \r\n-Initial build & release for testing";
-      // 
-      // label11
-      // 
-      this.label11.AutoSize = true;
-      this.label11.Location = new System.Drawing.Point(14, 146);
-      this.label11.Name = "label11";
-      this.label11.Size = new System.Drawing.Size(115, 23);
-      this.label11.TabIndex = 9;
-      this.label11.Text = "Change log:";
-      // 
-      // label7
-      // 
-      this.label7.AutoSize = true;
-      this.label7.Location = new System.Drawing.Point(14, 21);
-      this.label7.Name = "label7";
-      this.label7.Size = new System.Drawing.Size(197, 115);
-      this.label7.TabIndex = 8;
-      this.label7.Text = "Porous Materials, Inc\r\n20 Dutchmill Rd\r\nIthaca, NY 14085\r\n\r\n1-607-257-5544";
-      // 
-      // label6
-      // 
-      this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(259, 131);
-      this.label6.Name = "label6";
-      this.label6.Size = new System.Drawing.Size(203, 23);
-      this.label6.TabIndex = 7;
-      this.label6.Text = "Softare Version: 1.0.8";
-      // 
-      // pictureBox1
-      // 
-      this.pictureBox1.Image = global::LukMachine.Properties.Resources.PMI_LOGO_NEW_2010_outerglow_copy;
-      this.pictureBox1.Location = new System.Drawing.Point(234, 21);
-      this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(189, 98);
-      this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.pictureBox1.TabIndex = 6;
-      this.pictureBox1.TabStop = false;
-      // 
       // button4
       // 
       this.button4.Image = global::LukMachine.Properties.Resources._327_Options_32x32_72;
       this.button4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-      this.button4.Location = new System.Drawing.Point(28, 488);
+      this.button4.Location = new System.Drawing.Point(74, 503);
       this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
       this.button4.Name = "button4";
       this.button4.Size = new System.Drawing.Size(110, 63);
@@ -587,108 +685,22 @@
       this.button2.UseVisualStyleBackColor = true;
       this.button2.Click += new System.EventHandler(this.button2_Click);
       // 
-      // groupBox4
+      // button5
       // 
-      this.groupBox4.Controls.Add(this.label15);
-      this.groupBox4.Controls.Add(this.textBoxPressureTolerance);
-      this.groupBox4.Location = new System.Drawing.Point(72, 187);
-      this.groupBox4.Name = "groupBox4";
-      this.groupBox4.Size = new System.Drawing.Size(294, 74);
-      this.groupBox4.TabIndex = 18;
-      this.groupBox4.TabStop = false;
-      this.groupBox4.Text = "Pressure Tolerance:";
-      // 
-      // label15
-      // 
-      this.label15.AutoSize = true;
-      this.label15.Location = new System.Drawing.Point(144, 32);
-      this.label15.Name = "label15";
-      this.label15.Size = new System.Drawing.Size(42, 23);
-      this.label15.TabIndex = 1;
-      this.label15.Text = "PSI";
-      // 
-      // textBoxPressureTolerance
-      // 
-      this.textBoxPressureTolerance.Location = new System.Drawing.Point(43, 29);
-      this.textBoxPressureTolerance.Name = "textBoxPressureTolerance";
-      this.textBoxPressureTolerance.Size = new System.Drawing.Size(88, 30);
-      this.textBoxPressureTolerance.TabIndex = 0;
-      this.textBoxPressureTolerance.Text = "1";
-      this.textBoxPressureTolerance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      // 
-      // groupBox5
-      // 
-      this.groupBox5.Controls.Add(this.label16);
-      this.groupBox5.Controls.Add(this.textBoxTemperatureTolerance);
-      this.groupBox5.Location = new System.Drawing.Point(72, 267);
-      this.groupBox5.Name = "groupBox5";
-      this.groupBox5.Size = new System.Drawing.Size(294, 74);
-      this.groupBox5.TabIndex = 19;
-      this.groupBox5.TabStop = false;
-      this.groupBox5.Text = "Temperature Tolerance:";
-      // 
-      // label16
-      // 
-      this.label16.AutoSize = true;
-      this.label16.Location = new System.Drawing.Point(144, 32);
-      this.label16.Name = "label16";
-      this.label16.Size = new System.Drawing.Size(63, 23);
-      this.label16.TabIndex = 1;
-      this.label16.Text = "deg C";
-      // 
-      // textBoxTemperatureTolerance
-      // 
-      this.textBoxTemperatureTolerance.Location = new System.Drawing.Point(43, 29);
-      this.textBoxTemperatureTolerance.Name = "textBoxTemperatureTolerance";
-      this.textBoxTemperatureTolerance.Size = new System.Drawing.Size(88, 30);
-      this.textBoxTemperatureTolerance.TabIndex = 0;
-      this.textBoxTemperatureTolerance.Text = "1";
-      this.textBoxTemperatureTolerance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      // 
-      // label17
-      // 
-      this.label17.AutoSize = true;
-      this.label17.Location = new System.Drawing.Point(102, 44);
-      this.label17.Name = "label17";
-      this.label17.Size = new System.Drawing.Size(28, 23);
-      this.label17.TabIndex = 15;
-      this.label17.Text = "%";
-      // 
-      // textBoxmaxEmptyCollectedPercentFull
-      // 
-      this.textBoxmaxEmptyCollectedPercentFull.Location = new System.Drawing.Point(43, 41);
-      this.textBoxmaxEmptyCollectedPercentFull.Name = "textBoxmaxEmptyCollectedPercentFull";
-      this.textBoxmaxEmptyCollectedPercentFull.Size = new System.Drawing.Size(53, 30);
-      this.textBoxmaxEmptyCollectedPercentFull.TabIndex = 13;
-      this.textBoxmaxEmptyCollectedPercentFull.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-      // 
-      // groupBox6
-      // 
-      this.groupBox6.Controls.Add(this.textBoxPressure);
-      this.groupBox6.Controls.Add(this.label14);
-      this.groupBox6.Location = new System.Drawing.Point(23, 26);
-      this.groupBox6.Name = "groupBox6";
-      this.groupBox6.Size = new System.Drawing.Size(391, 84);
-      this.groupBox6.TabIndex = 16;
-      this.groupBox6.TabStop = false;
-      this.groupBox6.Text = "Max Gauge Pressure:";
-      // 
-      // groupBox7
-      // 
-      this.groupBox7.Controls.Add(this.textBoxmaxEmptyCollectedPercentFull);
-      this.groupBox7.Controls.Add(this.label17);
-      this.groupBox7.Location = new System.Drawing.Point(23, 116);
-      this.groupBox7.Name = "groupBox7";
-      this.groupBox7.Size = new System.Drawing.Size(391, 95);
-      this.groupBox7.TabIndex = 17;
-      this.groupBox7.TabStop = false;
-      this.groupBox7.Text = "Close flushing valve at collected volume of:";
+      this.button5.Location = new System.Drawing.Point(16, 443);
+      this.button5.Name = "button5";
+      this.button5.Size = new System.Drawing.Size(183, 35);
+      this.button5.TabIndex = 26;
+      this.button5.Text = "Help Documentation";
+      this.button5.UseVisualStyleBackColor = true;
+      this.button5.Click += new System.EventHandler(this.button5_Click);
       // 
       // settings
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(480, 520);
+      this.Controls.Add(this.button5);
       this.Controls.Add(this.tabControl1);
       this.Controls.Add(this.button4);
       this.Controls.Add(this.button3);
@@ -704,10 +716,23 @@
       this.groupBox1.ResumeLayout(false);
       this.tabControl1.ResumeLayout(false);
       this.tabPage1.ResumeLayout(false);
+      this.groupBox5.ResumeLayout(false);
+      this.groupBox5.PerformLayout();
+      this.groupBox4.ResumeLayout(false);
+      this.groupBox4.PerformLayout();
       this.groupBox3.ResumeLayout(false);
       this.groupBox3.PerformLayout();
       this.groupBox2.ResumeLayout(false);
       this.groupBox2.PerformLayout();
+      this.tabPage3.ResumeLayout(false);
+      this.tabPage3.PerformLayout();
+      this.groupBox7.ResumeLayout(false);
+      this.groupBox7.PerformLayout();
+      this.groupBox6.ResumeLayout(false);
+      this.groupBox6.PerformLayout();
+      this.tabPage4.ResumeLayout(false);
+      this.tabPage4.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.tabPage2.ResumeLayout(false);
       this.tabControl2.ResumeLayout(false);
       this.tabPage6.ResumeLayout(false);
@@ -715,19 +740,6 @@
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
       this.tabPage7.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-      this.tabPage3.ResumeLayout(false);
-      this.tabPage3.PerformLayout();
-      this.tabPage4.ResumeLayout(false);
-      this.tabPage4.PerformLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-      this.groupBox4.ResumeLayout(false);
-      this.groupBox4.PerformLayout();
-      this.groupBox5.ResumeLayout(false);
-      this.groupBox5.PerformLayout();
-      this.groupBox6.ResumeLayout(false);
-      this.groupBox6.PerformLayout();
-      this.groupBox7.ResumeLayout(false);
-      this.groupBox7.PerformLayout();
       this.ResumeLayout(false);
 
         }
@@ -789,5 +801,6 @@
     private System.Windows.Forms.TextBox textBoxmaxEmptyCollectedPercentFull;
     private System.Windows.Forms.GroupBox groupBox7;
     private System.Windows.Forms.GroupBox groupBox6;
+    private System.Windows.Forms.Button button5;
   }
 }
