@@ -437,6 +437,7 @@ namespace LukMachine
       textBoxDuration.Text = Properties.Settings.Default.TextboxDuration;
       textBoxDiameter.Text = Properties.Settings.Default.SampleDiameter;
       textBoxThickness.Text = Properties.Settings.Default.SampleThickness;
+      textBoxInnerDiameter.Text = Properties.Settings.Default.innerDiameter;
 
       if (Properties.Settings.Default.LiquidType == "Oil")
       {

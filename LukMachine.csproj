@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\MSI-1\Downloads\LUKpublish\</PublishUrl>
+    <PublishUrl>ftp://ftp.pmiapp.com/development/deploy/luk/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -27,7 +27,8 @@
     <ProductName>PMI Liquid Permeability %28Luk%29</ProductName>
     <PublisherName>PMI Porous Materials, Inc</PublisherName>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>71</ApplicationRevision>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>72</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

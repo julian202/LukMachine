@@ -359,10 +359,20 @@ namespace LukMachine
           stopwatch.Stop();
           stopwatchStep.Stop();
         }
-        while (emptyingCollected) //wait for collected volume to drain
+        if (emptyingCollected)
         {
-          Thread.Sleep(200);
-        }
+          while (true) //wait for collected volume to drain
+          {
+            Thread.Sleep(200);
+            if (!emptyingCollected)
+            {
+              goToTargetTemperature();
+              goToTargetPressure();
+              break; //break from the while loop
+            }
+          }
+        }     
+
         if (!stopwatchStep.IsRunning)
         {
           dontCountFirstDataPointAfterEmtpying = true;
@@ -588,11 +598,15 @@ namespace LukMachine
 
         if (emptyingCollected)
         {
-          Valves.OpenValve1();
+          Pumps.SetPump2(0);
           if (collectedPercent < Properties.Settings.Default.maxEmptyCollectedPercentFull)
           {
             Valves.CloseValve1();
-            emptyingCollected = false;
+            emptyingCollected = false;     
+          }
+          else
+          {
+            Valves.OpenValve1();
           }
         }
 
