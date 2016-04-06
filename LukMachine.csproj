@@ -328,6 +328,7 @@
     <None Include="Resources\112_LeftArrowShort_Green_32x32_72.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DiagramForDebuggingSerialPort.PNG" />
     <Content Include="Notes.txt" />
     <None Include="Resources\112_UpLeftArrowShort_Green_32x32_72.png" />
     <Content Include="Help\PMI Liquid Permeameter\contents.html" />

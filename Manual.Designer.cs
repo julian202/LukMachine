@@ -86,13 +86,13 @@
       this.aGauge5 = new AGaugeApp.AGauge();
       this.groupBox6 = new System.Windows.Forms.GroupBox();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.groupBoxCollected = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.label8 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.buttonStopFan = new System.Windows.Forms.Button();
+      this.buttonStartFan = new System.Windows.Forms.Button();
       this.label64 = new System.Windows.Forms.Label();
       this.radioButtonP1P2 = new System.Windows.Forms.RadioButton();
       this.textBoxPDiff = new System.Windows.Forms.TextBox();
@@ -194,12 +194,10 @@
       this.label29 = new System.Windows.Forms.Label();
       this.label28 = new System.Windows.Forms.Label();
       this.label27 = new System.Windows.Forms.Label();
-      this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
       this.label23 = new System.Windows.Forms.Label();
       this.label22 = new System.Windows.Forms.Label();
       this.label21 = new System.Windows.Forms.Label();
       this.label20 = new System.Windows.Forms.Label();
-      this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
       this.label18 = new System.Windows.Forms.Label();
       this.label9 = new System.Windows.Forms.Label();
       this.label17 = new System.Windows.Forms.Label();
@@ -237,6 +235,7 @@
       this.lineShape3 = new Microsoft.VisualBasic.PowerPacks.LineShape();
       this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.tabPage2 = new System.Windows.Forms.TabPage();
+      this.checkBox5 = new System.Windows.Forms.CheckBox();
       this.label32 = new System.Windows.Forms.Label();
       this.button34 = new System.Windows.Forms.Button();
       this.checkBoxAllowValve2 = new System.Windows.Forms.CheckBox();
@@ -254,9 +253,10 @@
       this.button25 = new System.Windows.Forms.Button();
       this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
       this.timerHeater = new System.Windows.Forms.Timer(this.components);
-      this.buttonStartFan = new System.Windows.Forms.Button();
-      this.buttonStopFan = new System.Windows.Forms.Button();
-      this.checkBox5 = new System.Windows.Forms.CheckBox();
+      this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.groupBox9.SuspendLayout();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -1025,13 +1025,6 @@
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir Volume";
       // 
-      // verticalProgressBar1
-      // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(35, 63);
-      this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
-      this.verticalProgressBar1.TabIndex = 43;
-      // 
       // groupBoxCollected
       // 
       this.groupBoxCollected.Controls.Add(this.verticalProgressBar2);
@@ -1041,13 +1034,6 @@
       this.groupBoxCollected.TabIndex = 41;
       this.groupBoxCollected.TabStop = false;
       this.groupBoxCollected.Text = "Collected Volume";
-      // 
-      // verticalProgressBar2
-      // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(42, 64);
-      this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
-      this.verticalProgressBar2.TabIndex = 44;
       // 
       // label8
       // 
@@ -1170,6 +1156,26 @@
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "Diagram Control";
       this.tabPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabPage1_Paint);
+      // 
+      // buttonStopFan
+      // 
+      this.buttonStopFan.Location = new System.Drawing.Point(1093, 550);
+      this.buttonStopFan.Name = "buttonStopFan";
+      this.buttonStopFan.Size = new System.Drawing.Size(108, 39);
+      this.buttonStopFan.TabIndex = 126;
+      this.buttonStopFan.Text = "Stop Fan";
+      this.buttonStopFan.UseVisualStyleBackColor = true;
+      this.buttonStopFan.Click += new System.EventHandler(this.buttonStopFan_Click);
+      // 
+      // buttonStartFan
+      // 
+      this.buttonStartFan.Location = new System.Drawing.Point(1093, 503);
+      this.buttonStartFan.Name = "buttonStartFan";
+      this.buttonStartFan.Size = new System.Drawing.Size(108, 39);
+      this.buttonStartFan.TabIndex = 18;
+      this.buttonStartFan.Text = "Start Fan";
+      this.buttonStartFan.UseVisualStyleBackColor = true;
+      this.buttonStartFan.Click += new System.EventHandler(this.buttonStartFan_Click);
       // 
       // label64
       // 
@@ -2396,14 +2402,6 @@
       this.label27.TabIndex = 54;
       this.label27.Text = "Reservoir:";
       // 
-      // verticalProgressBar4
-      // 
-      this.verticalProgressBar4.Location = new System.Drawing.Point(253, 317);
-      this.verticalProgressBar4.Name = "verticalProgressBar4";
-      this.verticalProgressBar4.Size = new System.Drawing.Size(84, 180);
-      this.verticalProgressBar4.TabIndex = 50;
-      this.verticalProgressBar4.Click += new System.EventHandler(this.verticalProgressBar4_Click);
-      // 
       // label23
       // 
       this.label23.AutoSize = true;
@@ -2447,14 +2445,6 @@
       this.label20.Size = new System.Drawing.Size(68, 25);
       this.label20.TabIndex = 46;
       this.label20.Text = "Outlet";
-      // 
-      // verticalProgressBar3
-      // 
-      this.verticalProgressBar3.Location = new System.Drawing.Point(115, 76);
-      this.verticalProgressBar3.Name = "verticalProgressBar3";
-      this.verticalProgressBar3.Size = new System.Drawing.Size(84, 180);
-      this.verticalProgressBar3.TabIndex = 45;
-      this.verticalProgressBar3.Click += new System.EventHandler(this.verticalProgressBar3_Click);
       // 
       // label18
       // 
@@ -2880,6 +2870,17 @@
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Advanced";
       // 
+      // checkBox5
+      // 
+      this.checkBox5.AutoSize = true;
+      this.checkBox5.Location = new System.Drawing.Point(35, 564);
+      this.checkBox5.Name = "checkBox5";
+      this.checkBox5.Size = new System.Drawing.Size(323, 29);
+      this.checkBox5.TabIndex = 88;
+      this.checkBox5.Text = "Show Percentage and Counts";
+      this.checkBox5.UseVisualStyleBackColor = true;
+      this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
+      // 
       // label32
       // 
       this.label32.AutoSize = true;
@@ -3051,36 +3052,35 @@
       this.timerHeater.Interval = 4000;
       this.timerHeater.Tick += new System.EventHandler(this.timerHeater_Tick);
       // 
-      // buttonStartFan
+      // verticalProgressBar4
       // 
-      this.buttonStartFan.Location = new System.Drawing.Point(1093, 503);
-      this.buttonStartFan.Name = "buttonStartFan";
-      this.buttonStartFan.Size = new System.Drawing.Size(108, 39);
-      this.buttonStartFan.TabIndex = 18;
-      this.buttonStartFan.Text = "Start Fan";
-      this.buttonStartFan.UseVisualStyleBackColor = true;
-      this.buttonStartFan.Click += new System.EventHandler(this.buttonStartFan_Click);
+      this.verticalProgressBar4.Location = new System.Drawing.Point(253, 317);
+      this.verticalProgressBar4.Name = "verticalProgressBar4";
+      this.verticalProgressBar4.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar4.TabIndex = 50;
+      this.verticalProgressBar4.Click += new System.EventHandler(this.verticalProgressBar4_Click);
       // 
-      // buttonStopFan
+      // verticalProgressBar3
       // 
-      this.buttonStopFan.Location = new System.Drawing.Point(1093, 550);
-      this.buttonStopFan.Name = "buttonStopFan";
-      this.buttonStopFan.Size = new System.Drawing.Size(108, 39);
-      this.buttonStopFan.TabIndex = 126;
-      this.buttonStopFan.Text = "Stop Fan";
-      this.buttonStopFan.UseVisualStyleBackColor = true;
-      this.buttonStopFan.Click += new System.EventHandler(this.buttonStopFan_Click);
+      this.verticalProgressBar3.Location = new System.Drawing.Point(115, 76);
+      this.verticalProgressBar3.Name = "verticalProgressBar3";
+      this.verticalProgressBar3.Size = new System.Drawing.Size(84, 180);
+      this.verticalProgressBar3.TabIndex = 45;
+      this.verticalProgressBar3.Click += new System.EventHandler(this.verticalProgressBar3_Click);
       // 
-      // checkBox5
+      // verticalProgressBar1
       // 
-      this.checkBox5.AutoSize = true;
-      this.checkBox5.Location = new System.Drawing.Point(35, 564);
-      this.checkBox5.Name = "checkBox5";
-      this.checkBox5.Size = new System.Drawing.Size(323, 29);
-      this.checkBox5.TabIndex = 88;
-      this.checkBox5.Text = "Show Percentage and Counts";
-      this.checkBox5.UseVisualStyleBackColor = true;
-      this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
+      this.verticalProgressBar1.Location = new System.Drawing.Point(35, 63);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 144);
+      this.verticalProgressBar1.TabIndex = 43;
+      // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(42, 64);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 144);
+      this.verticalProgressBar2.TabIndex = 44;
       // 
       // Manual
       // 
