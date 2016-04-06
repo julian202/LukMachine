@@ -146,14 +146,14 @@ namespace LukMachine
         //for troubleshooting
         try
         {
-          System.Diagnostics.Debug.WriteLine("Sending Serial = " + toSend+ " on thread: " + Thread.CurrentThread.ManagedThreadId);
+          System.Diagnostics.Debug.WriteLine("Sending Serial = " + toSend+ " on THREAD : " + Thread.CurrentThread.ManagedThreadId);
           _serialPort.Write(toSend);
           System.Diagnostics.Debug.WriteLine("Sent Serial = " + toSend);
         }
         catch (Exception ex)
         {
           //MessageBox.Show("Timeout writing comport for " + toSend);
-          System.Diagnostics.Debug.WriteLine("/////////////////////////ERROR-////////////////////////// thread: "+ Thread.CurrentThread.ManagedThreadId);
+          System.Diagnostics.Debug.WriteLine("/////////////////////////ERROR-////////////////////////// THREAD: " + Thread.CurrentThread.ManagedThreadId);
           System.Diagnostics.Debug.WriteLine(ex.Message);
         }
 

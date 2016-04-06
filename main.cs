@@ -35,7 +35,7 @@ namespace LukMachine
 
       Setup setScrn = new Setup();
       DialogResult setupResult = setScrn.ShowDialog();
-
+      
       if (setupResult != DialogResult.Cancel)
       {
         /* //this is now in burst test

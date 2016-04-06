@@ -143,7 +143,6 @@ namespace LukMachine
           comboBox1.SelectedIndex = comboBox1.FindStringExact(port);
         }
       }
-
     }
 
     private void settings_Load(object sender, EventArgs e)

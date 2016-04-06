@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>ftp://ftp.pmiapp.com/development/deploy/luk/</PublishUrl>
+    <PublishUrl>C:\Users\MSI-1\Downloads\LUKpublish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -27,8 +27,7 @@
     <ProductName>PMI Liquid Permeability %28Luk%29</ProductName>
     <PublisherName>PMI Porous Materials, Inc</PublisherName>
     <WebPage>publish.htm</WebPage>
-    <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>72</ApplicationRevision>
+    <ApplicationRevision>73</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -245,6 +244,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="V9ControlNew.C" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -328,6 +328,7 @@
     <None Include="Resources\112_LeftArrowShort_Green_32x32_72.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Notes.txt" />
     <None Include="Resources\112_UpLeftArrowShort_Green_32x32_72.png" />
     <Content Include="Help\PMI Liquid Permeameter\contents.html" />
     <Content Include="Help\PMI Liquid Permeameter\images\autoTest-Screen.JPG" />
@@ -352,7 +353,6 @@
     <Content Include="Help\PMI Liquid Permeameter\sectionA\manualControl.html" />
     <Content Include="Help\PMI Liquid Permeameter\sectionA\reportWindow.html" />
     <Content Include="Help\PMI Liquid Permeameter\sectionA\settingsWindow.html" />
-    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

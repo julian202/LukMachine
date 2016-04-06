@@ -1,3 +1,0 @@
-﻿Progress("display target pressure =" + targetPressure.ToString());
-display target pressure
-targetPressure.ToString()

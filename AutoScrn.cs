@@ -82,6 +82,8 @@ namespace LukMachine
     int myBorderWidth = Convert.ToInt32(Properties.Settings.Default.myBorderWidth);
     double pressureTolerance = Properties.Settings.Default.pressureTolerance;
     bool stopButtonPressed = false;
+    bool openValve1 = false;
+    bool closeValve1 = false;
 
     public AutoScrn()
     {
@@ -473,7 +475,8 @@ namespace LukMachine
         MessageBox.Show("The collected penetrometer contains liquid. The collected volume will now be flushed.");
         backgroundWorkerMainLoop.ReportProgress(0, "Emptying collected volume...");
 
-        Valves.OpenValve1();
+        //Valves.OpenValve1();
+        openValve1 = true;
       }
       skip = false;
       backgroundWorkerMainLoop.ReportProgress(0, "displaySkipButton()");
@@ -486,7 +489,8 @@ namespace LukMachine
         //backgroundWorkerMainLoop.ReportProgress(0, "displayVolumeLevels()");
         //backgroundWorkerMainLoop.ReportProgress(0,"display volume levels =" + reservoirPercent.ToString() + "=" + collectedPercent.ToString());//fix this, dont read twice
       }
-      Valves.CloseValve1();
+      //Valves.CloseValve1();
+      closeValve1 = true;
       backgroundWorkerMainLoop.ReportProgress(0, "hideSkipButton()");
     }
     private void displaySkipButton()
@@ -625,6 +629,17 @@ namespace LukMachine
           {
             Valves.OpenValve1();
           }
+        }
+
+        if (openValve1)
+        {
+          Valves.OpenValve1();
+          openValve1 = false;
+        }
+        if (closeValve1)
+        {
+          Valves.CloseValve1();
+          closeValve1 = false;
         }
 
         //save current pressure (this will be used in pressure adjust loop)

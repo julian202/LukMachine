@@ -1,0 +1,11 @@
+
+Important: 
+
+-You can never have both chambers with samples. Because the only way we have to release pressure is to switch chambers and open the outlet valve V1. (We can't use V2 because it would cause liquid to leak from an air vent that we have placed at the top of the reservoir). (If you make the mistake of having samples in both chambers then just wait until the pressure drops naturally to a safe level, which may take some time).
+
+
+
+-The machine must be shipped with valves closed except valve 4 and with valves for selecting the left chamber. Because that's how the software assumes the machine is set up by default.
+
+
+-The reservoir is now connected to the collector, so make sure not to overfill the reservoir or else make sure to empty the collector after filling the reservoir.
