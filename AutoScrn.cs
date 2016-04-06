@@ -399,6 +399,7 @@ namespace LukMachine
 
         Thread.Sleep(1000 * Properties.Settings.Default.intervalBetweenTimePoints);
       }
+
       stopwatch.Stop();
       stopwatchStep.Stop();
 
