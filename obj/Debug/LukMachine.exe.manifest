@@ -73,7 +73,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>L2jIAZOJJ4D9s34ZHfsLIGVDLyR77UFTFUZJOc/qc2w=</dsig:DigestValue>
+        <dsig:DigestValue>r5Ay99B3Xv/4MOqPtlGK+CZcfIigLl2jV3i9gYy3M6A=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -89,6 +89,15 @@
       </hash>
     </dependentAssembly>
   </dependency>
+  <file name="DiagramForDebuggingSerialPort.PNG" size="210986">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>oxW78VfGsRE9YTbxmGMQo9m1QNUNr1/zqrxP+wd/BDQ=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Help\PMI Liquid Permeameter\contents.html" size="1361">
     <hash>
       <dsig:Transforms>

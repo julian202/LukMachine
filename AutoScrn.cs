@@ -84,7 +84,8 @@ namespace LukMachine
     bool stopButtonPressed = false;
     bool openValve1 = false;
     bool closeValve1 = false;
-
+    bool exitedBackgroundWorkerMainLoop = false;
+    bool exitedBackgroundWorkerReadAndDisplay = false;
     public AutoScrn()
     {
       InitializeComponent();
@@ -96,6 +97,8 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+      exitedBackgroundWorkerMainLoop = false;
+      exitedBackgroundWorkerReadAndDisplay = false;
       //MessageBox.Show(Properties.Settings.Default.p1Max.ToString()); 
 
       COMMS.calculateVoltageReferences();
@@ -175,6 +178,7 @@ namespace LukMachine
         startTimeWriteToFileAndGraph();
         if ((backgroundWorkerMainLoop.CancellationPending == true))
         {
+          exitedBackgroundWorkerMainLoop = true;
           e.Cancel = true;
           break;
         }
@@ -342,8 +346,7 @@ namespace LukMachine
       addToListBox1("Finished");
       labelPanel.Text = "Finished";
       addToListBox1("Data saved to " + Properties.Settings.Default.TestData);
-      stopButton();
-      showReport();
+      stopButton();  
     }
     private void startTimeWriteToFileAndGraph()
     {
@@ -612,6 +615,9 @@ namespace LukMachine
     {
       while (true)
       {
+        
+
+
         //read reservoirs
         collectedPercent = COMMS.Instance.getCollectedLevelPercent();
         reservoirPercent = COMMS.Instance.getReservoirLevelPercent();
@@ -789,6 +795,16 @@ namespace LukMachine
         //cancel 
         if ((backgroundWorkerReadAndDisplay.CancellationPending == true))
         {
+          Valves.OpenValve2();
+          Pumps.SetPump2(0);
+          double zerotemp = 0;
+          COMMS.Instance.SetAthenaTemp(1, zerotemp);
+          COMMS.Instance.SetAthenaTemp(2, zerotemp);
+          COMMS.Instance.SetAthenaTemp(3, zerotemp);
+          //start chamber fan
+          COMMS.Instance.StartFan();
+
+          exitedBackgroundWorkerReadAndDisplay = true;
           e.Cancel = true;
           break;
         }
@@ -951,41 +967,37 @@ namespace LukMachine
 
     private void stopButton()
     {
-      stopButtonPressed = true;
-      backgroundWorkerMainLoop.CancelAsync();
-      emptyingCollected = false;
-      labelPanel.Text = "The test is being stopped. Please wait...";
       button2.Enabled = false;
+      stepTimeReached = true;
+      pressureHasBeenReached = true;
+      stopButtonPressed = true;
+      emptyingCollected = false;
+      abort = true;
+      labelPanel.Text = "The test is being stopped. Please wait...";
       if (testFinished)
       {
         labelPanel.Text = "The test has finished. Please wait...";
       }
       panel1.Visible = true;
       Refresh();
-      Valves.OpenValve2();
-      pressureHasBeenReached = true;
-      stepTimeReached = true;
-      abort = true;
+      //wait for backgroundWorkerMainLoop to exit
+      backgroundWorkerMainLoop.CancelAsync();
+      while (!exitedBackgroundWorkerMainLoop)
+      {
+        Thread.Sleep(100);
+      }
+
+      //wait for backgroundWorkerReadAndDisplay to exit
+      backgroundWorkerReadAndDisplay.CancelAsync();
+      while (!exitedBackgroundWorkerReadAndDisplay)
+      {
+        Thread.Sleep(100);
+      }
       stopwatchStep.Stop();
       stopwatch.Stop();
-      Thread.Sleep(200); //wait for pressure adjust loop to finish before stopping pump or else pump might be turned on.
-      Pumps.SetPump2(0);
-      backgroundWorkerMainLoop.CancelAsync();
-      Thread.Sleep(200);
-      backgroundWorkerReadAndDisplay.CancelAsync();
-
       timerForStopWatch.Stop();
-      double zerotemp = 0;
-      COMMS.Instance.SetAthenaTemp(1, zerotemp);
-      COMMS.Instance.SetAthenaTemp(2, zerotemp);
-      COMMS.Instance.SetAthenaTemp(3, zerotemp);
-      //start chamber fan
-      COMMS.Instance.StartFan();
-      stepTimeReached = true; //apparently I have had to repeat this one.
-      panel1.Visible = true; //apparently I have had to repeat this one.
+      showReport();
     }
-
-
 
 
     private void AutoScrn_FormClosing(object sender, FormClosingEventArgs e)

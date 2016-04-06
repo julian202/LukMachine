@@ -14,14 +14,14 @@
     <framework targetVersion="4.5.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="LukMachine.exe.manifest" size="16874">
+    <dependentAssembly dependencyType="install" codebase="LukMachine.exe.manifest" size="17287">
       <assemblyIdentity name="LukMachine.exe" version="1.0.0.73" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xmHgE4agyJ5pZIN9QysgnaK4HfFhB3zh0zFAO810YDc=</dsig:DigestValue>
+        <dsig:DigestValue>gRKcsD7r0x/NHsahTMbulu58tn8+Bg4vnvv/2VBHvV8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
