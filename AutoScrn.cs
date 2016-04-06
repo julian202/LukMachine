@@ -86,6 +86,8 @@ namespace LukMachine
     bool closeValve1 = false;
     bool exitedBackgroundWorkerMainLoop = false;
     bool exitedBackgroundWorkerReadAndDisplay = false;
+    bool timerIntervalFinished = false;
+
     public AutoScrn()
     {
       InitializeComponent();
@@ -97,6 +99,7 @@ namespace LukMachine
 
     private void AutoScrn_Load(object sender, EventArgs e)
     {
+      timerIntervalFinished = false;
       exitedBackgroundWorkerMainLoop = false;
       exitedBackgroundWorkerReadAndDisplay = false;
       //MessageBox.Show(Properties.Settings.Default.p1Max.ToString()); 
@@ -231,6 +234,11 @@ namespace LukMachine
           {
             showStopButton();
           }
+          else if (mystring == "startTimerForDataPointInterval()")
+          {
+            startTimerForDataPointInterval();
+          }
+          
         }
         else //if it is not a function then just add the string to the listbox 1
         {
@@ -240,6 +248,12 @@ namespace LukMachine
       }
 
     }
+    private void startTimerForDataPointInterval()
+    {
+      timerForDataPointInterval.Interval = 1000 * Properties.Settings.Default.intervalBetweenTimePoints;
+      timerForDataPointInterval.Start();
+    }
+
     private void showStopButton()
     {
       button2.Visible = true;
@@ -397,7 +411,13 @@ namespace LukMachine
           stopwatchStep.Start();
         }
 
-        Thread.Sleep(1000 * Properties.Settings.Default.intervalBetweenTimePoints);
+        //Thread.Sleep(1000 * Properties.Settings.Default.intervalBetweenTimePoints);    
+        backgroundWorkerMainLoop.ReportProgress(0, "startTimerForDataPointInterval()");
+        timerIntervalFinished = false;
+        while (!timerIntervalFinished && !stopButtonPressed)
+        {
+          Thread.Sleep(300);        
+        }
       }
 
       stopwatch.Stop();
@@ -975,6 +995,7 @@ namespace LukMachine
       button2.Enabled = false;
       stepTimeReached = true;
       pressureHasBeenReached = true;
+      temperatureHasBeenReached = true;
       stopButtonPressed = true;
       emptyingCollected = false;
       abort = true;
@@ -1233,6 +1254,12 @@ namespace LukMachine
         chart1.ChartAreas["ChartArea1"].InnerPlotPosition.Auto = true;
         // chart1.Series["Series2"].Enabled = false;
       }
+    }
+
+    private void timerForDataPointInterval_Tick(object sender, EventArgs e)
+    {
+      timerIntervalFinished = true;
+      timerForDataPointInterval.Stop();
     }
   }
 }
