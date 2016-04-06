@@ -183,7 +183,10 @@ namespace LukMachine
           break;
         }
       }
-      backgroundWorkerMainLoop.ReportProgress(0, "finished()");
+      if (!stopButtonPressed)
+      {
+        backgroundWorkerMainLoop.ReportProgress(0, "finished()");
+      }      
     }
 
     private void backgroundWorkerMainLoop_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -341,6 +344,7 @@ namespace LukMachine
 
     private void finished()
     {
+      System.Diagnostics.Debug.WriteLine("-----------FINISHED METHOD HAS BEEN ENTERED!----------------");
       testFinished = true;
       //buttonReport.Visible = true;
       addToListBox1("Finished");
