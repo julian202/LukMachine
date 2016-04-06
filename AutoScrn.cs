@@ -270,6 +270,10 @@ namespace LukMachine
         else
         {
           flow = Convert.ToDouble(collectedDifferenceInCounts / timeDifferenceInMinutes); //this is flow in pent counts per minute
+          SR = new StreamWriter(System.IO.Path.Combine(Environment.GetFolderPath(
+    Environment.SpecialFolder.MyDoc‌​uments), "PMI", "dataJULIAN.pmi"), true);
+          SR.WriteLine(timeDifferenceInMinutes.ToString());
+          SR.Close();
           flow = flow * Convert.ToDouble(Properties.Settings.Default.MaxCapacityInML) / 58000; //this converts flow to mL       
           lastFlow = flow; //this is to keep count of last flow during pressure adjust
         }
