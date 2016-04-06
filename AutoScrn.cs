@@ -129,7 +129,7 @@ namespace LukMachine
       }
       catch (Exception ex)
       {
-        MessageBox.Show("Restart the application and select a different folder to save the data, or else run the application as an administrator. "+ ex.Message);
+        MessageBox.Show("Restart the application and select a different folder to save the data, or else run the application as an administrator. " + ex.Message);
         Application.Exit();
       }
       firstDataPoint = true;
@@ -165,7 +165,7 @@ namespace LukMachine
         targetPressure = Convert.ToDouble(Properties.Settings.Default.CollectionPressure[stepCount]);
         //--MessageBox.Show("targetPressure is " + targetPressure.ToString());
         goToTargetTemperature();
-        goToTargetPressure();      
+        goToTargetPressure();
         if (abort || stopButtonPressed)
         {
           break;
@@ -229,7 +229,7 @@ namespace LukMachine
           labelPanel.Text = mystring;
         }
       }
-      
+
     }
     private void showStopButton()
     {
@@ -293,7 +293,7 @@ namespace LukMachine
 
       //calculate permeability
       thickness = Convert.ToDouble(Properties.Settings.Default.SampleThickness);
-      viscosity = Convert.ToDouble(Properties.Settings.Default.CurrentViscosity);    
+      viscosity = Convert.ToDouble(Properties.Settings.Default.CurrentViscosity);
       diameter = Convert.ToDouble(Properties.Settings.Default.SampleDiameter);
       innerDiameter = Convert.ToDouble(Properties.Settings.Default.innerDiameter);
       area = 3.1415926 * diameter * diameter / 4;
@@ -375,7 +375,7 @@ namespace LukMachine
               break; //break from the while loop
             }
           }
-        }     
+        }
 
         if (!stopwatchStep.IsRunning)
         {
@@ -383,11 +383,11 @@ namespace LukMachine
           if (!stopButtonPressed)
           {
             backgroundWorkerMainLoop.ReportProgress(0, "hidePanel1()");
-          }  
+          }
           stopwatch.Start();
           stopwatchStep.Start();
         }
-        
+
         Thread.Sleep(1000 * Properties.Settings.Default.intervalBetweenTimePoints);
       }
       stopwatch.Stop();
@@ -507,11 +507,17 @@ namespace LukMachine
       //MessageBox.Show("ReservoirPercent = " + ReservoirPercent + " CollectedPercent = " + CollectedPercent);
       try
       {
-        verticalProgressBar1.Value = Convert.ToInt32(reservoirPercent);
+        if (reservoirPercent < 0)
+        {
+          verticalProgressBar1.Value = 0;
+        }
+        else
+        {
+          verticalProgressBar1.Value = Convert.ToInt32(reservoirPercent);
+        }
       }
       catch (Exception)
       {
-
         if (Convert.ToInt32(reservoirPercent) >= 100)
         {
           verticalProgressBar1.Value = 100;
@@ -523,7 +529,14 @@ namespace LukMachine
       }
       try
       {
-        verticalProgressBar2.Value = Convert.ToInt32(collectedPercent);
+        if (collectedPercent < 0)
+        {
+          verticalProgressBar2.Value = 0;
+        }
+        else
+        {
+          verticalProgressBar2.Value = Convert.ToInt32(collectedPercent);
+        }
       }
       catch (Exception)
       {
@@ -606,7 +619,7 @@ namespace LukMachine
           if (collectedPercent < Properties.Settings.Default.maxEmptyCollectedPercentFull)
           {
             Valves.CloseValve1();
-            emptyingCollected = false;     
+            emptyingCollected = false;
           }
           else
           {
@@ -696,16 +709,16 @@ namespace LukMachine
               Pumps.SetPump2(4);
             }
           }
-     
+
           if ((currentPressure > (targetPressure - pressureTolerance)) && (currentPressure < targetPressure + pressureTolerance))
           {
             //if (firstLoopToTargetPressure) //this actually only means it is going to target pressure.   older-> // since there's 2 consecutive gototargetloops: if you are at the end of the first loop then record MainPumpStatePercent; (you don't want to do this after the 2nd loop becuase then pressure is usally going down and pump is at 0%)
             //{
-              if (Properties.Settings.Default.MainPumpStatePercent >= pumpPowerAtEndOfLastStep)
-              {
-                pumpPowerAtEndOfLastStep = Properties.Settings.Default.MainPumpStatePercent;
-                //PREVIOUSpumpPowerAtEndOfLastStep = pumpPowerAtEndOfLastStep;
-              }             
+            if (Properties.Settings.Default.MainPumpStatePercent >= pumpPowerAtEndOfLastStep)
+            {
+              pumpPowerAtEndOfLastStep = Properties.Settings.Default.MainPumpStatePercent;
+              //PREVIOUSpumpPowerAtEndOfLastStep = pumpPowerAtEndOfLastStep;
+            }
             //}
             pressureHasBeenReached = true;
           }
@@ -945,7 +958,7 @@ namespace LukMachine
       backgroundWorkerMainLoop.CancelAsync();
       Thread.Sleep(200);
       backgroundWorkerReadAndDisplay.CancelAsync();
-      
+
       timerForStopWatch.Stop();
       double zerotemp = 0;
       COMMS.Instance.SetAthenaTemp(1, zerotemp);
