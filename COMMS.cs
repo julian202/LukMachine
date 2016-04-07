@@ -655,9 +655,6 @@ namespace LukMachine
       {
         return 0;
       }
-
-
-
     }
 
     public void MoveGenerator(int genChannel, int speed)
