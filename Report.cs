@@ -579,6 +579,7 @@ namespace LukMachine
       chart.YAxis.Title.Text = "Flow (mL/min)";
       chart.XAxis.Title.Text = "Time(Mins)";
       ws.Cells[ws.Dimension.Address.ToString()].AutoFitColumns();
+      saveFileDialog1.InitialDirectory = Properties.Settings.Default.ExportPath;
       saveFileDialog1.FileName = splitStuff[0];
       if (multi == 0)
       {
