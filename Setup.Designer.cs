@@ -41,6 +41,9 @@
       this.label6 = new System.Windows.Forms.Label();
       this.label7 = new System.Windows.Forms.Label();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.label22 = new System.Windows.Forms.Label();
+      this.label23 = new System.Windows.Forms.Label();
+      this.textBoxInnerDiameter = new System.Windows.Forms.TextBox();
       this.panel3 = new System.Windows.Forms.Panel();
       this.label21 = new System.Windows.Forms.Label();
       this.textBoxViscosity = new System.Windows.Forms.TextBox();
@@ -97,9 +100,6 @@
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.pictureBox2 = new System.Windows.Forms.PictureBox();
       this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-      this.label22 = new System.Windows.Forms.Label();
-      this.label23 = new System.Windows.Forms.Label();
-      this.textBoxInnerDiameter = new System.Windows.Forms.TextBox();
       this.groupBox1.SuspendLayout();
       this.panel3.SuspendLayout();
       this.groupBox2.SuspendLayout();
@@ -222,6 +222,32 @@
       this.groupBox1.TabIndex = 14;
       this.groupBox1.TabStop = false;
       this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+      // 
+      // label22
+      // 
+      this.label22.AutoSize = true;
+      this.label22.Location = new System.Drawing.Point(20, 265);
+      this.label22.Name = "label22";
+      this.label22.Size = new System.Drawing.Size(246, 23);
+      this.label22.TabIndex = 55;
+      this.label22.Text = "Inner Diameter (Ring only):";
+      // 
+      // label23
+      // 
+      this.label23.AutoSize = true;
+      this.label23.Location = new System.Drawing.Point(260, 265);
+      this.label23.Name = "label23";
+      this.label23.Size = new System.Drawing.Size(36, 23);
+      this.label23.TabIndex = 57;
+      this.label23.Text = "cm";
+      // 
+      // textBoxInnerDiameter
+      // 
+      this.textBoxInnerDiameter.Location = new System.Drawing.Point(193, 264);
+      this.textBoxInnerDiameter.Name = "textBoxInnerDiameter";
+      this.textBoxInnerDiameter.Size = new System.Drawing.Size(63, 30);
+      this.textBoxInnerDiameter.TabIndex = 56;
+      this.textBoxInnerDiameter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       // 
       // panel3
       // 
@@ -695,7 +721,7 @@
       // 
       // textBox7
       // 
-      this.textBox7.Location = new System.Drawing.Point(484, 571);
+      this.textBox7.Location = new System.Drawing.Point(451, 604);
       this.textBox7.Name = "textBox7";
       this.textBox7.Size = new System.Drawing.Size(57, 30);
       this.textBox7.TabIndex = 24;
@@ -837,32 +863,6 @@
       this.saveFileDialog1.Filter = "PMI Data File|*.pmi";
       this.saveFileDialog1.Title = "Select data file";
       this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
-      // 
-      // label22
-      // 
-      this.label22.AutoSize = true;
-      this.label22.Location = new System.Drawing.Point(20, 265);
-      this.label22.Name = "label22";
-      this.label22.Size = new System.Drawing.Size(246, 23);
-      this.label22.TabIndex = 55;
-      this.label22.Text = "Inner Diameter (Ring only):";
-      // 
-      // label23
-      // 
-      this.label23.AutoSize = true;
-      this.label23.Location = new System.Drawing.Point(260, 265);
-      this.label23.Name = "label23";
-      this.label23.Size = new System.Drawing.Size(36, 23);
-      this.label23.TabIndex = 57;
-      this.label23.Text = "cm";
-      // 
-      // textBoxInnerDiameter
-      // 
-      this.textBoxInnerDiameter.Location = new System.Drawing.Point(193, 264);
-      this.textBoxInnerDiameter.Name = "textBoxInnerDiameter";
-      this.textBoxInnerDiameter.Size = new System.Drawing.Size(63, 30);
-      this.textBoxInnerDiameter.TabIndex = 56;
-      this.textBoxInnerDiameter.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       // 
       // Setup
       // 

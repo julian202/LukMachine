@@ -558,9 +558,9 @@ namespace LukMachine
       OfficeOpenXml.ExcelRange r1, r2;
       var chart = (OfficeOpenXml.Drawing.Chart.ExcelLineChart)gs.Drawings.AddChart("some_name", OfficeOpenXml.Drawing.Chart.eChartType.Line);
       chart.Legend.Position = OfficeOpenXml.Drawing.Chart.eLegendPosition.Right;
-      chart.Legend.Add();
-      chart.SetPosition(1, 0, 1, 0);
-      chart.SetSize(1000, 600);
+      //chart.Legend.Add();
+      //chart.SetPosition(1, 0, 1, 0);
+      //chart.SetSize(1000, 600);
 
       try
       {

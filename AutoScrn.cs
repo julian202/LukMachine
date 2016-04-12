@@ -958,6 +958,7 @@ namespace LukMachine
 
     private void backgroundWorkerReadAndDisplay_ProgressChanged(object sender, ProgressChangedEventArgs e)
     {
+      //MessageBox.Show("CHANGED");
       //temp
       currentTemperatureInC = (Convert.ToDouble((currentTemperature - 32) * 5 / 9));
       label6.Text = "Temperature  =  " + String.Format("{0:0}", currentTemperatureInC) + " C / " + String.Format("{0:0}", currentTemperature) + " F";

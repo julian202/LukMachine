@@ -94,7 +94,7 @@ namespace LukMachine
     private void main_Load(object sender, EventArgs e)
     {
       button1.Select();
-      //stopPumpCloseValves();
+      stopPumpCloseValves();
       //this.Text = String.Format("PMI Liquid Permeability [Luk] Version {0}", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version);
 
       if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
@@ -142,12 +142,7 @@ namespace LukMachine
 
     public void stopPumpCloseValves() //this looks like it's not working
     {
-      /*
-      
-      //stop refill pump
-      COMMS.Instance.MoveMotorValve(1, "S");  
-      //close all 3 valves?
-      
+       
       //stop main pump
       Pumps.SetPump2(0);
       //close drain valve
@@ -156,7 +151,10 @@ namespace LukMachine
       Valves.CloseValve2();
       //close pent valve so that it wont drain
       Valves.CloseValve1();
-*/
+      Valves.OpenValve4();
+      Valves.CloseValve5();
+      Valves.CloseValve6();
+
     }
 
     private void button5_Click(object sender, EventArgs e)

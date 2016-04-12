@@ -1841,6 +1841,7 @@ namespace LukMachine
     {
       if (textBoxChamber1Temp.Text != "")
       {
+
         try
         {
           label52.Text = "deg C (" + (Math.Round((Convert.ToDouble(textBoxChamber1Temp.Text) * 9 / 5 + 32))).ToString() + " F)";
