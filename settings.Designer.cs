@@ -85,6 +85,7 @@
       this.button3 = new System.Windows.Forms.Button();
       this.button2 = new System.Windows.Forms.Button();
       this.button5 = new System.Windows.Forms.Button();
+      this.button7 = new System.Windows.Forms.Button();
       this.groupBox1.SuspendLayout();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
@@ -107,6 +108,7 @@
       // 
       // groupBox1
       // 
+      this.groupBox1.Controls.Add(this.button7);
       this.groupBox1.Controls.Add(this.comboBox1);
       this.groupBox1.Controls.Add(this.button1);
       this.groupBox1.Location = new System.Drawing.Point(72, 20);
@@ -125,17 +127,17 @@
       this.comboBox1.Location = new System.Drawing.Point(16, 32);
       this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
       this.comboBox1.Name = "comboBox1";
-      this.comboBox1.Size = new System.Drawing.Size(140, 31);
+      this.comboBox1.Size = new System.Drawing.Size(115, 31);
       this.comboBox1.TabIndex = 1;
       this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
       // 
       // button1
       // 
       this.button1.Image = global::LukMachine.Properties.Resources._112_RefreshArrow_Blue_32x32_72;
-      this.button1.Location = new System.Drawing.Point(173, 18);
+      this.button1.Location = new System.Drawing.Point(137, 20);
       this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
       this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(62, 50);
+      this.button1.Size = new System.Drawing.Size(51, 50);
       this.button1.TabIndex = 0;
       this.button1.UseVisualStyleBackColor = true;
       this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -695,6 +697,18 @@
       this.button5.UseVisualStyleBackColor = true;
       this.button5.Click += new System.EventHandler(this.button5_Click);
       // 
+      // button7
+      // 
+      this.button7.Font = new System.Drawing.Font("Arial", 9F);
+      this.button7.Location = new System.Drawing.Point(194, 20);
+      this.button7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+      this.button7.Name = "button7";
+      this.button7.Size = new System.Drawing.Size(92, 50);
+      this.button7.TabIndex = 2;
+      this.button7.Text = "Auto Detect";
+      this.button7.UseVisualStyleBackColor = true;
+      this.button7.Click += new System.EventHandler(this.button7_Click);
+      // 
       // settings
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
@@ -802,5 +816,6 @@
     private System.Windows.Forms.GroupBox groupBox7;
     private System.Windows.Forms.GroupBox groupBox6;
     private System.Windows.Forms.Button button5;
+    private System.Windows.Forms.Button button7;
   }
 }

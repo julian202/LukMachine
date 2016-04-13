@@ -15,7 +15,6 @@ namespace LukMachine
     public main()
     {
       InitializeComponent();
-
     }
 
     private void button1_Click(object sender, EventArgs e)
@@ -55,13 +54,20 @@ namespace LukMachine
           rep.ShowDialog();
         }*/
       }
-      this.Show();
+      if (!this.IsDisposed)
+      {
+        this.Show();
+      }
     }
 
     private DialogResult openCOM()
     {
       DialogResult asdf = DialogResult.OK;
+
+
       bool openIt = COMMS.Instance.OpenPort(Properties.Settings.Default.COMM);
+
+
       COMMS.Instance.Pause(.5);
       if (!openIt)
       {
@@ -114,7 +120,10 @@ namespace LukMachine
         Manual manctrl = new Manual();
         Hide();
         manctrl.ShowDialog();
-        Show();
+        if (!this.IsDisposed)
+        {
+          Show();
+        }
       }
     }
 

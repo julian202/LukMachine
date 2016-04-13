@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -256,6 +258,60 @@ namespace LukMachine
       {
       }
           
+    }
+
+    private void button7_Click(object sender, EventArgs e)
+    {
+      autoFindBoardPort();
+    }
+    SerialPort _serialPort = new SerialPort("something", 115200, Parity.None, 8, StopBits.One);
+    public void autoFindBoardPort()
+    {
+      foreach (string port in SerialPort.GetPortNames())
+      {
+        if (_serialPort.IsOpen)
+        {
+          _serialPort.Close();
+        }
+        _serialPort.PortName = port;
+        _serialPort.ReadTimeout = 4000;
+        _serialPort.WriteTimeout = 4000;
+        _serialPort.StopBits = System.IO.Ports.StopBits.One;
+        _serialPort.Parity = System.IO.Ports.Parity.None;
+        _serialPort.DataBits = 8;
+        try
+        {
+          _serialPort.Open();
+          _serialPort.DiscardInBuffer();
+          _serialPort.Write("W");
+          Thread.Sleep(20);
+          string returnValue = _serialPort.ReadExisting();
+          //Output(port + " returned: " + returnValue);
+          if (returnValue.Contains("Testing"))
+          {
+            MessageBox.Show("Machine detected on Port " + port);
+            Properties.Settings.Default.COMM = port;
+            Properties.Settings.Default.Save();
+
+            _serialPort.Close(); //delete this line if you want to keep port open!
+            comboBox1.SelectedIndex = comboBox1.FindString(port);
+            //labelBoardDetected.ForeColor = Color.Green;
+            //toolStripStatusLabel1.Text = "Connected to machine (on " + port + ")";
+            //break; //break out of foreach loop.
+            return; //break out of function.
+          }
+        }
+        catch (Exception ex)
+        {
+          //Output(ex.Message);
+        }
+      }
+      //if it doesn't breaked out of the function (by hiting return):
+      //labelBoardDetected.Text = "Machine not detected. Please connect USB cable and restart program.";
+      //labelBoardDetected.ForeColor = Color.Red;
+      //labelBoardDetected.Visible = true;
+      MessageBox.Show("The Machine has not been detected. Reconnect USB cable and restart the machine");
+      _serialPort.Close();
     }
   }
 }

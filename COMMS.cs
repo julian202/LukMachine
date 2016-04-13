@@ -50,11 +50,20 @@ namespace LukMachine
 
     public Boolean OpenPort(String portNum)
     {
+
+      autoFindBoardPort();
+      connected = true;
+      demoMode = false;
+      return true;
+
+
       //open up a new port.
 
       //set the comport number to a string variable
       //String thePort = "COM1"
       //create the new serial port object
+
+      /*
       if (connected)
       {
         ClosePort();
@@ -94,9 +103,50 @@ namespace LukMachine
         commBusy = false;
         connected = false;
         return false;
+      }*/
+    }
+
+    public void autoFindBoardPort()
+    {
+      foreach (string port in SerialPort.GetPortNames())
+      {
+        if (_serialPort.IsOpen)
+        {
+          _serialPort.Close();
+        }
+        _serialPort.PortName = port;
+        _serialPort.ReadTimeout = 4000;
+        _serialPort.WriteTimeout = 4000;
+        try
+        {
+          _serialPort.Open();
+          _serialPort.DiscardInBuffer();
+          _serialPort.Write("W");
+          Thread.Sleep(20);
+          string returnValue = _serialPort.ReadExisting();
+          Output(port + " returned: " + returnValue);
+          if (returnValue.Contains("Testing"))
+          {
+            //MessageBox.Show("Port is " + port);
+            Properties.Settings.Default.COMM = port;
+            Properties.Settings.Default.Save();
+
+            //labelBoardDetected.ForeColor = Color.Green;
+            //toolStripStatusLabel1.Text = "Connected to machine (on " + port + ")";
+            //break; //break out of foreach loop.
+            return; //break out of function.
+          }
+        }
+        catch (Exception ex)
+        {
+          Output(ex.Message);
+        }
       }
-
-
+      //if it doesn't breaked out of the function (by hiting return):
+      //labelBoardDetected.Text = "Machine not detected. Please connect USB cable and restart program.";
+      //labelBoardDetected.ForeColor = Color.Red;
+      //labelBoardDetected.Visible = true;
+      _serialPort.Close();
     }
 
     public void ClosePort()
@@ -205,7 +255,8 @@ namespace LukMachine
         //MessageBox.Show("ERROR READING COMPORT");
         ClosePort();
         OpenPort("Demo");
-        DialogResult stuff = MessageBox.Show("USB not connected or machine has restarted, please restart the application. Error: " + ex.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        DialogResult stuff = MessageBox.Show("USB not connected or machine has restarted, please make sure USB cable is connected and restart the application. Error: " + ex.Message + Environment.NewLine, Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        Application.Exit();
         //return;
       }
       catch (InvalidOperationException ex)
@@ -216,7 +267,8 @@ namespace LukMachine
         if (!dialogIsShowing)
         {
           dialogIsShowing = true;
-          DialogResult stuff = MessageBox.Show("USB not connected or machine has restarted, please restart the application. Error: " + ex.Message + Environment.NewLine + "Demo mode started.", Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+          DialogResult stuff = MessageBox.Show("USB not connected or machine has restarted, please make sure USB cable is connected and restart the application. Error: " + ex.Message + Environment.NewLine, Application.ProductName.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+          Application.Exit();
           dialogIsShowing = false;
         }
         ClosePort();
@@ -883,6 +935,7 @@ namespace LukMachine
     {
       Thread.Sleep(10);
       char channel = (Char)95;  //this is underscore R_
+ 
       string asdf = rsEcho("R" + channel.ToString());
 
       try
