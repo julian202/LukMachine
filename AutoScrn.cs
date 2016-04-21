@@ -87,6 +87,7 @@ namespace LukMachine
     bool exitedBackgroundWorkerMainLoop = false;
     bool exitedBackgroundWorkerReadAndDisplay = false;
     bool timerIntervalFinished = false;
+    private bool cancelBackgroundWorkerMainLoop = false;
 
     public AutoScrn()
     {
@@ -174,21 +175,24 @@ namespace LukMachine
         //--MessageBox.Show("targetPressure is " + targetPressure.ToString());
         goToTargetTemperature();
         goToTargetPressure();
+        
         if (abort || stopButtonPressed)
         {
           break;
         }
         startTimeWriteToFileAndGraph();
-        if ((backgroundWorkerMainLoop.CancellationPending == true))
+        if((backgroundWorkerMainLoop.CancellationPending == true))
         {
           exitedBackgroundWorkerMainLoop = true;
           e.Cancel = true;
-          break;
+          //break;
+          return;
         }
       }
       if (!stopButtonPressed)
       {
-        backgroundWorkerMainLoop.ReportProgress(0, "finished()");
+        exitedBackgroundWorkerMainLoop = true;
+        backgroundWorkerMainLoop.ReportProgress(0, "finished()");     
       }      
     }
 
@@ -271,7 +275,7 @@ namespace LukMachine
       {
         flow = lastFlow;
         lastCollectedCount = collectedCount;
-        totalTimeInMinutes = Convert.ToDouble(timeSpanTotal.Minutes) + Convert.ToDouble(timeSpanTotal.Seconds) / 60;
+        totalTimeInMinutes = Convert.ToDouble(timeSpanStep.Hours) * 60 + Convert.ToDouble(timeSpanTotal.Minutes) + Convert.ToDouble(timeSpanTotal.Seconds) / 60;
         lastTotalTimeInMinutes = totalTimeInMinutes;
         firstDataPoint = false;
       }
@@ -284,7 +288,7 @@ namespace LukMachine
           dontCountFirstDataPointAfterEmtpying = false;
         }
         lastCollectedDifferenceInCounts = collectedDifferenceInCounts;
-        totalTimeInMinutes = Convert.ToDouble(timeSpanTotal.Minutes) + Convert.ToDouble(timeSpanTotal.Seconds) / 60;
+        totalTimeInMinutes = Convert.ToDouble(timeSpanStep.Hours) * 60 + Convert.ToDouble(timeSpanTotal.Minutes) + Convert.ToDouble(timeSpanTotal.Seconds) / 60;
         timeDifferenceInMinutes = lastTotalTimeInMinutes - totalTimeInMinutes;
         if (timeDifferenceInMinutes == 0)
         {
@@ -293,10 +297,12 @@ namespace LukMachine
         else
         {
           flow = Convert.ToDouble(collectedDifferenceInCounts / timeDifferenceInMinutes); //this is flow in pent counts per minute
+          /*
           SR = new StreamWriter(System.IO.Path.Combine(Environment.GetFolderPath(
     Environment.SpecialFolder.MyDoc‌​uments), "PMI", "dataJULIAN.pmi"), true);
           SR.WriteLine(timeDifferenceInMinutes.ToString());
-          SR.Close();
+          SR.Close();*/
+
           flow = flow * Convert.ToDouble(Properties.Settings.Default.MaxCapacityInML) / 58000; //this converts flow to mL       
           lastFlow = flow; //this is to keep count of last flow during pressure adjust
         }
@@ -1033,17 +1039,16 @@ namespace LukMachine
 
     private void AutoScrn_FormClosing(object sender, FormClosingEventArgs e)
     {
-      //stopButton();
     }
 
     private void timerForStopWatch_Tick(object sender, EventArgs e)
     {
       timeSpanTotal = stopwatch.Elapsed;
       timeSpanStep = stopwatchStep.Elapsed;
-      totalTime = String.Format("{0:00}:{1:00}", timeSpanTotal.Minutes, timeSpanTotal.Seconds);
+      totalTime = String.Format("{0:00}:{1:00}", timeSpanTotal.Minutes+ timeSpanTotal.Hours*60, timeSpanTotal.Seconds);
       labelTotalTime.Text = "Total time = " + totalTime;
       labelStepTime.Text = "Step time = " + String.Format("{0:00}:{1:00}", timeSpanStep.Minutes, timeSpanStep.Seconds);
-      stepTimeInMinutes = Convert.ToDouble(timeSpanStep.Minutes) + Convert.ToDouble(timeSpanStep.Seconds) / 60;
+      stepTimeInMinutes = Convert.ToDouble(timeSpanStep.Hours)*60+ Convert.ToDouble(timeSpanStep.Minutes) + Convert.ToDouble(timeSpanStep.Seconds) / 60;
       if (stepTimeInMinutes >= Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]))
       {
         stepTimeReached = true;
