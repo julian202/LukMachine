@@ -651,9 +651,9 @@ namespace LukMachine
       //resize and reposition things when window resizes.
       if (WindowState != FormWindowState.Minimized)
       {
-        chart1.Size = new System.Drawing.Size(this.Width - 206, this.Height - 63);
-        groupBox1.Location = new System.Drawing.Point(chart1.Width + 10, chart1.Top);
-        groupBox2.Location = new System.Drawing.Point(chart1.Width + 10, chart1.Top + 105);
+        chart1.Size = new System.Drawing.Size(this.Width - 316, this.Height - 189);
+        groupBox1.Location = new System.Drawing.Point(chart1.Width + 40, chart1.Top);
+        groupBox2.Location = new System.Drawing.Point(chart1.Width + 40, chart1.Top + 105);
       }
     }
 
@@ -1107,6 +1107,11 @@ namespace LukMachine
       label25.Text = perm.ToString("#.0000000");
       /*double i = 10 / 5 / 2;
       MessageBox.Show(i.ToString());*/
+    }
+
+    private void button6_Click(object sender, EventArgs e)
+    {
+      Close();
     }
   }
 }

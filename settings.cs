@@ -149,6 +149,7 @@ namespace LukMachine
 
     private void settings_Load(object sender, EventArgs e)
     {
+      textBox4.Text = Properties.Settings.Default.intervalBetweenTimePoints.ToString();
       textBoxmaxEmptyCollectedPercentFull.Text = Properties.Settings.Default.maxEmptyCollectedPercentFull.ToString();
       textBoxPressureTolerance.Text = Properties.Settings.Default.pressureTolerance.ToString();
       textBoxTemperatureTolerance.Text = Properties.Settings.Default.temperatureTolerance.ToString();

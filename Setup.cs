@@ -213,7 +213,12 @@ namespace LukMachine
       Properties.Settings.Default.TestSampleID = textBox1.Text;
       Properties.Settings.Default.TestLotNumber = textBox2.Text;
       Properties.Settings.Default.SampleDiameter = textBoxDiameter.Text;
-      Properties.Settings.Default.innerDiameter = textBoxInnerDiameter.Text;
+
+      if (radioButtonRingChamber.Checked)
+      {
+        Properties.Settings.Default.innerDiameter = textBoxInnerDiameter.Text;
+      }
+
       Properties.Settings.Default.SampleThickness = textBoxThickness.Text;
       if (radioButtonOil.Checked)
       {
@@ -249,15 +254,19 @@ namespace LukMachine
         return;
       }
 
-      try
+      if (radioButtonRingChamber.Checked)
       {
-        double innerDiameter = Convert.ToDouble(textBoxInnerDiameter.Text);
+        try
+        {
+          double innerDiameter = Convert.ToDouble(textBoxInnerDiameter.Text);
+        }
+        catch (Exception)
+        {
+          MessageBox.Show("Inner Diameter must be a valid number");
+          return;
+        }
       }
-      catch (Exception)
-      {
-        MessageBox.Show("Inner Diameter must be a valid number");
-        return;
-      }
+      
 
 
 
@@ -901,5 +910,22 @@ namespace LukMachine
     {
 
     }
+
+    private void radioButtonDiskChamber_CheckedChanged(object sender, EventArgs e)
+    {
+      if (radioButtonDiskChamber.Checked)
+      {
+        textBoxInnerDiameter.Visible = false;
+        label22.Visible = false;
+        label23.Visible = false;
+      }
+      else
+      {
+        textBoxInnerDiameter.Visible = true;
+        label22.Visible = true;
+        label23.Visible = true;
+      }
+    }
+
   }
 }

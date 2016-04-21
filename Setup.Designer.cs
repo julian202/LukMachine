@@ -649,6 +649,7 @@
       this.radioButtonDiskChamber.TabStop = true;
       this.radioButtonDiskChamber.Text = "Disk Chamber";
       this.radioButtonDiskChamber.UseVisualStyleBackColor = true;
+      this.radioButtonDiskChamber.CheckedChanged += new System.EventHandler(this.radioButtonDiskChamber_CheckedChanged);
       // 
       // panel1
       // 

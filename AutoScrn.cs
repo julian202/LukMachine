@@ -318,7 +318,11 @@ namespace LukMachine
       thickness = Convert.ToDouble(Properties.Settings.Default.SampleThickness);
       viscosity = Convert.ToDouble(Properties.Settings.Default.CurrentViscosity);
       diameter = Convert.ToDouble(Properties.Settings.Default.SampleDiameter);
-      innerDiameter = Convert.ToDouble(Properties.Settings.Default.innerDiameter);
+      if (Properties.Settings.Default.Chamber == "Ring") //calculate ring area:
+      {
+        innerDiameter = Convert.ToDouble(Properties.Settings.Default.innerDiameter);
+      }
+
       area = 3.1415926 * diameter * diameter / 4;
 
       if (Properties.Settings.Default.Chamber == "Ring") //calculate ring area:
