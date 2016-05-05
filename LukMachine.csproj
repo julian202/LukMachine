@@ -12,10 +12,10 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\MSI-1\Downloads\LUKpublish\</PublishUrl>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>ftp://ftp.pmiapp.com/development/deploy/luk/</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
+    <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Background</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -23,11 +23,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://www.pmiapp.com/development/deploy/luk/</InstallUrl>
     <UpdateUrl>http://www.pmiapp.com/development/deploy/luk/</UpdateUrl>
     <ProductName>PMI Liquid Permeability %28Luk%29</ProductName>
     <PublisherName>PMI Porous Materials, Inc</PublisherName>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>73</ApplicationRevision>
+    <ApplicationRevision>78</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -70,6 +72,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\PMI.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AGaugeApp">
@@ -330,6 +335,7 @@
   <ItemGroup>
     <Content Include="DiagramForDebuggingSerialPort.PNG" />
     <Content Include="Notes.txt" />
+    <None Include="Resources\PMI.ico" />
     <None Include="Resources\112_UpLeftArrowShort_Green_32x32_72.png" />
     <Content Include="Help\PMI Liquid Permeameter\contents.html" />
     <Content Include="Help\PMI Liquid Permeameter\images\autoTest-Screen.JPG" />

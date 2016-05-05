@@ -40,6 +40,7 @@
       this.label4 = new System.Windows.Forms.Label();
       this.linkLabelOpenFolder = new System.Windows.Forms.LinkLabel();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
+      this.button6 = new System.Windows.Forms.Button();
       this.radioButton6 = new System.Windows.Forms.RadioButton();
       this.radioButton5 = new System.Windows.Forms.RadioButton();
       this.radioButton4 = new System.Windows.Forms.RadioButton();
@@ -90,7 +91,7 @@
       this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
       this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
       this.dataSet1 = new System.Data.DataSet();
-      this.button6 = new System.Windows.Forms.Button();
+      this.linkLabel1 = new System.Windows.Forms.LinkLabel();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -115,6 +116,7 @@
       // tabPage1
       // 
       this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+      this.tabPage1.Controls.Add(this.linkLabel1);
       this.tabPage1.Controls.Add(this.chart1);
       this.tabPage1.Controls.Add(this.label3);
       this.tabPage1.Controls.Add(this.label5);
@@ -180,7 +182,7 @@
       // 
       this.linkLabelOpenFolder.AutoSize = true;
       this.linkLabelOpenFolder.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.linkLabelOpenFolder.Location = new System.Drawing.Point(705, 507);
+      this.linkLabelOpenFolder.Location = new System.Drawing.Point(705, 490);
       this.linkLabelOpenFolder.Name = "linkLabelOpenFolder";
       this.linkLabelOpenFolder.Size = new System.Drawing.Size(133, 18);
       this.linkLabelOpenFolder.TabIndex = 41;
@@ -206,6 +208,16 @@
       this.groupBox2.TabIndex = 40;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Details";
+      // 
+      // button6
+      // 
+      this.button6.Location = new System.Drawing.Point(24, 354);
+      this.button6.Name = "button6";
+      this.button6.Size = new System.Drawing.Size(159, 48);
+      this.button6.TabIndex = 42;
+      this.button6.Text = "Close this Window";
+      this.button6.UseVisualStyleBackColor = true;
+      this.button6.Click += new System.EventHandler(this.button6_Click);
       // 
       // radioButton6
       // 
@@ -380,7 +392,7 @@
       this.tabPage2.Location = new System.Drawing.Point(4, 33);
       this.tabPage2.Name = "tabPage2";
       this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-      this.tabPage2.Size = new System.Drawing.Size(1088, 574);
+      this.tabPage2.Size = new System.Drawing.Size(1088, 564);
       this.tabPage2.TabIndex = 1;
       this.tabPage2.Text = "Formula";
       // 
@@ -724,15 +736,17 @@
       // 
       this.dataSet1.DataSetName = "NewDataSet";
       // 
-      // button6
+      // linkLabel1
       // 
-      this.button6.Location = new System.Drawing.Point(24, 354);
-      this.button6.Name = "button6";
-      this.button6.Size = new System.Drawing.Size(159, 48);
-      this.button6.TabIndex = 42;
-      this.button6.Text = "Close this Window";
-      this.button6.UseVisualStyleBackColor = true;
-      this.button6.Click += new System.EventHandler(this.button6_Click);
+      this.linkLabel1.AutoSize = true;
+      this.linkLabel1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.linkLabel1.Location = new System.Drawing.Point(578, 490);
+      this.linkLabel1.Name = "linkLabel1";
+      this.linkLabel1.Size = new System.Drawing.Size(114, 18);
+      this.linkLabel1.TabIndex = 48;
+      this.linkLabel1.TabStop = true;
+      this.linkLabel1.Text = "Open Data File";
+      this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
       // 
       // Report
       // 
@@ -826,5 +840,6 @@
     private System.Windows.Forms.Button button5;
     private System.Windows.Forms.Label label25;
     private System.Windows.Forms.Button button6;
+    private System.Windows.Forms.LinkLabel linkLabel1;
   }
 }

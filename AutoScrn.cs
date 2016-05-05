@@ -39,7 +39,8 @@ namespace LukMachine
     bool stepTimeReached = false;
     Stopwatch stopwatch = new Stopwatch();
     Stopwatch stopwatchStep = new Stopwatch();
-    TimeSpan timeSpanTotal;
+    TimeSpan timeSpanTotal; 
+    TimeSpan lastTimeSpanTotal;
     TimeSpan timeSpanStep;
     double stepTimeInMinutes;
     bool testFinished = false;
@@ -66,7 +67,8 @@ namespace LukMachine
     private double chamberTemp;
     double pumpPowerAtEndOfLastStep = 0;
     double PREVIOUSpumpPowerAtEndOfLastStep = 0;
-    bool emptyingCollected = false;
+    bool emptyingCollected = false; 
+    bool refillingReservoir = false;
     bool dontCountFirstDataPointAfterEmtpying = false;
     bool goingToTargetTemperature = false;
     bool goingToTargetPressure = false;
@@ -88,7 +90,8 @@ namespace LukMachine
     bool exitedBackgroundWorkerReadAndDisplay = false;
     bool timerIntervalFinished = false;
     private bool cancelBackgroundWorkerMainLoop = false;
-
+    private bool cancelBackgroundWorkerReadAndDisplay = false;
+    
     public AutoScrn()
     {
       InitializeComponent();
@@ -178,14 +181,19 @@ namespace LukMachine
         
         if (abort || stopButtonPressed)
         {
-          break;
+          //break;
+          exitedBackgroundWorkerMainLoop = true;
+          cancelBackgroundWorkerMainLoop = false;
+          return;
         }
         startTimeWriteToFileAndGraph();
-        if((backgroundWorkerMainLoop.CancellationPending == true))
+        //if((backgroundWorkerMainLoop.CancellationPending == true))
+        if ((cancelBackgroundWorkerMainLoop)) 
         {
           exitedBackgroundWorkerMainLoop = true;
           e.Cancel = true;
           //break;
+          cancelBackgroundWorkerMainLoop = false;
           return;
         }
       }
@@ -193,7 +201,8 @@ namespace LukMachine
       {
         exitedBackgroundWorkerMainLoop = true;
         backgroundWorkerMainLoop.ReportProgress(0, "finished()");     
-      }      
+      }
+      exitedBackgroundWorkerMainLoop = true;
     }
 
     private void backgroundWorkerMainLoop_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -396,6 +405,18 @@ namespace LukMachine
           stopwatch.Stop();
           stopwatchStep.Stop();
         }
+
+        if (reservoirPercent < 2)
+        {
+          refillingReservoir = true;
+          stopwatch.Stop();
+          stopwatchStep.Stop();
+          MessageBox.Show("Reservoir is empty. Please refill the reservoir and then click OK");
+          //Debug.WriteLine("DONE WITH MESSAGE BOX");
+          goToTargetTemperature();
+          goToTargetPressure();
+        }
+        
         if (emptyingCollected)
         {
           while (true) //wait for collected volume to drain
@@ -426,7 +447,7 @@ namespace LukMachine
         timerIntervalFinished = false;
         while (!timerIntervalFinished && !stopButtonPressed)
         {
-          Thread.Sleep(300);        
+          Thread.Sleep(20);        
         }
       }
 
@@ -672,7 +693,14 @@ namespace LukMachine
           }
         }
 
-        if (openValve1)
+        if (refillingReservoir)
+        {
+          Pumps.SetPump2(0);
+          //MessageBox.Show("pump0");
+        }
+
+
+          if (openValve1)
         {
           Valves.OpenValve1();
           openValve1 = false;
@@ -828,8 +856,10 @@ namespace LukMachine
         Thread.Sleep(500);
 
         //cancel 
-        if ((backgroundWorkerReadAndDisplay.CancellationPending == true))
+        //if ((backgroundWorkerReadAndDisplay.CancellationPending == true))
+        if ((cancelBackgroundWorkerReadAndDisplay))       
         {
+          cancelBackgroundWorkerReadAndDisplay = false;
           Valves.OpenValve2();
           Pumps.SetPump2(0);
           double zerotemp = 0;
@@ -841,7 +871,8 @@ namespace LukMachine
 
           exitedBackgroundWorkerReadAndDisplay = true;
           e.Cancel = true;
-          break;
+          //break;
+          return;
         }
       }
     }
@@ -1018,14 +1049,16 @@ namespace LukMachine
       panel1.Visible = true;
       Refresh();
       //wait for backgroundWorkerMainLoop to exit
-      backgroundWorkerMainLoop.CancelAsync();
+      //backgroundWorkerMainLoop.CancelAsync();
+      cancelBackgroundWorkerMainLoop = true;
       while (!exitedBackgroundWorkerMainLoop)
       {
         Thread.Sleep(100);
       }
 
       //wait for backgroundWorkerReadAndDisplay to exit
-      backgroundWorkerReadAndDisplay.CancelAsync();
+      //backgroundWorkerReadAndDisplay.CancelAsync();
+      cancelBackgroundWorkerReadAndDisplay = true;
       while (!exitedBackgroundWorkerReadAndDisplay)
       {
         Thread.Sleep(100);
@@ -1044,6 +1077,14 @@ namespace LukMachine
     private void timerForStopWatch_Tick(object sender, EventArgs e)
     {
       timeSpanTotal = stopwatch.Elapsed;
+      /*
+      if (timeSpanTotal.TotalSeconds < Properties.Settings.Default.intervalBetweenTimePoints)
+      {
+        lastTimeSpanTotal = timeSpanTotal;
+      }
+      */
+    
+
       timeSpanStep = stopwatchStep.Elapsed;
       totalTime = String.Format("{0:00}:{1:00}", timeSpanTotal.Minutes+ timeSpanTotal.Hours*60, timeSpanTotal.Seconds);
       labelTotalTime.Text = "Total time = " + totalTime;

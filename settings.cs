@@ -37,7 +37,24 @@ namespace LukMachine
         MessageBox.Show("Collected volume percent should be between 0 and 50%");
         return;
       }
-      
+
+      try
+      {
+        if ((Convert.ToInt32(textBoxMinVolume.Text) >= 0) && (Convert.ToInt32(textBoxMinVolume.Text) <= 100))
+        {
+          Properties.Settings.Default.minReservoirPercentAlert = Convert.ToInt32(textBoxMinVolume.Text);
+        }
+        else
+        {
+          MessageBox.Show("Reservoir volume percent should be between 0 and 100%");
+        }
+      }
+      catch (Exception)
+      {
+        MessageBox.Show("Reservoir volume percent should be between 0 and 100%");
+        return;
+      }
+
       //Properties.Settings.Default.maxEmptyCollectedPercentFull
       try
       {
@@ -151,6 +168,7 @@ namespace LukMachine
     {
       textBox4.Text = Properties.Settings.Default.intervalBetweenTimePoints.ToString();
       textBoxmaxEmptyCollectedPercentFull.Text = Properties.Settings.Default.maxEmptyCollectedPercentFull.ToString();
+      textBoxMinVolume.Text = Properties.Settings.Default.minReservoirPercentAlert.ToString();
       textBoxPressureTolerance.Text = Properties.Settings.Default.pressureTolerance.ToString();
       textBoxTemperatureTolerance.Text = Properties.Settings.Default.temperatureTolerance.ToString();
       textBoxPressure.Text = Properties.Settings.Default.p1Max.ToString();
@@ -313,6 +331,11 @@ namespace LukMachine
       //labelBoardDetected.Visible = true;
       MessageBox.Show("The Machine has not been detected. Reconnect USB cable and restart the machine");
       _serialPort.Close();
+    }
+
+    private void textBoxmaxEmptyCollectedPercentFull_TextChanged(object sender, EventArgs e)
+    {
+
     }
   }
 }

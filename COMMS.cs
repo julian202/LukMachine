@@ -698,9 +698,12 @@ namespace LukMachine
 
       try
       {
-        System.Diagnostics.Debug.WriteLine("Now converting returned temp to double");
+        //System.Diagnostics.Debug.WriteLine("Now converting returned temp to double");
         double fixReturn = double.Parse(returnValue) / 10;
-        System.Diagnostics.Debug.WriteLine("Done, returned temperature = " + fixReturn.ToString());
+        //System.Diagnostics.Debug.WriteLine("Done, returned temperature = " + fixReturn.ToString());
+
+        //convert from celsius to fahrenheit for new athena
+        fixReturn = (fixReturn * 9 / 5) + 32;
         return fixReturn;
       }
       catch (Exception)

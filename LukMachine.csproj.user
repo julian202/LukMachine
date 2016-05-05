@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>C:\Users\MSI-1\Downloads\LUKpublish\|ftp://ftp.pmiapp.com/development/deploy/luk/|ftp://Development:PMIteam1%40ftp.pmiapp.com/development/deploy/luk/|ftp://user:pass%40ftp.pmiapp.com/development/deploy/luk/|ftp://ftp.pmiapp.com/development/deploy/luk/ ftp://user:pass%40gomain.com/</PublishUrlHistory>
+    <PublishUrlHistory>ftp://ftp.pmiapp.com/development/deploy/luk/|C:\Users\MSI-1\Downloads\LUKpublish\|ftp://Development:PMIteam1%40ftp.pmiapp.com/development/deploy/luk/|ftp://user:pass%40ftp.pmiapp.com/development/deploy/luk/|ftp://ftp.pmiapp.com/development/deploy/luk/ ftp://user:pass%40gomain.com/</PublishUrlHistory>
     <InstallUrlHistory>http://www.pmiapp.com/development/deploy/luk/</InstallUrlHistory>
     <SupportUrlHistory />
     <UpdateUrlHistory>http://www.pmiapp.com/development/deploy/luk/|http://www.pmiapp.com/developmebnt/deploy/luk/</UpdateUrlHistory>

@@ -453,11 +453,11 @@ namespace LukMachine
       if (checkBoxReadTemps.Checked)
       {
         temp = COMMS.Instance.ReadAthenaTemp(2);
-        labelChamber1Temp.Text = "Chamber 1: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        labelChamber1Temp.Text = "Chamber 1: " + Math.Round((temp - 32) * 5 / 9) + "C / " + temp + "F" ;
         temp = COMMS.Instance.ReadAthenaTemp(1);
-        labelChamber2Temp.Text = "Chamber 2: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        labelChamber2Temp.Text = "Chamber 2: " + Math.Round((temp - 32) * 5 / 9) + "C / " + temp + "F" ;
         temp = COMMS.Instance.ReadAthenaTemp(3);
-        labelReservoirTemp.Text = "Reservoir: " + temp + "F / " + Math.Round((temp - 32) * 5 / 9) + "C";
+        labelReservoirTemp.Text = "Reservoir: " + Math.Round((temp - 32) * 5 / 9) + "C / " + temp + "F" ;
       }
       if (checkBox4.Checked)
       {

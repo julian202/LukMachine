@@ -281,6 +281,16 @@ namespace LukMachine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon PMI {
+            get {
+                object obj = ResourceManager.GetObject("PMI", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap PMI_LOGO_NEW_2010_outerglow_copy {

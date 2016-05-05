@@ -1113,5 +1113,11 @@ namespace LukMachine
     {
       Close();
     }
+
+    private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+      System.Diagnostics.Process.Start("Notepad.exe", (Properties.Settings.Default.TestData).ToString());
+    
+    }
   }
 }

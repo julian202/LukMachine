@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="LukMachine.exe" version="1.0.0.73" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="LukMachine.exe" version="1.0.0.78" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="Resources\PMI.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
     <assemblyIdentity name="LukMachine" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -66,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LukMachine.exe" size="2016152">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LukMachine.exe" size="2048408">
       <assemblyIdentity name="LukMachine" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>67qF70dwWPw0I1AxYVXEnQDcDdJI5rOGVIjdibGBzrE=</dsig:DigestValue>
+        <dsig:DigestValue>VEiEjUDWT51XFXBXYu+QaWsE4sqK0d2qC4k9vzkgDc4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -305,13 +306,13 @@
       <dsig:DigestValue>FlhR2zYkFgyXM/PfRqsWBhVEY+oeJCPtYWNUPyR6Ouo=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="LukMachine.exe.config" size="12842">
+  <file name="LukMachine.exe.config" size="12976">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>JPzk41mTma/HH7O/dA48fxpAE85OQ3vpE+TGWFq9pq8=</dsig:DigestValue>
+      <dsig:DigestValue>FgSSS5TrCjqLYxY9H3kE5Bba3pISi+Ktekdf0wAEE4M=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Notes.txt" size="803">
@@ -321,6 +322,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>iAPJDCamBb8YyUmdGXhSu0X30H2IEzOoxaWftdIvy1U=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\PMI.ico" size="14942">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>j8TawvZ751QYE01RY2PlO5iAGs7v6/dWIRRn3AMJ8DQ=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
