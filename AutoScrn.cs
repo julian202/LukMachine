@@ -93,7 +93,8 @@ namespace LukMachine
     bool timerIntervalFinished = false;
     private bool cancelBackgroundWorkerMainLoop = false;
     private bool cancelBackgroundWorkerReadAndDisplay = false;
-    
+    private bool dontAddPointAfterPAdjust = false;
+
     public AutoScrn()
     {
       InitializeComponent();
@@ -407,7 +408,16 @@ namespace LukMachine
       firstDataPoint = true;
       while (!stepTimeReached)
       {
-        backgroundWorkerMainLoop.ReportProgress(0, "addDataPointToTableAndGraph()");
+        //ignore first point after adjusting pressure because otherwise they repeat:
+        if (!dontAddPointAfterPAdjust)
+        {
+          backgroundWorkerMainLoop.ReportProgress(0, "addDataPointToTableAndGraph()");         
+        }
+        else
+        {
+          dontAddPointAfterPAdjust = false;
+        }
+        
 
         if (collectedPercent > 95)
         {
@@ -457,7 +467,7 @@ namespace LukMachine
         //Thread.Sleep(1000 * Properties.Settings.Default.intervalBetweenTimePoints);    
         backgroundWorkerMainLoop.ReportProgress(0, "startTimerForDataPointInterval()");
         timerIntervalFinished = false;
-        while (!timerIntervalFinished && !stopButtonPressed)
+        while (!timerIntervalFinished && !stopButtonPressed && !stepTimeReached)
         {
           Thread.Sleep(50);
 
@@ -1120,7 +1130,9 @@ namespace LukMachine
       stepTimeInMinutes = Convert.ToDouble(timeSpanStep.Hours)*60+ Convert.ToDouble(timeSpanStep.Minutes) + Convert.ToDouble(timeSpanStep.Seconds) / 60;
       if (stepTimeInMinutes >= Convert.ToDouble(Properties.Settings.Default.CollectionDuration[stepCount]))
       {
+        stopwatchStep.Restart();
         stepTimeReached = true;
+        dontAddPointAfterPAdjust = true;
       }
     }
 
