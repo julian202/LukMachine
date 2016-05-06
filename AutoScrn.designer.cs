@@ -29,18 +29,18 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
-      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-      System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-      System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-      System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-      System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+      System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoScrn));
       this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
       this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -72,9 +72,7 @@
       this.labelPressure = new System.Windows.Forms.Label();
       this.labelDuration = new System.Windows.Forms.Label();
       this.groupBoxCollectedVolume = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       this.groupBoxReservoir = new System.Windows.Forms.GroupBox();
-      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
       this.buttonReport = new System.Windows.Forms.Button();
       this.linkLabelOpenFolder = new System.Windows.Forms.LinkLabel();
       this.backgroundWorkerMainLoop = new System.ComponentModel.BackgroundWorker();
@@ -91,6 +89,8 @@
       this.checkBoxShowPermeabilityGraph = new System.Windows.Forms.CheckBox();
       this.checkBoxShowPermeabilityGraph2 = new System.Windows.Forms.CheckBox();
       this.timerForDataPointInterval = new System.Windows.Forms.Timer(this.components);
+      this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
+      this.verticalProgressBar2 = new LukMachine.VerticalProgressBar();
       ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.panel1.SuspendLayout();
@@ -106,27 +106,27 @@
       // 
       this.chart1.BorderlineColor = System.Drawing.Color.Black;
       this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-      chartArea2.Name = "ChartArea1";
-      this.chart1.ChartAreas.Add(chartArea2);
+      chartArea1.Name = "ChartArea1";
+      this.chart1.ChartAreas.Add(chartArea1);
       this.chart1.Location = new System.Drawing.Point(12, 208);
       this.chart1.Name = "chart1";
-      series5.ChartArea = "ChartArea1";
-      series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-      series5.IsVisibleInLegend = false;
-      series5.Name = "Series1";
-      series6.ChartArea = "ChartArea1";
-      series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-      series6.Name = "SeriesPressure";
-      series7.ChartArea = "ChartArea1";
-      series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-      series7.Name = "SeriesTemperature";
-      series8.ChartArea = "ChartArea1";
-      series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-      series8.Name = "SeriesPermeability";
-      this.chart1.Series.Add(series5);
-      this.chart1.Series.Add(series6);
-      this.chart1.Series.Add(series7);
-      this.chart1.Series.Add(series8);
+      series1.ChartArea = "ChartArea1";
+      series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+      series1.IsVisibleInLegend = false;
+      series1.Name = "Series1";
+      series2.ChartArea = "ChartArea1";
+      series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+      series2.Name = "SeriesPressure";
+      series3.ChartArea = "ChartArea1";
+      series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+      series3.Name = "SeriesTemperature";
+      series4.ChartArea = "ChartArea1";
+      series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+      series4.Name = "SeriesPermeability";
+      this.chart1.Series.Add(series1);
+      this.chart1.Series.Add(series2);
+      this.chart1.Series.Add(series3);
+      this.chart1.Series.Add(series4);
       this.chart1.Size = new System.Drawing.Size(646, 308);
       this.chart1.TabIndex = 0;
       this.chart1.Text = "chart1";
@@ -140,14 +140,14 @@
       this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
       this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
       this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-      dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-      dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-      dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-      dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-      dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-      dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-      this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+      dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+      dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+      dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+      dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
       this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TimeColumn,
@@ -155,17 +155,17 @@
       this.dataGridView1.Location = new System.Drawing.Point(664, 208);
       this.dataGridView1.Name = "dataGridView1";
       this.dataGridView1.ReadOnly = true;
-      dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-      dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-      dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-      dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-      dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-      dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-      this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+      dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+      dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+      dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+      dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
       this.dataGridView1.RowHeadersVisible = false;
-      dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-      this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle10;
+      dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
       this.dataGridView1.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
       this.dataGridView1.Size = new System.Drawing.Size(231, 308);
       this.dataGridView1.TabIndex = 1;
@@ -463,14 +463,6 @@
       this.groupBoxCollectedVolume.TabStop = false;
       this.groupBoxCollectedVolume.Text = "Collected Volume";
       // 
-      // verticalProgressBar2
-      // 
-      this.verticalProgressBar2.Location = new System.Drawing.Point(52, 42);
-      this.verticalProgressBar2.Name = "verticalProgressBar2";
-      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar2.TabIndex = 10;
-      this.verticalProgressBar2.Value = 50;
-      // 
       // groupBoxReservoir
       // 
       this.groupBoxReservoir.Controls.Add(this.verticalProgressBar1);
@@ -480,14 +472,6 @@
       this.groupBoxReservoir.TabIndex = 21;
       this.groupBoxReservoir.TabStop = false;
       this.groupBoxReservoir.Text = "Reservoir";
-      // 
-      // verticalProgressBar1
-      // 
-      this.verticalProgressBar1.Location = new System.Drawing.Point(37, 42);
-      this.verticalProgressBar1.Name = "verticalProgressBar1";
-      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
-      this.verticalProgressBar1.TabIndex = 9;
-      this.verticalProgressBar1.Value = 50;
       // 
       // buttonReport
       // 
@@ -536,19 +520,19 @@
       this.dataGridView2.AllowUserToDeleteRows = false;
       this.dataGridView2.AllowUserToResizeColumns = false;
       this.dataGridView2.AllowUserToResizeRows = false;
-      dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-      this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+      dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
       this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
       this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
       this.dataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-      dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-      dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-      dataGridViewCellStyle12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-      dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-      dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-      dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-      this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+      dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+      dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+      dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+      dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
       this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StepColumn,
@@ -558,17 +542,17 @@
       this.dataGridView2.Location = new System.Drawing.Point(12, 28);
       this.dataGridView2.Name = "dataGridView2";
       this.dataGridView2.ReadOnly = true;
-      dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-      dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-      dataGridViewCellStyle13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-      dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-      dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-      dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-      this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
+      dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+      dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+      dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+      dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
       this.dataGridView2.RowHeadersVisible = false;
-      dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-      this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle14;
+      dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+      this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle7;
       this.dataGridView2.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
       this.dataGridView2.Size = new System.Drawing.Size(294, 149);
       this.dataGridView2.TabIndex = 46;
@@ -662,6 +646,22 @@
       // timerForDataPointInterval
       // 
       this.timerForDataPointInterval.Tick += new System.EventHandler(this.timerForDataPointInterval_Tick);
+      // 
+      // verticalProgressBar1
+      // 
+      this.verticalProgressBar1.Location = new System.Drawing.Point(37, 42);
+      this.verticalProgressBar1.Name = "verticalProgressBar1";
+      this.verticalProgressBar1.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar1.TabIndex = 9;
+      this.verticalProgressBar1.Value = 50;
+      // 
+      // verticalProgressBar2
+      // 
+      this.verticalProgressBar2.Location = new System.Drawing.Point(52, 42);
+      this.verticalProgressBar2.Name = "verticalProgressBar2";
+      this.verticalProgressBar2.Size = new System.Drawing.Size(84, 124);
+      this.verticalProgressBar2.TabIndex = 10;
+      this.verticalProgressBar2.Value = 50;
       // 
       // AutoScrn
       // 

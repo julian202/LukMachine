@@ -39,8 +39,10 @@ namespace LukMachine
     bool stepTimeReached = false;
     Stopwatch stopwatch = new Stopwatch();
     Stopwatch stopwatchStep = new Stopwatch();
-    TimeSpan timeSpanTotal; 
-    TimeSpan lastTimeSpanTotal;
+    TimeSpan timeSpanTotal;
+    TimeSpan timeSpanTotalPlus50ms;
+    TimeSpan differenceTimeSpan;
+    TimeSpan lastTimeSpanTotal = new TimeSpan(0);
     TimeSpan timeSpanStep;
     double stepTimeInMinutes;
     bool testFinished = false;
@@ -263,8 +265,9 @@ namespace LukMachine
     }
     private void startTimerForDataPointInterval()
     {
+      /*
       timerForDataPointInterval.Interval = 1000 * Properties.Settings.Default.intervalBetweenTimePoints;
-      timerForDataPointInterval.Start();
+      timerForDataPointInterval.Start();*/
     }
 
     private void showStopButton()
@@ -297,7 +300,7 @@ namespace LukMachine
           dontCountFirstDataPointAfterEmtpying = false;
         }
         lastCollectedDifferenceInCounts = collectedDifferenceInCounts;
-        totalTimeInMinutes = Convert.ToDouble(timeSpanStep.Hours) * 60 + Convert.ToDouble(timeSpanTotal.Minutes) + Convert.ToDouble(timeSpanTotal.Seconds) / 60;
+        totalTimeInMinutes = Convert.ToDouble(timeSpanTotal.Hours) * 60 + Convert.ToDouble(timeSpanTotal.Minutes) + Convert.ToDouble(timeSpanTotal.Seconds) / 60;
         timeDifferenceInMinutes = lastTotalTimeInMinutes - totalTimeInMinutes;
         if (timeDifferenceInMinutes == 0)
         {
@@ -317,7 +320,16 @@ namespace LukMachine
         }
         //Debug.WriteLine("flow: "+ flow+ " totalTimeInMinutes: "+ totalTimeInMinutes+ " lastTotalTimeInMinutes: " + lastTotalTimeInMinutes+" timeDifferenceInMinutes: " +timeDifferenceInMinutes.ToString() + " collectedDifferenceInCounts: " + collectedDifferenceInCounts.ToString());
       }
+
+      //add 50ms to totalTime to correct error of showing one second less than it is:
+      timeSpanTotalPlus50ms = timeSpanTotal.Add(TimeSpan.FromMilliseconds(50));
+      totalTime = String.Format("{0:00}:{1:00}", timeSpanTotalPlus50ms.Minutes + timeSpanTotalPlus50ms.Hours * 60, timeSpanTotalPlus50ms.Seconds);
+         
       dataGridView1.Rows.Add(totalTime, flow.ToString("#0.00"));
+      Debug.WriteLine(timeSpanTotal.Seconds + " s " + timeSpanTotal.Milliseconds + " ms");
+      Debug.WriteLine(timeSpanTotal.Seconds + " s " + timeSpanTotal.Milliseconds + " ms");
+      Debug.WriteLine(timeSpanTotal.Seconds + " s " + timeSpanTotal.Milliseconds + " ms");
+      Debug.WriteLine(totalTime);
       dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.RowCount - 1;
       chart1.Series["Series1"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), flow.ToString("#0.00"));
       chart1.Series["SeriesPressure"].Points.AddXY(totalTimeInMinutes.ToString("#0.00"), currentPressure.ToString("#0.00"));
@@ -385,7 +397,7 @@ namespace LukMachine
       addToListBox1("Data saved to " + Properties.Settings.Default.TestData);
       stopButton();  
     }
-    private void startTimeWriteToFileAndGraph()
+    private void startTimeWriteToFileAndGraph() //part of backgroundWorkerMainLoop_DoWork()
     {
       backgroundWorkerMainLoop.ReportProgress(0, "hidePanel1()");
       backgroundWorkerMainLoop.ReportProgress(0, "Running step " + (stepCount + 1));
@@ -447,7 +459,19 @@ namespace LukMachine
         timerIntervalFinished = false;
         while (!timerIntervalFinished && !stopButtonPressed)
         {
-          Thread.Sleep(20);        
+          Thread.Sleep(50);
+
+          //check if we must add a datapoint (check if we have reached intervalBetweenTimePoints)
+          timeSpanTotal = stopwatch.Elapsed;
+          if ((timeSpanTotal.TotalSeconds - lastTimeSpanTotal.TotalSeconds) > Properties.Settings.Default.intervalBetweenTimePoints)
+          {
+            timerIntervalFinished = true;
+            //we MUST subtract the difference so that we don't accumulate it over time:
+            differenceTimeSpan =  TimeSpan.FromSeconds( (timeSpanTotal.TotalSeconds - lastTimeSpanTotal.TotalSeconds) - Properties.Settings.Default.intervalBetweenTimePoints);
+            lastTimeSpanTotal = timeSpanTotal.Subtract(differenceTimeSpan);
+          }
+          //
+
         }
       }
 
@@ -1051,6 +1075,7 @@ namespace LukMachine
       //wait for backgroundWorkerMainLoop to exit
       //backgroundWorkerMainLoop.CancelAsync();
       cancelBackgroundWorkerMainLoop = true;
+      pressureHasBeenReached = true;
       while (!exitedBackgroundWorkerMainLoop)
       {
         Thread.Sleep(100);
@@ -1077,13 +1102,16 @@ namespace LukMachine
     private void timerForStopWatch_Tick(object sender, EventArgs e)
     {
       timeSpanTotal = stopwatch.Elapsed;
+
       /*
-      if (timeSpanTotal.TotalSeconds < Properties.Settings.Default.intervalBetweenTimePoints)
+      //check if we must add a datapoint (check if we have reached intervalBetweenTimePoints)
+      if ((timeSpanTotal.TotalSeconds - lastTimeSpanTotal.TotalSeconds) > Properties.Settings.Default.intervalBetweenTimePoints)
       {
+        timerIntervalFinished = true;
         lastTimeSpanTotal = timeSpanTotal;
-      }
-      */
-    
+      }*/
+      
+
 
       timeSpanStep = stopwatchStep.Elapsed;
       totalTime = String.Format("{0:00}:{1:00}", timeSpanTotal.Minutes+ timeSpanTotal.Hours*60, timeSpanTotal.Seconds);
