@@ -91,6 +91,8 @@
       this.label5 = new System.Windows.Forms.Label();
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.label75 = new System.Windows.Forms.Label();
+      this.label66 = new System.Windows.Forms.Label();
       this.label70 = new System.Windows.Forms.Label();
       this.label69 = new System.Windows.Forms.Label();
       this.label67 = new System.Windows.Forms.Label();
@@ -128,6 +130,8 @@
       this.label54 = new System.Windows.Forms.Label();
       this.label48 = new System.Windows.Forms.Label();
       this.groupBox11 = new System.Windows.Forms.GroupBox();
+      this.label74 = new System.Windows.Forms.Label();
+      this.label73 = new System.Windows.Forms.Label();
       this.label72 = new System.Windows.Forms.Label();
       this.button23 = new System.Windows.Forms.Button();
       this.label71 = new System.Windows.Forms.Label();
@@ -136,6 +140,8 @@
       this.label25 = new System.Windows.Forms.Label();
       this.label26 = new System.Windows.Forms.Label();
       this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+      this.rectangleShape32 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape30 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.rectangleShape27 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.rectangleShape18 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.rectangleShape17 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
@@ -207,6 +213,11 @@
       this.label9 = new System.Windows.Forms.Label();
       this.label17 = new System.Windows.Forms.Label();
       this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+      this.lineShape18 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+      this.lineShape17 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+      this.rectangleShape31 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape29 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+      this.rectangleShape28 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.rectangleShape26 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.rectangleShape25 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
       this.rectangleShape14 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
@@ -267,17 +278,6 @@
       this.label20 = new System.Windows.Forms.Label();
       this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
       this.timerHeater = new System.Windows.Forms.Timer(this.components);
-      this.rectangleShape28 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-      this.label66 = new System.Windows.Forms.Label();
-      this.label73 = new System.Windows.Forms.Label();
-      this.label74 = new System.Windows.Forms.Label();
-      this.rectangleShape29 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-      this.rectangleShape30 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-      this.rectangleShape31 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-      this.label75 = new System.Windows.Forms.Label();
-      this.rectangleShape32 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-      this.lineShape17 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-      this.lineShape18 = new Microsoft.VisualBasic.PowerPacks.LineShape();
       this.verticalProgressBar4 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar3 = new LukMachine.VerticalProgressBar();
       this.verticalProgressBar1 = new LukMachine.VerticalProgressBar();
@@ -1185,6 +1185,28 @@
       this.tabPage1.Text = "Diagram Control";
       this.tabPage1.Paint += new System.Windows.Forms.PaintEventHandler(this.tabPage1_Paint);
       // 
+      // label75
+      // 
+      this.label75.AutoSize = true;
+      this.label75.BackColor = System.Drawing.Color.LightGray;
+      this.label75.Font = new System.Drawing.Font("Arial", 8F);
+      this.label75.Location = new System.Drawing.Point(79, 323);
+      this.label75.Name = "label75";
+      this.label75.Size = new System.Drawing.Size(19, 18);
+      this.label75.TabIndex = 133;
+      this.label75.Text = "V";
+      // 
+      // label66
+      // 
+      this.label66.AutoSize = true;
+      this.label66.BackColor = System.Drawing.Color.LightGray;
+      this.label66.Font = new System.Drawing.Font("Arial", 8F);
+      this.label66.Location = new System.Drawing.Point(286, 558);
+      this.label66.Name = "label66";
+      this.label66.Size = new System.Drawing.Size(19, 18);
+      this.label66.TabIndex = 132;
+      this.label66.Text = "V";
+      // 
       // label70
       // 
       this.label70.AutoSize = true;
@@ -1240,9 +1262,9 @@
       // 
       // buttonStopFan
       // 
-      this.buttonStopFan.Location = new System.Drawing.Point(95, 561);
+      this.buttonStopFan.Location = new System.Drawing.Point(141, 563);
       this.buttonStopFan.Name = "buttonStopFan";
-      this.buttonStopFan.Size = new System.Drawing.Size(66, 59);
+      this.buttonStopFan.Size = new System.Drawing.Size(109, 48);
       this.buttonStopFan.TabIndex = 126;
       this.buttonStopFan.Text = "Stop Fan";
       this.buttonStopFan.UseVisualStyleBackColor = true;
@@ -1250,9 +1272,9 @@
       // 
       // buttonStartFan
       // 
-      this.buttonStartFan.Location = new System.Drawing.Point(20, 561);
+      this.buttonStartFan.Location = new System.Drawing.Point(20, 563);
       this.buttonStartFan.Name = "buttonStartFan";
-      this.buttonStartFan.Size = new System.Drawing.Size(66, 59);
+      this.buttonStartFan.Size = new System.Drawing.Size(109, 48);
       this.buttonStartFan.TabIndex = 18;
       this.buttonStartFan.Text = "Start Fan";
       this.buttonStartFan.UseVisualStyleBackColor = true;
@@ -1609,6 +1631,26 @@
       this.groupBox11.TabStop = false;
       this.groupBox11.Text = "Legend";
       // 
+      // label74
+      // 
+      this.label74.AutoSize = true;
+      this.label74.BackColor = System.Drawing.Color.LightGray;
+      this.label74.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label74.Location = new System.Drawing.Point(108, 289);
+      this.label74.Name = "label74";
+      this.label74.Size = new System.Drawing.Size(17, 16);
+      this.label74.TabIndex = 135;
+      this.label74.Text = "V";
+      // 
+      // label73
+      // 
+      this.label73.AutoSize = true;
+      this.label73.Location = new System.Drawing.Point(15, 256);
+      this.label73.Name = "label73";
+      this.label73.Size = new System.Drawing.Size(145, 25);
+      this.label73.TabIndex = 134;
+      this.label73.Text = "Manual Valve:";
+      // 
       // label72
       // 
       this.label72.AutoSize = true;
@@ -1693,6 +1735,28 @@
       this.shapeContainer2.Size = new System.Drawing.Size(181, 301);
       this.shapeContainer2.TabIndex = 0;
       this.shapeContainer2.TabStop = false;
+      // 
+      // rectangleShape32
+      // 
+      this.rectangleShape32.BackColor = System.Drawing.Color.Orange;
+      this.rectangleShape32.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape32.BorderWidth = 3;
+      this.rectangleShape32.CornerRadius = 23;
+      this.rectangleShape32.Location = new System.Drawing.Point(90, 140);
+      this.rectangleShape32.Name = "rectangleShape32";
+      this.rectangleShape32.Size = new System.Drawing.Size(47, 47);
+      // 
+      // rectangleShape30
+      // 
+      this.rectangleShape30.BackColor = System.Drawing.Color.LightGray;
+      this.rectangleShape30.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape30.BorderWidth = 3;
+      this.rectangleShape30.Location = new System.Drawing.Point(97, 255);
+      this.rectangleShape30.Name = "rectangleShape30";
+      this.rectangleShape30.Size = new System.Drawing.Size(32, 36);
+      this.rectangleShape30.Click += new System.EventHandler(this.rectangleShape6_Click);
+      this.rectangleShape30.MouseEnter += new System.EventHandler(this.rectangleShape6_MouseEnter);
+      this.rectangleShape30.MouseLeave += new System.EventHandler(this.rectangleShape6_MouseLeave);
       // 
       // rectangleShape27
       // 
@@ -2621,6 +2685,60 @@
       this.shapeContainer1.TabIndex = 0;
       this.shapeContainer1.TabStop = false;
       // 
+      // lineShape18
+      // 
+      this.lineShape18.BorderWidth = 3;
+      this.lineShape18.Name = "lineShape18";
+      this.lineShape18.X1 = 485;
+      this.lineShape18.X2 = 485;
+      this.lineShape18.Y1 = 436;
+      this.lineShape18.Y2 = 267;
+      // 
+      // lineShape17
+      // 
+      this.lineShape17.BorderWidth = 3;
+      this.lineShape17.Name = "lineShape17";
+      this.lineShape17.X1 = 485;
+      this.lineShape17.X2 = 561;
+      this.lineShape17.Y1 = 436;
+      this.lineShape17.Y2 = 436;
+      // 
+      // rectangleShape31
+      // 
+      this.rectangleShape31.BackColor = System.Drawing.Color.LightGray;
+      this.rectangleShape31.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape31.BorderWidth = 3;
+      this.rectangleShape31.Location = new System.Drawing.Point(65, 311);
+      this.rectangleShape31.Name = "rectangleShape31";
+      this.rectangleShape31.Size = new System.Drawing.Size(40, 37);
+      this.rectangleShape31.Click += new System.EventHandler(this.rectangleShape6_Click);
+      this.rectangleShape31.MouseEnter += new System.EventHandler(this.rectangleShape6_MouseEnter);
+      this.rectangleShape31.MouseLeave += new System.EventHandler(this.rectangleShape6_MouseLeave);
+      // 
+      // rectangleShape29
+      // 
+      this.rectangleShape29.BackColor = System.Drawing.Color.LightGray;
+      this.rectangleShape29.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape29.BorderWidth = 3;
+      this.rectangleShape29.Location = new System.Drawing.Point(273, 543);
+      this.rectangleShape29.Name = "rectangleShape29";
+      this.rectangleShape29.Size = new System.Drawing.Size(37, 40);
+      this.rectangleShape29.Click += new System.EventHandler(this.rectangleShape6_Click);
+      this.rectangleShape29.MouseEnter += new System.EventHandler(this.rectangleShape6_MouseEnter);
+      this.rectangleShape29.MouseLeave += new System.EventHandler(this.rectangleShape6_MouseLeave);
+      // 
+      // rectangleShape28
+      // 
+      this.rectangleShape28.BackColor = System.Drawing.Color.Brown;
+      this.rectangleShape28.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+      this.rectangleShape28.BorderWidth = 3;
+      this.rectangleShape28.Location = new System.Drawing.Point(262, 179);
+      this.rectangleShape28.Name = "rectangleShape28";
+      this.rectangleShape28.Size = new System.Drawing.Size(60, 73);
+      this.rectangleShape28.Click += new System.EventHandler(this.rectangleShape6_Click);
+      this.rectangleShape28.MouseEnter += new System.EventHandler(this.rectangleShape6_MouseEnter);
+      this.rectangleShape28.MouseLeave += new System.EventHandler(this.rectangleShape6_MouseLeave);
+      // 
       // rectangleShape26
       // 
       this.rectangleShape26.BackColor = System.Drawing.Color.LightGray;
@@ -3245,124 +3363,6 @@
       // 
       this.timerHeater.Interval = 4000;
       this.timerHeater.Tick += new System.EventHandler(this.timerHeater_Tick);
-      // 
-      // rectangleShape28
-      // 
-      this.rectangleShape28.BackColor = System.Drawing.Color.Brown;
-      this.rectangleShape28.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-      this.rectangleShape28.BorderWidth = 3;
-      this.rectangleShape28.Location = new System.Drawing.Point(262, 179);
-      this.rectangleShape28.Name = "rectangleShape28";
-      this.rectangleShape28.Size = new System.Drawing.Size(60, 73);
-      this.rectangleShape28.Click += new System.EventHandler(this.rectangleShape6_Click);
-      this.rectangleShape28.MouseEnter += new System.EventHandler(this.rectangleShape6_MouseEnter);
-      this.rectangleShape28.MouseLeave += new System.EventHandler(this.rectangleShape6_MouseLeave);
-      // 
-      // label66
-      // 
-      this.label66.AutoSize = true;
-      this.label66.BackColor = System.Drawing.Color.LightGray;
-      this.label66.Font = new System.Drawing.Font("Arial", 8F);
-      this.label66.Location = new System.Drawing.Point(286, 558);
-      this.label66.Name = "label66";
-      this.label66.Size = new System.Drawing.Size(19, 18);
-      this.label66.TabIndex = 132;
-      this.label66.Text = "V";
-      // 
-      // label73
-      // 
-      this.label73.AutoSize = true;
-      this.label73.Location = new System.Drawing.Point(15, 256);
-      this.label73.Name = "label73";
-      this.label73.Size = new System.Drawing.Size(145, 25);
-      this.label73.TabIndex = 134;
-      this.label73.Text = "Manual Valve:";
-      // 
-      // label74
-      // 
-      this.label74.AutoSize = true;
-      this.label74.BackColor = System.Drawing.Color.LightGray;
-      this.label74.Font = new System.Drawing.Font("Arial", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label74.Location = new System.Drawing.Point(108, 289);
-      this.label74.Name = "label74";
-      this.label74.Size = new System.Drawing.Size(17, 16);
-      this.label74.TabIndex = 135;
-      this.label74.Text = "V";
-      // 
-      // rectangleShape29
-      // 
-      this.rectangleShape29.BackColor = System.Drawing.Color.LightGray;
-      this.rectangleShape29.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-      this.rectangleShape29.BorderWidth = 3;
-      this.rectangleShape29.Location = new System.Drawing.Point(273, 543);
-      this.rectangleShape29.Name = "rectangleShape29";
-      this.rectangleShape29.Size = new System.Drawing.Size(37, 40);
-      this.rectangleShape29.Click += new System.EventHandler(this.rectangleShape6_Click);
-      this.rectangleShape29.MouseEnter += new System.EventHandler(this.rectangleShape6_MouseEnter);
-      this.rectangleShape29.MouseLeave += new System.EventHandler(this.rectangleShape6_MouseLeave);
-      // 
-      // rectangleShape30
-      // 
-      this.rectangleShape30.BackColor = System.Drawing.Color.LightGray;
-      this.rectangleShape30.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-      this.rectangleShape30.BorderWidth = 3;
-      this.rectangleShape30.Location = new System.Drawing.Point(97, 255);
-      this.rectangleShape30.Name = "rectangleShape30";
-      this.rectangleShape30.Size = new System.Drawing.Size(32, 36);
-      this.rectangleShape30.Click += new System.EventHandler(this.rectangleShape6_Click);
-      this.rectangleShape30.MouseEnter += new System.EventHandler(this.rectangleShape6_MouseEnter);
-      this.rectangleShape30.MouseLeave += new System.EventHandler(this.rectangleShape6_MouseLeave);
-      // 
-      // rectangleShape31
-      // 
-      this.rectangleShape31.BackColor = System.Drawing.Color.LightGray;
-      this.rectangleShape31.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-      this.rectangleShape31.BorderWidth = 3;
-      this.rectangleShape31.Location = new System.Drawing.Point(65, 311);
-      this.rectangleShape31.Name = "rectangleShape31";
-      this.rectangleShape31.Size = new System.Drawing.Size(40, 37);
-      this.rectangleShape31.Click += new System.EventHandler(this.rectangleShape6_Click);
-      this.rectangleShape31.MouseEnter += new System.EventHandler(this.rectangleShape6_MouseEnter);
-      this.rectangleShape31.MouseLeave += new System.EventHandler(this.rectangleShape6_MouseLeave);
-      // 
-      // label75
-      // 
-      this.label75.AutoSize = true;
-      this.label75.BackColor = System.Drawing.Color.LightGray;
-      this.label75.Font = new System.Drawing.Font("Arial", 8F);
-      this.label75.Location = new System.Drawing.Point(79, 323);
-      this.label75.Name = "label75";
-      this.label75.Size = new System.Drawing.Size(19, 18);
-      this.label75.TabIndex = 133;
-      this.label75.Text = "V";
-      // 
-      // rectangleShape32
-      // 
-      this.rectangleShape32.BackColor = System.Drawing.Color.Orange;
-      this.rectangleShape32.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
-      this.rectangleShape32.BorderWidth = 3;
-      this.rectangleShape32.CornerRadius = 23;
-      this.rectangleShape32.Location = new System.Drawing.Point(90, 140);
-      this.rectangleShape32.Name = "rectangleShape32";
-      this.rectangleShape32.Size = new System.Drawing.Size(47, 47);
-      // 
-      // lineShape17
-      // 
-      this.lineShape17.BorderWidth = 3;
-      this.lineShape17.Name = "lineShape17";
-      this.lineShape17.X1 = 485;
-      this.lineShape17.X2 = 561;
-      this.lineShape17.Y1 = 436;
-      this.lineShape17.Y2 = 436;
-      // 
-      // lineShape18
-      // 
-      this.lineShape18.BorderWidth = 3;
-      this.lineShape18.Name = "lineShape18";
-      this.lineShape18.X1 = 485;
-      this.lineShape18.X2 = 485;
-      this.lineShape18.Y1 = 436;
-      this.lineShape18.Y2 = 267;
       // 
       // verticalProgressBar4
       // 

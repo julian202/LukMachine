@@ -50,60 +50,17 @@ namespace LukMachine
 
     public Boolean OpenPort(String portNum)
     {
-
       autoFindBoardPort();
-      connected = true;
-      demoMode = false;
-      return true;
-
-
-      //open up a new port.
-
-      //set the comport number to a string variable
-      //String thePort = "COM1"
-      //create the new serial port object
-
-      /*
-      if (connected)
+      if (!connected)
       {
-        ClosePort();
+        autoFindBoardPort();
       }
-      if (portNum == "Demo")
+      if (!connected)
       {
-        connected = true;
-        demoMode = true;
-        System.Diagnostics.Debug.WriteLine("Demo Mode Started");
-        comPort = portNum;
-        return true;
-      }
-      try
-      {
-        _serialPort.PortName = portNum;
-        _serialPort.ReadTimeout = 4000;
-        _serialPort.WriteTimeout = 4000;
-        _serialPort.StopBits = System.IO.Ports.StopBits.One;
-        _serialPort.Parity = System.IO.Ports.Parity.None;
-        _serialPort.DataBits = 8;
-
-        //if the port ain't open it, open it.
-        if (!(_serialPort.IsOpen))
-          _serialPort.Open();
-        commBusy = false;
-        System.Diagnostics.Debug.WriteLine("COMM Port: " + portNum + " Opened");
-        comPort = portNum;
-        connected = true;
-        demoMode = false;
-        return true;
-      }
-      catch (Exception ex)
-      {
-        //I'm sorry Davey, you can't do that.
-        System.Diagnostics.Debug.Write("COMM Port: " + portNum + " ERROR Opening");
-        MessageBox.Show("Error opening/writing to serial port :: " + ex.Message, "Error!");
-        commBusy = false;
-        connected = false;
+        MessageBox.Show("Machine not detected. Make sure the usb cable is connected and that the machine is powered.");
         return false;
-      }*/
+      }
+      return true;
     }
 
     public void autoFindBoardPort()
@@ -127,13 +84,10 @@ namespace LukMachine
           Output(port + " returned: " + returnValue);
           if (returnValue.Contains("Testing"))
           {
-            //MessageBox.Show("Port is " + port);
             Properties.Settings.Default.COMM = port;
             Properties.Settings.Default.Save();
-
-            //labelBoardDetected.ForeColor = Color.Green;
-            //toolStripStatusLabel1.Text = "Connected to machine (on " + port + ")";
-            //break; //break out of foreach loop.
+            connected = true;
+            demoMode = false;
             return; //break out of function.
           }
         }
@@ -142,10 +96,7 @@ namespace LukMachine
           Output(ex.Message);
         }
       }
-      //if it doesn't breaked out of the function (by hiting return):
-      //labelBoardDetected.Text = "Machine not detected. Please connect USB cable and restart program.";
-      //labelBoardDetected.ForeColor = Color.Red;
-      //labelBoardDetected.Visible = true;
+      connected = false;
       _serialPort.Close();
     }
 

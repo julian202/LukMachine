@@ -42,3 +42,4 @@ C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.appli
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.exe
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.pdb
 C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.csprojResolveAssemblyReference.cache
+C:\Users\MSI-1\Documents\GitHub\LukMachine\LukMachine\obj\Debug\LukMachine.NewManual.resources

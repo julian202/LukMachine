@@ -113,6 +113,7 @@ namespace LukMachine
 
     private void button2_Click(object sender, EventArgs e)
     {
+      
       bool success;
       success = COMMS.Instance.OpenPort(Properties.Settings.Default.COMM);
       if (success)
@@ -125,6 +126,14 @@ namespace LukMachine
           Show();
         }
       }
+      /*
+      NewManual manctrl = new NewManual();
+      Hide();
+      manctrl.ShowDialog();
+      if (!this.IsDisposed)
+      {
+        Show();
+      }*/
     }
 
     private void button3_Click(object sender, EventArgs e)
