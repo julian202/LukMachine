@@ -127,7 +127,7 @@ namespace LukMachine
 
       if (Properties.Settings.Default.RefillPumpState)
       {
-        rectangleShape14.BackColor = Color.Bisque;
+        rectangleShape24.BackColor = Color.Bisque;
         label21.BackColor = Color.Bisque;
         label22.BackColor = Color.Bisque;
         label22.Text = "Pump ON";
@@ -135,7 +135,7 @@ namespace LukMachine
       }
       else
       {
-        rectangleShape14.BackColor = Color.Gray;
+        rectangleShape24.BackColor = Color.Gray;
         label21.BackColor = Color.Gray;
         label22.BackColor = Color.Gray;
         label22.Text = "Pump OFF";
@@ -296,7 +296,7 @@ namespace LukMachine
         button21.Text = "Pumping... Please wait...";
         button21.Enabled = false;
         //turn refill pump on:
-        rectangleShape14.BackColor = Color.Bisque;
+        rectangleShape24.BackColor = Color.Bisque;
         label21.BackColor = Color.Bisque;
         label22.BackColor = Color.Bisque;
         label22.Text = "Pump ON";
@@ -318,7 +318,7 @@ namespace LukMachine
         refilldone = false;
         startRefill = false;
         //stop refill pump:
-        rectangleShape14.BackColor = Color.Gray;
+        rectangleShape24.BackColor = Color.Gray;
         label21.BackColor = Color.Gray;
         label22.BackColor = Color.Gray;
         label22.Text = "Pump OFF";
@@ -1006,7 +1006,7 @@ namespace LukMachine
       }
 
     }
-    private void rectangleShape14_Click(object sender, EventArgs e)
+    private void rectangleShape24_Click(object sender, EventArgs e)
     {
       clickedPump1();
     }
@@ -1014,7 +1014,7 @@ namespace LukMachine
     {
       if (RefillPumpOn)
       {
-        rectangleShape14.BackColor = Color.Gray;
+        rectangleShape24.BackColor = Color.Gray;
         label21.BackColor = Color.Gray;
         label22.BackColor = Color.Gray;
         label22.Text = "Pump OFF";
@@ -1023,7 +1023,7 @@ namespace LukMachine
       }
       else
       {
-        rectangleShape14.BackColor = Color.Bisque;
+        rectangleShape24.BackColor = Color.Bisque;
         label21.BackColor = Color.Bisque;
         label22.BackColor = Color.Bisque;
         label22.Text = "Pump ON";
@@ -1435,7 +1435,7 @@ namespace LukMachine
       pen.StartCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
       pen.EndCap = System.Drawing.Drawing2D.LineCap.NoAnchor;
       e.Graphics.DrawLine(pen, 590, 550, 680, 550);
-      e.Graphics.DrawLine(pen, 620, 260, 725, 285);
+      e.Graphics.DrawLine(pen, 610, 263, 725, 263);
       pen = new Pen(Color.Black, 9);
       pen.StartCap = System.Drawing.Drawing2D.LineCap.NoAnchor;
       pen.EndCap = System.Drawing.Drawing2D.LineCap.ArrowAnchor;
@@ -1521,7 +1521,7 @@ namespace LukMachine
       rectangleShape8.BorderWidth = 4;
     }
 
-    private void rectangleShape14_MouseEnter(object sender, EventArgs e)
+    private void rectangleShape24_MouseEnter(object sender, EventArgs e)
     {
       rectangleShape8.BorderWidth = 4;
     }

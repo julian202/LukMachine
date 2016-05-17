@@ -137,7 +137,10 @@ namespace LukMachine
         SR = new StreamWriter(dataFile);
         //dataFilePathForCapRep = dataFile.Substring(0, dataFile.Length - 4) + "-forCapRep.txt";
         //SR2 = new StreamWriter(dataFilePathForCapRep);
+
         WriteHeader();
+        //CommonClass.WriteHeader();
+        
         //WriteHeaderForCapRep();
         SR.Close();
         //SR2.Close();
@@ -931,6 +934,8 @@ namespace LukMachine
       SR2.WriteLine(Properties.Settings.Default.SampleThickness);
       SR2.WriteLine("0.001"); //atmosphereric pressure (0 for our gauges but can't use 0!: causes caprep error.)
     }
+
+
     public void WriteHeader()
     {
       string paper = null;
@@ -949,7 +954,7 @@ namespace LukMachine
         grammage = "N/A";
       }
       //Make a hat for the data.
-      SR.WriteLine("Liquid Permeability Test");
+      SR.WriteLine("PMI Liquid Permeability Test");
       SR.WriteLine("");
       SR.WriteLine("Sample Info:");
       SR.WriteLine("");
